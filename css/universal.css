@@ -1,0 +1,73 @@
+body,html{width:100%;height:100vh;display: block;}
+.print{border:1px dashed purple;}
+[class*='c-align']{display: flex;}
+.c-align-middle{justify-content: center;align-items: center;}
+.c-align-horizontal{justify-content: center;}
+.c-align-vertical{align-items: center;}
+.c-align-end{align-items:flex-end;justify-content: center;}
+
+/*imagenes*/
+[class*='img-cover']{width: 100%;height: 100%;object-fit: cover;}
+.img-cover-top{object-position: top;} 
+.img-cover-bottom{object-position: bottom;}
+.img-cover-left{object-position: left;} 
+.img-cover-right{object-position: right;}
+.img-cover-center{object-position: center;}
+/*background*/
+[class*='bg-cover']{background-size:cover;background-repeat:no-repeat;}
+.bg-cover-top{background-position:top;}
+.bg-cover-bottom{background-position:bottom;}
+.bg-cover-left{background-position:left;}
+.bg-cover-right{background-position-x:right;background-position-y: bottom}
+.bg-cover-center{background-position:center;}
+
+/*colores opacidos*/
+.opacity-white{background-color:rgba(255, 255, 255, 0.5);}
+.opacity-black-50{background-color:rgba(0, 0, 0, 0.5);}
+.opacity-black-75{background-color:rgba(0, 0, 0, 0.75);}
+.f-opacity-50{filter:opacity(0.5);}
+.f-opacity-75{filter:opacity(0.75);}
+[class*='capa']{width:100%;height:100%;transition: 1s ease;}
+.capa-black-25{background-color:rgba(0, 0, 0, 0.25);}
+.capa-black-50{background-color:rgba(0, 0, 0, 0.50);}
+.capa-black-75{background-color:rgba(0, 0, 0, 0.75);}
+.capa-white-25{background-color:rgba(255, 255, 255, 0.25);}
+.capa-white-50{background-color:rgba(255, 255, 255, 0.50);}
+.capa-white-75{background-color:rgba(255, 255, 255, 0.75);}
+.capa-green-25{background-color:rgba(44, 165, 98, 0.25);}
+.capa-green-50{background-color:rgba(44, 165, 98, 0.50);}
+.capa-green-75{background-color:rgba(44, 165, 98, 0.75);}
+.capa-green-dark-25{background-color:rgba(27, 87, 53, 0.25);}
+.capa-green-dark-50{background-color:rgba(27, 87, 53, 0.50);}
+.capa-green-dark-75{background-color:rgba(27, 87, 53, 0.75);}
+.capa-blue-25{background-color:rgba(37, 170, 227, 0.25);}
+.capa-blue-50{background-color:rgba(37, 170, 227, 0.50);}
+.capa-blue-75{background-color:rgba(37, 170, 227, 0.75);}
+.capa-pink-25{background-color:rgba(233, 42, 112, 0.25);}
+.capa-pink-50{background-color:rgba(233, 42, 112, 0.50);}
+.capa-pink-75{background-color:rgba(233, 42, 112, 0.75);}
+.capa-purple-25{background-color:rgba(161, 122, 179, 0.25)}
+.capa-purple-50{background-color:rgba(161, 122, 179, 0.50);}
+.capa-purple-75{background-color:rgba(161, 122, 179, 0.75);}
+.capa-transparent:hover{background-color:rgba(0, 0, 0, 0)};
+/*text*/
+    /*size*/
+    .fs-1{font-size: 1rem;}
+    .fs-1-5{font-size: 1.5rem;}
+    .fs-2{font-size: 2rem;}
+    .fs-2-5{font-size: 2.5rem;}
+    .fs-3{font-size: 3rem;}
+    /*color*/
+    .p-text-gold{color:rgb(132, 111, 56);}
+    .p-text-black{color:black;}
+    .t-shadow-2-black{text-shadow:2px 2px 2px black;}
+    /*style*/
+    .f-style-italic{font-style: italic;}
+    /*uppercase*/
+    .text-capitalize{text-transform: capitalize;}
+    /*first-letter uppercase*/
+    .text-first-uppercase:first-letter{color:red;}
+/*links*/
+a{color:white;}
+a:hover{color:white;text-decoration:none;}
+
