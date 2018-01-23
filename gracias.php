@@ -1,6 +1,7 @@
 <?php
     //header
     include 'mod/header.php';
+    $menuBack = "Gracias";
     if(isset($_GET['solicitud'])){     
     }else{
         header('Location: ../');

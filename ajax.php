@@ -60,6 +60,13 @@
         $fecha = $_POST['fecha'];
         $objBen = new Beneficiario;
         $edad = $objBen->generaEdadBeneficiario($fecha);
-        echo "<script>alert('".$edad."')</script>"; 
+        echo "<script>console.log('".$edad."')</script>"; 
+        //echo "<script>alert('edad'); </script>";
+        if($edad >= 6 and $edad< 18){
+        
+         
+        }
+        //echo "<script>console.log('Edad: 20');</script>";
+        //echo '<input type="hidden" value="20" name="edad" id="edad">';
     }
 ?>

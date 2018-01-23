@@ -1,72 +1,83 @@
 <?php
     include 'back/objetos.php';
     
-    if( isset( $_POST['formDispositivo'] ) ){
-        $d = $_POST['formDispositivo'];
-    }elseif( isset( $_GET['dispositivo'] ) ){
-        $d = $_GET['dispositivo'];
-    }else{
-        header('Location: ../');
-    }
-    
-    if( isset( $_POST['form'] ) ){    
-        //$d=$_POST['formDispositivo'];
-        $fecha = date("-d-m-Y-H-i-s");
-        $objBen = new Beneficiario();    
-        $objBen->setNombre($_POST['nombre']);
-        $objBen->setApellidos($_POST['apellido']);
-        $objBen->setSexo($_POST['sexo']);
-        $objBen->setNacimiento($_POST['date']);
-        $objBen->setCiudad($_POST['ciudad']);
-        $objBen->setCalle($_POST['calle']);
-        $objBen->setColonia($_POST['colonia']);
-        $objBen->setCp($_POST['cp']);
-        $objBen->setTelefono($_POST['tel']);
-        $objBen->setEmail($_POST['email']);
-        //comprobar si el beneficiario cuenta con un tutor
-        $objBen->setIndependiente($_POST['independiente']);
-        if( $_POST['independiente'] == 1 ){
-            $objBen->setNombreTutor($_POST['tutNombre']);
-            $objBen->setApellidoTutor($_POST['tutApellido']);
-            $objBen->setSexoTutor($_POST['sexoTutor']);
-            $objBen->setViveBen($_POST['tutVive']);
-            $objBen->setParentesco($_POST['parentesco']);
-            $objBen->setNacimientoTutor($_POST['tutDate']);
-            $objBen->setTelTutor($_POST['tutTel']);
-            $objBen->setEmailTutor($_POST['tutEmail']);
-        }
-        $objBen->setDispositivo($_POST['solicitud']);
-        //if($d == 'brazo'){
-            $objBen->setCondicion($_POST['condicion']);
-            //echo $objBen->getCondicion();
-        //}
-        $objBen->setIdMedioDifusion($_POST['enterado']);
-        if(isset($_POST['enteradoOtro'])){
-            $objBen->setDescMedioDif($_POST['enteradoOtro']);
-        }        
-        $objBen->setDescObtencion($_POST['breveDescripcion']); 
-        //$objBen->setFoto1($_FILES['foto1']['name']);
-        //$objBen->setFoto2($_FILES['foto2']['name']);
-        //$objBen->setFoto3($_FILES['foto3']['name']);
-        $foto1 = "";
-        $foto2 = "";
-        $foto3 = "";
-        for($i=1; $i<=3; $i++){
-            $getFile="foto".$i;
-            $func ="setFoto".$i;
-            $tmp = explode(".", $_FILES[$getFile]['name']);
-            $imageFileType = end($tmp);
-            $add= $getFile.$fecha.".".$imageFileType;
-            //$file_name = $_FILES[$getFile]['name'];
-            ${"foto".$i} = $add;
-            echo ${"foto".$i};
-            $objBen->$func($add);
-        }
-        
-        //$objBen->mostrar();
-    
-        if( $objBen->inserta() ){
+    if( isset( $_POST['formDispositivo'] ) ){ $d = $_POST['formDispositivo'];
+    }elseif( isset( $_GET['dispositivo'] ) ){ $d = $_GET['dispositivo'];
+    }else{ header('Location: ../'); }
 
+    $fechaError = "";
+    if( isset( $_POST['form'] ) ){ 
+        $fecha = $_POST['date'];
+        $objBen = new Beneficiario;
+        $edad = $objBen->generaEdadBeneficiario($fecha);
+        //echo "<script>console.log('".$edad."');</script>";
+        if($edad < 6){ $fechaError = "Edad minima 6 años";
+        }elseif($edad >= 6 and $edad< 18){ $fechaError = "menor edad";
+        }elseif($edad > 100){ $fechaError = "La edad excede los 100 años ";
+        }else{
+            //$fechaError = "";
+            //$d=$_POST['formDispositivo'];
+            $fecha = date("-d-m-Y-H-i-s");
+            $objBen = new Beneficiario();    
+            $objBen->setNombre($_POST['nombre']);
+            $objBen->setApellidos($_POST['apellido']);
+            $objBen->setSexo($_POST['sexo']);
+            $objBen->setNacimiento($_POST['date']);
+            $objBen->setCiudad($_POST['ciudad']);
+            $objBen->setCalle($_POST['calle']);
+            $objBen->setColonia($_POST['colonia']);
+            $objBen->setCp($_POST['cp']);
+            $objBen->setTelefono($_POST['tel']);
+            $objBen->setEmail($_POST['email']);
+            //comprobar si el beneficiario cuenta con un tutor
+            $objBen->setIndependiente($_POST['independiente']);
+            if( $_POST['independiente'] == 1 ){
+                $objBen->setNombreTutor($_POST['tutNombre']);
+                $objBen->setApellidoTutor($_POST['tutApellido']);
+                $objBen->setSexoTutor($_POST['sexoTutor']);
+                $objBen->setViveBen($_POST['tutVive']);
+                $objBen->setParentesco($_POST['parentesco']);
+                $objBen->setNacimientoTutor($_POST['tutDate']);
+                $objBen->setTelTutor($_POST['tutTel']);
+                $objBen->setEmailTutor($_POST['tutEmail']);
+            }
+            $objBen->setDispositivo($_POST['solicitud']);
+            //if($d == 'brazo'){
+                $objBen->setCondicion($_POST['condicion']);
+                //echo $objBen->getCondicion();
+            //}
+            $objBen->setIdMedioDifusion($_POST['enterado']);
+            if(isset($_POST['enteradoOtro'])){
+                $objBen->setDescMedioDif($_POST['enteradoOtro']);
+            }        
+            $objBen->setDescObtencion($_POST['breveDescripcion']); 
+            //$objBen->setFoto1($_FILES['foto1']['name']);
+            //$objBen->setFoto2($_FILES['foto2']['name']);
+            //$objBen->setFoto3($_FILES['foto3']['name']);
+            $foto1 = "";
+            $foto2 = "";
+            $foto3 = "";
+            for($i=1; $i<=3; $i++){
+                $getFile="foto".$i;
+                $func ="setFoto".$i;
+                $tmp = explode(".", $_FILES[$getFile]['name']);
+                $imageFileType = end($tmp);
+                $add= $getFile.$fecha.".".$imageFileType;
+                //$file_name = $_FILES[$getFile]['name'];
+                ${"foto".$i} = $add;
+                echo ${"foto".$i};
+                $objBen->$func($add);
+            }
+
+            //$objBen->mostrar();
+        
+            if( $objBen->inserta() ){
+                for($i=1; $i<=3; $i++){
+                    $getFile="foto".$i;
+                    move_uploaded_file ($_FILES[$getFile]['tmp_name'],"imagenes/uploads/".${"foto".$i} );
+                }
+                header('Location: ../gracias?solicitud=exito');
+            }
         }
     }
     if( $d =='brazo' ){  
@@ -179,12 +190,12 @@
                 ?>
                 <select name='sexo' class="form-control" required="true">
                     <option value="" class="text-muted">Selecciona Tu Sexo</option>
-                    <option <?php if($sexo == "masculino"){echo "selected";}?> value='m'>Masculino</option>
-                    <option <?php if($sexo == "femenino"){echo "selected";}?> value='f'>Femenino</option>
+                    <option <?php if($sexo == "m"){echo "selected";}?> value='m'>Masculino</option>
+                    <option <?php if($sexo == "f"){echo "selected";}?> value='f'>Femenino</option>
                 </select>
             </div>
             <div class='form-group col-md-6'>
-                <label>Fecha de Nacimiento</label><input type="date" class='form-control' name='date' placeholder='Fecha de Nacimiento' value ="<?php if(isset($_POST['date'])){echo $_POST['date'];} ?>" required>
+                <label>Fecha de Nacimiento<?php if($fechaError != "" ){ echo "<span style='color:red;'> * ".$fechaError."</span>"; } ?> </label><input type="date" class='form-control' name='date' id="dateBen" placeholder='Fecha de Nacimiento' value ="<?php if(isset($_POST['date'])){echo $_POST['date'];} ?>" required>
             </div>
         </div>
         <div class='form-row'>
@@ -276,6 +287,7 @@
         </div>
         
         <!-- formulario del tutor -->
+        <div class="text-center text-danger" style='display:none;' id="msgMenorEdad"><span>* Datos requeridos, por minoría de edad del solicitante</span></div>
         <div class='seccionTutor' style='display:none;'>
             <div class='form-row'>
                 <div class='form-group col-sm-6'>
@@ -435,7 +447,8 @@
         <!-- <h4 class='px-5 pt-3 text-center'>Seguiremos trabajando para cumplir su petición lo antes posible</h4> -->
         <input type='hidden' value='form' name='form' />
         <input type='hidden' value='<?php echo $d;?>' name='formDispositivo' />
-        <input type='hidden' name='resultado' id="resultado"/>
+        <input type='hidden' value='' name='edad' id="edad"/>
+        <!-- <div id="edad"><div/> -->
         <br>
         <div class="row mx-0">
             <button class="btn bg-verde-menu ml-auto text-white p-3 mt-3 mb-3">Enviar</button> 
@@ -447,15 +460,19 @@
 <script>
 $(document).ready(function(){
     //inicializar el valor de beneficiario depende de otra persona siempre en no
-    $('input[name$="date"]').blur(function(){
-        var f = "generaEdad";
-        var r =  "resultado";
-        var fecha = $(this).val();
-        var parametros = {
-            "formulario": f,
-            "fecha": fecha
+    $('#dateBen').blur(function(){
+        f = $(this).val();
+        ed = calculaEdad(f);
+        console.log(ed);
+        if(ed >= 6 && ed < 18 ){
+            $('input[name$="independiente"]')[1].checked = true;
+            $('input[name$="independiente"]:not(:checked)').attr('disabled',true);
+            rTutor();
+            $('.seccionTutor,#msgMenorEdad').show(500);
+        }else{
+            $('input[name$="independiente"]:not(:checked)').attr('disabled',false);
+            $('#msgMenorEdad').hide(500);
         }
-        ajax(parametros,r);
     });
 
     //función para seleccionar los estados del país
@@ -490,39 +507,25 @@ $(document).ready(function(){
 
     //función para ocultar o mostrar los campos de el tutor 
     if( $('input[name$="independiente"]:checked').val() == 1 ){
-        $('input[name$="tutNombre"]').prop('required',true);
-        $('input[name$="tutApellido"]').prop('required',true);
-        $('#sexoTutor').prop('required',true);
-        $('input[name$="tutVive"]').prop('required',true);
-        $('input[name$="tutDate"]').prop('required',true);
-        $('input[name$="tutTel"]').prop('required',true);
-        $('input[name$="tutEmail"]').prop('required',true);
-        $('#parentesco').prop('required',true);
+        rTutor();
         $('.seccionTutor').show(500);
     }
-    console.log($('input[name$="independiente"]:checked').val());  
+    console.log("independiente: " + $('input[name$="independiente"]:checked').val());  
     
     $('input[name$="independiente"]').click(function(){        
         if( $(this).val() == 0 ){
-            $('input[name$="tutNombre"]').prop('required',false);
-            $('input[name$="tutApellido"]').prop('required',false);
-            $('#sexoTutor').prop('required',false);
-            $('input[name$="tutVive"]').prop('required',false);
-            $('input[name$="tutDate"]').prop('required',false);
-            $('input[name$="tutTel"]').prop('required',false);
-            $('input[name$="tutEmail"]').prop('required',false);
-            $('#parentesco').prop('required',false);
-            $('.seccionTutor').hide(500);
+            f = $('#dateBen').val();
+            ed = calculaEdad(f);
+            if(ed >= 6 && ed <18){
+                $('input[name$="independiente"]')[1].checked = true;
+                alert('el solicitante es menor de edad porfavor introduce los datos del tutor');
+            }else{
+                nrTutor();
+                $('.seccionTutor').hide(500);
+            }
         }    
         if( $(this).val() == 1 ){
-            $('input[name$="tutNombre"]').prop('required',true);
-            $('input[name$="tutApellido"]').prop('required',true);
-            $('#sexoTutor').prop('required',true);
-            $('input[name$="tutVive"]').prop('required',true);
-            $('input[name$="tutDate"]').prop('required',true);
-            $('input[name$="tutTel"]').prop('required',true);
-            $('input[name$="tutEmail"]').prop('required',true);
-            $('#parentesco').prop('required',true);
+            rTutor();
             $('.seccionTutor').show(500);
         }    
     });
@@ -616,7 +619,32 @@ function preview(id,foto){
     }
 
 }
-
+function calculaEdad(f){
+    fecha = new Date(f);
+    hoy = new Date();
+    ed = parseInt((hoy -fecha)/365/24/60/60/1000);
+    return ed;
+}
+function rTutor(){
+    $('input[name$="tutNombre"]').prop('required',true);
+    $('input[name$="tutApellido"]').prop('required',true);
+    $('#sexoTutor').prop('required',true);
+    $('input[name$="tutVive"]').prop('required',true);
+    $('input[name$="tutDate"]').prop('required',true);
+    $('input[name$="tutTel"]').prop('required',true);
+    $('input[name$="tutEmail"]').prop('required',true);
+    $('#parentesco').prop('required',true);
+}
+function nrTutor(){
+    $('input[name$="tutNombre"]').prop('required',false);
+    $('input[name$="tutApellido"]').prop('required',false);
+    $('#sexoTutor').prop('required',false);
+    $('input[name$="tutVive"]').prop('required',false);
+    $('input[name$="tutDate"]').prop('required',false);
+    $('input[name$="tutTel"]').prop('required',false);
+    $('input[name$="tutEmail"]').prop('required',false);
+    $('#parentesco').prop('required',false);
+}
 </script>
     </body>
 </html>
