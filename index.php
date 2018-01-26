@@ -63,13 +63,13 @@ include 'back/objetos.php';
             ?>
         </div><!--/container menu-->
     <!--/menu-->
-    <!--contenid
+    <!--contenido-->
         <!--contador-->
         <?php
-           # $estatus = 1;
-           # $objBen = new beneficiario;
-           #$valor = $objBen->buscaCountSolicitudes($estatus);
-           $valor = 2070;
+            $estatus = 1;
+            $objBen = new beneficiario;
+            $valor = $objBen->buscaTotalSolicitudes();
+           //$valor = 2070;
         ?>
             <div id="controlMenu" class='text-white pl-4' style='height:50px;margin-top:-100px;position:absolute;'>
                 <p class="fs-2 d-inline" style="text-shadow:2px 2px 3px black;" id="contador" valor="<?php echo $valor;?>"></p>

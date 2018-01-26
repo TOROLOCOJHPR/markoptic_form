@@ -16,9 +16,12 @@
     <!--/menu-->
     <!-- contenido -->
     <!-- Titulo principal -->
-    <div class="w100 h-100 text-white bg-cover-center" style="background-image:url('/imagenes/sad.jpg');">
-        <div class="w-100 h-100 c-align-middle text-center">
-            <h1>Felicidades lo lograste  &nbsp;.(^-^*).<br><small>No entiendo como lo hacen \(o_o)/</small></h1>
+    <div class="w100 h-100 text-white bg-cover-center c-align-middle" style="background-image:url('/imagenes/imagen404.jpg');">
+        <div class="p-4 w-100 opacity-black-50 c-align-middle">
+            <div>
+                <div class="c-align-vertical"><span class="fs-3">Error 404</span><img src="imagenes/imagen404.png" style="max-width:65px;"></div>
+                <span class="fs-3">Página no encontrada</span>
+            </div>
         </div>
     </div>
 
