@@ -1,5 +1,6 @@
 <?php
-    include "back/objetos.php";
+    include "../back/conexion.php";
+    include "../back/objetos.php";
     $formulario = $_POST['formulario'];
 
     //busca estados del país seleccionado
@@ -68,5 +69,21 @@
         }
         //echo "<script>console.log('Edad: 20');</script>";
         //echo '<input type="hidden" value="20" name="edad" id="edad">';
+    }
+    //busca beneficiario por medio de folio
+    if($formulario == "buscaBeneficiarioFolio"){
+        $folio = trim($_POST['folio']," ");
+        //echo preg_replace('/[a-z]+/','',$folio);
+        if($folio == ""){
+            echo "";
+        }else{
+           /*$strCount = strlen($folio);
+            if( $strCount < 3 ){
+                echo "minimo tres caracteres";
+            }else{*/
+                $objBen = new beneficiario;
+                $objBen->buscaBeneficiarioFolio($folio);
+           // }
+        }
     }
 ?>

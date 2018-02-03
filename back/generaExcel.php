@@ -1,6 +1,7 @@
 <?php 
-require 'back/PHPExcel.php';
-require 'back/objetos.php';
+require '../back/PHPExcel.php';
+require '../back/conexion.php';
+require '../back/objetos.php';
 /** Error reporting */
 error_reporting(E_ALL);
 
@@ -11,10 +12,10 @@ ini_set('include_path', ini_get('include_path').';../Classes/');
 //include 'PHPExcel.php';
 
 /** PHPExcel_Writer_Excel2007 */
-include 'back/PHPExcel/Writer/Excel2007.php';
+require '../back/PHPExcel/Writer/Excel2007.php';
 
 // Create new PHPExcel object
-echo date('H:i:s') . " Create new PHPExcel object\n";
+//echo date('H:i:s') . " Create new PHPExcel object\n";
 $objPHPExcel = new PHPExcel();
 $objBen = new Beneficiario;
 $fechaActual = date("Y")."-".date("m")."-".date("d");
@@ -24,7 +25,7 @@ header("Pragma: no-cache");
 header("Expires: 0");
 
 // Set properties
-echo date('H:i:s') . " Set properties\n";
+//echo date('H:i:s') . " Set properties\n";
 $objPHPExcel->getProperties()->setCreator("Fundación Markoptic");
 $objPHPExcel->getProperties()->setLastModifiedBy("Fundación Markoptic");
 $objPHPExcel->getProperties()->setTitle("Reporte de solicitudes");
@@ -108,18 +109,18 @@ foreach($arreglo as $columnID) {
 }
 
 // Rename sheet
-echo date('H:i:s') . " Rename sheet\n";
+//echo date('H:i:s') . " Rename sheet\n";
 $objPHPExcel->getActiveSheet()->setTitle('Simple');
 
 		
 // Save Excel 2007 file
-echo date('H:i:s') . " Write to Excel2007 format\n";
+//echo date('H:i:s') . " Write to Excel2007 format\n";
 $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
 ob_end_clean();
 $objWriter->save('php://output');
 
 // Echo done
-echo date('H:i:s') . " Done writing file.\r\n";
+//echo date('H:i:s') . " Done writing file.\r\n";
 
 ?>
 

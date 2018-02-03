@@ -9,7 +9,7 @@
     /cdn-->
 
     <title>Fundacion | Markoptic</title>
-    <link rel="stylesheet" href="/css/bootstrap-4/dist/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="/css/bootstrap.min.css">    
     <link rel="stylesheet" href="/css/style-fundacion.css">    
     <link rel="stylesheet" href="/css/universal.css">    
     <link rel="stylesheet" href="/js/lightbox/src/css/lightbox.css" >

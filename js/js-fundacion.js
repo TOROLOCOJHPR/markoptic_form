@@ -21,7 +21,7 @@ $(document).ready(function(){
             setTimeout (function () {
                    $ ('#contador').html(cont);
                    cont = cont + 1; 
-             }, i * 15);            
+             }, i * 2);            
        } 
     /*--/solicitudes--*/
 });    

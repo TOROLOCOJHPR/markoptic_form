@@ -2,6 +2,7 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     include 'mod/header.php';
+    include 'back/conexion.php';
     include 'back/objetos.php';
     $menuBack = "Beneficiados";
 ?>
@@ -27,43 +28,6 @@
             <h1 class="t-shadow-2-black">Beneficiados</h1>
         </div>
     </div>
-    <!-- <h3 class="text-center px-5">Gracias a ti,<br> nos estamos renovando,<br> para que puedas tener un mejor servicio<br> y una mejor experiencia</h3> -->
-    <!-- redes sociales -->
-    <!-- <div class="w-100 text-center mb-1">
-                        
-                        <span class="fa-stack fa-lg">
-                            <a class=" text-white" target="blank" href="https://www.facebook.com/fundacionmarkoptic/">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-facebook fa-stack-1x fa-inverse"style="color:#2a9f5b;"></i>
-                            </a>
-                        </span>
-                      
-                        
-                        <span class="fa-stack fa-lg">
-                            <a class=" text-white" target="blank" href="https://twitter.com/FMarkopticAC">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"style="color:#2a9f5b;"></i>
-                            </a>
-                        </span>
-                        
-                        
-                        <span class="fa-stack fa-lg">
-                            <a class=" text-white" target="blank" href="https://www.youtube.com/channel/UCIh2HeU_uwMwDYnEw_IMvLQ?view_as=subscriber">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-youtube-play fa-stack-1x fa-inverse"style="color:#2a9f5b;"></i>
-                            </a>
-                        </span>
-                        
-                        
-                        <span class="fa-stack fa-lg">
-                            <a class=" text-white" target="blank" href="https://www.linkedin.com/in/fundaci%C3%B3n-markoptic-4b8041153/">
-                                <i class="fa fa-square fa-stack-2x"></i>
-                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"style="color:#2a9f5b;"></i>
-                            </a>
-                        </span>
-                        
-                    </div>  -->
-    <!-- <h3 class="text-center p-3">Gracias a tu ayuda, estos son algunos de los beneficiarios</h3> -->
 
 <?php 
 /*codigo para su posterior uso*/
@@ -120,31 +84,38 @@ if( isset($_GET['b']) ){
         $mostrar = $idCount;
     }
     $arregloRandom = $objBen->generaSolicitudesAleatorias($mostrar,$idMax,$estatus);
-    echo'<h3 class="text-center p-3">Gracias a tu ayuda, estos son algunos de los beneficiados</h3>';
-    echo "<ul class='w-100 text-center c-align-middle flex-wrap' style='list-style:none;'>";
-    //busca datos apadrinado
     $objBen = new beneficiario;
+    echo'
+        <div id="directorio" class="container-fluid bg-cover-center p-0">
+            <div class="row mx-0 text-white text-center">
+    ';
     foreach($arregloRandom as $fila){
         $result = $objBen->buscaDatosApadrinado($fila);             
         foreach($result as $row){
-            echo'<li style="height:330px;width:250px;border:1px solid gray;margin-left:10px;margin-top:10px;">
-            <a href="/beneficiarios?b='.$result['id'].'">
-                <div class="mx-auto bg-cover-top" style="height:175px;width:100%;background-image:url('."'/imagenes/uploads/beneficiados/".$result['fotoHistoria']."'".');">
+        echo'     
+                <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio" style="background-image:url('."'/imagenes/uploads/beneficiados/".$result['fotoHistoria']."'".');height:250px;">
+                    <a href="/beneficiarios?b='.$result['id'].'">    
+                        <div class="colaborador-descripcion opacity-black">
+                            <div class="c-align-middle">
+                                <p class="px-3 pt-2 "style="font-size:1.3rem;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;">
+                                    <span>'.$result['nombre'].'&nbsp;'.$result['apellidos'].'</span>
+                                    <br>
+                                    <span style="font-size:1.1rem;">'.$result['dispositivo'].'</span>
+                                </p>
+                            </div>
+                            <div style="font-size:1.3rem;" class="c-align-middle px-2">
+                            </div>
+                        </div>    
+                    </a>
                 </div>
-                <div class="p-text-black text-left"><p class="mb-0 mx-3 mt-1">
-                    <strong>Nombre:</strong>
-                    <br>
-                    <span class="text-capitalize">'.$result['nombre'].'&nbsp;'.$result['apellidos'].'</span>
-                    <br><strong>Solicitud:</strong>
-                    <br>
-                    <span>'.$result['dispositivo'].'</span>
-                </div>
-            </a>
-        </li>';
+            ';
         break 1;
         }   
     }
-    echo"</ul>";
+    echo'
+            </div>
+        </div>
+    ';
 }
 ?> 
 <?php

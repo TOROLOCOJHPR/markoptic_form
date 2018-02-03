@@ -199,8 +199,8 @@
     <script src="/js/js-footer-link-scroll.js"></script>
     <script src="/js/js-position-top.js"></script>
     <script src="https://use.fontawesome.com/8077e15131.js"></script>
-    <script src="/css/bootstrap-4/assets/js/vendor/popper.min.js"></script>
-    <script src="/css/bootstrap-4/dist/js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
     <script src="/js/lightbox/src/js/lightbox.js"></script>
     <script>
     $(document).ready(function(){
@@ -230,7 +230,7 @@
     function ajax(ajaxParametros,resultado){
         $.ajax({
 	        data:ajaxParametros,
-         	url:'/ajax.php',
+         	url:'/back/ajax.php',
             type:'post',
         	beforeSend: function () {
 	            //$("#beforeresultado").html("<div class='beforeSend'><label>Cargando, espere por favor...</label></div>");

@@ -1,4 +1,7 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    include 'back/conexion.php';
     include 'back/objetos.php';
     
     if( isset( $_POST['formDispositivo'] ) ){ $d = $_POST['formDispositivo'];
@@ -532,10 +535,10 @@ $(document).ready(function(){
 
     //función para cambiar las condiciones del brazo a color
     $('input[name$="condicion"]').click(function(){
-        $('#condiciones label img:nth-child(2)').css({"display":"none"});
-        $('#condiciones label img:nth-child(1)').css({"display":"block"});
-        $("label[for='"+this.id+"'] img:nth-child(1)").css({"display":"none"});   
-        $("label[for='"+this.id+"'] img:nth-child(2)").css({"display":"block"});
+        $('#condiciones .imgCondicion img:nth-child(2)').css({"display":"none"});
+        $('#condiciones .imgCondicion img:nth-child(1)').css({"display":"block"});
+        $("#condiciones label[for='"+this.id+"'] img:nth-child(1)").css({"display":"none"});   
+        $("#condiciones label[for='"+this.id+"'] img:nth-child(2)").css({"display":"block"});
     });
 
    //desabilitar o habilitar la caja de texto otro de seccion como se entero de fundación 

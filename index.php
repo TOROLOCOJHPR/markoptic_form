@@ -20,11 +20,12 @@
 </cms:template>
 <?php
 include 'mod/header.php';
+include 'back/conexion.php';
 include 'back/objetos.php'; 
 ?>
 <style>
     body{
-        margin-top:100vh;
+        margin-top:90vh;
     }
 </style>
 <!--fondo-->
@@ -36,7 +37,7 @@ include 'back/objetos.php';
                     <cms:show_repeatable 'carouselfondo'>
                         <div class="carousel-item <cms:if k_count ='1'>active</cms:if>">
                             <a href="<cms:show url />">
-                                <img class="d-block w-100" src="<cms:show img_fondo />" alt="First slide">
+                                <img class="d-block w-100 carousel-item-position-top" src="<cms:show img_fondo />" alt="First slide">
                                 <div class="carousel-caption w-100  text-center opacity-black" style='bottom:150px;'>
                                     <h4><cms:show titulo /></h4>
                                 </div>

@@ -1,5 +1,5 @@
 <?php
-include 'back/conexion.php';
+//include 'back/conexion.php';
 class DatosPersonales {
     //atributos
     public $nombre,$apellidos,$sexo,$fecNacimiento,$ciudad,$calle,$colonia,$cp,$telefono,$email,$idMedioDifusion,$descMedioDif;
@@ -124,14 +124,14 @@ class Tutor extends DatosPersonales{
         ';
         while($row = $result->fetch_array()){
             echo'               
-            <option value="'.$row["id"].'" '; if( $parentesco ==  $row["id"] ){ echo "selected";  } echo '>'.$row['parentesco'].'</option>
+                <option value="'.$row["id"].'" '; if( $parentesco ==  $row["id"] ){ echo "selected";  } echo '>'.$row['parentesco'].'</option>
             ';
         }
         echo'</select>';
     }
 }
 class Beneficiario extends Tutor{
-    public $dispositivo,$condicion,$descObtencion,$foto1,$foto2,$foto3;
+    public $dispositivo,$condicion,$descObtencion,$estausSolicitud,$foto1,$foto2,$foto3;
     private $idSolicitud;
     //getter and setter
     public function getDispositivo(){return $this->dispositivo;}
@@ -140,6 +140,8 @@ class Beneficiario extends Tutor{
     public function setCondicion($sCondicion){$this->condicion = $sCondicion;}
     public function getDescObtencion(){return $this->descObtencion;}
     public function setDescObtencion($sDescObtencion){$this->descObtencion = $sDescObtencion;}
+    public function getEstatusSolicitud(){return $this->estatusSolicitud;}
+    public function setEstatusSolicitud($sEstatusSolicitud){$this->estatusSolicitud = $sEstatusSolicitud;}
     public function getFoto1(){return $this->foto1;}
     public function setFoto1($sFoto1){$this->foto1 = $sFoto1;}
     public function getFoto2(){return $this->foto2;}
@@ -175,6 +177,66 @@ class Beneficiario extends Tutor{
             $con->close();
         }   
     }
+    //busca todos los dispositivos
+    public function buscaDispositivoAll($id){
+        try{
+            $sql = "SELECT id,nombre FROM dispositivos ORDER BY nombre ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);              
+            echo'
+                <label>Dispositivo</label>
+                    <select name="solicitud" class="form-control">';
+                    while($row = mysqli_fetch_array($result)){
+                        echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['nombre'].'</option>';
+                    }  
+                echo'</select>';
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }   
+    }
+    //busca todas las condiciones
+    public function buscaCondicionesAll($id){
+        try{
+            $sql = "SELECT id,condicion FROM condiciones  ORDER BY condicion ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);              
+            echo'
+                <label>Condición amputación</label>
+                    <select name="condicion" class="form-control">';
+                    while($row = mysqli_fetch_array($result)){
+                        echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['condicion'].'</option>';
+                    }  
+                echo'</select>';
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }   
+    }
+    //busca todos los medios
+    public function buscaMedioAll($id){
+        try{
+            $sql = "SELECT id,medio,reqDesc,placeholder FROM mediosdifusion  ORDER BY medio ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);              
+            echo'
+                <label>Medio de difusión</label>
+                    <select name="medio" id="medio" class="form-control">';
+                    while($row = mysqli_fetch_array($result)){
+                        echo'<option value="'.$row['id'].'" '; if( $row['reqDesc'] != 0 ){ echo 'ph="'.$row['placeholder'].'"'; }else{ echo 'ph="" '; } if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['medio'].'</option>';
+                    }  
+                echo'</select>';
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }   
+    }
 
     //busca condición de la parte del cuerpo a solicitar de la persona
     public function buscaCondicion($condicion){
@@ -186,18 +248,23 @@ class Beneficiario extends Tutor{
                 $result = $con->query($sql);
                 echo'
                     <p class="w-100 text-center mt-3"><strong>Selecciona la condición de tu '.$condicion.'</strong></p>
-                    <div class="row mx-0" id="condiciones">
+                    <div class="row mx-0 h-100 print" id="condiciones">
                 ';
                 while($row = $result->fetch_array()){
                     echo'                    
-                        <div class="col-12 col-md-4 text-center condBrazo">
-                            <input type="radio" value="'.$row['id'].'" name="condicion" id="condicion'.$row['id'].'"/>
-                            <label for="condicion'.$row['id'].'">
-                                <img class="h-100" src="../imagenes/condiciones/'.$row['imgFrontal'].'" alt="imagen frontal de '.$row['condicion'].'">
-                                <img class="h-100" src="../imagenes/condiciones/'.$row['imgTrasera'].'" alt="imagen trasera de '.$row['condicion'].'" style="display:none;">
-                            </label>
+                    <div class="col-6 col-md-4 text-center condBrazo">
+                        <div class="row mx-0 print">
+                            <div class="col-12">    
+                                <label for="condicion'.$row['id'].'" class="imgCondicion text-center">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgFrontal'].'" alt="imagen frontal de '.$row['condicion'].'">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgTrasera'].'" alt="imagen trasera de '.$row['condicion'].'" style="display:none;">
+                                </label>
+                            </div>
+                            <div class="col-12 form-check-inline px-5 print">
+                                <input type="radio" value="'.$row['id'].'" name="condicion" id="condicion'.$row['id'].'"/><label for="condicion'.$row['id'].'" class="rCondicion mb-0 print">&nbsp;'.$row['condicion'].'</label>
+                            </div>
                         </div>
-                    ';
+                    </div>';
                 }
                 echo'
                     </div>
@@ -248,7 +315,25 @@ class Beneficiario extends Tutor{
             $con->close();
         }  
     }
-
+    //busca estatus de la solicitud
+    public function buscaEstatus($estatus){
+        try{
+            $sql ="SELECT id,estatus FROM estatussolicitud";
+            $objCon = new conexion;
+            $con= $objCon->conectar();
+            $result = $con->query($sql);
+            echo'<select name="estatus" class="mt-2 mb-2 form-control">';
+            while($row = $result->fetch_array()){
+                echo'<option value="'.$row['id'].'" '; if($row['id'] == $estatus){ echo "selected"; } echo'>'.$row['estatus'].'</option>';
+            }
+            echo'<select>';
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    
     //busca datos del apadrinado
     public function buscaDatosApadrinado($id){
         try{
@@ -308,31 +393,45 @@ class Beneficiario extends Tutor{
             $objCon = $con->conectar();
 
             $sql="SELECT
-                beneficiarios.nombre AS nombreBen, 
+                beneficiarios.nombre AS nombreBen,
+                beneficiarios.id AS idBen, 
                 beneficiarios.apellidos AS apellidosBen,
                 beneficiarios.sexo AS sexoBen, 
                 beneficiarios.fecNacimiento AS fNacimientoBen,
+                localidades.id AS ciudadId, 
                 localidades.nombre AS ciudad, 
+                regiones.id AS estadoId, 
                 regiones.nombre AS estado, 
+                paises.id AS paisId, 
                 paises.nombre AS pais, 
                 beneficiarios.calle AS calleBen, 
                 beneficiarios.colonia AS coloniaBen, 
                 beneficiarios.cp AS cpBen, 
                 beneficiarios.telefono AS telefonoBen,
                 beneficiarios.email AS emailBen, 
+                tutores.id AS idTut,
                 tutores.nombre AS nombreTut,
                 tutores.apellidos AS apellidosTut,
                 tutores.sexo AS sexoTut,
                 tutores.viveConBen,
+                parentescos.id AS pId,
                 parentescos.parentesco,
                 tutores.fecNacimiento  AS fNacimientoTut,
                 tutores.telefono AS telefonoTut, 
                 tutores.email AS emailTut,
+                dispositivos.id AS dispositivoId, 
                 dispositivos.nombre AS dispositivo, 
+                condiciones.id AS condicionId,
                 condiciones.condicion,
+                mediosdifusion.id AS medioId,
                 mediosdifusion.medio,
                 beneficiarios.descMedioDif,
-                solicitudes.porque
+                solicitudes.porque,
+                solicitudes.idEstatusSolicitud AS estatus,
+                imgsolicitud.foto1,
+                imgsolicitud.foto2,
+                imgsolicitud.foto3,
+                imgsolicitud.fotoHistoria
             FROM solicitudes
             LEFT JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario
             LEFT JOIN mediosdifusion ON beneficiarios.idMedioDifusion = mediosdifusion.id
@@ -343,6 +442,7 @@ class Beneficiario extends Tutor{
             LEFT JOIN parentescos ON parentescos.id = tutores.idParentesco
             LEFT JOIN dispositivos ON dispositivos.id = solicitudes.idDispositivo
             LEFT JOIN condiciones ON condiciones.id = solicitudes.idCondicion
+            LEFT JOIN imgsolicitud ON imgsolicitud.idSolicitud = solicitudes.id
             WHERE solicitudes.id = $id
             ";
 
@@ -355,30 +455,44 @@ class Beneficiario extends Tutor{
             $datosFormulario = array(
                 //"id"=>$result['id'], //id solicitud
                 "nombreBen"=>$result['nombreBen'], //nombres beneficiario
+                "idBen"=>$result['idBen'], //nombres beneficiario
                 "apellidoBen"=>$result['apellidosBen'], //apellidos del beneficiario
                 "sexoBen"=>$sB, //sexo  del beneficiario
                 "fNacimientoBen"=>$result['fNacimientoBen'], //fecha de nacimiento del beneficiado
                 "ciudad"=>$result['ciudad'], //ciudad de residencia del beneficiario
+                "ciudadId"=>$result['ciudadId'], //ciudad de residencia del beneficiario
                 "estado"=>$result['estado'], //estado de residencia del beneficiario
+                "estadoId"=>$result['estadoId'], //estado de residencia del beneficiario
                 "pais"=>$result['pais'], // país de residencia del beneficiario 
+                "paisId"=>$result['paisId'], // país de residencia del beneficiario 
                 "calleBen"=>$result['calleBen'], //ciudad de residencia del beneficiario
                 "coloniaBen"=>$result['coloniaBen'], //ciudad de residencia del beneficiario
                 "cpBen"=>$result['cpBen'], //ciudad de residencia del beneficiario
                 "telefonoBen"=>$result['telefonoBen'], //ciudad de residencia del beneficiario
                 "emailBen"=>$result['emailBen'], //ciudad de residencia del beneficiario
+                "idTut"=>$result['idTut'], //ciudad de residencia del beneficiario
                 "nombreTut"=>$result['nombreTut'], //ciudad de residencia del beneficiario
                 "apellidoTut"=>$result['apellidosTut'], //ciudad de residencia del beneficiario
                 "sexoTut"=>$sT, //ciudad de residencia del beneficiario
                 "viveConBen"=>$vB, //ciudad de residencia del beneficiario
+                "parentescoId"=>$result['pId'], // nombre del dispositivo 
                 "parentesco"=>$result['parentesco'], // nombre del dispositivo 
                 "fNacimientoTut"=>$result['fNacimientoTut'], // nombre del dispositivo 
                 "telefonoTut"=>$result['telefonoTut'], // nombre del dispositivo 
                 "emailTut"=>$result['emailTut'], // nombre del dispositivo 
+                "dispositivoId"=>$result['dispositivoId'], // nombre del dispositivo 
                 "dispositivo"=>$result['dispositivo'], // nombre del dispositivo 
+                "condicionId"=>$result['condicionId'], // nombre del dispositivo 
                 "condicion"=>$result['condicion'], // nombre del dispositivo 
+                "medioId"=>$result['medioId'], // nombre del dispositivo 
                 "medio"=>$result['medio'], // nombre del dispositivo 
                 "descMedioDif"=>$result['descMedioDif'], // nombre del dispositivo 
-                "porque"=>$result['porque'] //por qué el beneficiario solicito el dispositivo
+                "porque"=>$result['porque'], //por qué el beneficiario solicito el dispositivo
+                "estatus"=>$result['estatus'], //por qué el beneficiario solicito el dispositivo
+                "foto1"=>$result['foto1'], //por qué el beneficiario solicito el dispositivo
+                "foto2"=>$result['foto2'], //por qué el beneficiario solicito el dispositivo
+                "foto3"=>$result['foto3'], //por qué el beneficiario solicito el dispositivo
+                "fotoH"=>$result['fotoHistoria'] //por qué el beneficiario solicito el dispositivo
             );
 
             return $datosFormulario;
@@ -676,6 +790,29 @@ class Beneficiario extends Tutor{
             $objCon->close();
         }
     }
+    //buscar beneficiarios por folio
+    public function buscaBeneficiarioFolio($folio){
+        try{
+            $sql ="SELECT solicitudes.id, beneficiarios.nombre,beneficiarios.apellidos 
+                FROM solicitudes
+                INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario
+                WHERE solicitudes.id LIKE '".$folio."%' ";
+            $con= new conexion;
+            $objCon = $con->conectar();
+            $result = $objCon->query($sql);
+            if( mysqli_num_rows($result) > 0 ){
+                while( $row = mysqli_fetch_array($result) ){
+                    echo "<a href='/editorBeneficiarios?b=".$row['id']."' id='res' class='mb-0 text-dark pl-4'>&nbsp;&nbsp;".$row['nombre']." ".$row['apellidos']."</a><br>";
+                }
+            }else{
+                echo "No se encontraron benficiarios";
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $objCon->close();
+        }
+    }
 
     //inserta solicitud 
     public function inserta(){
@@ -717,7 +854,55 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
+    //updates
 
+    //función para actualizar imagenes de los beneficiarios
+    public function updateFotoBen($id,$add,$foto){
+        try{
+            $sqlSelect="SELECT idSolicitud FROM imgsolicitud WHERE idSolicitud= '".$id."' ";
+            $sqlInsert = "INSERT INTO imgsolicitud(".$foto.",idSolicitud) VALUES('".$add."','".$id."')";
+            $sqlUpdate= "update imgsolicitud set ".$foto." = '".$add."' where idSolicitud = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sqlSelect);
+            if( $result->num_rows > 0){
+                $con->query($sqlUpdate);
+            }else{
+                echo "no encontrado";
+                $con->query($sqlInsert);
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    // función para actualizar los datos del beneficiario 
+    public function updateDatosBen($id){
+        try{
+            $sqlUpdate= "update beneficiarios set nombre='".$this->nombre."', apellidos='".$this->apellidos."', sexo='".$this->sexo."',fecNacimiento='".$this->fecNacimiento."', idCiudad='".$this->ciudad."',calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion='".$this->idMedioDifusion."',descMedioDif='".$this->descMedioDif."' where id = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $con->query($sqlUpdate);
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    // función para actualizar los datos del beneficiario 
+    public function updateDatosSol($id){
+        try{
+            $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $con->query($sqlUpdate);
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
     //mostrar datos a insertar en el formulario 
     public function mostrar(){
         echo "<br>nombre".$this->getNombre();
