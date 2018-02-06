@@ -48,29 +48,10 @@ if( isset($_GET['b']) ){
     $id = $_GET['b'];
     $objBen = new beneficiario;
     $result = $objBen->buscaDatosApadrinado($id);
-    $edad = $objBen->generaEdadBeneficiario($result['fecNacimiento']);   
-    echo'
-        <div class="row mx-0" style="">
-            <div class="col-12 col-sm-7 col-md-4 px-0">
-                <img class="img-cover-center m-auto" src="/imagenes/uploads/beneficiados/'.$result['fotoHistoria'].'" alt="fotografia del beneficiado"/>
-            </div>
-            <div class="col-12 col-sm-5 col-md-8 p-4 px-5" style="font-size:1.2rem;">
-            <strong>Nombre: </strong><span class="text-capitalize">'.$result['nombre'].'&nbsp;'.$result['apellidos'].'</span>
-            <br>
-            <strong>Edad: </strong>'.$edad.'
-            <br>
-            <strong>Vive en: </strong><span>'.$result['ciudad']."&nbsp;".$result['estado']."&nbsp;".$result['pais'].'</span>
-            <br>
-            <strong>Beneficiado con: </strong><span>'.$result['dispositivo'].'</span>
-            <br>
-            <strong>¿Por qué solicitó? </strong>
-            <br>
-            <span class="text-first-uppercase">'.ucfirst($result['porque']).'</span>
-            </div>
-        </div>
-    ';       
+    $edad = $objBen->generaEdadBeneficiario($result['fecNacimiento']);  
+    include 'mod/beneficiarios/datosCompletos.php'; 
 }else{
-//lista aleatoria de beneficiarios a apadrinar
+    //lista aleatoria de beneficiarios a apadrinar
     $cont = 0;
     $mostrar = 10;
     $objBen = new beneficiario();
@@ -85,37 +66,7 @@ if( isset($_GET['b']) ){
     }
     $arregloRandom = $objBen->generaSolicitudesAleatorias($mostrar,$idMax,$estatus);
     $objBen = new beneficiario;
-    echo'
-        <div id="directorio" class="container-fluid bg-cover-center p-0">
-            <div class="row mx-0 text-white text-center">
-    ';
-    foreach($arregloRandom as $fila){
-        $result = $objBen->buscaDatosApadrinado($fila);             
-        foreach($result as $row){
-        echo'     
-                <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio" style="background-image:url('."'/imagenes/uploads/beneficiados/".$result['fotoHistoria']."'".');height:250px;">
-                    <a href="/beneficiarios?b='.$result['id'].'">    
-                        <div class="colaborador-descripcion opacity-black">
-                            <div class="c-align-middle">
-                                <p class="px-3 pt-2 "style="font-size:1.3rem;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;">
-                                    <span>'.$result['nombre'].'&nbsp;'.$result['apellidos'].'</span>
-                                    <br>
-                                    <span style="font-size:1.1rem;">'.$result['dispositivo'].'</span>
-                                </p>
-                            </div>
-                            <div style="font-size:1.3rem;" class="c-align-middle px-2">
-                            </div>
-                        </div>    
-                    </a>
-                </div>
-            ';
-        break 1;
-        }   
-    }
-    echo'
-            </div>
-        </div>
-    ';
+    include 'mod/beneficiarios/lista.php';
 }
 ?> 
 <?php
