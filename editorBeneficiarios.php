@@ -1,4 +1,5 @@
 <?php 
+    require('back/comprueba.php');
     include 'back/conexion.php';
     include 'back/objetos.php'; 
 ?>
@@ -15,23 +16,29 @@
 </head>
 <body>
     <h1 class="text-center">Sección Beneficiarios</h1>
-    <form action="" enctype='multipart/form-data' method="post" class="m-4">
-        <label>Introduce el número de folio</label><br>
-        <select></select>
-        <input type="text" name="folio" class="mx-auto" placeholder="introduce el numero del folio">
-        <input type="submit" class="btn bg-verde-menu text-white px-2" value="consultar">
+    <form action="" method="post" class="m-4">
+        <div class="form-row">
+            <div class="form-group col-12">
+                <label>Introduce el número de folio</label>
+            </div>
+            <div class="form-group col-md-6">   
+                <input type="text" name="folio" class="form-control" placeholder="introduce el numero del folio">
+                <input type="submit" class="btn bg-verde-menu text-white mt-2" value="consultar">
+            </div>
+        </div>
     </form>
     <?php 
-
-    
+        // mostrar lista de beneficiarios
         $objBen = new Beneficiario;
         if(isset($_POST['folio'])){
             $folio = $_POST['folio'];
             include 'mod/panel/buscadorBeneficiarios.php';
+        //buscar datos del beneficiario seleccionado    
         }elseif(isset($_GET['b'])){
             $b = $_GET['b'];
             $dato = $objBen->buscaDatosFormulario($b);
             include 'mod/panel/datosBeneficiarios.php';
+        // actualizar datos del beneficiario    
         }elseif(isset($_POST['update'])){
             $fecha = date("-d-m-Y-H-i-s");
             $objBen->setNombre($_POST['nombre']);
@@ -55,6 +62,8 @@
                 $objBen->setNacimientoTutor($_POST['fNacimientoTut']);
                 $objBen->setTelTutor($_POST['telTut']);
                 $objBen->setEmailTutor($_POST['emailTut']);
+                //echo "id Tutor".$_POST['idTut']."<br>";
+                $objBen->updateDatosTut($_POST['idTut'],$_POST['idBen']);
             }
             $objBen->setDispositivo($_POST['solicitud']);
             $objBen->setCondicion($_POST['condicion']);
@@ -64,9 +73,9 @@
             }
             $objBen->setDescObtencion($_POST['breveDescripcion']); 
             $objBen->setEstatusSolicitud($_POST['estatus']);
-            $objBen->mostrar();
+            //$objBen->mostrar();
             $objBen->updateDatosBen($_POST['idBen']);
-            echo  $_POST['id'];
+            //echo  $_POST['id'];
             $objBen->updateDatosSol($_POST['id']);
             for($i=1; $i<=4; $i++){
                 if( $i == 4){
@@ -95,65 +104,14 @@
                     $objBen->updateFotoBen($_POST['id'],$add,$getFile);
                 }
             }
+            echo '<h3 class="m-4">Datos Actualizados</h3>';
         }
         
     ?>
     <script src="/js/jquery-3.1.1.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            //desabilitar o habilitar la caja de texto otro de seccion como se entero de fundación 
-            $('#medio').change(function(){
-                var ph = $('#medio option:selected').attr('ph');
-                if( ph !== "" ){
-                    console.log( $('#medio option:selected').attr('ph') ); 
-                    $('input[name$="medioOtro"]').show(500);
-                    $('input[name$="medioOtro"]').attr('placeholder',ph);
-                    $('input[name$="medioOtro"]').attr('disabled',false);
-                }else{
-                    $('input[name$="medioOtro"]').hide(500);
-                    $('input[name$="medioOtro"]').attr('placeholder',"");
-                    $('input[name$="medioOtro"]').attr('disabled',true);
-                    //$('input[name$="medioOtro"]').val("");
-                }
-            });
-            //función para seleccionar los estados del país
-            $('#pais').change(function(){
-                var p =  $(this).val();
-                var f = "buscaEstado";
-                var r = "estado";
-                var id = p;
-                var parametros ={"formulario":f,"id":id,"es":""}
-                ajax(parametros,r);
-                $('#ciudad option').remove();
-                $('#ciudad').append('<option selected="selected" disabled="disabled">Selecciona una Ciudad</option>');
-            });
-            //función para seleccionar las ciudades del estado
-            $('#estado').change(function(){
-                var p =  $(this).val();
-                var f = "buscaCiudad";
-                var r = "ciudad";
-                var id = p;
-                var parametros ={"formulario":f,"id":id,"c":""}
-                ajax(parametros,r);
-            });
-        });
-            //función ajax
-            function ajax(ajaxParametros,resultado){
-                $.ajax({
-	                data:ajaxParametros,
-                 	url:'/back/ajax.php',
-                    type:'post',
-                	beforeSend: function () {
-	                    //$("#beforeresultado").html("<div class='beforeSend'><label>Cargando, espere por favor...</label></div>");
-                    },
-                    success:  function (response) {						
-	            	    $("#beforeresultado").html("");
-	            	    $('#'+ resultado).html(response);
-                    }
-                });
-            }
-    </script>
+    
+    <script src="/js/panel/editorBeneficiarios.js"></script>
 </body>
 </html>

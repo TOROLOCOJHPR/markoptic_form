@@ -891,6 +891,24 @@ class Beneficiario extends Tutor{
         }
     }
     // función para actualizar los datos del beneficiario 
+    public function updateDatosTut($idT,$idB){
+        try{
+            $sqlInsert = "INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) values('".$idB."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
+            $sqlUpdate= "update tutores set nombre='".$this->nombreTutor."', apellidos='".$this->apellidoTutor."',fecNacimiento='".$this->nacimientoTutor."', sexo='".$this->sexoTutor."',viveConBen='".$this->viveBen."',idParentesco='".$this->parentesco."',telefono='".$this->telTutor."',email='".$this->emailTutor."' where id = '".$idT."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            if($idT != ""){
+                $con->query($sqlUpdate);
+            }else{
+                $con->query($sqlInsert);
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    // función para actualizar los datos del beneficiario 
     public function updateDatosSol($id){
         try{
             $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";

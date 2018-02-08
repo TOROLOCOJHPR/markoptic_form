@@ -3,3 +3,6 @@
 /cms/cache
 /back/conexion.php
 /imagenes/uploads
+/login.php
+/back/login.php
+/back/comprueba.php

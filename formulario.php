@@ -311,7 +311,7 @@
                         } 
                     ?>
                     <select name='sexoTutor' id="sexoTutor" class="form-control">
-                        <option <?php if($sexoTutor == ""){echo "selected";}?> disabled>Selecciona Tu Sexo</option>
+                        <option <?php if($sexoTutor == ""){echo "selected";}?> value="" class="text-muted">Selecciona Tu Sexo</option>
                         <option <?php if($sexoTutor == "m"){echo "selected";}?> value='m'>Masculino</option>
                         <option <?php if($sexoTutor == "f"){echo "selected";}?> value='f'>Femenino</option>
                     </select>

@@ -1,3 +1,4 @@
+<?php require('back/comprueba.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,38 +11,15 @@
     <title>Panel Beneficiarios</title>
 </head>
 <body>
-    <h1 class="text-center">Panel de Beneficiarios</h1>
-    <div class="row mx-0">
-        <div class="col-12 col-md-6 text-center print">
-            <h3>Generar Reporte de Solicitudes</h3>
-            <button class="btn bg-verde-menu text-white p-2 m-2" id="reporte">Crear Reporte</button>
-        </div>
-        <div class="col-12 col-md-6 text-center print">
-            <h3>Editor de beneficiarios</h3>
-            <a href="editorBeneficiarios" class="btn bg-verde-menu text-white p-2 m-2" id="reporte">Editar</a>
-        </div>
-    </div>
+    <h1 class="text-center mt-4">Panel de Beneficiarios</h1>
+    <?php 
+        include 'mod/panel/usuarioEstandar.php';
+        if($_SESSION['rol'] == "administrador"){ include 'mod/panel/usuarioAdmin.php'; }
+    ?> 
     <div id="beforeresultado"></div>
     <div id="resultado"></div>
     <script src="/js/jquery-3.1.1.js"></script>
     <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function (){  
-            $('#reporte').click(function(){
-           
-            $.ajax({
-            url: "",
-            beforeSend: function() {
-            location.href = "/back/generaExcel.php";
-            },
-            success: function (html) {
-
-            }
-        });  
-            });         
-        });
-    </script>
-    
+    <script src="/js/bootstrap.min.js"></script>    
 </body>
 </html>
