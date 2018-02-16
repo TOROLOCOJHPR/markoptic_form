@@ -1,6 +1,6 @@
 <?php 
     require('back/comprueba.php');
-    include 'back/conexion.php';
+    //include 'back/conexion.php';
     include 'back/objetos.php'; 
 ?>
 <!DOCTYPE html>
@@ -79,9 +79,10 @@
             $objBen->updateDatosSol($_POST['id']);
             for($i=1; $i<=4; $i++){
                 if( $i == 4){
-                    $getFile="fotoH";
+                    $getFile="fotoHistoria";
                     $url = "imagenes/uploads/beneficiados/";
-                    $nombre = $_POST['id'];
+                    $num = rand(1,100);
+                    $nombre = $_POST['id']."-".$num;
                 }else{
                     $getFile="foto".$i;
                     $url = "imagenes/uploads/";
@@ -111,7 +112,6 @@
     <script src="/js/jquery-3.1.1.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    
     <script src="/js/panel/editorBeneficiarios.js"></script>
 </body>
 </html>

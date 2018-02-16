@@ -4,25 +4,25 @@
 <form class="px-4" method="post" enctype="multipart/form-data" action="/editorBeneficiarios">
     <!-- fotografias del beneficiario -->
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <label>Foto 1</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto1'] ?>">
             <input type="file" name="foto1" id="foto1" class="form-control-file">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <label>Foto 2</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto2'] ?>">
             <input type="file" name="foto2" id="foto2" class="form-control-file">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <label>Foto 3</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto3'] ?>">
             <input type="file" name="foto3" id="foto3" class="form-control-file">
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-6">
             <label>Foto Historia</label>
-            <img class="img-fluid" src="/imagenes/uploads/beneficiados/<?php echo $dato['fotoH'] ?>">
-            <input type="file" name="fotoH" id="fotoH" class="form-control-file">
+            <img class="img-fluid" src="/imagenes/uploads/beneficiados/<?php echo $dato['fotoHistoria'] ?>">
+            <input type="file" name="fotoHistoria" id="fotoHistoria" class="form-control-file">
         </div>
     </div>
     <!-- estatus solicitud -->
@@ -158,7 +158,7 @@
             <label>Email Tutor</label><input class="form-control" type="email" name="emailTut" value="<?php if( isset($dato['emailTut'] )){ echo $dato['emailTut']; } ?>">
         </div>  
     </div>
-    <input type="hidden" value="<?php if( $dato['fotoH'] != "" ){echo $dato['fotoH'];}?>" name="fotoH">
+    <input type="hidden" value="<?php if( $dato['fotoHistoria'] != "" ){echo $dato['fotoHistoria'];}?>" name="fotoHistoria">
     <input type="hidden" value="<?php if( $dato['foto1'] != "" ){echo $dato['foto1'];}?>" name="foto1">
     <input type="hidden" value="<?php if( $dato['foto2'] != "" ){echo $dato['foto2'];}?>" name="foto2">
     <input type="hidden" value="<?php if( $dato['foto3'] != "" ){echo $dato['foto3'];}?>" name="foto3">

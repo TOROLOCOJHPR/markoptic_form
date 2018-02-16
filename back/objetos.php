@@ -1,5 +1,5 @@
 <?php
-//include 'back/conexion.php';
+include 'conexion.php';
 class DatosPersonales {
     //atributos
     public $nombre,$apellidos,$sexo,$fecNacimiento,$ciudad,$calle,$colonia,$cp,$telefono,$email,$idMedioDifusion,$descMedioDif;
@@ -348,6 +348,7 @@ class Beneficiario extends Tutor{
                     regiones.nombre AS estado,
                     localidades.nombre AS ciudad,
                     imgsolicitud.fotoHistoria,
+                    imgsolicitud.foto1,
                     solicitudes.recabado,solicitudes.id,solicitudes.porque 
                 FROM solicitudes 
                     INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario 
@@ -374,6 +375,7 @@ class Beneficiario extends Tutor{
                 "estado"=>$result['estado'], //estado de residencia del beneficiario
                 "ciudad"=>$result['ciudad'], //ciudad de residencia del beneficiario
                 "fotoHistoria"=>$result['fotoHistoria'], //foto con dispositivo del beneficiario
+                "foto1"=>$result['foto1'], //foto con dispositivo del beneficiario
                 "porque"=>$result['porque'] //por qué el beneficiario solicito el dispositivo
             );
 
@@ -383,6 +385,22 @@ class Beneficiario extends Tutor{
             echo $e->getMessage();
         }finally{
             $objCon->close();
+        }
+    }
+
+    //Genera total recabado de la protésis
+    public function recabado($id){
+        try{
+            $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            return $result['donacion'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
         }
     }
 
@@ -492,7 +510,7 @@ class Beneficiario extends Tutor{
                 "foto1"=>$result['foto1'], //por qué el beneficiario solicito el dispositivo
                 "foto2"=>$result['foto2'], //por qué el beneficiario solicito el dispositivo
                 "foto3"=>$result['foto3'], //por qué el beneficiario solicito el dispositivo
-                "fotoH"=>$result['fotoHistoria'] //por qué el beneficiario solicito el dispositivo
+                "fotoHistoria"=>$result['fotoHistoria'] //por qué el beneficiario solicito el dispositivo
             );
 
             return $datosFormulario;
@@ -801,9 +819,11 @@ class Beneficiario extends Tutor{
             $objCon = $con->conectar();
             $result = $objCon->query($sql);
             if( mysqli_num_rows($result) > 0 ){
+                echo "<div class='row mx-0'>";
                 while( $row = mysqli_fetch_array($result) ){
-                    echo "<a href='/editorBeneficiarios?b=".$row['id']."' id='res' class='mb-0 text-dark pl-4'>&nbsp;&nbsp;".$row['nombre']." ".$row['apellidos']."</a><br>";
+                    echo "<div class='col-md-4'><a href='/editorBeneficiarios?b=".$row['id']."' id='res' class='mb-0 text-dark pl-4'>&nbsp;&nbsp;".$row['id']." -- ".$row['nombre']." ".$row['apellidos']."</a></div>";
                 }
+                echo "</div>";
             }else{
                 echo "No se encontraron benficiarios";
             }
@@ -811,6 +831,26 @@ class Beneficiario extends Tutor{
             echo $e->getMessage();
         }finally{
             $objCon->close();
+        }
+    }
+    //busca folio antiguo del beneficiario
+    public function buscaFolioAntiguo($idBen){
+        try{
+            $sql ="SELECT folio FROM beneficiario_solicitud INNER JOIN solicitud on beneficiario_solicitud.id_solicitud = solicitud.id WHERE beneficiario_solicitud.id = '".$idBen."' ";
+            $objCon = new conexionOld;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            if($result['folio'] != ""){
+                $folio = $result['folio'];
+            }else{
+                $folio = "Sin Zip";
+            }
+            return $folio;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
         }
     }
 
@@ -850,6 +890,19 @@ class Beneficiario extends Tutor{
             }
         }catch(Exception $e){
             echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    // función para insertar los ingresos recabados 
+    public function insertTransaccion($folio,$total){
+        try{
+            $sql= "INSERT INTO transacciones(donacion,idSolicitud)VALUES('".$total."','".$folio."')";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $con->query($sql);
+        }catch(Exception $e){
+            $e->getMessage();
         }finally{
             $con->close();
         }

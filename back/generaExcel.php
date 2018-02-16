@@ -1,7 +1,7 @@
 <?php 
-require '../back/PHPExcel.php';
-require '../back/conexion.php';
-require '../back/objetos.php';
+require 'PHPExcel.php';
+//require '../back/conexion.php';
+require 'objetos.php';
 /** Error reporting */
 error_reporting(E_ALL);
 
@@ -12,7 +12,7 @@ ini_set('include_path', ini_get('include_path').';../Classes/');
 //include 'PHPExcel.php';
 
 /** PHPExcel_Writer_Excel2007 */
-require '../back/PHPExcel/Writer/Excel2007.php';
+require 'PHPExcel/Writer/Excel2007.php';
 
 // Create new PHPExcel object
 //echo date('H:i:s') . " Create new PHPExcel object\n";

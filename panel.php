@@ -1,4 +1,6 @@
-<?php require('back/comprueba.php');?>
+<?php require('back/comprueba.php');
+//session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +21,23 @@
     <div id="beforeresultado"></div>
     <div id="resultado"></div>
     <script src="/js/jquery-3.1.1.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>    
+    <!-- <script src="/js/popper.min.js"></script> -->
+    <!-- <script src="/js/bootstrap.min.js"></script>     -->
+    <script>
+        $(document).ready(function(){
+            $('#reporte').click(function(){
+                console.log('reporte');
+                //location.href = "/back/generaExcel.php";
+                $.ajax({
+                   url: "",
+                   beforeSend: function() {
+                   location.href = "/back/generaExcel.php";
+                   },
+                   success: function (html) {
+                    }
+                });
+            });
+        });
+    </script>   
 </body>
 </html>

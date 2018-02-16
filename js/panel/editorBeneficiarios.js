@@ -1,10 +1,10 @@
 $(document).ready(function(){
     //desabilitar o habilitar la caja de texto otro de seccion como se entero de fundación 
-    /*if($('#medio option:selected').attr('ph') != ""){
+    if($('#medio option:selected').attr('ph') != ""){
         showMedio();
     }else{
         hideMedio();
-    }*/
+    }
     $('#medio').change(function(){
         var ph = $('#medio option:selected').attr('ph');
         if( ph !== "" ){

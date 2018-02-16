@@ -20,7 +20,6 @@
 </cms:template>
 <?php
 include 'mod/header.php';
-include 'back/conexion.php';
 include 'back/objetos.php'; 
 ?>
 <style>
@@ -176,7 +175,7 @@ include 'back/objetos.php';
             include 'mod/footer.php';
         ?>
     <!--/footer--> 
-        <script src="../js/js-fundacion.js"></script>
+        <script src="/js/js-fundacion.js"></script>
     </body>
 </html>
 <?php COUCH::invoke(); ?>

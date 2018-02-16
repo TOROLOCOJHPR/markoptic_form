@@ -1,6 +1,6 @@
 <?php
-    include "../back/conexion.php";
-    include "../back/objetos.php";
+    //include "conexion.php";
+    include "objetos.php";
     $formulario = $_POST['formulario'];
 
     //busca estados del país seleccionado
@@ -85,5 +85,10 @@
                 $objBen->buscaBeneficiarioFolio($folio);
            // }
         }
+    }
+    if($formulario == "motorPago"){
+        $objBen = new beneficiario;
+        $objBen->insertTransaccion($_POST['folio'],$_POST['total']);
+        echo '<script>alert("motor de pago");</script>';
     }
 ?>

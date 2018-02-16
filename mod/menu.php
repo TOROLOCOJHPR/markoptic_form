@@ -44,81 +44,12 @@ $url = str_replace($url2,"",$url);
     <div class="row bg-white" style=" height:50px;margin-top:-50px;position:relative;">
     <?php
         if($url == "/" or $url == "/fundacion" or $url == "/proyectos" or $url == "/galeria" or $url == "/donar"){        
-            echo'
-            <!--logo-->
-            <div class="col-3 col-lg-3 p-0 h-100  d-none d-lg-block bordes">
-                <a href="../" class="c-align-middle h-100">                    
-                    <img src="/imagenes/fundación/logo.svg" class="" style="height:90%;" />
-                </a>                    
-            </div>
-            <!--/logo-->
-            <!--links-->
-            <div class="col-12 col-lg-9 h-100 ">
-                <div class="row h-100 text-center">
-                    <div class="col-3 h-100 p-0 bordes">
-                        <a href="/fundacion" class="w-100 h-100 c-align-middle">
-                            Fundación     
-                        </a>
-                    </div>
-                    <div class="col-3 h-100 p-0 bordes">
-                        <a href="/proyectos" class="c-align-middle w-100 h-100">
-                            Proyectos
-                        </a>
-                    </div>
-                    <div class="col-3 h-100 p-0">
-                        <a href="/galeria" class="c-align-middle w-100 h-100">
-                            Galería
-                        </a>
-                    </div>
-                    <div class="col-3 h-100 p-0 bg-verde-menu">
-                    <a href="/donar" class="w-100 h-100 c-align-middle">
-                        <span class="text-center text-white">Donar</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-            ';
+            include 'mod/menu/menu-principal.php';
         }else{
-            echo'
-            <!--regresar-->
-            <div class="col-auto p-0 h-100 bordes">
-                <a class="c-align-middle w-100 h-100 px-4" ';
-                    if($url == "/gracias"){
-                        echo 'href="/" ';
-                    }else{
-                       echo 'onclick="window.history.back();"'; 
-                    }
-
-                    echo '>                    
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    &nbsp;
-                    regresar
-                </a>                    
-            </div>
-            <!--logo-->
-            <div class="col-auto  p-0 h-100 bordes">
-                <a href="../" class="c-align-middle w-100 h-100 px-4">                    
-                <i class="fa fa-home fa-2x fa-fw" aria-hidden="true"></i>
-                </a>                    
-            </div>
-            <!--/logo-->
-            <div class="col h-100">
-                <div class="row h-100 text-center">
-                    <div class="col h-100 p-0 c-align-middle" style="font-weight:bold;">
-                        <p class="mb-0">
-                            '.$menuBack.'
-                        </p>
-                    </div>
-                    <div class="col-auto  h-100 px-4 bg-verde-menu">
-                    <a href="/donar" class="w-100 h-100 c-align-middle">
-                        <span class="text-center text-white">Donar</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-            ';
+            include 'mod/menu/menu-secundario.php';
         }
     ?>
+    </div>
 
         <!--/links-->                    
     </div><!--row-->

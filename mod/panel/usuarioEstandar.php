@@ -5,6 +5,6 @@
     </div>
     <div class="col-12 col-md-6 text-center mt-4">
         <h3>Editor de beneficiarios</h3>
-        <a href="editorBeneficiarios" class="btn bg-verde-menu text-white p-2 px-4 m-2" id="reporte">Editar</a>
+        <a href="editorBeneficiarios" class="btn bg-verde-menu text-white p-2 px-4 m-2">Editar</a>
     </div>
 </div>
