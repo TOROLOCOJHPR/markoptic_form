@@ -445,6 +445,7 @@ class Beneficiario extends Tutor{
                 mediosdifusion.medio,
                 beneficiarios.descMedioDif,
                 solicitudes.porque,
+                solicitudes.fechaSolicitud,
                 solicitudes.idEstatusSolicitud AS estatus,
                 imgsolicitud.foto1,
                 imgsolicitud.foto2,
@@ -510,7 +511,8 @@ class Beneficiario extends Tutor{
                 "foto1"=>$result['foto1'], //por qué el beneficiario solicito el dispositivo
                 "foto2"=>$result['foto2'], //por qué el beneficiario solicito el dispositivo
                 "foto3"=>$result['foto3'], //por qué el beneficiario solicito el dispositivo
-                "fotoHistoria"=>$result['fotoHistoria'] //por qué el beneficiario solicito el dispositivo
+                "fotoHistoria"=>$result['fotoHistoria'], //por qué el beneficiario solicito el dispositivo
+                "fechaSolicitud"=>$result['fechaSolicitud']//fecha de inicio de la solicitud
             );
 
             return $datosFormulario;
@@ -847,6 +849,22 @@ class Beneficiario extends Tutor{
                 $folio = "Sin Zip";
             }
             return $folio;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    
+    //busca precio del dispositivo
+    public function buscaPrecio($idD){
+        try{
+            $sql ="SELECT precio FROM dispositivos WHERE id = '".$idD."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            return $result['precio'];
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{

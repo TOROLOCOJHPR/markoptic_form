@@ -1,4 +1,13 @@
-<?php
+<?php require_once('cms/cms.php'); ?> 
+<?php 
+    if(!isset($_COOKIE['hide'])){
+        setcookie('hide','0'); 
+    }
+     ?>
+    <cms:template title = 'apadrina' order='15'>
+        <cms:editable name='textomotivador' label='Texto Motivador' type='text' order='1'/>
+    </cms:template>
+<?php    
     include 'mod/header.php';
     include 'back/objetos.php';
     if(isset($_GET['b'])){
@@ -7,8 +16,6 @@
         $menuBack = "Apadrina";
     }
     
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
 ?>
     <style>
     #menu{
@@ -67,6 +74,7 @@
             include 'mod/apadrinamiento/lista.php';
         }
     ?>  
+    <div id="resultado"></div>
 </div>
 
 <?php
@@ -74,6 +82,23 @@
 ?>
 <script>
     $(document).ready(function(){
+        //centrar texto de porcentaje
+        texto();
+        $(window).resize(function(){
+            texto();
+        });
+    
+        <?php if( $_COOKIE['hide'] == 0 ){ $ocultar = '"show"'; }else{ $ocultar = '"hide"'; } ?>
+        
+        //iniciar modal
+        $('#tiempoDonaciones').modal(<?php echo $ocultar; ?>);
+        
+        //cantidad minima
+        $('.minimo').click(function(){
+            console.log('minimo');
+            var monto = $(this).attr('m');
+            $('#donacion').val(monto);
+        });
         //barra de progreso
         var cont = 0;
         var id;
@@ -110,6 +135,22 @@
         });
 
     });
+    function texto(){
+        var por = ($('#porciento').width()/2);
+        var cir = ($('#contPorcentaje').width()/2);
+        var pos = cir - por ;
+        $('#porciento').attr('x',pos);
+    }
+    function hideModal(){
+        var f = 'ocultarModal';
+        var r = "resultado";
+        var parametros ={
+            "formulario" : f
+        }
+        ajax(parametros,r);
+        $('#tiempoDonaciones').modal('hide');
+    }
 </script>
     </body>
 </html>
+<?php COUCH::invoke(); ?>

@@ -91,4 +91,7 @@
         $objBen->insertTransaccion($_POST['folio'],$_POST['total']);
         echo '<script>alert("motor de pago");</script>';
     }
+    if($formulario == "ocultarModal"){
+        setcookie('hide','1',0,'/');
+    }
 ?>

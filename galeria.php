@@ -75,8 +75,8 @@
                             <div class="col-auto c-align-vertical" style="background-color:#888586;">
                                 <cms:date k_page_date format='d' />
                             </div>
-                            <div class="col-auto c-align-vertical" style="background-color:#bab4b3;">
-                                <cms:date k_page_date format='M' />
+                            <div class="col-auto c-align-vertical text-capitalize" style="background-color:#bab4b3;">
+                                <cms:date k_page_date format='%b' locale="es-MX" />
                             </div>
                             <div class="col" style="background-color:#00a55f;">
                                 <cms:show k_page_title />
@@ -109,8 +109,8 @@
                             <div class="col-auto c-align-vertical" style="background-color:#888586;">
                                 <cms:date k_page_date format='d' />
                             </div>
-                            <div class="col-auto c-align-vertical" style="background-color:#bab4b3;">
-                                <cms:date k_page_date format='M' />
+                            <div class="col-auto c-align-vertical text-capitalize" style="background-color:#bab4b3;">
+                                <cms:date k_page_date format='%b' locale="es-MX" />
                             </div>
                             <div class="col" style="background-color:#00a55f;">
                                 <cms:show k_page_title />

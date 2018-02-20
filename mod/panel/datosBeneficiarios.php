@@ -1,27 +1,32 @@
 <h3 class="px-4">Datos Beneficiario</h3>
+<?php 
+    //$folioViejo = $objBen->buscaFolioAntiguo($dato['idBen']);
+?>
+<h5 class="mx-4">Folio Zip: <?php //echo $folioViejo; ?></h5>
+<label class="mx-4">Fecha Solicitud: <?php echo $dato['fechaSolicitud']; ?></label>
 <hr>
 <h5 class="px-4 text-primary">Imagenes Beneficiario</h5>
 <form class="px-4" method="post" enctype="multipart/form-data" action="/editorBeneficiarios">
     <!-- fotografias del beneficiario -->
     <div class="row">
-        <div class="col-md-3 col-6">
+        <div class="col-md-3">
             <label>Foto 1</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto1'] ?>">
             <input type="file" name="foto1" id="foto1" class="form-control-file">
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3">
             <label>Foto 2</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto2'] ?>">
             <input type="file" name="foto2" id="foto2" class="form-control-file">
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3">
             <label>Foto 3</label>
             <img class="img-fluid" src="/imagenes/uploads/<?php echo $dato['foto3'] ?>">
             <input type="file" name="foto3" id="foto3" class="form-control-file">
         </div>
-        <div class="col-md-3 col-6">
+        <div class="col-md-3">
             <label>Foto Historia</label>
-            <img class="img-fluid" src="/imagenes/uploads/beneficiados/<?php echo $dato['fotoHistoria'] ?>">
+            <img class="img-fluid" id="srcFotoH" src="/imagenes/uploads/beneficiados/<?php echo $dato['fotoHistoria'] ?>">
             <input type="file" name="fotoHistoria" id="fotoHistoria" class="form-control-file">
         </div>
     </div>

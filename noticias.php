@@ -30,13 +30,13 @@
         <!-- <a class='btn-verde f-opacity-75 p-1 text-white' style='top:50px;border-left:none;' href="/video"><i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i></a> -->
         <div class="row no-gutters text-white text-center">
             <div class="col-12 bg-verde-menu">
-                <p><cms:show k_page_title /></p>
+                <p class="m-0 p-4"><cms:show k_page_title /></p>
             </div>
             <div class="col-auto px-2"style="background-color:#888586;">
-                <label><cms:date k_page_date format='d' /></label>
+                <label><cms:date k_page_date format='%d' locale='es-MX' /></label>
             </div>
             <div class="col-auto px-2 text-left pl-2"style="background-color:#bab4b3;">
-                <label><cms:date k_page_date format='F' /></label>
+                <label class="text-capitalize"><cms:date k_page_date format='%B'  locale="es-MX"/></label>
             </div>
         </div>
         <div class="row mx-0">
@@ -65,10 +65,10 @@
                             </div>
                             <div class="row mx-0">
                                 <div class="col-auto px-2 c-align-middle text-white" style="background-color:#888586;">
-                                    <span class="p-0"><cms:date k_page_date format='d' /></span>
+                                    <span class="p-0"><cms:date k_page_date format='%d' locale="es-MX"/></span>
                                 </div>
                                 <div class="col-auto text-left px-2 c-align-middle text-white"style="background-color:#bab4b3;">
-                                    <span class="p-0"><cms:date k_page_date format='F' /></span>
+                                    <span class="p-0 text-capitalize"><cms:date k_page_date format='%B' locale="es-MX" /></span>
                                 </div>
                                 <div class="col-12 px-4 pt-3 pb-2">
                                     <p><cms:excerpt count='450' truncate_chars='1'><cms:show noticia /></cms:excerpt></p>
