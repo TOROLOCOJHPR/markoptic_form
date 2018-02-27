@@ -170,8 +170,9 @@
     <input type="hidden" value="<?php echo $b;?>" name="id">
     <input type="hidden" value="<?php echo $dato['idBen'];?>" name="idBen">
     <input type="hidden" value="<?php echo $dato['idTut'];?>" name="idTut">
+    <input type="hidden" value="<?php echo $f; ?>" name="f">
     <input type="hidden" value="1" name="update">
     <input type="hidden" name="independiente" id="independiente" value="<?php echo $independiente; ?>">
-    <input class="btn bg-verde-menu text-white px-2 mb-4 mt-4" type="submit" value="editar">
+    <input class="btn bg-verde-menu text-white px-2 mb-4 mt-4" type="submit" value="Guardar">
 </form>           
 <button class="btn bg-verde-menu text-white mb-4 mt-4" id="btnTutor" <?php if( $dato['nombreTut'] != "" ){ echo'style="display:none;"'; } ?>>Agregar Tutor</button>

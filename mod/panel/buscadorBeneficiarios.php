@@ -1,4 +1,4 @@
-<h3 class="px-4">Beneficiarios Encontrados</h3>
+<h3>Beneficiarios Encontrados</h3>
 <?php
-    $objBen->buscaBeneficiarioFolio($folio);
+$objBen->buscaBeneficiarioFolio($f);
 ?>

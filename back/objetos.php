@@ -388,7 +388,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //Genera total recabado de la protésis
+    //Genera total recabado del dispositivo
     public function recabado($id){
         try{
             $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
@@ -397,6 +397,38 @@ class Beneficiario extends Tutor{
             $result = $con->query($sql);
             $result = $result->fetch_assoc();
             return $result['donacion'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+
+    //busca transacciones de cada usuario
+    public function buscaTransacciones($b){
+        try{
+            $sql = "SELECT donacion,idBanwire,fecha FROM transacciones WHERE idSolicitud ='".$b."'";
+            $cont = 0;
+            $objCon = new conexion;
+            $con= $objCon->conectar();
+            $result = $con->query($sql);
+            ?>
+                <tr>
+                    <th>Donación</th><th>Id Transacción</th><th>Fecha</th>
+                </tr>
+            <?php
+            while($row = $result->fetch_assoc()){ 
+            ?>
+                <tr>
+                    <td><?php echo $row['donacion']; ?></td>
+                    <td><?php echo $row['idBanwire']; ?></td>
+                    <td><?php echo $row['fecha']; ?></td>
+                </tr>
+            <?php 
+            $cont = $cont + 1;
+            }
+            $resultadoB = ($cont == 0) ? "No se encontraron transacciones para este usuario" : "" ;
+            echo $resultadoB;
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
@@ -811,23 +843,23 @@ class Beneficiario extends Tutor{
         }
     }
     //buscar beneficiarios por folio
-    public function buscaBeneficiarioFolio($folio){
+    public function buscaBeneficiarioFolio($f){
         try{
             $sql ="SELECT solicitudes.id, beneficiarios.nombre,beneficiarios.apellidos 
                 FROM solicitudes
                 INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario
-                WHERE solicitudes.id LIKE '".$folio."%' ";
+                WHERE solicitudes.id LIKE '".$f."%' ";
             $con= new conexion;
             $objCon = $con->conectar();
             $result = $objCon->query($sql);
             if( mysqli_num_rows($result) > 0 ){
                 echo "<div class='row mx-0'>";
                 while( $row = mysqli_fetch_array($result) ){
-                    echo "<div class='col-md-4'><a href='/editorBeneficiarios?b=".$row['id']."' id='res' class='mb-0 text-dark pl-4'>&nbsp;&nbsp;".$row['id']." -- ".$row['nombre']." ".$row['apellidos']."</a></div>";
+                    echo "<div class='col-md-4 px-0'><a href='/editorBeneficiarios?b=".$row['id']."&f=".$f."' id='res' class='mb-0 text-dark'>&nbsp;&nbsp;".$row['id']." -- ".$row['nombre']." ".$row['apellidos']."</a></div>";
                 }
                 echo "</div>";
             }else{
-                echo "No se encontraron benficiarios";
+                echo "No se encontraron beneficiarios";
             }
         }catch(Exception $e){
             echo $e->getMessage();
@@ -925,6 +957,17 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
+    // función para insertar los ingresos recabados fuera de linea 
+    public function insertTransacciones($sql){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $con->query($sql);
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+        }
+    }
     //updates
 
     //función para actualizar imagenes de los beneficiarios
@@ -954,7 +997,8 @@ class Beneficiario extends Tutor{
             $sqlUpdate= "update beneficiarios set nombre='".$this->nombre."', apellidos='".$this->apellidos."', sexo='".$this->sexo."',fecNacimiento='".$this->fecNacimiento."', idCiudad='".$this->ciudad."',calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion='".$this->idMedioDifusion."',descMedioDif='".$this->descMedioDif."' where id = '".$id."' ";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $con->query($sqlUpdate);
+            //if ternario 
+            return ( $con->query($sqlUpdate) ) ? true : false;
         }catch(Exception $e){
             $e->getMessage();
         }finally{
@@ -969,9 +1013,9 @@ class Beneficiario extends Tutor{
             $objCon = new conexion();
             $con = $objCon->conectar();
             if($idT != ""){
-                $con->query($sqlUpdate);
+               return ( $con->query($sqlUpdate) ) ? true : false;
             }else{
-                $con->query($sqlInsert);
+                return ( $con->query($sqlInsert) ) ? true : false;
             }
         }catch(Exception $e){
             $e->getMessage();
@@ -985,7 +1029,7 @@ class Beneficiario extends Tutor{
             $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $con->query($sqlUpdate);
+            return ( $con->query($sqlUpdate) ) ? true : false;
         }catch(Exception $e){
             $e->getMessage();
         }finally{
@@ -1023,10 +1067,10 @@ class Beneficiario extends Tutor{
         echo"<br>foto3".$this->getFoto3();  
     }
 
-    //PHPExcel
+    //Generar Documentos
 
     //genera el total de los dispositivos y solicitudes
-    public function generaTotalSolicitudes($objPHPExcel){
+    public function generaTotalSolicitudes($activeSheet){
         try{
             $totalSol = $this->buscaTotalSolicitudes();
             $totalPsd = $this->buscaTotalPsd();
@@ -1034,18 +1078,18 @@ class Beneficiario extends Tutor{
             $totalCv = $this->buscaTotalCv();
             $totalPID = $this->buscaTotalPid();
             $totalPII = $this->buscaTotalPii();
-            $objPHPExcel->getActiveSheet()->setCellValue('A2',"TOTAL SOLICITUDES");
-            $objPHPExcel->getActiveSheet()->setCellValue('B2', $totalSol);
-            $objPHPExcel->getActiveSheet()->setCellValue('A3',"TOTAL PSD");
-            $objPHPExcel->getActiveSheet()->setCellValue('B3', $totalPsd);
-            $objPHPExcel->getActiveSheet()->setCellValue('A4',"TOTAL PSI");
-            $objPHPExcel->getActiveSheet()->setCellValue('B4', $totalPsi);
-            $objPHPExcel->getActiveSheet()->setCellValue('A5',"TOTAL CV");
-            $objPHPExcel->getActiveSheet()->setCellValue('B5', $totalCv);
-            $objPHPExcel->getActiveSheet()->setCellValue('A6',"TOTAL PID");
-            $objPHPExcel->getActiveSheet()->setCellValue('B6', $totalPID);
-            $objPHPExcel->getActiveSheet()->setCellValue('A7',"TOTAL PII");
-            $objPHPExcel->getActiveSheet()->setCellValue('B7', $totalPII);
+            $activeSheet->setCellValue('A2',"TOTAL SOLICITUDES");
+            $activeSheet->setCellValue('B2', $totalSol);
+            $activeSheet->setCellValue('A3',"TOTAL PSD");
+            $activeSheet->setCellValue('B3', $totalPsd);
+            $activeSheet->setCellValue('A4',"TOTAL PSI");
+            $activeSheet->setCellValue('B4', $totalPsi);
+            $activeSheet->setCellValue('A5',"TOTAL CV");
+            $activeSheet->setCellValue('B5', $totalCv);
+            $activeSheet->setCellValue('A6',"TOTAL PID");
+            $activeSheet->setCellValue('B6', $totalPID);
+            $activeSheet->setCellValue('A7',"TOTAL PII");
+            $activeSheet->setCellValue('B7', $totalPII);
 
         }catch(Exception $e){
             echo $e->getMessage();
@@ -1054,7 +1098,7 @@ class Beneficiario extends Tutor{
         }
     }
     //genera los datos de las solicitudes
-    public function generaExcelSolicitudes($objPHPExcel){
+    public function generaExcelSolicitudes($activeSheet){
         try{
             //consulta a la base de datos para tomar los datos a crear 
             $con = new conexion;
@@ -1111,35 +1155,35 @@ class Beneficiario extends Tutor{
                     $viveConBen = "no";
                 }
                 $porque = $row['porque'];
-                $objPHPExcel->getActiveSheet()->setCellValue( 'A'.$fila, $row['siglas']."-".$row['idSolicitud'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'B'.$fila, $row['dispositivo'] );
+                $activeSheet->setCellValue( 'A'.$fila, $row['siglas']."-".$row['idSolicitud'] );
+                $activeSheet->setCellValue( 'B'.$fila, $row['dispositivo'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'C'.$fila, $row['condicion'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$fila, $row['estatusSolicitud'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'C'.$fila, $porque );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'D'.$fila, $row['medio'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'E'.$fila, $row['descMedioDif'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'F'.$fila, $row['fechaSolicitud'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'G'.$fila, $row['nombreBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'H'.$fila, $row['apellidosBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'I'.$fila, $row['sexoBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'J'.$fila, $row['fNacimientoBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'K'.$fila, $edad );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'L'.$fila, $row['calleBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'M'.$fila, $row['coloniaBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'N'.$fila, $row['cpBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'O'.$fila, $row['ciudad'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'P'.$fila, $row['estado'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'Q'.$fila, $row['pais'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'R'.$fila, $row['telefonoBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'S'.$fila, $row['emailBen'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'T'.$fila, $row['nombreTut'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'U'.$fila, $row['apellidosTut'] );
+                $activeSheet->setCellValue( 'C'.$fila, $porque );
+                $activeSheet->setCellValue( 'D'.$fila, $row['medio'] );
+                $activeSheet->setCellValue( 'E'.$fila, $row['descMedioDif'] );
+                $activeSheet->setCellValue( 'F'.$fila, $row['fechaSolicitud'] );
+                $activeSheet->setCellValue( 'G'.$fila, $row['nombreBen'] );
+                $activeSheet->setCellValue( 'H'.$fila, $row['apellidosBen'] );
+                $activeSheet->setCellValue( 'I'.$fila, $row['sexoBen'] );
+                $activeSheet->setCellValue( 'J'.$fila, $row['fNacimientoBen'] );
+                $activeSheet->setCellValue( 'K'.$fila, $edad );
+                $activeSheet->setCellValue( 'L'.$fila, $row['calleBen'] );
+                $activeSheet->setCellValue( 'M'.$fila, $row['coloniaBen'] );
+                $activeSheet->setCellValue( 'N'.$fila, $row['cpBen'] );
+                $activeSheet->setCellValue( 'O'.$fila, $row['ciudad'] );
+                $activeSheet->setCellValue( 'P'.$fila, $row['estado'] );
+                $activeSheet->setCellValue( 'Q'.$fila, $row['pais'] );
+                $activeSheet->setCellValue( 'R'.$fila, $row['telefonoBen'] );
+                $activeSheet->setCellValue( 'S'.$fila, $row['emailBen'] );
+                $activeSheet->setCellValue( 'T'.$fila, $row['nombreTut'] );
+                $activeSheet->setCellValue( 'U'.$fila, $row['apellidosTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'X'.$fila, $row['fNacimientoTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'Y'.$fila, $row['sexoTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'Z'.$fila, $viveConBen );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'V'.$fila, $row['parentesco'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'W'.$fila, $row['telefonoTut'] );
-                $objPHPExcel->getActiveSheet()->setCellValue( 'X'.$fila, $row['emailTut'] );
+                $activeSheet->setCellValue( 'V'.$fila, $row['parentesco'] );
+                $activeSheet->setCellValue( 'W'.$fila, $row['telefonoTut'] );
+                $activeSheet->setCellValue( 'X'.$fila, $row['emailTut'] );
             
                 $fila++;
             }
@@ -1147,6 +1191,52 @@ class Beneficiario extends Tutor{
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
+            $objCon->close();
+        }
+    }
+    //crear sentencia a partir de archivo csv para insertar transacciones 
+    public function creaTransacciones($name,$ruta){
+        try{
+            $file = fopen($ruta,"r");
+            $con = new conexion;
+            $objCon = $con->conectar();
+            $row=0;
+            $encontrado = 0;
+            $modificado = 0;
+            $cont = count (file("files/csv/".$name));
+            $cadena = "insert into transacciones(donacion,idSolicitud,idBanwire) values";
+            while (($data = fgetcsv($file, 1000, ",")) !== FALSE) {
+                if($row >0){
+                    $sql = "SELECT id FROM transacciones WHERE idBanwire = '".$data[7]."'";
+                    $result = $objCon->query($sql);
+                    if($result->num_rows == 0 ){
+                        $cadena = $cadena."(".$data[4].",".$data[6].",'".$data[7]."')";
+                        /*$cadena = $cadena."(".$data[4] . ",'";
+                        $cadena = $cadena."".$data[6] . "')";*/
+                        if($row < $cont -1 ){
+                            $cadena = $cadena.",";
+                        }
+                    }else{
+                        $encontrado = $encontrado + 1;
+                    }  
+                }
+                $row = $row + 1;
+            }
+            echo $cadena;
+            $row = $row - 1;
+            $message = "Existen ".$encontrado." transacciones de ".$row." totales <br>";
+            //if($encontrado == 0){
+                if ($objCon->query($cadena) === TRUE) {
+                    $message = $message."Inserción exitosa";
+                }else{
+                    $message = $message."Ocurrio un error volver a intentar";
+                }
+            //}
+            return $message;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            fclose($file);
             $objCon->close();
         }
     }
