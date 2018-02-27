@@ -1,134 +1,65 @@
 <?php 
-require 'PHPExcel.php';
-//require '../back/conexion.php';
-require 'objetos.php';
-/** Error reporting */
-error_reporting(E_ALL);
+    require 'objetos.php';
+    require_once ( 'spreadsheet/vendor/autoload.php' );
+    use PhpOffice\PhpSpreadsheet\Spreadsheet;
+    use PhpOffice\PhpSpreadsheet\Writer\Xls;
 
-/** Include path **/
-ini_set('include_path', ini_get('include_path').';../Classes/');
+    $fechaActual = date("Y")."-".date("m")."-".date("d");
+    $filename = "Reporte de solicitudes ".$fechaActual.".xls"; /*---- nombre final del archivo ----*/    
+    $spreadsheet = new Spreadsheet();  /*----Spreadsheet object-----*/
+    $Excel_writer = new Xls($spreadsheet);  /*----- Excel (Xls) Object*/
 
-/** PHPExcel */
-//include 'PHPExcel.php';
+    $spreadsheet->setActiveSheetIndex(0);
+    $activeSheet = $spreadsheet->getActiveSheet();
+    $objBen = new Beneficiario;
 
-/** PHPExcel_Writer_Excel2007 */
-require 'PHPExcel/Writer/Excel2007.php';
+    $activeSheet->setCellValue('A9','FOLIO')->getStyle('A9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('B9',"PETICIÓN")->getStyle('B9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('C9',"¿POR QUE SOLICITÓ?")->getStyle('C9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('D9',"MEDIO DE DIFUSIÓN")->getStyle('D9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('E9',"DESCRIPCIÓN DEL MEDIO")->getStyle('E9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('F9',"FECHA SOLICITUD")->getStyle('F9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('G9','NOMBRE(S) BENEFICIARIO')->getStyle('G9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('H9',"APELLIDO(S) BENEFICIARIO")->getStyle('H9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('I9',"SEXO BENEFICIARIO")->getStyle('I9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('J9',"FECHA DE NAC. BENEFICIARIO")->getStyle('J9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('K9',"EDAD BENEFICIARIO")->getStyle('K9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('L9',"DIRECCIÓN BENEFICIARIO")->getStyle('L9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('M9',"COLONIA BENEFICIARIO")->getStyle('M9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('N9',"CÓDIGO POSTAL BENEFICIARIO")->getStyle('N9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('O9',"CIUDAD BENEFICIARIO")->getStyle('O9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('P9',"ESTADO BENEFICIARIO")->getStyle('P9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('Q9',"PAÍS BENEFICIARIO")->getStyle('Q9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('R9',"TELÉFONO BENEFICIARIO")->getStyle('R9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('S9',"EMAIL BENEFICIARIO")->getStyle('S9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('T9',"NOMBRE(S) TUTOR")->getStyle('T9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('U9',"APELLIDO(S) TUTOR")->getStyle('U9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('V9',"PARENTESCO CON EL BENEFICIARIO")->getStyle('V9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('W9',"TELÉFONO TUTOR")->getStyle('W9')->getFont()->setBold(true);
+    $activeSheet->setCellValue('X9',"EMAIL TUTOR")->getStyle('X9')->getFont()->setBold(true);
+    
+    $arreglo = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X');
+    foreach($arreglo as $columnID) {
+        $activeSheet->getColumnDimension($columnID)->setWidth(35);
+        $activeSheet->getStyle($columnID."9")->getFont()->getColor()->setARGB(\PhpOffice\PhpSpreadsheet\Style\Color::COLOR_WHITE);
+        $activeSheet->getStyle($columnID."9")->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+       /* $activeSheet->getStyle($columnID)->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $activeSheet->getStyle($columnID)->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $activeSheet->getStyle($columnID)->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+        $activeSheet->getStyle($columnID)->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+      */$activeSheet->getStyle($columnID."9")->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID);
+        $activeSheet->getStyle($columnID."9")->getFill()->getStartColor()->setARGB('FF20afdf');
+    }
 
-// Create new PHPExcel object
-//echo date('H:i:s') . " Create new PHPExcel object\n";
-$objPHPExcel = new PHPExcel();
-$objBen = new Beneficiario;
-$fechaActual = date("Y")."-".date("m")."-".date("d");
-header( "Content-type: application/vnd.ms-excel" );
-header('Content-Disposition: attachment; filename="Reporte de solicitudes '.$fechaActual.'.xlsx"');
-header("Pragma: no-cache");
-header("Expires: 0");
+    //total de dispositivos solicitados
+    $objBen->generaTotalSolicitudes($activeSheet);
+    $objBen->generaExcelSolicitudes($activeSheet);
+  
 
-// Set properties
-//echo date('H:i:s') . " Set properties\n";
-$objPHPExcel->getProperties()->setCreator("Fundación Markoptic");
-$objPHPExcel->getProperties()->setLastModifiedBy("Fundación Markoptic");
-$objPHPExcel->getProperties()->setTitle("Reporte de solicitudes");
-$objPHPExcel->getProperties()->setSubject("Reporte de solicitudes de beneficiarios");
-$objPHPExcel->getProperties()->setDescription("Reporte con todos las solicitudes de los beneficiarios y sus respectivos datos");
-
-$objPHPExcel->setActiveSheetIndex(0);
-$objPHPExcel->getActiveSheet()->setTitle("Beneficiarios");
-
-$objPHPExcel->getActiveSheet()->setCellValue('A9','FOLIO');
-$objPHPExcel->getActiveSheet()->setCellValue('B9',"PETICIÓN");
-//$objPHPExcel->getActiveSheet()->setCellValue('C1',"NIVEL DE AMPUTACIÓN");
-//$objPHPExcel->getActiveSheet()->setCellValue('D1',"ESTATUS SOLICITUD");
-$objPHPExcel->getActiveSheet()->setCellValue('C9',"¿POR QUE SOLICITÓ?");
-$objPHPExcel->getActiveSheet()->setCellValue('D9',"MEDIO DE DIFUSIÓN");
-$objPHPExcel->getActiveSheet()->setCellValue('E9',"DESCRIPCIÓN DEL MEDIO");
-$objPHPExcel->getActiveSheet()->setCellValue('F9',"FECHA SOLICITUD");
-$objPHPExcel->getActiveSheet()->setCellValue('G9','NOMBRE(S) BENEFICIARIO');
-$objPHPExcel->getActiveSheet()->setCellValue('H9',"APELLIDO(S) BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('I9',"SEXO BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('J9',"FECHA DE NAC. BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('K9',"EDAD BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('L9',"DIRECCIÓN BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('M9',"COLONIA BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('N9',"CÓDIGO POSTAL BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('O9',"CIUDAD BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('P9',"ESTADO BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('Q9',"PAÍS BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('R9',"TELÉFONO BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('S9',"EMAIL BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('T9',"NOMBRE(S) TUTOR");
-$objPHPExcel->getActiveSheet()->setCellValue('U9',"APELLIDO(S) TUTOR");
-//$objPHPExcel->getActiveSheet()->setCellValue('X1',"FECHA DE NAC. TUTOR");
-//$objPHPExcel->getActiveSheet()->setCellValue('Y1',"SEXO TUTOR");
-//$objPHPExcel->getActiveSheet()->setCellValue('Z1',"VIVE CON EL BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('V9',"PARENTESCO CON EL BENEFICIARIO");
-$objPHPExcel->getActiveSheet()->setCellValue('W9',"TELÉFONO TUTOR");
-$objPHPExcel->getActiveSheet()->setCellValue('X9',"EMAIL TUTOR");
-
-//total de dispositivos solicitados
-$objBen->generaTotalSolicitudes($objPHPExcel);
-$objBen->generaExcelSolicitudes($objPHPExcel);
-
-//estilos
-$estiloInformacion = new PHPExcel_Style();
-$alignCenter = array(
-    'alignment' =>  array(
-        'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
-        'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
-    )
-);
-$estiloTituloColumnas = array(
-    'font' => array(
-	'name'  => 'Arial',
-	'bold'  => true,
-	'size' =>10,
-	'color' => array(
-	'rgb' => 'FFFFFF'
-	)
-    ),
-    'fill' => array(
-	'type' => PHPExcel_Style_Fill::FILL_SOLID,
-	'color' => array('rgb' => '538DD5')
-    ),
-    'borders' => array(
-	'allborders' => array(
-	'style' => PHPExcel_Style_Border::BORDER_THIN
-	)
-    ),
-    'alignment' =>  array(
-	'horizontal'=> PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
-	'vertical'  => PHPExcel_Style_Alignment::VERTICAL_CENTER
-    )
-);
-
-$arreglo = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','AA','AB','AC');
-foreach($arreglo as $columnID) {
-    $objPHPExcel->getActiveSheet()->getColumnDimension($columnID)->setWidth(35);
-    $objPHPExcel->getActiveSheet()->getStyle($columnID."9")->applyFromArray($estiloTituloColumnas);
-    $objPHPExcel->getActiveSheet()->getStyle($columnID)->applyFromArray($alignCenter);
-}
-
-// Rename sheet
-//echo date('H:i:s') . " Rename sheet\n";
-$objPHPExcel->getActiveSheet()->setTitle('Simple');
-
-		
-// Save Excel 2007 file
-//echo date('H:i:s') . " Write to Excel2007 format\n";
-$objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-ob_end_clean();
-$objWriter->save('php://output');
-
-// Echo done
-//echo date('H:i:s') . " Done writing file.\r\n";
-
+    header('Content-Type: application/vnd.ms-excel');
+    // header('Content-Disposition: attachment;filename="'. $filename .'.xls"'); /*-- $filename is  xsl filename ---*/
+    header('Content-Disposition: attachment;filename="'.$filename.'"'); /*-- $filename is  xsl filename ---*/
+    header('Cache-Control: max-age=0');
+    ob_end_clean();
+    $Excel_writer->save('php://output');
 ?>
-
-
-
-
-
-
-
-
-
