@@ -1,10 +1,10 @@
 <?php
 include 'conexion.php';
-class DatosPersonales {
-    //atributos
+class DatosPersonales { //**DatosPersonales
+    //--atributos DatosPersonales
     public $nombre,$apellidos,$sexo,$fecNacimiento,$ciudad,$calle,$colonia,$cp,$telefono,$email,$idMedioDifusion,$descMedioDif;
     
-    //getter and setter
+    //--getter and setter DatosPersonales
     public function getNombre(){return $this->nombre;}
 	public function setNombre($sNombre){$this->nombre = $sNombre;}
     public function getApellidos(){return $this->apellidos;}
@@ -30,7 +30,9 @@ class DatosPersonales {
     public function getDescMedioDif(){return $this->descMedioDif;}
     public function setDescMedioDif($sDescMedioDif){$this->descMedioDif = $sDescMedioDif;}
     
-    //funcion para buscar el país 
+    //--//SELECT
+    
+    //--funcion para buscar el país 
     public function buscaPais($p){
         try{
             $sql="SELECT id,nombre FROM paises ORDER BY nombre ASC";
@@ -50,7 +52,7 @@ class DatosPersonales {
             $con->close();
         }        
     }
-    //funcion para buscar el estado
+    //--funcion para buscar el estado
     public function buscaEstado($id,$es){
         try{
            $sql="SELECT id,nombre FROM regiones WHERE id_pais = '".$id."' ORDER BY nombre ASC";
@@ -70,7 +72,7 @@ class DatosPersonales {
             $con->close();
         }   
     }
-    //funcion para buscar la ciudad
+    //--funcion para buscar la ciudad
     public function buscaCiudad($id,$c){       
         try{
             $sql="SELECT id,nombre FROM localidades WHERE id_region ='".$id."' ORDER BY nombre ASC";
@@ -88,12 +90,58 @@ class DatosPersonales {
             echo $e->getMessage();
         }
     }
+    //--función para buscar el nombre del país
+    public function buscaNombrePais($p){
+        try{
+            $sql = "SELECT nombre FROM paises WHERE id = '".$p."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['nombre'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para buscar el nombre del estado
+    public function buscaNombreEstado($e){
+        try{
+            $sql = "SELECT nombre FROM regiones WHERE id = '".$e."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['nombre'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para buscar el nombre del ciudad
+    public function buscaNombreCiudad($c){
+        try{
+            $sql = "SELECT nombre FROM localidades WHERE id = '".$c."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['nombre'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
 
-}//datosPersonales
-class Tutor extends DatosPersonales{
+}//--fin DatosPersonales
+class Tutor extends DatosPersonales{ //**Tutor
+    //--atributos Tutor
     public $independiente,$nombreTutor,$apellidoTutor,$nacimientoTutor,$sexoTutor,$viveBen,$parentesco,$telTutor,$emailTutor;
     
-    //getter and setter
+    //--getter and setter Tutor
     public function getIndependiente(){return $this->independiente;}
     public function setIndependiente($sIndependiente){$this->independiente = $sIndependiente;}
     public function getNombreTutor(){return $this->nombreTutor;}
@@ -113,6 +161,7 @@ class Tutor extends DatosPersonales{
     public function getEmailTutor(){return $this->emailTutor;}
     public function setEmailTutor($sEmailTutor){$this->emailTutor = $sEmailTutor;}
 
+    //--función para buscar el parentesco del tutor con el beneficiario
     public function buscaParentesco($parentesco){
         $sql ="SELECT id,parentesco FROM parentescos";
         $objCon = new conexion();
@@ -129,11 +178,12 @@ class Tutor extends DatosPersonales{
         }
         echo'</select>';
     }
-}
-class Beneficiario extends Tutor{
+}//-- fin Tutor
+class Beneficiario extends Tutor{ //**Beneficiario
+    //--atributos Beneficiario
     public $dispositivo,$condicion,$descObtencion,$estausSolicitud,$foto1,$foto2,$foto3;
     private $idSolicitud;
-    //getter and setter
+    //getter and setter Beneficiario
     public function getDispositivo(){return $this->dispositivo;}
     public function setDispositivo($sDispositivo){$this->dispositivo = $sDispositivo;}
     public function getCondicion(){return $this->condicion;}
@@ -149,7 +199,7 @@ class Beneficiario extends Tutor{
     public function getFoto3(){return $this->foto3;}
     public function setFoto3($sFoto3){$this->foto3 = $sFoto3;}
     
-    //busca dispositivo biomedico
+    //--busca dispositivo biomedico
     public function buscaDispositivo($sol,$nd){
         try{
             $sql = "SELECT id,nombre FROM dispositivos WHERE nombre LIKE '%".$sol."%' AND mostrar = 1 ";
@@ -177,7 +227,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }   
     }
-    //busca todos los dispositivos
+    //--busca todos los dispositivos
     public function buscaDispositivoAll($id){
         try{
             $sql = "SELECT id,nombre FROM dispositivos ORDER BY nombre ASC";
@@ -197,7 +247,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }   
     }
-    //busca todas las condiciones
+    //--busca todas las condiciones
     public function buscaCondicionesAll($id){
         try{
             $sql = "SELECT id,condicion FROM condiciones  ORDER BY condicion ASC";
@@ -217,7 +267,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }   
     }
-    //busca todos los medios
+    //--busca todos los medios
     public function buscaMedioAll($id){
         try{
             $sql = "SELECT id,medio,reqDesc,placeholder FROM mediosdifusion  ORDER BY medio ASC";
@@ -238,7 +288,7 @@ class Beneficiario extends Tutor{
         }   
     }
 
-    //busca condición de la parte del cuerpo a solicitar de la persona
+    //--busca condición de la parte del cuerpo a solicitar de la persona
     public function buscaCondicion($condicion){
         try{
             if($condicion != "n/a"){
@@ -281,7 +331,7 @@ class Beneficiario extends Tutor{
         }  
     }
 
-    //busca medio de difusión
+    //--busca medio de difusión
     public function buscaDifusion($difusion,$otro){
         try{
             $sql="SELECT id,medio,reqDesc,placeholder FROM mediosdifusion ORDER BY medio ASC";
@@ -315,7 +365,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }  
     }
-    //busca estatus de la solicitud
+    //--busca estatus de la solicitud
     public function buscaEstatus($estatus){
         try{
             $sql ="SELECT id,estatus FROM estatussolicitud";
@@ -334,7 +384,7 @@ class Beneficiario extends Tutor{
         }
     }
     
-    //busca datos del apadrinado
+    //--busca datos del apadrinado
     public function buscaDatosApadrinado($id){
         try{
             $con = new conexion();
@@ -388,7 +438,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //Genera total recabado del dispositivo
+    //--Genera total recabado del dispositivo
     public function recabado($id){
         try{
             $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
@@ -404,7 +454,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca transacciones de cada usuario
+    //--busca transacciones de cada usuario
     public function buscaTransacciones($b){
         try{
             $sql = "SELECT donacion,idBanwire,fecha FROM transacciones WHERE idSolicitud ='".$b."'";
@@ -436,7 +486,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca datos del formulario
+    //--busca datos del formulario
     public function buscaDatosFormulario($id){
         try{
             $con = new conexion();
@@ -556,7 +606,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //crea mensaje a enviar al formulario 
+    //--crea mensaje a enviar al formulario 
     public function mensajeFormulario($id){
         try{
             $datosFormulario = $this->buscaDatosFormulario($id);
@@ -632,28 +682,28 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca ultimo id de las solicitudes de los beneficiarios
-    public function buscaMaxSolicitudes(){
+    //--busca ultimo id de las solicitudes de los beneficiarios
+    public function buscaMaxSolicitudes($con){
         try{
-            $con = new conexion();
-            $objCon = $con->conectar();
+            //$con = new conexion();
+            //$objCon = $con->conectar();
             $sql = "SELECT MAX(id) as total FROM solicitudes";
-            $result = $objCon->query($sql);
+            $result = $con->query($sql);
             $result = mysqli_fetch_assoc($result);
             $idMax = $result['total'];
             return $idMax;
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
-            $objCon->close();
+            //$con->close();
         }
     }
 
-    //busca el total de solicitudes de los beneficiarios con estatus
-    public function buscaCountSolicitudes($estatus){
+    //--busca el total de solicitudes de los beneficiarios con estatus
+    public function buscaCountSolicitudes($con,$estatus){
         try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
+            //$objCon = new conexion();
+            //$con = $objCon->conectar();
             $sql = "SELECT COUNT(id) as total FROM solicitudes WHERE idEstatusSolicitud = '".$estatus."'";
             $result = $con->query($sql);
             $result = mysqli_fetch_assoc($result);
@@ -662,11 +712,11 @@ class Beneficiario extends Tutor{
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
-            $con->close();
+            //$con->close();
         }
     }
     
-    //busca el total de solicitudes de los beneficiarios
+    //--busca el total de solicitudes de los beneficiarios
     public function buscaTotalSolicitudes(){
         try{
             $objCon = new conexion();
@@ -683,7 +733,7 @@ class Beneficiario extends Tutor{
         }
     } 
 
-    //busca el total de solicitudes de protesis superior derecha
+    //--busca el total de solicitudes de protesis superior derecha
     public function buscaTotalPsd(){
         try{
             $objCon = new conexion();
@@ -700,7 +750,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca el total de solicitudes de protesis superior izquierda
+    //--busca el total de solicitudes de protesis superior izquierda
     public function buscaTotalPsi(){
         try{
             $objCon = new conexion();
@@ -717,7 +767,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca el total de solicitudes de colchón vittmat
+    //--busca el total de solicitudes de colchón vittmat
     public function buscaTotalCv(){
         try{
             $objCon = new conexion();
@@ -734,7 +784,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca el total de solicitudes de protésis inferior derecha
+    //--busca el total de solicitudes de protésis inferior derecha
     public function buscaTotalPid(){
         try{
             $objCon = new conexion();
@@ -751,7 +801,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //busca el total de solicitudes de protésis inferior izquierda
+    //--busca el total de solicitudes de protésis inferior izquierda
     public function buscaTotalPii(){
         try{
             $objCon = new conexion();
@@ -768,30 +818,47 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //generar solicitudes aleatoriamente para el sistema de apadrinamiento
-    public function generaSolicitudesAleatorias($mostrar,$idMax,$estatus){
+    //--generar solicitudes aleatoriamente para el sistema de apadrinamiento
+    public function generaSolicitudesAleatorias($mostrar,$estatus,$sentencia,$inner){
         try{
             $cont = 0;
             $index = 0;
             $arregloRandom = array();
             $objCon = new conexion;
             $con = $objCon->conectar();
-            while($cont < $mostrar){
-                $num = rand(1,$idMax);
-                $sql = "SELECT id FROM solicitudes WHERE id = '".$num."' and idEstatusSolicitud = '".$estatus."'";
-                $result = $con->query($sql);
-                if(mysqli_num_rows($result)>0){  
-                    foreach($arregloRandom as $fila){
-                        if($fila == $num){
-                            $index = 1;
-                            break 1;
+            $idMax = $this->buscaMaxSolicitudes($con);
+            //echo "idMax".$idMax."<br>";
+            $idCount = $this->buscaCountSolicitudes($con,$estatus);
+            //echo "idCount".$idCount."<br>";
+            if($idCount == 0){ 
+                echo "no se encontraron Solicitudes";
+                return 0;
+            }else{
+                if($idCount < $mostrar){
+                    $mostrar = $idCount;
+                }
+                while($cont < $mostrar){
+                    $num = rand(1,$idMax);
+                    $sql = "SELECT id FROM solicitudes".$inner." WHERE id = '".$num.$sentencia;
+                    //echo $sql."<br>";
+                    $result = $con->query($sql);
+                    if(mysqli_num_rows($result)>0){
+                        foreach($arregloRandom as $fila){
+                            if($fila == $num){
+                                $index = 1;
+                                //echo $fila;
+                                break 1;
+                            }
                         }
-                    }
-                    if($index == 0){
-                        $arregloRandom[$cont] = $num;
-                        $cont = $cont + 1;
+                        if($index == 0){
+                            $arregloRandom[$cont] = $num;
+                            $cont = $cont + 1;
+                        }else{
+                            $index = 0;
+                        }
+                        //echo " encontrado";
                     }else{
-                        $index = 0;
+                        //echo " no-encontrado";
                     }
                 }
             }
@@ -803,7 +870,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //genera edad actual del beneficiario
+    //--genera edad actual del beneficiario
     public function generaEdadBeneficiario($fecha){
         try{            
             $now = new DateTime();
@@ -818,7 +885,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //buscar beneficiarios
+    //--buscar beneficiarios
     public function buscaBeneficiario($nombre,$estatus){
         try{
             $sql ="select nombre, apellidos, concat(beneficiarios.nombre,beneficiarios.apellidos) AS nombres ,solicitudes.id
@@ -842,7 +909,7 @@ class Beneficiario extends Tutor{
             $objCon->close();
         }
     }
-    //buscar beneficiarios por folio
+    //--buscar beneficiarios por folio
     public function buscaBeneficiarioFolio($f){
         try{
             $sql ="SELECT solicitudes.id, beneficiarios.nombre,beneficiarios.apellidos 
@@ -867,7 +934,7 @@ class Beneficiario extends Tutor{
             $objCon->close();
         }
     }
-    //busca folio antiguo del beneficiario
+    //--busca folio antiguo del beneficiario
     public function buscaFolioAntiguo($idBen){
         try{
             $sql ="SELECT folio FROM beneficiario_solicitud INNER JOIN solicitud on beneficiario_solicitud.id_solicitud = solicitud.id WHERE beneficiario_solicitud.id = '".$idBen."' ";
@@ -888,7 +955,7 @@ class Beneficiario extends Tutor{
         }
     }
     
-    //busca precio del dispositivo
+    //--busca precio del dispositivo
     public function buscaPrecio($idD){
         try{
             $sql ="SELECT precio FROM dispositivos WHERE id = '".$idD."' ";
@@ -904,7 +971,7 @@ class Beneficiario extends Tutor{
         }
     }
 
-    //inserta solicitud 
+    //--inserta solicitud 
     public function inserta(){
         try{
         $objCon = new conexion();
@@ -944,20 +1011,24 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
-    // función para insertar los ingresos recabados 
-    public function insertTransaccion($folio,$total){
+    //--función para insertar los ingresos recabados 
+    public function insertTransaccion($folio,$total,$idBanwire){
         try{
-            $sql= "INSERT INTO transacciones(donacion,idSolicitud)VALUES('".$total."','".$folio."')";
+            $sql= "INSERT INTO transacciones(donacion,idSolicitud,idBanwire)VALUES('".$total."','".$folio."','".$idBanwire."')";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $con->query($sql);
+            if($con->query($sql)){
+                //echo "insercion exitosa";
+            }else{
+                //echo "insercion fallida";
+            }
         }catch(Exception $e){
             $e->getMessage();
         }finally{
             $con->close();
         }
     }
-    // función para insertar los ingresos recabados fuera de linea 
+    //--función para insertar los ingresos recabados fuera de linea 
     public function insertTransacciones($sql){
         try{
             $objCon = new conexion();
@@ -968,9 +1039,10 @@ class Beneficiario extends Tutor{
         }finally{
         }
     }
-    //updates
 
-    //función para actualizar imagenes de los beneficiarios
+    //--//updates
+
+    //--función para actualizar imagenes de los beneficiarios
     public function updateFotoBen($id,$add,$foto){
         try{
             $sqlSelect="SELECT idSolicitud FROM imgsolicitud WHERE idSolicitud= '".$id."' ";
@@ -991,7 +1063,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
-    // función para actualizar los datos del beneficiario 
+    //--función para actualizar los datos del beneficiario 
     public function updateDatosBen($id){
         try{
             $sqlUpdate= "update beneficiarios set nombre='".$this->nombre."', apellidos='".$this->apellidos."', sexo='".$this->sexo."',fecNacimiento='".$this->fecNacimiento."', idCiudad='".$this->ciudad."',calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion='".$this->idMedioDifusion."',descMedioDif='".$this->descMedioDif."' where id = '".$id."' ";
@@ -1005,7 +1077,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
-    // función para actualizar los datos del beneficiario 
+    //--función para actualizar los datos del beneficiario 
     public function updateDatosTut($idT,$idB){
         try{
             $sqlInsert = "INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) values('".$idB."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
@@ -1023,7 +1095,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
-    // función para actualizar los datos del beneficiario 
+    //--función para actualizar los datos del beneficiario 
     public function updateDatosSol($id){
         try{
             $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";
@@ -1036,7 +1108,7 @@ class Beneficiario extends Tutor{
             $con->close();
         }
     }
-    //mostrar datos a insertar en el formulario 
+    //--mostrar datos a insertar en el formulario 
     public function mostrar(){
         echo "<br>nombre".$this->getNombre();
         echo "<br> apellidos".$this->getApellidos();
@@ -1067,9 +1139,9 @@ class Beneficiario extends Tutor{
         echo"<br>foto3".$this->getFoto3();  
     }
 
-    //Generar Documentos
+    //--//Generar Documentos
 
-    //genera el total de los dispositivos y solicitudes
+    //--genera el total de los dispositivos y solicitudes
     public function generaTotalSolicitudes($activeSheet){
         try{
             $totalSol = $this->buscaTotalSolicitudes();
@@ -1097,7 +1169,7 @@ class Beneficiario extends Tutor{
 
         }
     }
-    //genera los datos de las solicitudes
+    //--genera los datos de las solicitudes
     public function generaExcelSolicitudes($activeSheet){
         try{
             //consulta a la base de datos para tomar los datos a crear 
@@ -1194,7 +1266,7 @@ class Beneficiario extends Tutor{
             $objCon->close();
         }
     }
-    //crear sentencia a partir de archivo csv para insertar transacciones 
+    //--crear sentencia a partir de archivo csv para insertar transacciones 
     public function creaTransacciones($name,$ruta){
         try{
             $file = fopen($ruta,"r");
@@ -1222,7 +1294,7 @@ class Beneficiario extends Tutor{
                 }
                 $row = $row + 1;
             }
-            echo $cadena;
+            //echo $cadena;
             $row = $row - 1;
             $message = "Existen ".$encontrado." transacciones de ".$row." totales <br>";
             //if($encontrado == 0){
@@ -1240,7 +1312,19 @@ class Beneficiario extends Tutor{
             $objCon->close();
         }
     }
+    //--aplicar filtros lsita sistema apadrinamiento
+    public function aplicaFiltros(){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
 
-}//beneficiario
+}//--fin Beneficiario
 
 ?>

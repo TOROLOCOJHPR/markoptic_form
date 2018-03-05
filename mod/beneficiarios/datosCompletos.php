@@ -1,18 +1,35 @@
+<?php 
+    $id = $_GET['b'];
+    $result = $objBen->buscaDatosApadrinado($id);
+    $edad = $objBen->generaEdadBeneficiario($result['fecNacimiento']); 
+?>
 <div class="row mx-0" style="">
-    <div class="col-12 col-sm-7 col-md-4 px-0">
-        <img class="img-cover-center m-auto" src="/imagenes/uploads/beneficiados/<?php echo $result['fotoHistoria']; ?>" alt="fotografia del beneficiado"/>
+    <div class="col-12 col-sm-6 col-md-4 ">
+        <h5 class="text-capitalize text-center mt-2"><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
+        <img class="img-fluid" src="/imagenes/uploads/<?php echo $ubicacion.$result[$foto]; ?>" alt="imagen del beneficiario">
     </div>
-    <div class="col-12 col-sm-5 col-md-8 p-4 px-5" style="font-size:1.2rem;">
-        <strong>Nombre: </strong><span class="text-capitalize"><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></span>
-        <br>
-        <strong>Edad: </strong><span><?php echo $edad; ?>&nbsp;años<span>
-        <br>
-        <strong>Vive en: </strong><span><?php echo $result['ciudad']."&nbsp;".$result['estado']."&nbsp;".$result['pais']; ?></span>
-        <br>
-        <strong>Beneficiado con: </strong><span><?php echo $result['dispositivo']; ?></span>
-        <br>
-        <strong>¿Por qué solicitó? </strong>
-        <br>
-        <span class="text-first-uppercase"><?php echo ucfirst($result['porque']); ?></span>
+    <div class="col-12 col-sm-6 <?php echo ($pagina == "beneficiarios")?"col-md-8":"col-md-4"; ?> p-4 px-5 " style="font-size:1.2rem;">
+        <div class="mt-4"> 
+            <strong>Edad: </strong><span><?php echo $edad; ?>&nbsp;años<span>
+            <br>
+            <strong>Vive en: </strong><span><?php echo $result['ciudad']."&nbsp;".$result['estado']."&nbsp;".$result['pais']; ?></span>
+            <br>
+            <strong>Beneficiado con: </strong><span><?php echo $result['dispositivo']; ?></span>
+            <br>
+            <strong><?php echo ($pagina == "beneficiarios")?"¿Por qué solicitó?":"¿Por qué solicita?" ?></strong>
+            <br>
+            <span class="text-first-uppercase"><?php echo ucfirst($result['porque']); ?></span>
+            <?php 
+                if($pagina == "apadrina"){  
+            ?>
+                    <h5 class="mt-5"><cms:show textomotivador /></h5><h5><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
+                    <div class="row mx-0">
+                        <button class="btn bg-verde-menu text-white ml-auto" data-toggle="modal" data-target="#exampleModalCenter" >Apadrinar</button>
+                    </div>
+            <?php                    
+                }
+            ?>
+        </div>
     </div>
+    <?php if($pagina == "apadrina"){include 'mod/beneficiarios/recaudacion.php';include 'mod/beneficiarios/modalDonacion.php';} ?>
 </div>       
