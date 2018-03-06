@@ -1,20 +1,26 @@
+<?php 
+    //echo $pagina;
+    //var_dump($arreglo);
+?>
 <div id="directorio" class="container-fluid bg-cover-center p-0">
-    <div class="row mx-0 text-white text-center">
+    <div class="row mx-0 text-dark text-center">
     <?php 
-        foreach($arregloRandom as $fila){
-            $result = $objBen->buscaDatosApadrinado($fila);
+        foreach($arreglo AS $fila){
+            //echo "<br>".$fila;
+        }
+        foreach($arreglo as $fila){
+            //echo $fila;
+            $row = $objBen->buscaDatosApadrinado($fila);
             if($pagina == "apadrina"){
-                $recabado = $objBen->recabado($fila);   
-                $precioProtesis = $result['precio']; 
-                //if($recabado == 0){ $por = 0; }else{ $por = (($recabado / $precioProtesis)*100); }
+                $recabado = $objBen->recabado($fila);
+                $precioProtesis = $row['precio'];
                 $por = ($recabado == 0)? 0 : (($recabado / $precioProtesis)*100);
-                //if($por > 100){ $por = 100; }
                 $por = ($por > 100)? 100 : $por;
-                $porciento = number_format($por,2);  
+                $porciento = number_format($por,2);
             }
     ?>             
-        <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio" style="background-image:url('/imagenes/uploads/<?php echo $ubicacion.$result[$foto];?>');height:250px;">
-            <a href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $result['id']; ?>">    
+        <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio" style="background-image:url('/imagenes/uploads/<?php echo $ubicacion.$row[$foto];?>');height:250px;">
+            <a href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $row['id']; ?>">    
                 <div class="colaborador-descripcion opacity-black">
                     <!-- linea de progreso -->
                         <div class="bg-secondary w-100 position-absolute <?php echo ($pagina == "beneficiarios")? "d-none":""; ?>" style="height:7px;">
@@ -25,13 +31,13 @@
                     <!-- datos del beneficiario -->
                     <div class="c-align-middle">
                         <p class="px-3 pt-2 "style="font-size:1.3rem;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;">
-                            <span class="text-capitalize"><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></span>
+                            <span class="text-capitalize"><?php echo $row['nombre'].'&nbsp;'.$row['apellidos']; ?></span>
                             <br>
-                            <span style="font-size:1.1rem;"><?php echo $result['dispositivo']; ?></span>
+                            <span style="font-size:1.1rem;"><?php echo $row['dispositivo']; ?></span>
                         </p>
                     </div>
                     <div class="c-align-middle px-2">
-                        <p style="font-size:1.3rem;"><?php echo mb_strimwidth(ucfirst($result['porque']), 0, 100, "..."); ?></p>
+                        <p style="font-size:1.3rem;"><?php echo mb_strimwidth(ucfirst($row['porque']), 0, 100, "..."); ?></p>
                     </div>
                 </div>    
             </a>

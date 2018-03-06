@@ -32,7 +32,7 @@ class DatosPersonales { //**DatosPersonales
     
     //--//SELECT
     
-    //--funcion para buscar el país 
+    //--funcion para buscar los países 
     public function buscaPais($p){
         try{
             $sql="SELECT id,nombre FROM paises ORDER BY nombre ASC";
@@ -52,7 +52,7 @@ class DatosPersonales { //**DatosPersonales
             $con->close();
         }        
     }
-    //--funcion para buscar el estado
+    //--funcion para buscar los estados
     public function buscaEstado($id,$es){
         try{
            $sql="SELECT id,nombre FROM regiones WHERE id_pais = '".$id."' ORDER BY nombre ASC";
@@ -72,7 +72,7 @@ class DatosPersonales { //**DatosPersonales
             $con->close();
         }   
     }
-    //--funcion para buscar la ciudad
+    //--funcion para buscar las ciudades
     public function buscaCiudad($id,$c){       
         try{
             $sql="SELECT id,nombre FROM localidades WHERE id_region ='".$id."' ORDER BY nombre ASC";
@@ -401,13 +401,13 @@ class Beneficiario extends Tutor{ //**Beneficiario
                     imgsolicitud.foto1,
                     solicitudes.recabado,solicitudes.id,solicitudes.porque 
                 FROM solicitudes 
-                    INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario 
-                    INNER JOIN dispositivos ON dispositivos.id = solicitudes.idDispositivo
-                    INNER JOIN imgsolicitud ON imgsolicitud.idSolicitud = solicitudes.id 
-   	                INNER JOIN localidades ON localidades.id = beneficiarios.idCiudad 
-                    INNER JOIN regiones on regiones.id = localidades.id_region
-                    INNER JOIN paises ON paises.id = localidades.id_pais
-                AND solicitudes.id = $id"
+                    LEFT JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario 
+                    LEFT JOIN dispositivos ON dispositivos.id = solicitudes.idDispositivo
+                    LEFT JOIN imgsolicitud ON imgsolicitud.idSolicitud = solicitudes.id 
+   	                LEFT JOIN localidades ON localidades.id = beneficiarios.idCiudad 
+                    LEFT JOIN regiones on regiones.id = localidades.id_region
+                    LEFT JOIN paises ON paises.id = localidades.id_pais
+                WHERE solicitudes.id = $id"
             ;
 
             $result = $objCon->query($sql);
@@ -438,7 +438,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
         }
     }
 
-    //--Genera total recabado del dispositivo
+    //--genera total recabado del dispositivo
     public function recabado($id){
         try{
             $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
@@ -840,7 +840,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
                 while($cont < $mostrar){
                     $num = rand(1,$idMax);
                     $sql = "SELECT id FROM solicitudes".$inner." WHERE id = '".$num.$sentencia;
-                    //echo $sql."<br>";
+                    echo $sql."<br>";
                     $result = $con->query($sql);
                     if(mysqli_num_rows($result)>0){
                         foreach($arregloRandom as $fila){
@@ -867,6 +867,29 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $e->getMessage();
         }finally{
             $con->close();
+        }
+    }
+    //--genera solicitudes por medio de filtraciones
+    public function generaSolicitudesFiltro($sql){
+        try{
+            $cont = 0;
+            $arreglo = array();
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            //echo $sql;
+            while($row = $result->fetch_array()){
+                //$arreglo[$cont][0] = $row['id'];
+                $arreglo[$cont] = $row['id'];
+                //$arreglo[$cont][1] = 0;
+                $cont = $cont + 1 ;
+                //echo $row['id'];
+            }
+            return $arreglo;
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+
         }
     }
 
