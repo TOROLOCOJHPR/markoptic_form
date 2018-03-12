@@ -2,8 +2,11 @@
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
     require('back/comprueba.php');
-    //include 'back/conexion.php';
+    $metodo = $_SERVER['REQUEST_METHOD'];
+    $url2 = "?".$_SERVER['QUERY_STRING'];
+    //echo  $url2;
     include 'back/objetos.php'; 
+    $objBen = new Beneficiario;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,44 +21,42 @@
     </head>
     <body class="px-4" style="padding-top:60px;">
         <?php
-            $metodo = $_SERVER['REQUEST_METHOD'];
-            $url = $_SERVER['REQUEST_URI'];
-            //guardamos variables url
-            $url2 = "?".$_SERVER['QUERY_STRING'];
-            //eliminamos las variables
-            $url = str_replace($url2,"",$url);
-            $objBen = new Beneficiario;
-            $redireccion = "/panel";
-            if($metodo == "GET"){
-                //buscar datos del beneficiario seleccionado
-                if(isset($_GET['b'])){
-                    $b = $_GET['b'];
-                    $f = $_GET['f'];
+            if ($metodo == "GET"){ //consulta GET
+
+                if($url2 == "?"){ //muestra buscador de beneficiarios
+                    $redireccion = "/panel";
+                    include "mod/panel/formularioBuscador.php";
+                }elseif(isset($_GET['b'])){ //muestra datos beneficiario
+                    $b = $_GET['b']; //id del beneficiario
+                    $f = $_GET['f']; //id de busqueda 
                     $redireccion = '/editorBeneficiarios?f='.$f;
                     $dato = $objBen->buscaDatosFormulario($b);
                     include 'mod/panel/datosBeneficiarios.php';
                     include 'mod/panel/transacciones.php';
-                // mostrar formulario de busqueda
-                }elseif( isset($_GET['f']) ) {
+                }elseif(isset($_GET['f'])){
+                    $redireccion = "/panel";
                     $f = $_GET['f'];
                     include "mod/panel/formularioBuscador.php";
                     include 'mod/panel/buscadorBeneficiarios.php';
-                }else{
-                    include "mod/panel/formularioBuscador.php";
                 }
-            }else{
-                // mostrar lista de beneficiarios
-                if( isset($_POST['lista']) ){
+
+            }else{ //consulta POST
+                
+                if($_POST['update'] == 0){ //muestra buscador y lista de beneficiarios
+                    $redireccion = "/panel";
                     $f = $_POST['lista'];
                     include "mod/panel/formularioBuscador.php";
                     include 'mod/panel/buscadorBeneficiarios.php';
-                // actualizar datos del beneficiario
-                }elseif(isset($_POST['update'])){
-                    $redireccion = '/editorBeneficiarios?f='.$_POST['f'];      
+                }elseif($_POST['update'] == 1){ //actualiza datos y muestra de nuevo los datos del beneficiario
+                    $b = $_POST['id'];
+                    $f = $_POST['f']; //id de busqueda 
+                    $redireccion = '/editorBeneficiarios?f='.$_POST['f'];
                     include 'mod/panel/updateBeneficiario.php';
                     $dato = $objBen->buscaDatosFormulario($_POST['id']);
                     include 'mod/panel/datosBeneficiarios.php';
+                    include 'mod/panel/transacciones.php';
                 }
+
             }
             include 'mod/panel/menuBeneficiario.php';
         ?>

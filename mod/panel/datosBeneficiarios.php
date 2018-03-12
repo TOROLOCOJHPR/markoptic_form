@@ -10,7 +10,7 @@
 <label class="mx-4">Fecha Solicitud: <?php echo $dato['fechaSolicitud']; ?></label>
 <hr>
 <h5 class="px-4 text-primary">Imagenes Beneficiario</h5>
-<form class="px-4" method="post" enctype="multipart/form-data" action="/editorBeneficiarios">
+<form class="px-4" method="post" enctype="multipart/form-data" action="">
     <!-- fotografias del beneficiario -->
     <div class="row">
         <div class="col-md-3">
