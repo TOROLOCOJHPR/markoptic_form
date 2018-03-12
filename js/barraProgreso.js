@@ -16,8 +16,7 @@ $(document).ready(function(){
     });
     //centrar texto de porcentaje
     texto();
-    $(window).resize(function(){
-        
+    $(window).resize(function(){ 
         texto();
     });    
 });

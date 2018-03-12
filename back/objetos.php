@@ -230,22 +230,38 @@ class Beneficiario extends Tutor{ //**Beneficiario
     //--busca todos los dispositivos
     public function buscaDispositivoAll($id){
         try{
-            $sql = "SELECT id,nombre FROM dispositivos ORDER BY nombre ASC";
+            $sql = "SELECT id,nombre FROM dispositivos WHERE mostrar = 1 ORDER BY nombre ASC";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $result = $con->query($sql);              
+            $result = $con->query($sql);           
             echo'
-                <label>Dispositivo</label>
-                    <select name="solicitud" class="form-control">';
+                <select name="solicitud" class="form-control">
+                    <option value = ""'; if( $id == "" ){ echo "selected"; } echo'>Selecciona un dispositivo</option>    
+            ';
                     while($row = mysqli_fetch_array($result)){
-                        echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['nombre'].'</option>';
-                    }  
-                echo'</select>';
+                    echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['nombre'].'</option>';
+                }
+            echo'</select>';
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
             $con->close();
-        }   
+        }
+    }
+    //--busca el nombre del dispositivo solicitado
+    public function buscaDispositivoNombre ($id){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql = "SELECT nombre FROM dispositivos WHERE id = '".$id."'";
+            $result = $con->query($sql);
+            $row = $result->fetch_assoc();
+            return $row['nombre'];
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
     }
     //--busca todas las condiciones
     public function buscaCondicionesAll($id){
@@ -253,13 +269,13 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $sql = "SELECT id,condicion FROM condiciones  ORDER BY condicion ASC";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $result = $con->query($sql);              
+            $result = $con->query($sql);
             echo'
                 <label>Condición amputación</label>
                     <select name="condicion" class="form-control">';
                     while($row = mysqli_fetch_array($result)){
                         echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['condicion'].'</option>';
-                    }  
+                    }
                 echo'</select>';
         }catch(Exception $e){
             echo $e->getMessage();
@@ -273,19 +289,19 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $sql = "SELECT id,medio,reqDesc,placeholder FROM mediosdifusion  ORDER BY medio ASC";
             $objCon = new conexion();
             $con = $objCon->conectar();
-            $result = $con->query($sql);              
+            $result = $con->query($sql);
             echo'
                 <label>Medio de difusión</label>
                     <select name="medio" id="medio" class="form-control">';
                     while($row = mysqli_fetch_array($result)){
                         echo'<option value="'.$row['id'].'" '; if( $row['reqDesc'] != 0 ){ echo 'ph="'.$row['placeholder'].'"'; }else{ echo 'ph="" '; } if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['medio'].'</option>';
-                    }  
+                    }
                 echo'</select>';
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
             $con->close();
-        }   
+        }
     }
 
     //--busca condición de la parte del cuerpo a solicitar de la persona
@@ -301,10 +317,10 @@ class Beneficiario extends Tutor{ //**Beneficiario
                     <div class="row mx-0 h-100 print" id="condiciones">
                 ';
                 while($row = $result->fetch_array()){
-                    echo'                    
+                    echo'
                     <div class="col-6 col-md-4 text-center condBrazo">
                         <div class="row mx-0 print">
-                            <div class="col-12">    
+                            <div class="col-12">
                                 <label for="condicion'.$row['id'].'" class="imgCondicion text-center">
                                     <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgFrontal'].'" alt="imagen frontal de '.$row['condicion'].'">
                                     <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgTrasera'].'" alt="imagen trasera de '.$row['condicion'].'" style="display:none;">
@@ -874,18 +890,17 @@ class Beneficiario extends Tutor{ //**Beneficiario
         try{
             $cont = 0;
             $arreglo = array();
+            $multidimensional ="";
             $objCon = new conexion;
             $con = $objCon->conectar();
             $result = $con->query($sql);
             //echo $sql;
             while($row = $result->fetch_array()){
-                //$arreglo[$cont][0] = $row['id'];
-                $arreglo[$cont] = $row['id'];
-                //$arreglo[$cont][1] = 0;
-                $cont = $cont + 1 ;
-                //echo $row['id'];
+                // array_push($arreglo,array('id'=>$row['id'],'mostrar'=>0));
+                array_push($arreglo,array('id'=>$row['id']));
             }
             return $arreglo;
+            //echo json_encode($arreglo);
         }catch(Exception $e){
             $e->getMessage();
         }finally{
@@ -1035,9 +1050,9 @@ class Beneficiario extends Tutor{ //**Beneficiario
         }
     }
     //--función para insertar los ingresos recabados 
-    public function insertTransaccion($folio,$total,$idBanwire){
+    public function insertTransaccion($total,$solicitud,$idBanwire,$auth_code,$event,$hash,$status){
         try{
-            $sql= "INSERT INTO transacciones(donacion,idSolicitud,idBanwire)VALUES('".$total."','".$folio."','".$idBanwire."')";
+            $sql= "INSERT INTO transacciones(donacion,idSolicitud,idBanwire,auth_code,event,hash,status)VALUES('".$total."','".$solicitud."','".$idBanwire."','".$auth_code."','".$event."','".$hash."','".$status."')";
             $objCon = new conexion();
             $con = $objCon->conectar();
             if($con->query($sql)){
@@ -1335,19 +1350,6 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
-    //--aplicar filtros lsita sistema apadrinamiento
-    public function aplicaFiltros(){
-        try{
-            $objCon = new conexion;
-            $con = $objCon->conectar();
-            
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
 }//--fin Beneficiario
 
 ?>

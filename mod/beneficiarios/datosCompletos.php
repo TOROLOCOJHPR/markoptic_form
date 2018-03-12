@@ -1,5 +1,8 @@
 <?php 
+    $objBen = new beneficiario;
     $id = $_GET['b'];
+    $foto = ($pagina == "beneficiarios")? "fotoHistoria" : "foto1";
+    $ubicacion = ($pagina == "beneficiarios")? "beneficiados/" : "";
     $result = $objBen->buscaDatosApadrinado($id);
     $edad = $objBen->generaEdadBeneficiario($result['fecNacimiento']); 
 ?>

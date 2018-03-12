@@ -233,11 +233,11 @@
          	url:'/back/ajax.php',
             type:'post',
         	beforeSend: function () {
-                console.log('enviado');
+                //console.log('enviado');
 	            //$("#beforeresultado").html("<div class='beforeSend'><label>Cargando, espere por favor...</label></div>");
             },
             success:  function (response) {	
-                console.log('recibido');					
+                //console.log('recibido');					
 	    	    $("#beforeresultado").html("");
 	    	    $('#'+ resultado).html(response);
             }

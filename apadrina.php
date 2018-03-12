@@ -10,7 +10,6 @@
 <?php
     include 'mod/header.php';
     include 'back/objetos.php';
-
     if(isset($_GET['b'])){
         $menuBack = "Porcentaje de Apadrinación";
     }else{
@@ -42,9 +41,7 @@
     <?php
         //página de porcentaje de recaudación del  beneficiario
         $pagina = "apadrina";
-        $foto = "foto1";
-        $ubicacion = "";
-        $objBen = new Beneficiario;
+        //$objBen = new Beneficiario;
         if(isset($_GET['b'])){
             include 'mod/beneficiarios/datosCompletos.php';
         }else{
@@ -58,8 +55,7 @@
 <?php
     include 'mod/footer.php';
 ?>
-<script src="/js/filtro.js"></script>
-<?php 
+<?php
     if(isset($_GET['b'])){
 ?>
     <script type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
@@ -67,23 +63,34 @@
     <script src="/js/motorPago.js"></script>
 
 <?php
+    }else{
+?>
+    <script src="/js/filtro.js"></script>
+<?php
     }
 ?>
 <script>
     $(document).ready(function(){
-
-        // comprobar la variable ocultar modal 
+        // comprobar la variable ocultar modal
         if( $('#tiempoDonaciones').attr('ocultar') == 0 )
         {
             var ocultar = "show";
         }else{
             var ocultar = "hide";
         }
-
         //iniciar modal
         $('#tiempoDonaciones').modal(ocultar);
-
+    });
+    function hideModal(){
+        var r = "tiempoDonaciones";
+        var parametros ={
+            "formulario" : "ocultarModal",
+        }
+        ajax(parametros,r);
+        $('#tiempoDonaciones').modal('hide');
+    }
 </script>
+
     </body>
 </html>
 <?php COUCH::invoke(); ?>

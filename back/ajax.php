@@ -87,11 +87,45 @@
         }
     }
     if($formulario == "motorPago"){
-        $objBen = new beneficiario;
-        $objBen->insertTransaccion($_POST['folio'],$_POST['total']);
-        echo '<script>alert("motor de pago");</script>';
+       //$objBen = new beneficiario;
+        //$objBen->insertTransaccion($_POST['folio'],$_POST['total']);
+        //echo '<script>alert("motor de pago");</script>';
+        $file = file_put_contents('../response.txt', json_encode($_POST));
     }
     if($formulario == "ocultarModal"){
         setcookie('hide','1',0,'/');
+    }
+    if($formulario == "datosBeneficiario"){
+        /*$array = array(
+            0=>array("id"=>"1","codigo"=>"a","nombre"=>"user1"),
+            1=>array("id"=>"2","codigo"=>"b","nombre"=>"user2"),
+            2=>array("id"=>"3","codigo"=>"c","nombre"=>"user3"));
+
+
+        echo json_encode($array);*/
+        $pagina = $_POST['pagina'];
+        if($pagina == "beneficiarios"){
+            $foto = "fotoHistoria";
+            $ubicacion = "beneficiados/";
+        }else{
+            $foto = "foto1";
+            $ubicacion = "";
+        }
+        $objBen = new Beneficiario;
+        $carga = $_POST['carga']+1;
+        echo "<script>console.log('carga: ".$carga."')</script>";
+        //$sql = "SELECT solicitudes.id FROM solicitudes  WHERE idEstatusSolicitud = 1";
+        $arreglo = $_POST['arreglo'];
+        include '../mod/beneficiarios/tarjetasBeneficiarios.php';
+        echo "<div id='div".$carga."' class=''></div>";
+        // $array = array();
+   /*     foreach($arregloAjax as $row){
+            $dato = $objBen->buscaDatosApadrinado($row);
+            array_push($array,$dato);
+        }*/
+        //echo json_encode($array);
+?>
+    <!-- <div class="row mx-0" id="tarjetasBeneficiarios<?php //echo $_POST['carga']; ?>"></div> -->
+<?php
     }
 ?>

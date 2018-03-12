@@ -1,7 +1,12 @@
 <?php
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
+
     include 'mod/header.php';
+    header("Expires: Sat, 01 De enero de 2000 00:00:00 GMT"); 
+    header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT"); 
+    header("Cache-Control: post-check=0, pre-check=0",false); 
+    session_cache_limiter("must-revalidate");
     include 'back/objetos.php';
     $menuBack = "Beneficiados";
 ?>
@@ -29,9 +34,7 @@
     </div>
     <?php 
         $pagina = "beneficiarios";
-        $foto = "fotoHistoria";
-        $ubicacion = "beneficiados/";
-        $objBen = new Beneficiario;
+        //$objBen = new Beneficiario;
         if( isset($_GET['b']) ){ //datos completos
             include 'mod/beneficiarios/datosCompletos.php';
         }else{ //lista de beneficiarios

@@ -1,6 +1,19 @@
+<?php 
+    $redireccion = 'onclick="window.history.back();"'; 
+    if($url == "/gracias"){
+        $redireccion = 'href="/"'; 
+    }elseif($url == "/beneficiarios" && $url2 == "?"){
+        $redireccion = 'href="/"'; 
+    }elseif($url == "/apadrina" && $url2 == "?"){
+        $redireccion = 'href="/"'; 
+    }
+    echo "<script>console.log('".$redireccion."');</script>";
+    echo "<script>console.log('".$url."');</script>";
+    echo "<script>console.log('".$url2."');</script>";
+?>
 <!--regresar-->
 <div class="col-auto p-0 h-100 bordes">
-    <a class="c-align-middle w-100 h-100 px-4" <?php if($url == "/gracias"){ echo 'href="/" '; }else{ echo 'onclick="window.history.back();"'; } ?> >                    
+    <a class="c-align-middle w-100 h-100 px-4" <?php echo $redireccion; ?> >                    
         <i class="fa fa-arrow-left" aria-hidden="true"></i>
         &nbsp;
         regresar
