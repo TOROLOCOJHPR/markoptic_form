@@ -1,4 +1,8 @@
 <h3 class="px-4">Datos Beneficiario</h3>
+<div class="row mx-0" id="ocultarBtn">
+        <div class="px-2 text-white mr-0 position-absolute pointer bg-primary c-align-middle" style="font-size:1.2rem;z-index:10;right:10px;height:30px;margin-top:-30px;"><span class="mr-2">Ocultar datos</span></i></div>
+</div>
+<div id="ocultarDB">
 <?php 
     //$folioViejo = $objBen->buscaFolioAntiguo($dato['idBen']);
 ?>
@@ -176,3 +180,4 @@
     <input class="btn bg-verde-menu text-white px-2 mb-4 mt-4" type="submit" value="Guardar">
 </form>           
 <button class="btn bg-verde-menu text-white mb-4 mt-4" id="btnTutor" <?php if( $dato['nombreTut'] != "" ){ echo'style="display:none;"'; } ?>>Agregar Tutor</button>
+</div>
