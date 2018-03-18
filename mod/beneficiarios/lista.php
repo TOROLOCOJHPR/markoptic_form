@@ -5,7 +5,7 @@
     }elseif($pagina == "apadrina"){
         $mostrar = 12;
         $estatus = 2;
-        include 'mod/beneficiarios/modalEventos.php';
+        //include 'mod/beneficiarios/modalEventos.php';
     }
     $recorrido = 0;
     //filtro

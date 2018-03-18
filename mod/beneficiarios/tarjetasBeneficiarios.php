@@ -16,7 +16,7 @@
         foreach($arreglo as $fila){
             //echo $fila;
             $row = $objBen->buscaDatosApadrinado($fila);
-            if($pagina == "apadrina"){
+            if($pagina == "humberto"){
                 $recabado = $objBen->recabado($fila);
                 $precioProtesis = $row['precio'];
                 $por = ($recabado == 0)? 0 : (($recabado / $precioProtesis)*100);
@@ -36,14 +36,14 @@
                 }
                 $cont = $cont + 1;*/
     ?>             
-        <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio" style="background-image:url('/imagenes/uploads/<?php echo $ubicacion.$row[$foto];?>');height:250px;">
+        <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio text-white" style="background-image:url('/imagenes/uploads/<?php echo $ubicacion.$row[$foto];?>');height:250px;">
             <a href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $row['id']; ?>">    
                 <div class="colaborador-descripcion opacity-black">
                     <!-- linea de progreso -->
-                        <div class="bg-secondary w-100 position-absolute <?php echo ($pagina == "beneficiarios")? "d-none":""; ?>" style="height:7px;">
+                        <div class="bg-secondary w-100 position-absolute <?php echo ($pagina == "beneficiarios" or $pagina =="apadrina")? "d-none":""; ?>" style="height:7px;">
                             <div class="h-100" style=" width:<?php echo $porciento; ?>%;background-color:orange;"></div>
                         </div>
-                        <div class="w-100 text-left position-absolute mt-3 ml-1 <?php echo ($pagina == "beneficiarios")? "d-none":""; ?>"><span><?php echo $porciento; ?> %<span></div>
+                        <div class="w-100 text-left position-absolute mt-3 ml-1 <?php echo ($pagina == "beneficiarios" or $pagina == "apadrina")? "d-none":""; ?>"><span><?php echo $porciento; ?> %<span></div>
                 <!-- linea de progreso recabado -->
                     <!-- datos del beneficiario -->
                     <div class="c-align-middle">
@@ -56,7 +56,7 @@
                     <div class="c-align-middle px-2">
                         <p style="font-size:1.3rem;"><?php echo mb_strimwidth(ucfirst($row['porque']), 0, 100, "..."); ?></p>
                     </div>
-                </div>    
+                </div>  
             </a>
         </div>
     <?php
