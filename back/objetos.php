@@ -206,19 +206,24 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon = new conexion();
             $con = $objCon->conectar();
             $result = $con->query($sql);
-            if($sol == "superior"){                
-                echo'<div class="c-align-horizontal flex-column">
-                    <label><strong>¿Qué extremidad necesita?</strong></label>
-                    <select name="solicitud" class="form-control" required>
-                        <option value="" class="text-muted" >Selecciona un dispositivo</option>';
+            if($sol == "superior"){
+            ?>               
+                <select name="solicitud" class="form-control" required>
+                    <option value="" class="text-muted" >Selecciona un dispositivo</option>
+                    <?php
                     while($row = mysqli_fetch_array($result)){
-                        echo'<option value="'.$row['id'].'" '; if( $row['id'] == $nd ){ echo "selected"; } echo'>'.$row['nombre'].'</option>';
+                    ?>
+                        <option value="<?php echo $row['id']; ?>" <?php echo ( $row['id'] == $nd )? "selected" : ""; ?> ><?php echo $row['nombre']; ?></option>
+                    <?php
                     }  
-                echo'</select>
-            </div>';
+                    ?>
+                </select>
+            <?php
             }else if($sol == 'colchon'){
                 while($row = mysqli_fetch_array($result)){
-                echo'<input type="hidden" name="solicitud" value="'.$row['id'].'">';
+            ?>
+                <input type="hidden" name="solicitud" value="<?php echo $row['id']; ?>">
+            <?php
                 }
             }
         }catch(Exception $e){
@@ -305,38 +310,41 @@ class Beneficiario extends Tutor{ //**Beneficiario
     }
 
     //--busca condición de la parte del cuerpo a solicitar de la persona
-    public function buscaCondicion($condicion){
+    public function buscaCondicion($condicion,$vCondicion){
         try{
             if($condicion != "n/a"){
                 $sql="SELECT id,condicion,imgFrontal,imgTrasera FROM condiciones WHERE condicion LIKE '".$condicion."%'";
                 $objCon = new conexion();
                 $con = $objCon->conectar();
                 $result = $con->query($sql);
-                echo'
-                    <p class="w-100 text-center mt-3"><strong>Selecciona la condición de tu '.$condicion.'</strong></p>
-                    <div class="row mx-0 h-100 print" id="condiciones">
-                ';
+                ?>
+                <p class="w-100 mx-1 mt-3"><strong>Selecciona la condición de tu <?php echo $condicion; ?></strong></p>
+                <div class="row mx-0" id="condiciones">
+                <?php
                 while($row = $result->fetch_array()){
-                    echo'
-                    <div class="col-6 col-md-4 text-center condBrazo">
-                        <div class="row mx-0 print">
+                    ?>
+                    <div class="col-12 col-sm-6 col-md-4 text-center">
+                        <div class="row mx-0">
                             <div class="col-12">
-                                <label for="condicion'.$row['id'].'" class="imgCondicion text-center">
-                                    <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgFrontal'].'" alt="imagen frontal de '.$row['condicion'].'">
-                                    <img class="mx-auto" style="max-height:200px;position:relative;" src="../imagenes/condiciones/'.$row['imgTrasera'].'" alt="imagen trasera de '.$row['condicion'].'" style="display:none;">
+                                <label for="condicion<?php echo $row['id']; ?>" class="imgCondicion text-center">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"none":""; ?>" src="../imagenes/condiciones/<?php echo $row['imgFrontal']; ?>" alt="imagen frontal de <?php echo $row['condicion']; ?>">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"":"none"; ?>;" src="../imagenes/condiciones/<?php echo $row['imgTrasera']; ?>" alt="imagen trasera de <?php echo $row['condicion']; ?>">
                                 </label>
                             </div>
-                            <div class="col-12 form-check-inline px-5 print">
-                                <input type="radio" value="'.$row['id'].'" name="condicion" id="condicion'.$row['id'].'"/><label for="condicion'.$row['id'].'" class="rCondicion mb-0 print">&nbsp;'.$row['condicion'].'</label>
+                            <div class="col-12 form-check-inline px-5">
+                                <input type="radio" value="<?php echo $row['id']; ?>" name="condicion" id="condicion<?php echo $row['id']; ?>" <?php echo ($vCondicion == $row['id'])?"checked":""; ?> required/><label for="condicion<?php echo $row['id']; ?>" class="rCondicion mb-0">&nbsp;<?php echo $row['condicion'] ?></label>
                             </div>
                         </div>
-                    </div>';
-                }
-                echo'
                     </div>
-                ';    
+                <?php
+                }
+                ?>
+                </div>
+            <?php    
             }else{
-                echo '<input type="hidden" name="condicion" value="5">';
+            ?>
+                <input type="hidden" name="condicion" value="5">
+            <?php
             }
         }catch(Exception $e){
             echo $e->getMessage();
@@ -410,13 +418,14 @@ class Beneficiario extends Tutor{ //**Beneficiario
 	                beneficiarios.fecNacimiento,beneficiarios.nombre AS nombreBE,beneficiarios.apellidos,
                     beneficiarios.idCiudad,
                     dispositivos.nombre AS nombreDI,dispositivos.precio,
+                    concat(dispositivos.siglas,'-',solicitudes.id) as folio,
                     paises.nombre AS pais,
                     regiones.nombre AS estado,
                     localidades.nombre AS ciudad,
                     imgsolicitud.fotoHistoria,
                     imgsolicitud.foto1,
-                    solicitudes.recabado,solicitudes.id,solicitudes.porque 
-                FROM solicitudes 
+                    solicitudes.recabado,solicitudes.id,solicitudes.porque
+                FROM solicitudes
                     LEFT JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario 
                     LEFT JOIN dispositivos ON dispositivos.id = solicitudes.idDispositivo
                     LEFT JOIN imgsolicitud ON imgsolicitud.idSolicitud = solicitudes.id 
@@ -431,6 +440,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
 
             $datosBeneficiario = array(
                 "id"=>$result['id'], //id solicitud
+                "folio" =>$result['folio'], //folio del beneficiario 
                 "nombre"=>$result['nombreBE'], //nombres beneficiario
                 "apellidos"=>$result['apellidos'], //apellidos del beneficiario
                 "fecNacimiento"=>$result['fecNacimiento'], //fecha de nacimiento del beneficiado
