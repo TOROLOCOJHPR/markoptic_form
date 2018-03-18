@@ -65,15 +65,6 @@
         <script src="/js/bootstrap.min.js"></script>
         <script src="/js/panel/editorBeneficiarios.js"></script>
         <script src="https://use.fontawesome.com/8077e15131.js"></script>
-        <script>
-            $(document).ready(function(){
-                window.location.hash="no-back-button";
-                window.location.hash="Again-No-back-button" //chrome
-                window.onhashchange=function(){window.location.hash="no-back-button";}
-                $('#ocultarBtn').click(function(){
-                    $('#ocultarDB').slideToggle("slow");
-                });
-            });
-        </script>
+        <script src="/js/no-back.js"></script>
     </body>
 </html>

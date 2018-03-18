@@ -101,6 +101,7 @@
             <label>Email</label><input class="form-control" type="email" name="email" value="<?php if( isset($dato['emailBen'] )){ echo $dato['emailBen']; } ?>" required >
         </div>
         <div class="form-group col-md-3">
+            <label>Dispositivo</label>
             <?php $objBen->buscaDispositivoAll($dato['dispositivoId']); ?>
         </div>
         <div class="form-group col-md-3">

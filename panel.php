@@ -1,5 +1,4 @@
 <?php require('back/comprueba.php');
-//session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +16,10 @@
     <?php 
         include 'mod/panel/usuarioEstandar.php';
         if($_SESSION['rol'] == "administrador"){ include 'mod/panel/usuarioAdmin.php'; }
-    ?> 
-    <div id="beforeresultado"></div>
-    <div id="resultado"></div>
+    ?>
     <script src="/js/jquery-3.1.1.js"></script>
-    <!-- <script src="/js/popper.min.js"></script> -->
-    <!-- <script src="/js/bootstrap.min.js"></script>     -->
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>   
     <script>
         $(document).ready(function(){
             $('#reporte').click(function(){
@@ -39,5 +36,3 @@
             });
         });
     </script>   
-</body>
-</html>

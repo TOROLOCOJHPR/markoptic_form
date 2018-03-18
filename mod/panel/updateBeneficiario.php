@@ -1,20 +1,20 @@
 <?php
     $fecha = date("-d-m-Y-H-i-s");
-    $objBen->setNombre($_POST['nombre']);
-    $objBen->setApellidos($_POST['apellido']);
+    $objBen->setNombre( trim( mb_strtolower($_POST['nombre']) ) );
+    $objBen->setApellidos(trim( mb_strtolower($_POST['apellido']) ) );
     $objBen->setSexo($_POST['sexo']);
     $objBen->setNacimiento($_POST['fNacimiento']);
     $objBen->setCiudad($_POST['ciudad']);
-    $objBen->setCalle($_POST['calle']);
-    $objBen->setColonia($_POST['colonia']);
+    $objBen->setCalle( trim( mb_strtolower($_POST['calle']) ) );
+    $objBen->setColonia( trim( mb_strtolower($_POST['colonia']) ) );
     $objBen->setCp($_POST['cp']);
     $objBen->setTelefono($_POST['tel']);
     $objBen->setEmail($_POST['email']);
     //comprobamos si el beneficiario cuenta con un tutor
     if($_POST['independiente'] != 0){
         //$objBen->setIndependiente($_POST['independiente']);
-        $objBen->setNombreTutor($_POST['nombreTut']);
-        $objBen->setApellidoTutor($_POST['apellidoTut']);
+        $objBen->setNombreTutor( trim( mb_strtolower($_POST['nombreTut']) ) );
+        $objBen->setApellidoTutor( trim( mb_strtolower($_POST['apellidoTut']) ) );
         $objBen->setSexoTutor($_POST['sexoTut']);
         $objBen->setViveBen($_POST['viveBen']);
         $objBen->setParentesco($_POST['parentesco']);
@@ -31,7 +31,7 @@
     if( isset( $_POST['medioOtro'] ) ){
         $objBen->setDescMedioDif($_POST['medioOtro']);
     }
-    $objBen->setDescObtencion($_POST['breveDescripcion']); 
+    $objBen->setDescObtencion( trim( mb_strtolower($_POST['breveDescripcion']) ) ); 
     $objBen->setEstatusSolicitud($_POST['estatus']);
     //$objBen->mostrar();
     $compruebaBen = $objBen->updateDatosBen($_POST['idBen']);

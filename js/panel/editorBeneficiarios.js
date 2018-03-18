@@ -1,7 +1,8 @@
 $(document).ready(function(){
     //desabilitar o habilitar la caja de texto otro de seccion como se entero de fundación 
     if($('#medio option:selected').attr('ph') != ""){
-        showMedio();
+        var ph = $('#medio option:selected').attr('ph');
+        showMedio(ph);
     }else{
         hideMedio();
     }
@@ -84,7 +85,7 @@ function nrTutor(){
     $('#viveBen').prop('required',true);
     $('#parentesco').prop('required',false);
 }
-function showMedio(){
+function showMedio(ph){
     console.log( $('#medio option:selected').attr('ph') ); 
     $('input[name$="medioOtro"]').show(500);
     $('input[name$="medioOtro"]').attr('placeholder',ph);
