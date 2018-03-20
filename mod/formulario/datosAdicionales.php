@@ -24,7 +24,8 @@
     ?>
     <div class="form-row px-4 mx-0 mt-2">
         <div class="form-group col-md-6">
-            <label class="pt-4 pb-2"><strong>¿Qué extremidad necesita?</strong></label><span style='color:red;display:<?php echo ($edispositivo == 1)?"":"none"; ?>;'> *Selecciona un dispositivo</span>
+            <label class="pt-4 pb-2"><strong>¿Qué extremidad necesita?</strong></label>
+            <span class="text-danger <?php echo ($edispositivo == 1)?"":"d-none"; ?>"> *Selecciona un dispositivo</span>
     <?php
     }elseif($d == "colchon"){
         $sol = "colchon";
@@ -53,10 +54,10 @@
     }
 ?>
 <div class="for-row px-4 mx-0">
-<span style='color:red;display:<?php echo ($econdicion == 1)?"":"none"; ?>;'> *Selecciona una condición</span>
-<?php
-    $objBen->buscaCondicion($condicion,$vCondicion);
-?>
+    <span class="text-danger <?php echo ($econdicion == 1)?"":"d-none"; ?>"> *Selecciona una condición</span>
+    <?php
+        $objBen->buscaCondicion($condicion,$vCondicion);
+    ?>
 </div>
 <label class="pt-4 pb-2"><strong class="w-100 mt-5 mx-4">¿Cómo te enteraste de Fundación Markoptic?</strong></label>
 <span style='color:red;display:<?php echo ($emedio == 1)?"":"none"; ?>;'> *Selecciona un medio de difusión</span>
@@ -81,7 +82,7 @@
     </div>
 </div>
 <!-- descripcion -->
-<label class ="text-danger px-4 pt-3" style='display:<?php echo ($eporque == 1)?"":"none"; ?>;'> *Introduce por que solicitas el dispositivo</label>
+<label class ="text-danger px-4 pt-3 <?php echo ($eporque == 1)?"":"d-none"; ?>"> *Introduce por que solicitas el dispositivo</label>
 <div class="form-row px-4 mx-0">
     <div class='form-group col-12 px-0'>
         <textarea name='breveDescripcion' rows="4" cols="50" class='form-control mt-3' placeholder="Cuéntanos brevemente porque te gustaría recibir el dispositivo biomédico" required><?php if(isset($_POST['breveDescripcion'])){echo $_POST['breveDescripcion'];}?></textarea>
@@ -100,8 +101,8 @@
                 <img class="preview" id="previewFoto1" src="" style="display:none;">
             </div>
         </div>  
-        <span style='color:red;display:<?php echo ($efoto1 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
-        <span style='color:red;display:<?php echo ($efifoto1 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
+        <span class="text-danger <?php echo ($efoto1 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
+        <span class="text-danger <?php echo ($efifoto1 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
     </div>
     <div class='col-12 col-md-4 mx-auto' id="foto2"> 
         <div class="row mx-0">
@@ -113,8 +114,8 @@
                 <img class="preview" id="previewFoto2" src="" style="display:none;">
             </div>
         </div>
-        <span style='color:red;display:<?php echo ($efoto2 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
-        <span style='color:red;display:<?php echo ($efifoto2 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
+        <span class="text-danger <?php echo ($efoto2 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
+        <span class="text-danger <?php echo ($efifoto2 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
     </div>
     <div class='col-12 col-md-4 mx-auto' id="foto3">
         <div class="row mx-0">
@@ -126,8 +127,8 @@
                 <img class="preview" id="previewFoto3" src="" style="display:none;">
             </div>
         </div> 
-        <span style='color:red;display:<?php echo ($efoto3 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
-        <span style='color:red;display:<?php echo ($efifoto3 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
+        <span class="text-danger <?php echo ($efoto3 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
+        <span class="text-danger <?php echo ($efifoto3 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
     </div>
 </div>
 <!-- campos ocultos -->
@@ -174,6 +175,6 @@ Fundación Markoptic A.C. iniciará un proceso de estudio de la solicitud y se c
     <div class="form-inline m-4">
         <input type="checkbox" value="1" id="terminos" name="terminos" required class="form-control mr-2">
         <label for="terminos">Aceptar los términos y condiciones</label>
-        <span style='color:red;display:<?php echo ($eterminos == 1)?"":"none"; ?>;'>&nbsp; *Acepta los términos y condiciones para continuar</span>
+        <span class="text-danger <?php echo ($eterminos == 1)?"":"d-none"; ?>">&nbsp; *Acepta los términos y condiciones para continuar</span>
     </div>
 </div>

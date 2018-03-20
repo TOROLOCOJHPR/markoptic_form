@@ -1018,6 +1018,17 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $con->close();
         }
     }
+    //--valida email
+    function validaEmail($mail){
+        $invalidos = array("correo.com","correo.mx","test.com","test.mx");
+        $dominio = explode('@',$mail);
+        //var_dump( $dominio);
+        if(checkdnsrr($dominio[1])){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     //--inserta solicitud 
     public function inserta(){

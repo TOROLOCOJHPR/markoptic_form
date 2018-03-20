@@ -4,11 +4,11 @@
     //variables del beneficiario
     $edadError = 0; $edadErrorTut = 0; $tutObligatorio = 0; $enombre = 0; $eapellido = 0;
     $esexo = 0; $edate = 0; $epais = 0; $eestado = 0; $eciudad = 0; $ecalle = 0; $ecolonia = 0;
-    $ecp = 0; $etel = 0; $eemail = 0;
+    $ecp = 0; $etel = 0; $eemail = 0; $eemailvalido = 0;
     
     //variables del tutor
     $etutNombre = 0; $etutApellido = 0; $esexoTutor = 0; $etutVive = 0; $eparentesco = 0; $etutDate = 0; 
-    $etutTel = 0; $etutEmail = 0;
+    $etutTel = 0; $etutEmail = 0; $etutemailvalido = 0;
     
     // variables adicionales 
     $edispositivo = 0; $econdicion = 0; $emedio = 0; $emedioOtro = 0; $eporque = 0; $efoto1 = 0; 
@@ -48,6 +48,12 @@
         }else{
             $edadError = 1; $e = 1; $tutObligatorio = 1;
         }
+        if( $_POST['email'] != "" ){
+            $vEmail = $objBen->validaEmail($_POST['email']);
+            if($vEmail == false){
+                $eemailvalido = 1; $e = 1;
+            }
+        }
 
     //validar datos del tutor 
 
@@ -76,6 +82,12 @@
             }else{
                 $edadErrorTut = 0;
             }
+            if($_POST['tutEmail'] != ""){
+                $vEmailTut = $objBen->validaEmail($_POST['email']);
+                if($vEmailTut == false){
+                    $etutemailvalido = 1; $e = 1;
+                }
+            }
         }
 
     //validar datos adicionales 
@@ -96,7 +108,7 @@
             $getFile ="foto".$i;
             if($_FILES[$getFile]['tmp_name'] != ""){
                 if( $imgSize = getimagesize($_FILES[$getFile]['tmp_name']) == false){
-                    ${"efifoto".$i} = 1; $e = 1;                    
+                    ${"efifoto".$i} = 1; $e = 1;
                 }else{
                     $imgSize = getimagesize($_FILES[$getFile]['tmp_name']);
                     if( !in_array($imgSize['mime'],$mime) ){

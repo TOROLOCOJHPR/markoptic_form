@@ -33,19 +33,19 @@
     <div class='form-row px-4 mx-0'>
         <div class='form-group col-sm-6'>
             <label>Nombre</label>
-            <span style='color:red;display:<?php echo ($etutNombre == 1)?"":"none"; ?>;'> *Introduce nombre(s) del tutor</span>
+            <span class="text-danger <?php echo ($etutNombre == 1)?"":"d-none"; ?>"> *Introduce nombre(s) del tutor</span>
             <input type="text" class='form-control' name='tutNombre' placeholder='Nombre' value ="<?php if(isset($_POST['tutNombre'])){echo $_POST['tutNombre'];} ?>">
         </div>
         <div class='form-group col-sm-6'>
             <label>Apellido</label>
-            <span style='color:red;display:<?php echo ($etutApellido == 1)?"":"none"; ?>;'> *Introduce apellido(s) del tutor</span>
+            <span class="text-danger <?php echo ($etutApellido == 1)?"":"d-none"; ?>"> *Introduce apellido(s) del tutor</span>
             <input type="text" class='form-control' name='tutApellido' placeholder='Apellido' value ="<?php if(isset($_POST['tutApellido'])){echo $_POST['tutApellido'];} ?>"> 
         </div>
     </div>
     <div class='form-row px-4 mx-0'>
         <div class='form-group col-md-6'>
             <label>Sexo</label>
-            <span style='color:red;display:<?php echo ($esexoTutor == 1)?"":"none"; ?>;'> *Selecciona un sexo</span>
+            <span class="text-danger <?php echo ($esexoTutor == 1)?"":"d-none"; ?>"> *Selecciona un sexo</span>
             <?php 
             if( isset($_POST['sexoTutor']) ){
                 $sexoTutor = $_POST['sexoTutor'];
@@ -61,7 +61,7 @@
         </div>
         <div class='form-group col-md-6 text-center'>                
             <label>¿Vives con el beneficiario?</label>
-            <span style='color:red;display:<?php echo ($etutVive == 1)?"":"none"; ?>;'> *Selecciona una opción</span>
+            <span class="text-danger <?php echo ($etutVive == 1)?"":"d-none"; ?>"> *Selecciona una opción</span>
              &nbsp;&nbsp;<br>
             <div class="form-check form-check-inline">
                 <label class="form-check-label">
@@ -87,7 +87,7 @@
     <div class='form-row px-4 mx-0'>
         <div class='form-group col-md-6'>
             <label>Parentesco</label>
-            <span style='color:red;display:<?php echo ($eparentesco == 1)?"":"none"; ?>;'> *Selecciona un parentesco</span>
+            <span class="text-danger <?php echo ($eparentesco == 1)?"":"d-none"; ?>"> *Selecciona un parentesco</span>
             <!-- <div id="parentesco"></div> -->
             <?php 
                 if( isset( $_POST['parentesco'] ) ){
@@ -101,8 +101,8 @@
         </div>
         <div class='form-group col-md-6'>
             <label class=''>Fecha de nacimiento</label>
-            <span id="msgTutMenorEdadLabel" style='color:red;display:<?php echo ($edadErrorTut != 0)?"":"none"; ?>'> *Edad minima 18 años</span>
-            <span style='color:red;display:<?php echo ($etutDate == 1)?"":"none"; ?>;'> *Introduce una fecha de nacimiento</span>
+            <span id="msgTutMenorEdadLabel" class="text-danger <?php echo ($edadErrorTut != 0)?"":"d-none"; ?>"> *Edad minima 18 años</span>
+            <span class="text-danger <?php echo ($etutDate == 1)?"":"d-none"; ?>"> *Introduce una fecha de nacimiento</span>
             <input type="date" class='form-control' name='tutDate' id="dateTut" placeholder='Fecha de Nacimiento' value ="<?php if(isset($_POST['tutDate'])){echo $_POST['tutDate'];} ?>"> 
         </div>
     </div>
@@ -110,12 +110,13 @@
     <div class='form-row px-4 mx-0'>
         <div class='form-group col-md-6'>
             <label>Teléfono</label>
-            <span style='color:red;display:<?php echo ($etutTel == 1)?"":"none"; ?>;'> *Introduce un número de telefono</span>
+            <span class="text-danger <?php echo ($etutTel == 1)?"":"d-none"; ?>"> *Introduce un número de telefono</span>
             <input type="text" class='form-control' name='tutTel' placeholder='Teléfono' value ="<?php if(isset($_POST['tutTel'])){echo $_POST['tutTel'];} ?>">
         </div>
         <div class='form-group col-md-6'>
             <label>Email</label>
-            <span style='color:red;display:<?php echo ($etutEmail == 1)?"":"none"; ?>;'> *introduce un email</span>
+            <span class="text-danger <?php echo ($etutEmail == 1)?"":"d-none"; ?>"> *Introduce un email</span>
+            <span class="text-danger <?php echo ($etutemailvalido == 1)?"":"d-none"; ?>"> *Introduce un email valido</span>
             <input type="email" class='form-control' name='tutEmail' placeholder='Email' value ="<?php if(isset($_POST['tutEmail'])){echo $_POST['tutEmail'];} ?>"> 
         </div>
     </div>
