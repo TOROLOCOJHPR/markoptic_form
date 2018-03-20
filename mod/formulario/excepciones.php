@@ -12,7 +12,8 @@
     
     // variables adicionales 
     $edispositivo = 0; $econdicion = 0; $emedio = 0; $emedioOtro = 0; $eporque = 0; $efoto1 = 0; 
-    $efoto2 = 0; $efoto3 = 0; $eterminos = 0;
+    $efoto2 = 0; $efoto3 = 0; $eterminos = 0; $efifoto1 = 0; $efifoto2 = 0; $efifoto3 = 0;
+    $mime = array("image/jpeg","image/png");
 
     $e = 0;
     $objBen = new Beneficiario;
@@ -35,13 +36,11 @@
         if( $_POST['email'] == ""){$e = 1; $eemail = 1; }
         if( $_POST['date'] != ""){
             $fecha = $_POST['date'];
-            echo "<br>edad ".$edad = $objBen->generaEdadBeneficiario($fecha);
+            $edad = $objBen->generaEdadBeneficiario($fecha);
             if ($edad < 6 or $edad > 100){ //beneficiario menor de 6 años y mayor de 100
                 $edadError = 1; $e = 1;
-                echo "<br> edad menor a 6";
             }elseif($edad >= 6 and $edad < 18){ //beneficiario menor de edad
                 $tutObligatorio = 1;
-                echo "<br> menor de edad";
             }/*else{ //sin errores en la edad del beneficiario
                 $edadError = 0; $tutObligatorio = 0 ;
                 echo "sin error";
@@ -49,8 +48,6 @@
         }else{
             $edadError = 1; $e = 1; $tutObligatorio = 1;
         }
-        echo "<br>edad error".$edadError;
-        echo "<br> tutor obligatorio ".$tutObligatorio;
 
     //validar datos del tutor 
 
@@ -82,7 +79,7 @@
         }
 
     //validar datos adicionales 
-
+        //validar campos vacios
         if( $_POST['solicitud'] == ""){$e = 1; $edispositivo = 1;}
         if( !isset($_POST['condicion'])){$e = 1; $econdicion = 1;}
         if( $_POST['enterado'] == ""){$e = 1; $emedio = 1;}
@@ -90,22 +87,23 @@
             if($_POST['enteradoOtro'] == ""){$e = 1; $emedioOtro = 1;}
         }
         if( $_POST['breveDescripcion'] == ""){$e = 1; $eporque = 1;}
-        if( $_FILES['foto1'] == ""){$e = 1; $efoto1 = 1;}
-        if( $_FILES['foto2'] == ""){$e = 1; $efoto2 = 1;}
-        if( $_FILES['foto3'] == ""){$e = 1; $efoto3 = 1;}
+        if( $_FILES['foto1']['name'] == ""){$e = 1; $efoto1 = 1;}
+        if( $_FILES['foto2']['name'] == ""){$e = 1; $efoto2 = 1;}
+        if( $_FILES['foto3']['name'] == ""){$e = 1; $efoto3 = 1;}
         if( !isset($_POST['terminos'])){$e = 1; $eterminos = 1;}
-        /*
+        //validar formato imagen
         for($i = 1; $i< 4; $i++){
             $getFile ="foto".$i;
-            if($_FILES[$getFile]['name'] != ""){
-                $tmp = explode(".", $_FILES[$getFile]['name']);
-                $imageFileType = end($tmp);
-                echo $imageFileType;
-                if($imageFileType != "jpg" or "png"){
-                    echo "foto".$foto{$i} = 1;
+            if($_FILES[$getFile]['tmp_name'] != ""){
+                if( $imgSize = getimagesize($_FILES[$getFile]['tmp_name']) == false){
+                    ${"efifoto".$i} = 1; $e = 1;                    
+                }else{
+                    $imgSize = getimagesize($_FILES[$getFile]['tmp_name']);
+                    if( !in_array($imgSize['mime'],$mime) ){
+                        ${"efifoto".$i} = 1; $e = 1;
+                    }
                 }
             }
-        }*/
+        }
     }
-    echo "<br> edad error tutor". $edadErrorTut;
 ?>            

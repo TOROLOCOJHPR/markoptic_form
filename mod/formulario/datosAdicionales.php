@@ -95,36 +95,39 @@
             <div class="col-6">
                 <label id="label" for="fotofile1"><img src="<?php echo $imgfoto1; ?>" alt="Fotografia de beneficiario numero uno"></label>
                 <input id="fotofile1" name="foto1" class="form-control-file" type='file'>
-                <span style='color:red;display:<?php echo ($efoto1 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
             </div>
             <div class="col-6 c-align-middle">
                 <img class="preview" id="previewFoto1" src="" style="display:none;">
             </div>
         </div>  
+        <span style='color:red;display:<?php echo ($efoto1 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
+        <span style='color:red;display:<?php echo ($efifoto1 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
     </div>
     <div class='col-12 col-md-4 mx-auto' id="foto2"> 
         <div class="row mx-0">
             <div class="col-6">
                 <label for="fotofile2"><img src="<?php echo $imgfoto2; ?>" alt="Fotografia de beneficiario numero dos"></label>     
                 <input id='fotofile2' name="foto2" class="form-control-file" type='file'>
-                <span style='color:red;display:<?php echo ($efoto2 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
             </div>
             <div class="col-6 c-align-middle">
                 <img class="preview" id="previewFoto2" src="" style="display:none;">
             </div>
         </div>
+        <span style='color:red;display:<?php echo ($efoto2 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
+        <span style='color:red;display:<?php echo ($efifoto2 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
     </div>
     <div class='col-12 col-md-4 mx-auto' id="foto3">
         <div class="row mx-0">
             <div class="col-6">
                 <label for="fotofile3"><img src="<?php echo $imgfoto3; ?>" alt="Fotografia de beneficiario numero tres"></label>     
                 <input id='fotofile3' name="foto3" class="form-control-file" type='file'>
-                <span style='color:red;display:<?php echo ($efoto3 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
             </div>
             <div class="col-6 c-align-middle">
                 <img class="preview" id="previewFoto3" src="" style="display:none;">
             </div>
         </div> 
+        <span style='color:red;display:<?php echo ($efoto3 == 1)?"":"none"; ?>;'> *Introduce una fotografía</span>
+        <span style='color:red;display:<?php echo ($efifoto3 == 1)?"":"none"; ?>;'> *Introduce un archivo jpg o png</span>
     </div>
 </div>
 <!-- campos ocultos -->

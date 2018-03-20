@@ -8,7 +8,6 @@
         $d = ( isset( $_POST['formDispositivo'] ) ) ? $_POST['formDispositivo'] : "";
     }
     include 'mod/formulario/excepciones.php';
-    echo "<br>dispositivo ".$d;
     echo "<br>error ".$e;
     include 'mod/header.php';
 

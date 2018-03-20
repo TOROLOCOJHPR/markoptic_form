@@ -37,7 +37,7 @@
                 $cont = $cont + 1;*/
     ?>             
         <div class="col-12 col-md-3 col-sm-6 p-0 bg-cover-directorio text-white" style="background-image:url('/imagenes/uploads/<?php echo $ubicacion.$row[$foto];?>');height:250px;">
-            <a href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $row['id']; ?>">    
+            <a href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $row['id']; ?>">
                 <div class="colaborador-descripcion opacity-black">
                     <!-- linea de progreso -->
                         <div class="bg-secondary w-100 position-absolute <?php echo ($pagina == "beneficiarios" or $pagina =="apadrina")? "d-none":""; ?>" style="height:7px;">
