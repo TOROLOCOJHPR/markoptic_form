@@ -48,7 +48,7 @@
 <form class='' enctype='multipart/form-data' method='post' action="/formulario">
 <?php
     include 'mod/formulario/datosBeneficiario.php';
-    include 'mod/formulario/datostutor.php';
+    include 'mod/formulario/datosTutor.php';
     include 'mod/formulario/datosAdicionales.php';
 ?>
     <div class="row mx-0 px-4">
