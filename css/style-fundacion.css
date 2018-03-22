@@ -17,9 +17,8 @@ body,html{font-family:'Noto Sans';font-size:12px;}
     .card .c-img{height:200px;}
     .card .c-text{height:50px;}
 }
-.titulo{
-    text-shadow: 2px 2px 2px black;
-}
+.push{height:50px;}
+.titulo{text-shadow: 2px 2px 2px black;}
 .bg-cover-directorio{background-position:top center;background-size:cover;background-repeat:no-repeat;overflow: hidden;}
 .directorio-descripcion, .colaborador-descripcion{
     height:100%;width:100%;transition:0.8s ease ;text-shadow: 2px 2px 2px black;
@@ -99,9 +98,9 @@ address a{color:white;}
 .condBrazo input[type='radio']:checked,.condBrazo input[type='radio']:not(:checked){display: block;}
 /*.condBrazo .imgCondicion{height:100%;}*/
 #foto input[type='file']{display:none;}
-#foto label img{width:100%;}
-#foto .preview{width: 100%;}
-#foto div{padding:.5rem;}
+#foto label img{max-width:100%;max-height:180px;}
+#foto .preview{max-height:150px;}
+/*#foto div{padding:.5rem;}*/
 #foto div label{margin:0;}
 #foto label:hover{cursor:pointer;}
 /*aliados*/

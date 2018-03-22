@@ -699,7 +699,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
                 </body>
             </html>
             ';
-            echo $message;
+            //echo $message;
             return $message;
         }catch(Exception $e){
             echo $e->getMessage();
@@ -1053,7 +1053,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
         //echo $id;
         $sql="INSERT INTO imgsolicitud(foto1,foto2,foto3,idSolicitud)VALUES('".$this->foto1."','".$this->foto2."','".$this->foto3."',".$id.")";
         $con->query($sql)?NULL:$error=1;
-            echo $error; 
+            //echo $error; 
             if(!$error){                
                 $con->commit();
                 //envia correo al beneficiario

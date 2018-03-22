@@ -101,7 +101,7 @@
         </div>
         <div class='form-group col-md-6'>
             <label class=''>Fecha de nacimiento</label>
-            <span id="msgTutMenorEdadLabel" class="text-danger <?php echo ($edadErrorTut != 0)?"":"d-none"; ?>"> *Edad minima 18 años</span>
+            <span id="msgTutMenorEdadLabel" class="text-danger" style="display:<?php echo ($edadErrorTut != 0)?"":"none"; ?>;"> *Edad minima 18 años</span>
             <span class="text-danger <?php echo ($etutDate == 1)?"":"d-none"; ?>"> *Introduce una fecha de nacimiento</span>
             <input type="date" class='form-control' name='tutDate' id="dateTut" placeholder='Fecha de Nacimiento' value ="<?php if(isset($_POST['tutDate'])){echo $_POST['tutDate'];} ?>"> 
         </div>

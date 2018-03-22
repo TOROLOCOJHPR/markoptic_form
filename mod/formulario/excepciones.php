@@ -1,6 +1,4 @@
 <?php
-    
-    
     //variables del beneficiario
     $edadError = 0; $edadErrorTut = 0; $tutObligatorio = 0; $enombre = 0; $eapellido = 0;
     $esexo = 0; $edate = 0; $epais = 0; $eestado = 0; $eciudad = 0; $ecalle = 0; $ecolonia = 0;
@@ -12,7 +10,8 @@
     
     // variables adicionales 
     $edispositivo = 0; $econdicion = 0; $emedio = 0; $emedioOtro = 0; $eporque = 0; $efoto1 = 0; 
-    $efoto2 = 0; $efoto3 = 0; $eterminos = 0; $efifoto1 = 0; $efifoto2 = 0; $efifoto3 = 0;
+    $efoto2 = 0; $efoto3 = 0; $eterminos = 0; $efifoto1 = 0; $efifoto2 = 0; $efifoto3 = 0; $etmfoto1 = 0;
+    $etmfoto2 = 0; $etmfoto3 = 0;
     $mime = array("image/jpeg","image/png");
 
     $e = 0;
@@ -22,19 +21,19 @@
 
     //validar datos del beneficiario
         //validar edad del beneficiario
-        if( $_POST['nombre'] == ""){$e = 1; $enombre = 1;}
-        if( $_POST['apellido'] == ""){$e = 1; $eapellido = 1; }
-        if( $_POST['sexo'] == ""){$e = 1; $esexo = 1; }
-        if( $_POST['date'] == ""){$e = 1; $edate = 1; }
-        if( $_POST['pais'] == ""){$e = 1; $epais = 1; }
-        if( $_POST['estado'] == ""){$e = 1; $eestado = 1; }
-        if( $_POST['ciudad'] == ""){$e = 1; $eciudad = 1; }
-        if( $_POST['calle'] == ""){$e = 1; $ecalle = 1; }
-        if( $_POST['colonia'] == ""){$e = 1; $ecolonia = 1; }
-        if( $_POST['cp'] == ""){$e = 1; $ecp = 1; }
-        if( $_POST['tel'] == ""){$e = 1; $etel = 1; }
-        if( $_POST['email'] == ""){$e = 1; $eemail = 1; }
-        if( $_POST['date'] != ""){
+        if( !isset($_POST['nombre'])){$e = 1; $enombre = 1;}
+        if( !isset($_POST['apellido'])){$e = 1; $eapellido = 1; }
+        if( !isset($_POST['sexo']) ){$e = 1; $esexo = 1; }
+        if( !isset($_POST['date'])){$e = 1; $edate = 1; }
+        if( !isset($_POST['pais'] )){$e = 1; $epais = 1; }
+        if( !isset($_POST['estado'])){$e = 1; $eestado = 1; }
+        if( !isset($_POST['ciudad'] )){$e = 1; $eciudad = 1; }
+        if( !isset($_POST['calle'] )){$e = 1; $ecalle = 1; }
+        if( !isset($_POST['colonia'])){$e = 1; $ecolonia = 1; }
+        if( !isset($_POST['cp'])){$e = 1; $ecp = 1; }
+        if( !isset($_POST['tel'])){$e = 1; $etel = 1; }
+        if( !isset($_POST['email'])){$e = 1; $eemail = 1; }
+        if( isset($_POST['date']) ){
             $fecha = $_POST['date'];
             $edad = $objBen->generaEdadBeneficiario($fecha);
             if ($edad < 6 or $edad > 100){ //beneficiario menor de 6 años y mayor de 100
@@ -48,7 +47,7 @@
         }else{
             $edadError = 1; $e = 1; $tutObligatorio = 1;
         }
-        if( $_POST['email'] != "" ){
+        if( isset($_POST['email']) ){
             $vEmail = $objBen->validaEmail($_POST['email']);
             if($vEmail == false){
                 $eemailvalido = 1; $e = 1;
@@ -83,7 +82,7 @@
                 $edadErrorTut = 0;
             }
             if($_POST['tutEmail'] != ""){
-                $vEmailTut = $objBen->validaEmail($_POST['email']);
+                $vEmailTut = $objBen->validaEmail($_POST['tutEmail']);
                 if($vEmailTut == false){
                     $etutemailvalido = 1; $e = 1;
                 }
@@ -92,22 +91,27 @@
 
     //validar datos adicionales 
         //validar campos vacios
-        if( $_POST['solicitud'] == ""){$e = 1; $edispositivo = 1;}
+        if( !isset($_POST['solicitud'])){$e = 1; $edispositivo = 1;}
         if( !isset($_POST['condicion'])){$e = 1; $econdicion = 1;}
-        if( $_POST['enterado'] == ""){$e = 1; $emedio = 1;}
+        if( !isset($_POST['enterado'])){$e = 1; $emedio = 1;}
         if( isset($_POST['enteradoOtro']) ){
             if($_POST['enteradoOtro'] == ""){$e = 1; $emedioOtro = 1;}
         }
-        if( $_POST['breveDescripcion'] == ""){$e = 1; $eporque = 1;}
+        if( !isset($_POST['breveDescripcion'])){$e = 1; $eporque = 1;}
         if( $_FILES['foto1']['name'] == ""){$e = 1; $efoto1 = 1;}
         if( $_FILES['foto2']['name'] == ""){$e = 1; $efoto2 = 1;}
         if( $_FILES['foto3']['name'] == ""){$e = 1; $efoto3 = 1;}
         if( !isset($_POST['terminos'])){$e = 1; $eterminos = 1;}
         //validar formato imagen
-        for($i = 1; $i< 4; $i++){
+        for($i = 1; $i < 4; $i++){
             $getFile ="foto".$i;
-            if($_FILES[$getFile]['tmp_name'] != ""){
-                if( $imgSize = getimagesize($_FILES[$getFile]['tmp_name']) == false){
+            if( $_FILES[$getFile]['name'] != ""){
+                //echo "<br>".$_FILES[$getFile]['size'];
+                if($_FILES[$getFile]['error'] == 2){
+                    ${"etmfoto".$i} = 1; $e = 1;
+                }elseif( $_FILES[$getFile]['size'] > 2097152){
+                    ${"etmfoto".$i} = 1; $e = 1;
+                }elseif( $imgSize = getimagesize($_FILES[$getFile]['tmp_name']) == false){
                     ${"efifoto".$i} = 1; $e = 1;
                 }else{
                     $imgSize = getimagesize($_FILES[$getFile]['tmp_name']);
@@ -116,6 +120,6 @@
                     }
                 }
             }
-        }
+        }//for
     }
 ?>            

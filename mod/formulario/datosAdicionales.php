@@ -88,47 +88,82 @@
         <textarea name='breveDescripcion' rows="4" cols="50" class='form-control mt-3' placeholder="Cuéntanos brevemente porque te gustaría recibir el dispositivo biomédico" required><?php if(isset($_POST['breveDescripcion'])){echo $_POST['breveDescripcion'];}?></textarea>
     </div>
 </div>
-<!-- fotografias del usuario -->
-<div class='row mx-0 px-4' id='foto'>
-    <h3 class='text-center' style='line-height:140%;'><?php echo $porUltimo; ?></h3>
-    <div class='col-12 col-md-4 mx-auto' id='foto1'>
-        <div class="row mx-0">
-            <div class="col-6">
-                <label id="label" for="fotofile1"><img src="<?php echo $imgfoto1; ?>" alt="Fotografia de beneficiario numero uno"></label>
-                <input id="fotofile1" name="foto1" class="form-control-file" type='file'>
-            </div>
-            <div class="col-6 c-align-middle">
-                <img class="preview" id="previewFoto1" src="" style="display:none;">
-            </div>
-        </div>  
-        <span class="text-danger <?php echo ($efoto1 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
-        <span class="text-danger <?php echo ($efifoto1 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
-    </div>
-    <div class='col-12 col-md-4 mx-auto' id="foto2"> 
-        <div class="row mx-0">
-            <div class="col-6">
-                <label for="fotofile2"><img src="<?php echo $imgfoto2; ?>" alt="Fotografia de beneficiario numero dos"></label>     
-                <input id='fotofile2' name="foto2" class="form-control-file" type='file'>
-            </div>
-            <div class="col-6 c-align-middle">
-                <img class="preview" id="previewFoto2" src="" style="display:none;">
+<!-- fotografías del usuario -->
+<h3 class='text-center' style='line-height:140%;'><?php echo $porUltimo; ?></h3>
+<div class="container-fluid" id="foto">
+    <div class="row mx-0 px-0">
+        <!-- fotografía uno -->
+        <div class="col-12 col-sm-9 col-md-6 p-3" id="foto1">
+            <div class="row mx-0">
+                <div class="col-6 c-align-middle">
+                    <label id="label" for="fotofile1">
+                        <img class="preview" src="<?php echo $imgfoto1; ?>" alt="Fotografia de beneficiario numero uno">
+                    </label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+                    <input id="fotofile1" name="foto1" class="form-control-file" type='file'>
+                </div>
+                <div class="col-6 c-align-middle">
+                    <img class="preview" id="previewFoto1" src="" style="display:none;">
+                </div>
+                <div class="col-6 px-0 text-center">
+                    <label for="fotofile1">Selecciona una fotografía</label><br>
+                    <span class="text-info "> Tamaño máximo 2 MB</span>
+                </div>
+                <div class="col-6 px-0 text-center">
+                    <span id="efoto1" class="text-danger" style="display:<?php echo ($efoto1 == 1)?"":"none"; ?>;"> *Introduce una fotografía</span>
+                    <span class="text-danger <?php echo ($efifoto1 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
+                    <span id="etmfoto1" class="text-danger" style="display:<?php echo ($etmfoto1 == 1)?"":"none"; ?>;"> *Archivo mayor a 2 MB</span>
+                </div>
             </div>
         </div>
-        <span class="text-danger <?php echo ($efoto2 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
-        <span class="text-danger <?php echo ($efifoto2 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
-    </div>
-    <div class='col-12 col-md-4 mx-auto' id="foto3">
-        <div class="row mx-0">
-            <div class="col-6">
-                <label for="fotofile3"><img src="<?php echo $imgfoto3; ?>" alt="Fotografia de beneficiario numero tres"></label>     
-                <input id='fotofile3' name="foto3" class="form-control-file" type='file'>
+        <!-- fotografía dos -->
+        <div class="col-12 col-sm-9 col-md-6 p-3" id="foto2">
+            <div class="row mx-0">
+                <div class="col-6 c-align-middle">
+                    <label id="label" for="fotofile2">
+                        <img class="preview" src="<?php echo $imgfoto2; ?>" alt="Fotografia de beneficiario numero uno">
+                    </label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+                    <input id="fotofile2" name="foto2" class="form-control-file" type='file'>
+                </div>
+                <div class="col-6 c-align-middle">
+                    <img class="preview" id="previewFoto2" src="" style="display:none;">
+                </div>
+                <div class="col-6 mx-auto px-0 text-center">
+                <label for="fotofile2">Selecciona una fotografía</label><br>
+                    <span class="text-info "> Tamaño máximo 2 MB</span>
+                </div>
+                <div class="col-6 px-0 text-centers">
+                    <span id="efoto2" class="text-danger" style="display:<?php echo ($efoto2 == 1)?"":"none"; ?>;"> *Introduce una fotografía</span>
+                    <span class="text-danger <?php echo ($efifoto2 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
+                    <span id="etmfoto2" class="text-danger" style="display:<?php echo ($etmfoto2 == 1)?"":"none"; ?>;"> *Archivo mayor a 2 MB</span>
+                </div>
             </div>
-            <div class="col-6 c-align-middle">
-                <img class="preview" id="previewFoto3" src="" style="display:none;">
+        </div>
+        <!-- fotografía tres -->
+        <div class="col-12 col-sm-9 col-md-6 p-3" id="foto3">
+            <div class="row mx-0">
+                <div class="col-6 c-align-middle">
+                    <label id="label" for="fotofile3">
+                        <img class="preview" src="<?php echo $imgfoto3; ?>" alt="Fotografia de beneficiario numero uno">
+                    </label>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+                    <input id="fotofile3" name="foto3" class="form-control-file" type='file'>
+                </div>
+                <div class="col-6 c-align-middle">
+                    <img class="preview" id="previewFoto3" src="" style="display:none;">
+                </div>
+                <div class="col-6 px-0 text-center">
+                    <label for="fotofile2">Selecciona una fotografía</label><br>
+                    <span class="text-info "> Tamaño máximo 2 MB</span>
+                </div>
+                <div class="col-6 px-0 text-center">
+                    <span id="efoto3" class="text-danger" style="display:<?php echo ($efoto3 == 1)?"":"none"; ?>;"> *Introduce una fotografía</span>
+                    <span class="text-danger <?php echo ($efifoto3 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
+                    <span id="etmfoto3" class="text-danger" style="display:<?php echo ($etmfoto3 == 1)?"":"none"; ?>;"> *Archivo mayor a 2 MB</span>
+                </div>
             </div>
-        </div> 
-        <span class="text-danger <?php echo ($efoto3 == 1)?"":"d-none"; ?>"> *Introduce una fotografía</span>
-        <span class="text-danger <?php echo ($efifoto3 == 1)?"":"d-none"; ?>"> *Introduce un archivo jpg o png</span>
+        </div>
     </div>
 </div>
 <!-- campos ocultos -->

@@ -35,7 +35,7 @@
     </div>
     <div class='form-group col-md-6'>
         <label>Fecha de Nacimiento</label>
-        <span id="msgMenorEdadLabel" class="text-danger <?php echo ($edadError == 1)?"":"d-none"; ?>"> *Edad minima 6 años</span>
+        <span id="msgMenorEdadLabel" class="text-danger" style="display:<?php echo ($edadError == 1)?"":"none"; ?>;"> *Edad minima 6 años</span>
         <span class="text-danger <?php echo ($edate == 1)?"":"d-none"; ?>"> *Introduce una fecha de nacimiento</span>
         <input type="date" class='form-control' name='date' id="dateBen" placeholder='Fecha de Nacimiento' value ="<?php if(isset($_POST['date'])){echo $_POST['date'];} ?>" required>
     </div>

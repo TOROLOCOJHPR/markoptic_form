@@ -119,26 +119,58 @@ $(document).ready(function(){
                 return false; 
             }
         }
-       /*if($('#fotofile1').val() == "" || $('#fotofile2').val() == "" || $('#fotofile3').val() == ""){
-           alert("ingrese las fotografias del beneficiario");
+       if($('#fotofile1').val() == "" || $('#fotofile2').val() == "" || $('#fotofile3').val() == ""){
+           alert("ingrese todas las fotografías del beneficiario");
            return false;
-       }*/
+       }else{
+            if($('#fotofile1')[0].files[0].size > 2097152  || $('#fotofile2')[0].files[0].size > 2097152 || $('#fotofile1')[0].files[0].size > 2097152){
+                alert("las fotografías exceden el tamaño permitido");
+                return false;
+            }
+       }
        return true;
     });
     //función para crear miniaturas de las fotografias que sube el usuario 
     $('#foto1 input[type="file"]').change(function(){
+        var t =$('#fotofile1')[0].files[0].size;
+        var tmb = (t/1024)/1024;
+        $('#tamañoFoto1').html("Tamaño - "+ tmb.toFixed(2) + " MB");
+        $('#efoto1').hide(500);
+        if(t > 2097152){
+            $('#etmfoto1').show(500);
+        }else{
+            $('#etmfoto1').hide(500);
+        }
         var id="previewFoto1";
         mostrar(id);
         var foto = $(this).attr('id');
         preview(id,foto);    
     });
     $('#foto2 input[type="file"]').change(function(){
+        var t = $('#fotofile2')[0].files[0].size;
+        var tmb = (t/1024)/1024;
+        $('#tamañoFoto2').html("Tamaño - "+ tmb.toFixed(2) + " MB");
+        $('#efoto2').hide(500);
+        if(t > 2097152){
+            $('#etmfoto2').show(500);
+        }else{
+            $('#etmfoto2').hide(500);
+        }
         var id="previewFoto2";
         mostrar(id);
         var foto = $(this).attr('id');
-        preview(id,foto);    
+        preview(id,foto);
     });
     $('#foto3 input[type="file"]').change(function(){
+        var t = $('#fotofile3')[0].files[0].size;
+        var tmb = (t/1024)/1024;
+        $('#tamañoFoto3').html("Tamaño - "+ tmb.toFixed(2) + " MB");
+        $('#efoto3').hide(500);
+        if(t > 2097152){
+            $('#etmfoto3').show(500);
+        }else{
+            $('#etmfoto3').hide(500);
+        }
         var id="previewFoto3";
         mostrar(id);
         var foto = $(this).attr('id');
