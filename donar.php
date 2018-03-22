@@ -1,26 +1,8 @@
 <?php
     //header
     include 'mod/header.php';
+    include 'mod/menu.php';
 ?>
-<style>
-    #menu{
-        margin-top:50px;
-    }
-</style>
-
-<!--menu-->
-    <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-        <?php
-            include 'mod/menu.php';
-        ?>
-    </div><!--/container menu-->
-<!--/menu-->
-<!--contenido-->
-
-<!--push-->
-<div class=" w-100" style="height:50px;"></div>
-<!--/push-->
-<!--first-block-->
 
 <!-- Titulo principal -->
 <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
@@ -29,7 +11,7 @@
     </div>
 </div>
 
-<!--/first-block-->
+<!-- first-block -->
     <div class="container-fluid text-center">
         <h2 class="w-75 mx-auto mt-3">Agradecemos tu participación como donador. Selecciona cualquiera de nuestras opciones y se parte de esta gran causa.</h2>
         <div class="row text-white">

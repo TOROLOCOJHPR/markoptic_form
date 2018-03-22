@@ -3,16 +3,10 @@
     <cms:editable type='text' name='video_url' label='id del video' order='3'/>
     <cms:editable type='textarea' name='video_desc' label=' descripción' order='2'/>
 </cms:template>
-<?php include 'mod/header.php';
-?>
-<style>
-    #menu{
-        margin-top:50px;
-    }
-</style>
-
 <?php 
+    include 'mod/header.php';
     $menuBack = "Videos";
+
     if(isset($_GET['p'])){
         $menuBack = "Testimonio";
     }
@@ -21,18 +15,10 @@
             $menuBack = "Testimonios";
         }
     }
+    
+    include 'mod/menu.php';
 ?>
 
-<!--menu-->
-    <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-        <?php
-            include 'mod/menu.php';
-        ?>
-    </div><!--/container menu-->
-<!--/menu-->
-<!--push-->
-    <div class=" w-100" style="height:50px;"></div>
-<!--/push-->
     <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
         <div class="w-100 h-100  c-align-middle flex-column opacity-green">
             <cms:if k_is_page><h3>Testimonio</h3></cms:if>

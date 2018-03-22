@@ -18,32 +18,20 @@
       type="thumbnail"
    />
 </cms:template>
-<?php include 'mod/header.php';
+<?php 
+    include 'mod/header.php';
 ?>
-<style>
-    #menu{
-        margin-top:50px;
-    }
-
-</style>
-<!--menu-->
-    <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-    <cms:if k_is_folder>
-        <cms:php> 
-        $menuBack = "<cms:show k_folder_title />";
-        include 'mod/menu.php';
-        </cms:php>
-    <cms:else />
-        <cms:php> 
-        $menuBack = "Álbums";
-        include 'mod/menu.php';
-        </cms:php>
-    </cms:if>
-    </div><!--/container menu-->
-<!--/menu-->
-<!--push-down-->
-<div class=""style="height:50px;position:relative;"></div>
-<!--/push-down-->
+<cms:if k_is_folder>
+    <cms:php> 
+    $menuBack = "<cms:show k_folder_title />";
+    include 'mod/menu.php';
+    </cms:php>
+<cms:else />
+    <cms:php> 
+    $menuBack = "Álbums";
+    include 'mod/menu.php';
+    </cms:php>
+</cms:if>
 <cms:if k_is_folder>
 <!--load-->
 <div id="load"class='c-align-middle'>

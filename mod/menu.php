@@ -38,19 +38,12 @@ $url = str_replace($url2,"",$url);
 #menu a{
     color:black;
 }
-
 </style>
-<header>
-    <div class="row bg-white" style=" height:50px;margin-top:-50px;position:relative;">
-    <?php
-        if($url == "/" or $url == "/fundacion" or $url == "/proyectos" or $url == "/galeria" or $url == "/donar"){        
-            include 'mod/menu/menu-principal.php';
-        }else{
-            include 'mod/menu/menu-secundario.php';
-        }
-    ?>
-    </div>
 
-        <!--/links-->                    
-    </div><!--row-->
-</header>
+<?php
+    if($url == "/" or $url == "/fundacion" or $url == "/proyectos" or $url == "/galeria" or $url == "/donar"){        
+        include 'mod/menu/menu-principal.php';
+    }else{
+        include 'mod/menu/menu-secundario.php';
+    }
+?>

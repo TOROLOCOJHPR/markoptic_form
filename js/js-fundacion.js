@@ -5,6 +5,8 @@ $(document).ready(function(){
         var sT =$(window).scrollTop();
         var posicion = $('#controlMenu').position();
         var menuHeight = $('#menu').children().height();
+        console.log(posicion.top);
+        console.log(sT);
         var posicionT = posicion.top - menuHeight;
         if(sT >= posicionT){
             $('#menu').addClass('fijo');

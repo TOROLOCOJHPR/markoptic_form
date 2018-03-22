@@ -1,22 +1,8 @@
 <?php
     include 'mod/header.php';
     $menuBack = "Solicita tu Donación";
+    include 'mod/menu.php';
 ?>
-    <style>
-    #menu{
-        margin-top:50px;
-    }
-    </style>
-    <!--push-down-->
-        <div class=""style="height:50px;position:relative;"></div>
-    <!--/push-down-->
-    <!--menu-->
-        <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-            <?php
-                include 'mod/menu.php';
-            ?>
-        </div><!--/container menu-->
-    <!--/menu-->
     <!-- contenido -->
 
     <!-- Titulo principal -->
@@ -65,7 +51,7 @@
 
     <div class="container-fluid p-0 text-center text-white" id="tarjetas">
         <h2 class='text-dark'>¿Con que te podemos ayudar?</h2>
-        <div class="row mb-4">
+        <div class="row mb-4 mx-0">
             <div class="col-sm-4 mx-auto mt-2 col-12 ">
                 <a href="formulario?dispositivo=brazo">
                     <div class="card" d="protesis">

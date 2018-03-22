@@ -9,22 +9,8 @@
     session_cache_limiter("must-revalidate");
     include 'back/objetos.php';
     $menuBack = "Beneficiados";
+    include 'mod/menu.php';
 ?>
-    <style>
-    #menu{
-        margin-top:50px;
-    }
-    </style>
-    <!--push-down-->
-        <div class=""style="height:50px;position:relative;"></div>
-    <!--/push-down-->
-    <!--menu-->
-        <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-            <?php
-                include 'mod/menu.php';
-            ?>
-        </div><!--/container menu-->
-    <!--/menu-->
     <!-- contenido -->
     <!-- Titulo principal -->
     <div class="w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">

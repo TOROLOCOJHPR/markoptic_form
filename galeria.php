@@ -8,22 +8,8 @@
 <?php
     //header
     include 'mod/header.php';
+    include 'mod/menu.php';
 ?>
-<style>
-    #menu{
-        margin-top:50px;
-    }
-</style>
-<!--menu-->
-    <div class="container-fluid fixed-top" id="menu" style=" z-index:10;">
-        <?php
-            include 'mod/menu.php';
-        ?>
-    </div><!--/container menu-->
-<!--/menu-->
-<!--push-->
-    <div class=" w-100" style="height:50px;"></div>
-<!--/push-->
 
 <!-- Titulo principal -->
 <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">

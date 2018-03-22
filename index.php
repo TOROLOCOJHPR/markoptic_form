@@ -57,11 +57,11 @@ include 'back/objetos.php';
         </div>
 
     <!--menu-->
-        <div class="container-fluid" id="menu" style=" z-index:10;">
+        <!-- <div class="container-fluid" id="menu" style=" z-index:10;"> -->
             <?php
                 include 'mod/menu.php';
             ?>
-        </div><!--/container menu-->
+        <!-- </div> -->
     <!--/menu-->
     <!--contenido-->
         <!--contador-->
