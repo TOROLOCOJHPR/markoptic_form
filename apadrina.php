@@ -1,12 +1,12 @@
-<?php require_once('cms/cms.php'); ?>
+<?php //require_once('cms/cms.php'); ?>
 <?php
-    if(!isset($_COOKIE['hide'])){
+    /*if(!isset($_COOKIE['hide'])){
         setcookie('hide','0');
-    }
+    }*/
      ?>
-    <cms:template title = 'apadrina' order='15'>
+    <!-- <cms:template title = 'apadrina' order='15'>
         <cms:editable name='textomotivador' label='Texto Motivador' type='text' order='1'/>
-    </cms:template>
+    </cms:template> -->
 <?php
     include 'mod/header.php';
     include 'back/objetos.php';
@@ -80,4 +80,4 @@
 
     </body>
 </html>
-<?php COUCH::invoke(); ?>
+<!-- <?php COUCH::invoke(); ?> -->

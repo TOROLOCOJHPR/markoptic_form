@@ -27,7 +27,7 @@
             <?php 
                 if($pagina == "humberto"){  
             ?>
-                    <h5 class="mt-5"><cms:show textomotivador /></h5><h5><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
+                    <h5 class="mt-5">Te invitamos a que apoyes a: </h5><h5><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
                     <div class="row mx-0">
                         <button class="btn bg-verde-menu text-white ml-auto" data-toggle="modal" data-target="#exampleModalCenter" >Apadrinar</button>
                     </div>

@@ -11,9 +11,9 @@
     }elseif($url == "/solicitud"){
         $redireccion = "href=/";
     }
-    // echo "<script>console.log('".$redireccion."');</script>";
-    // echo "<script>console.log('".$url."');</script>";
-    // echo "<script>console.log('".$url2."');</script>";
+    echo "<script>console.log('".$redireccion."');</script>";
+    echo "<script>console.log('".$url."');</script>";
+    echo "<script>console.log('".$url2."');</script>";
 ?>
 <header id="menu" class="bg-white fixed-top mx-0" style=" height:50px; box-shadow:0px 2px 10px black;">
     <div class="row mx-0 h-100">

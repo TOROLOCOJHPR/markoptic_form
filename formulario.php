@@ -44,7 +44,7 @@
         include 'mod/formulario/descColchon.php';
     }
 ?>
-<div class="bg-danger p-3 text-white <?php echo ($e == 1)? "" : "d-none";?>">Por favor verifica que todos los datos sean correctos</div>
+<div class="bg-danger p-3 mt-4 text-white <?php echo ($e == 1)? "" : "d-none";?>">Por favor verifica que todos los datos sean correctos</div>
 <form class='' enctype='multipart/form-data' method='post' action="/formulario">
 <?php
     include 'mod/formulario/datosBeneficiario.php';
