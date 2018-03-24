@@ -11,7 +11,7 @@
         <h5 class="text-capitalize text-center mt-2"><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
         <img class="img-fluid" src="/imagenes/uploads/<?php echo $ubicacion.$result[$foto]; ?>" alt="imagen del beneficiario">
     </div>
-    <div class="col-12 col-sm-6 <?php echo ($pagina == "beneficiarios")?"col-md-8":"col-md-8"; ?> p-4 px-5 " style="font-size:1.2rem;">
+    <div class="col-12 col-sm-6 <?php echo ($pagina == "beneficiarios")?"col-md-8":"col-md-4"; ?> p-4 px-5 " style="font-size:1.2rem;">
         <div class="mt-4"> 
             <strong>Folio: </strong><span><?php echo $result['folio'];?><span>
             <br>
@@ -25,7 +25,7 @@
             <br>
             <span class="text-first-uppercase"><?php echo ucfirst($result['porque']); ?></span>
             <?php 
-                if($pagina == "humberto"){  
+                if($pagina == "apadrina"){  
             ?>
                     <h5 class="mt-5">Te invitamos a que apoyes a: </h5><h5><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
                     <div class="row mx-0">
@@ -36,5 +36,5 @@
             ?>
         </div>
     </div>
-    <?php if($pagina == "humberto"){include 'mod/beneficiarios/recaudacion.php';include 'mod/beneficiarios/modalDonacion.php';} ?>
+    <?php if($pagina == "apadrina"){include 'mod/beneficiarios/recaudacion.php';include 'mod/beneficiarios/modalDonacion.php';} ?>
 </div>       

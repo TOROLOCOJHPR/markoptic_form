@@ -2,6 +2,7 @@
     $metodo = $_SERVER['REQUEST_METHOD'];
     $objDato = new DatosPersonales;
     $objBen = new Beneficiario;
+    $filtro = 0 ;
     if( $metodo == "POST" ){ //metodo POST
         $pais = ( isset( $_POST['pais'] ) )? $_POST['pais'] : "";
         $estado = ( isset( $_POST['estado'] ) )? $_POST['estado'] : "";
@@ -9,7 +10,6 @@
         $sexo = ( isset($_POST['sexo']) )? $_POST['sexo'] : "";
         $folio = ( isset( $_POST['folio'] ) )? $_POST['folio'] : "";
         $dispositivo = ( isset( $_POST['solicitud'] ) )?$_POST['solicitud'] : "";
-        $filtro = 0 ;
         $estatus = "";
         $num = "";
         $filtrosAplicados = "";
@@ -68,5 +68,5 @@
     </form>
 </div>
 <div class="p-2 bg-verde-menu text-white <?php if( $filtro == 0 ){ echo "d-none"; } ?>">
-    <span><strong>Filtro(s) Aplicado(s) (</strong><?php echo $filtrosAplicados; ?> <strong>)</strong></span>
+    <span><strong>Filtro(s) Aplicado(s) (</strong><?php echo (isset($filtrosAplicados))? $filtrosAplicados : ""; ?> <strong>)</strong></span>
 </div>

@@ -1,8 +1,8 @@
 <?php //require_once('cms/cms.php'); ?>
 <?php
-    /*if(!isset($_COOKIE['hide'])){
+    if(!isset($_COOKIE['hide'])){
         setcookie('hide','0');
-    }*/
+    }
      ?>
     <!-- <cms:template title = 'apadrina' order='15'>
         <cms:editable name='textomotivador' label='Texto Motivador' type='text' order='1'/>
@@ -53,17 +53,21 @@
     }else{
 ?>
     <script src="/js/filtro.js"></script>
+    <script src="/js/no-back.js"></script>
 <?php
     }
 ?>
 <script>
     $(document).ready(function(){
         // comprobar la variable ocultar modal
-        if( $('#tiempoDonaciones').attr('ocultar') == 0 )
-        {
+        if( $('#tiempoDonaciones').attr('ocultar') == ""){
             var ocultar = "show";
-        }else{
+        }else{ 
+            if($('#tiempoDonaciones').attr('ocultar') == 0){
+            var ocultar = "show";
+            }else{
             var ocultar = "hide";
+            }
         }
         //iniciar modal
         $('#tiempoDonaciones').modal(ocultar);
@@ -80,4 +84,3 @@
 
     </body>
 </html>
-<!-- <?php COUCH::invoke(); ?> -->
