@@ -1057,7 +1057,15 @@ class Beneficiario extends Tutor{ //**Beneficiario
             if(!$error){                
                 $con->commit();
                 //envia correo al beneficiario
-                $this->mensajeFormulario($id);
+                
+                $m = $this->mensajeFormulario($id);
+                $to = $this->email;
+                $subject = "Solicitud Formulario Markoptic";
+                $headers = "MIME-Version: 1.0"."\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1"."\r\n";
+                $headers.= "Cc:jparra@markoptic.mx,racosta@fundacionmarkoptic.org.mx"."\r\n";
+                $headers .= "From: Fundación Markoptic <info@fundacionmarkoptic.org.mx>";
+                $result = mail($to,utf8_decode($subject),utf8_decode($m),utf8_decode($headers));
                 return true;
                 //header('Location: ../gracias?solicitud=exito');
             }  else {
