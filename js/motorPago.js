@@ -19,15 +19,34 @@ $(document).ready(function(){
 });
 function prePagar(){
     if($('#donacion').val() >= 50){
-        var donacion = $('#donacion').val();   
-        pagar(donacion);
+        var donacion = $('#donacion').val();
     }else if($('#donacionBoton').val() >= 50){
         var donacion = $('#donacionBoton').val();
-        //alert(donacion);
-        pagar(donacion);
     }else{
         alert('Introduce un monto minimo de 50 mxn');
+        return false;
     }
+    if($('#emailCliente').val() != "" ){
+        var emailCliente = $('#emailCliente').val();
+        $.ajax({
+            type: "POST",
+            data: { 'formulario': "validaEmail","email":emailCliente},
+            url: "/back/ajax.php",
+            success : function(data) {
+                var v = JSON.parse(data);
+                if(v[0].valor == "false"){
+                    alert("introduce una dirección de correo valida");
+                    console.log("false");
+                    return false;
+                }
+            }
+        });
+    }else{
+        alert("Introduce un email");
+        return false;
+    }
+    pagar(donacion);
+    return false;
 }
 function pagar(donacion) {
     // Podemos pagar con los valores por defecto
@@ -35,6 +54,7 @@ function pagar(donacion) {
     // O podemos modificar los valores antes de efectuar el pago
     //var donacion = $('#donacion').val();
     var folio = $('#ben').attr('ben');
+    var emailCliente = $('#emailCliente').val();
     // var email = $('#email').val();
     console.log('total de la donación' + donacion);
     // var url = "http://www.markoptic.text/apadrina?b="+ $('#ben').attr('ben');
@@ -42,16 +62,16 @@ function pagar(donacion) {
         total: donacion,
         concept: "Donación",
         cust: {
-            fname: "jesus", //Nombre del comprador
-            mname: "parra", //Apellido paterno del comprador
-            lname: "ruiz", //Apeliido materno del comprador
-            email: "pruebas@correo.com", //Email del comprador
-            phone: "6677304760", //Número telefónico del comprador
-            addr: "sinaloa", //Dirección del comprador (calle y número)
-            city: "culiacan", //Ciudad del comprador
-            state: "sinaloa", //Estado del comprador (2 dígitos de acuerdo al formato ISO)
-            country: "México", //País del comprador (3 dígitos de acuerdo al formato ISO)
-            zip: "80058" //Código de postal del comprador
+            fname: "", //Nombre del comprador
+            mname: "", //Apellido paterno del comprador
+            lname: "", //Apeliido materno del comprador
+            email: emailCliente, //Email del comprador
+            phone: "", //Número telefónico del comprador
+            addr: "", //Dirección del comprador (calle y número)
+            city: "", //Ciudad del comprador
+            state: "", //Estado del comprador (2 dígitos de acuerdo al formato ISO)
+            country: "", //País del comprador (3 dígitos de acuerdo al formato ISO)
+            zip: "" //Código de postal del comprador
         },
         items: [
             {
