@@ -9,3 +9,4 @@ RewriteCond %{REQUEST_FILENAME}.php -f
 RewriteRule ^(.*)$ $1.php
 #RewriteRule ^aliados/([a-zA-Z0-9])$ aliados?aliado=$1
 
+Options -Indexes
