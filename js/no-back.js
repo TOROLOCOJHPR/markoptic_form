@@ -5,4 +5,5 @@ $(document).ready(function(){
     $('#ocultarBtn').click(function(){
         $('#ocultarDB').slideToggle("slow");
     });
+    console.log('no back button');
 });

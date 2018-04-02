@@ -53,10 +53,10 @@
     }else{
 ?>
     <script src="/js/filtro.js"></script>
-    <script src="/js/no-back.js"></script>
 <?php
     }
 ?>
+<script src="/js/no-back.js"></script>
 <script>
     $(document).ready(function(){
         // comprobar la variable ocultar modal

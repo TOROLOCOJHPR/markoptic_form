@@ -33,3 +33,4 @@
         </div>
     </div>
 </div>
+<div id="ben" ben="<?php echo ( isset($id) )? "f"."$id" : "f"."0";?>"></div>

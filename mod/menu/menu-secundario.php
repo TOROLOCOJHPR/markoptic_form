@@ -6,6 +6,8 @@
         $redireccion = 'href="/"';
     }elseif($url == "/apadrina" && $url2 == "?"){
         $redireccion = 'href="/"';
+    }elseif($url == "/apadrina" && $url2 != "?"){
+        $redireccion = 'href="/apadrina"';
     }elseif($url == "/formulario"){
         $redireccion = "href=/solicitud";
     }elseif($url == "/solicitud"){

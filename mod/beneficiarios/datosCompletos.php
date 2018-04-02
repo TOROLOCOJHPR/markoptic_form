@@ -29,12 +29,12 @@
             ?>
                     <h5 class="mt-5">Te invitamos a que apoyes a: </h5><h5><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
                     <div class="row mx-0">
-                        <button class="btn bg-verde-menu text-white ml-auto" data-toggle="modal" data-target="#exampleModalCenter" >Apadrinar</button>
+                        <button class="btn bg-verde-menu text-white ml-auto" data-toggle="modal" data-target=".banwire" >Apadrinar</button>
                     </div>
             <?php                    
                 }
             ?>
         </div>
     </div>
-    <?php if($pagina == "apadrina"){include 'mod/beneficiarios/recaudacion.php';include 'mod/beneficiarios/modalDonacion.php';} ?>
-</div>       
+    <?php if($pagina == "apadrina"){include 'mod/beneficiarios/recaudacion.php'; include 'mod/donar/modalBanwire.php';} ?>
+</div>
