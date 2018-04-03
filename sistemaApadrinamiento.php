@@ -43,8 +43,9 @@
         <link rel="stylesheet" href="/css/universal.css">
         <title>Sistema Apadrinamiento</title>
     </head>
-    <body class="px-4">
-        <h3 class="text-center">Sistema de apadrinamiento</h3>
+    <body class="px-4" style="padding-top:70px;">
+    <?php include 'mod/panel/menuPanel.php'; ?>
+        <!-- <h3 class="text-center">Sistema de apadrinamiento</h3> -->
         <form method="post" action="" enctype="multipart/form-data">
             <input type="file" name="csv">
             <br>
@@ -55,6 +56,7 @@
         <!-- scripts -->
         <script type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
         <script src="/js/jquery-3.1.1.js"></script>
+        <script src="https://use.fontawesome.com/8077e15131.js"></script>
         <script src="/js/no-back.js"></script>
     </body>
 </html>
