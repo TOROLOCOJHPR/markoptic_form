@@ -4,6 +4,7 @@
     require('back/comprueba.php');
     $metodo = $_SERVER['REQUEST_METHOD'];
     $url2 = "?".$_SERVER['QUERY_STRING'];
+    $menuBack = "Editor Beneficiarios";
     //echo  $url2;
     include 'back/objetos.php'; 
     $objBen = new Beneficiario;
@@ -24,17 +25,17 @@
             if ($metodo == "GET"){ //consulta GET
 
                 if($url2 == "?"){ //muestra buscador de beneficiarios
-                    $redireccion = "/panel";
+                    // $redireccion = "/panel";
                     include "mod/panel/formularioBuscador.php";
                 }elseif(isset($_GET['b'])){ //muestra datos beneficiario
                     $b = $_GET['b']; //id del beneficiario
                     $f = $_GET['f']; //id de busqueda 
-                    $redireccion = '/editorBeneficiarios?f='.$f;
+                    // $redireccion = '/editorBeneficiarios?f='.$f;
                     $dato = $objBen->buscaDatosFormulario($b);
                     include 'mod/panel/datosBeneficiarios.php';
                     include 'mod/panel/transacciones.php';
                 }elseif(isset($_GET['f'])){
-                    $redireccion = "/panel";
+                    // $redireccion = "/panel";
                     $f = $_GET['f'];
                     include "mod/panel/formularioBuscador.php";
                     include 'mod/panel/buscadorBeneficiarios.php';
@@ -43,14 +44,14 @@
             }else{ //consulta POST
                 
                 if($_POST['update'] == 0){ //muestra buscador y lista de beneficiarios
-                    $redireccion = "/panel";
+                    // $redireccion = "/panel";
                     $f = $_POST['lista'];
                     include "mod/panel/formularioBuscador.php";
                     include 'mod/panel/buscadorBeneficiarios.php';
                 }elseif($_POST['update'] == 1){ //actualiza datos y muestra de nuevo los datos del beneficiario
                     $b = $_POST['id'];
                     $f = $_POST['f']; //id de busqueda 
-                    $redireccion = '/editorBeneficiarios?f='.$_POST['f'];
+                    // $redireccion = '/editorBeneficiarios?f='.$_POST['f'];
                     include 'mod/panel/updateBeneficiario.php';
                     $dato = $objBen->buscaDatosFormulario($_POST['id']);
                     include 'mod/panel/datosBeneficiarios.php';
@@ -58,7 +59,7 @@
                 }
 
             }
-            include 'mod/panel/menuBeneficiario.php';
+            include 'mod/panel/menuPanel.php';
         ?>
         <script src="/js/jquery-3.1.1.js"></script>
         <script src="/js/popper.min.js"></script>

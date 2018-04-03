@@ -17,7 +17,7 @@
     echo "<script>console.log('".$url."');</script>";
     echo "<script>console.log('".$url2."');</script>";
 ?>
-<header id="menu" class="bg-white fixed-top mx-0" style=" height:50px; box-shadow:0px 2px 10px black;">
+<header id="menu" class="bg-white fixed-top mx-0" style=" height:50px;">
     <div class="row mx-0 h-100">
         <!--regresar-->
         <div class="col-auto p-0 h-100 bordes">

@@ -2,6 +2,7 @@
 /cms/uploads
 /cms/cache
 /back/conexion.php
+/back/creaContraseña.php
 /back/conexion-old.php
 /imagenes/uploads
 /login.php

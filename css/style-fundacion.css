@@ -38,7 +38,7 @@ body,html{font-family:'Noto Sans';font-size:12px;}
 .grow:hover{transition:0.2s linear;transform:scale(1.9);cursor:default;}
 .fijo{position:fixed;top:0px;background-color:blue;}
 /*--menu--*/
-#menu{font-size:0.9rem;-webkit-box-shadow: 4px 4px 22px 0px rgba(0,0,0,0.75);-moz-box-shadow: 4px 4px 22px 0px rgba(0,0,0,0.75);box-shadow: 4px 4px 22px 0px rgba(0,0,0,0.75);}
+#menu{font-size:0.9rem;box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);height: 50px;}
 #menu a{color:black;}
 #menu .row a:hover,#menu .row a label:hover{
     text-decoration:none;cursor:pointer;

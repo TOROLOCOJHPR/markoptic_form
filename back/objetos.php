@@ -30,7 +30,7 @@ class DatosPersonales { //**DatosPersonales
     public function getDescMedioDif(){return $this->descMedioDif;}
     public function setDescMedioDif($sDescMedioDif){$this->descMedioDif = $sDescMedioDif;}
     
-    //--//SELECT
+    //--//SELECT DatosPersonales
     
     //--funcion para buscar los países 
     public function buscaPais($p){
@@ -136,7 +136,12 @@ class DatosPersonales { //**DatosPersonales
         }
     }
 
+    //--//INSERT DatosPersonales
+    //--//UPDATE DatosPersonales
+    //--//DELETE DatosPersonales
+
 }//--fin DatosPersonales
+
 class Tutor extends DatosPersonales{ //**Tutor
     //--atributos Tutor
     public $independiente,$nombreTutor,$apellidoTutor,$nacimientoTutor,$sexoTutor,$viveBen,$parentesco,$telTutor,$emailTutor;
@@ -161,6 +166,8 @@ class Tutor extends DatosPersonales{ //**Tutor
     public function getEmailTutor(){return $this->emailTutor;}
     public function setEmailTutor($sEmailTutor){$this->emailTutor = $sEmailTutor;}
 
+    //--//SELECT Tutor
+    
     //--función para buscar el parentesco del tutor con el beneficiario
     public function buscaParentesco($parentesco){
         $sql ="SELECT id,parentesco FROM parentescos";
@@ -178,7 +185,12 @@ class Tutor extends DatosPersonales{ //**Tutor
         }
         echo'</select>';
     }
+
+    //--//INSERT Tutor
+    //--//UPDATE Tutor
+    //--//DELETE Tutor
 }//-- fin Tutor
+
 class Beneficiario extends Tutor{ //**Beneficiario
     //--atributos Beneficiario
     public $dispositivo,$condicion,$descObtencion,$estausSolicitud,$foto1,$foto2,$foto3;
@@ -199,6 +211,8 @@ class Beneficiario extends Tutor{ //**Beneficiario
     public function getFoto3(){return $this->foto3;}
     public function setFoto3($sFoto3){$this->foto3 = $sFoto3;}
     
+    //--//SELECT Beneficiario
+
     //--busca dispositivo biomedico
     public function buscaDispositivo($sol,$nd){
         try{
@@ -407,7 +421,6 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $con->close();
         }
     }
-    
     //--busca datos del apadrinado
     public function buscaDatosApadrinado($id){
         try{
@@ -463,23 +476,6 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
-
-    //--genera total recabado del dispositivo
-    public function recabado($id){
-        try{
-            $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
-            $objCon = new conexion;
-            $con = $objCon->conectar();
-            $result = $con->query($sql);
-            $result = $result->fetch_assoc();
-            return $result['donacion'];
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
     //--busca transacciones de cada usuario
     public function buscaTransacciones($b){
         try{
@@ -631,8 +627,443 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
+    //--busca ultimo id de las solicitudes de los beneficiarios
+    public function buscaMaxSolicitudes($con){
+        try{
+            //$con = new conexion();
+            //$objCon = $con->conectar();
+            $sql = "SELECT MAX(id) as total FROM solicitudes";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idMax = $result['total'];
+            return $idMax;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            //$con->close();
+        }
+    }
+    //--busca el total de solicitudes de los beneficiarios con estatus
+    public function buscaCountSolicitudes($con,$estatus){
+        try{
+            //$objCon = new conexion();
+            //$con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes WHERE idEstatusSolicitud = '".$estatus."'";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            //$con->close();
+        }
+    }
+    //--busca el total de solicitudes de los beneficiarios
+    public function buscaTotalSolicitudes(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    } 
+    //--busca el total de solicitudes de protesis superior derecha
+    public function buscaTotalPsd(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 1";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--busca el total de solicitudes de protesis superior izquierda
+    public function buscaTotalPsi(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 2";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--busca el total de solicitudes de colchón vittmat
+    public function buscaTotalCv(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 3";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--busca el total de solicitudes de protésis inferior derecha
+    public function buscaTotalPid(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 4";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--busca el total de solicitudes de protésis inferior izquierda
+    public function buscaTotalPii(){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 5";
+            $result = $con->query($sql);
+            $result = mysqli_fetch_assoc($result);
+            $idCount = $result['total'];
+            return $idCount;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--buscar beneficiarios
+    public function buscaBeneficiario($nombre,$estatus){
+        try{
+            $sql ="select nombre, apellidos, concat(beneficiarios.nombre,beneficiarios.apellidos) AS nombres ,solicitudes.id
+                from solicitudes INNER join beneficiarios on solicitudes.idBeneficiario = beneficiarios.id
+                WHERE solicitudes.idEstatusSolicitud = '".$estatus."'
+                HAVING nombres like '%".$nombre."%' ESCAPE ' ' ORDER by nombre ASC
+            ";
+            $con= new conexion;
+            $objCon = $con->conectar();
+            $result = $objCon->query($sql);
+            if( mysqli_num_rows($result) > 0 ){
+                while( $row = mysqli_fetch_array($result) ){
+                    echo "<a class='text-dark d-block' href='/apadrina?b=".$row['id']."'>&nbsp;&nbsp;".$row['nombre']." ".$row['apellidos']."</a>";
+                }
+            }else{
+                echo "No se encontraron benficiarios";
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $objCon->close();
+        }
+    }
+    //--buscar beneficiarios por folio
+    public function buscaBeneficiarioFolio($f){
+        try{
+            $sql ="SELECT solicitudes.id, beneficiarios.nombre,beneficiarios.apellidos 
+                FROM solicitudes
+                INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario
+                WHERE solicitudes.id LIKE '".$f."%' ";
+            $con= new conexion;
+            $objCon = $con->conectar();
+            $result = $objCon->query($sql);
+            if( mysqli_num_rows($result) > 0 ){
+                echo "<div class='row mx-0'>";
+                while( $row = mysqli_fetch_array($result) ){
+                    echo "<div class='col-md-4 px-0'><a href='/editorBeneficiarios?b=".$row['id']."&f=".$f."' id='res' class='mb-0 text-dark'>&nbsp;&nbsp;".$row['id']." -- ".$row['nombre']." ".$row['apellidos']."</a></div>";
+                }
+                echo "</div>";
+            }else{
+                echo "No se encontraron beneficiarios";
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $objCon->close();
+        }
+    }
+    //--busca folio antiguo del beneficiario
+    public function buscaFolioAntiguo($idBen){
+        try{
+            $sql ="SELECT folio FROM beneficiario_solicitud INNER JOIN solicitud on beneficiario_solicitud.id_solicitud = solicitud.id WHERE beneficiario_solicitud.id = '".$idBen."' ";
+            $objCon = new conexionOld;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            if($result['folio'] != ""){
+                $folio = $result['folio'];
+            }else{
+                $folio = "Sin Zip";
+            }
+            return $folio;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--busca precio del dispositivo
+    public function buscaPrecio($idD){
+        try{
+            $sql ="SELECT precio FROM dispositivos WHERE id = '".$idD."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            return $result['precio'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
 
-    //--crea mensaje a enviar al formulario 
+    //--//INSERT Beneficiario
+
+    //--inserta solicitud 
+    public function inserta(){
+        try{
+        $objCon = new conexion();
+        $con = $objCon->conectar();
+        $con->autocommit(FALSE);
+        $error=0;
+        $sql="INSERT INTO beneficiarios(nombre,apellidos,sexo,fecNacimiento,idCiudad,calle,colonia,cp,telefono,email,idMedioDifusion,descMedioDif) VALUES ('".$this->nombre."','".$this->apellidos."','".$this->sexo."','".$this->fecNacimiento."','".$this->ciudad."','".$this->calle."','".$this->colonia."','".$this->cp."','".$this->telefono."','".$this->email."','".$this->idMedioDifusion."','".$this->descMedioDif."')";
+        $con->query($sql)?NULL:$error=1;
+        //echo "beneficiario insertado";   
+        $id = mysqli_insert_id($con);
+        if($this->independiente == '1'){
+            $sql="INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) VALUES ('".$id."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
+            $con->query($sql)?NULL:$error=1;
+            //echo "tutor insertado";   
+        }
+        $sql="INSERT INTO solicitudes(idBeneficiario,idCondicion,idDispositivo,idEstatusSolicitud,porque)VALUES('".$id."','".$this->condicion."','".$this->dispositivo."','1','".$this->descObtencion."')";
+        $con->query($sql)?NULL:$error=1;
+        //echo "solicitud insertado";
+        $id = mysqli_insert_id($con);
+        //echo $id;
+        $sql="INSERT INTO imgsolicitud(foto1,foto2,foto3,idSolicitud)VALUES('".$this->foto1."','".$this->foto2."','".$this->foto3."',".$id.")";
+        $con->query($sql)?NULL:$error=1;
+            //echo $error; 
+            if(!$error){                
+                $con->commit();
+                //envia correo al beneficiario
+                
+                $m = $this->mensajeFormulario($id);
+                $to = $this->email;
+                $subject = "Solicitud Formulario Markoptic";
+                $headers = "MIME-Version: 1.0"."\r\n";
+                $headers .= "Content-Type: text/html; charset=ISO-8859-1"."\r\n";
+                $headers.= "Cc:jparra@markoptic.mx,racosta@fundacionmarkoptic.org.mx"."\r\n";
+                $headers .= "From: Fundación Markoptic <info@fundacionmarkoptic.org.mx>";
+                $result = mail($to,utf8_decode($subject),utf8_decode($m),utf8_decode($headers));
+                return true;
+                //header('Location: ../gracias?solicitud=exito');
+            }  else {
+                $con->rollback();
+                //header('Location: ../gracias?solicitud=fail');
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--insertar los ingresos recabados 
+    public function insertTransaccion($total,$solicitud,$idBanwire,$auth_code,$event,$hash,$status){
+        try{
+            $sql= "INSERT INTO transacciones(donacion,idSolicitud,idBanwire,auth_code,event,hash,status)VALUES('".$total."','".$solicitud."','".$idBanwire."','".$auth_code."','".$event."','".$hash."','".$status."')";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            if($con->query($sql)){
+                //echo "insercion exitosa";
+            }else{
+                //echo "insercion fallida";
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para insertar los ingresos recabados fuera de linea 
+    public function insertTransacciones($sql){
+        try{
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $con->query($sql);
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+        }
+    }
+    //-- crea usuario
+    public function creaUsuario($user,$hash,$rol){
+        try{
+            $m = 0;
+            $array = array();
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sqlBusca = "SELECT id,user,eliminado FROM usuarios  WHERE user ='".$user."'";
+            $busca = $con->query($sqlBusca);
+            if($busca->num_rows > 0){
+                $row = $busca->fetch_assoc();
+                // 1 usuario existente 2 usuario existente eliminado
+                $m = ($row['eliminado'] == 0)? 1 : 2;
+                array_push($array,array('id'=>$row['id'],'m'=>$m));
+            }else{
+                $sql = "INSERT INTO usuarios(user,pass,rol) VALUES('".$user."','".$hash."','".$rol."')";
+                if(!$con->query($sql)){
+                    $m = 3;
+                    array_push($array,array('id'=>'0','m'=>$m));
+                }
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+
+    //--//UPDATE Beneficiario
+
+    //--función para actualizar imagenes de los beneficiarios
+    public function updateFotoBen($id,$add,$foto){
+        try{
+            $sqlSelect="SELECT idSolicitud FROM imgsolicitud WHERE idSolicitud= '".$id."' ";
+            $sqlInsert = "INSERT INTO imgsolicitud(".$foto.",idSolicitud) VALUES('".$add."','".$id."')";
+            $sqlUpdate= "update imgsolicitud set ".$foto." = '".$add."' where idSolicitud = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sqlSelect);
+            if( $result->num_rows > 0){
+                $con->query($sqlUpdate);
+            }else{
+                echo "no encontrado";
+                $con->query($sqlInsert);
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para actualizar los datos del beneficiario 
+    public function updateDatosBen($id){
+        try{
+            $sqlUpdate= "update beneficiarios set nombre='".$this->nombre."', apellidos='".$this->apellidos."', sexo='".$this->sexo."',fecNacimiento='".$this->fecNacimiento."', idCiudad='".$this->ciudad."',calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion='".$this->idMedioDifusion."',descMedioDif='".$this->descMedioDif."' where id = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            //if ternario 
+            return ( $con->query($sqlUpdate) ) ? true : false;
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para actualizar los datos del tutor 
+    public function updateDatosTut($idT,$idB){
+        try{
+            $sqlInsert = "INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) values('".$idB."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
+            $sqlUpdate= "update tutores set nombre='".$this->nombreTutor."', apellidos='".$this->apellidoTutor."',fecNacimiento='".$this->nacimientoTutor."', sexo='".$this->sexoTutor."',viveConBen='".$this->viveBen."',idParentesco='".$this->parentesco."',telefono='".$this->telTutor."',email='".$this->emailTutor."' where id = '".$idT."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            if($idT != ""){
+               return ( $con->query($sqlUpdate) ) ? true : false;
+            }else{
+                return ( $con->query($sqlInsert) ) ? true : false;
+            }
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //--función para actualizar los datos del beneficiario 
+    public function updateDatosSol($id){
+        try{
+            $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            return ( $con->query($sqlUpdate) ) ? true : false;
+        }catch(Exception $e){
+            $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //-- actualiza contraseña del usuario 
+    public function actualizaContraseña($id,$hash){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql = "UPDATE usuarios SET pass = '".$hash."' WHERE id = '".$id."' ";
+            $m = (!$con->query($sql))? 1 : 0;
+            return $m;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    
+    //--//DELETE Beneficiario
+    
+    //-- elimina usuario
+    public function eliminaUsuario($id){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql = "UPDATE usuarios SET eliminado = 1 WHERE id ='".$id."'";
+            $m = (!$con->query($sql))? 1 : 0 ;
+            return $m;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //-- elimina usuario
+    public function restauraUsuario($id,$hash,$rol){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql = "UPDATE usuarios SET eliminado = 0, pass = '".$hash."', rol = '".$rol."' WHERE id ='".$id."'";
+            $m = (!$con->query($sql))? 1 : 0 ;
+            return $m;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+
+    //--//GENERA
+
+    //--genera mensaje a enviar al formulario 
     public function mensajeFormulario($id){
         try{
             $datosFormulario = $this->buscaDatosFormulario($id);
@@ -705,142 +1136,6 @@ class Beneficiario extends Tutor{ //**Beneficiario
             echo $e->getMessage();
         }finally{
 
-        }
-    }
-
-    //--busca ultimo id de las solicitudes de los beneficiarios
-    public function buscaMaxSolicitudes($con){
-        try{
-            //$con = new conexion();
-            //$objCon = $con->conectar();
-            $sql = "SELECT MAX(id) as total FROM solicitudes";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idMax = $result['total'];
-            return $idMax;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            //$con->close();
-        }
-    }
-
-    //--busca el total de solicitudes de los beneficiarios con estatus
-    public function buscaCountSolicitudes($con,$estatus){
-        try{
-            //$objCon = new conexion();
-            //$con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes WHERE idEstatusSolicitud = '".$estatus."'";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            //$con->close();
-        }
-    }
-    
-    //--busca el total de solicitudes de los beneficiarios
-    public function buscaTotalSolicitudes(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    } 
-
-    //--busca el total de solicitudes de protesis superior derecha
-    public function buscaTotalPsd(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 1";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
-    //--busca el total de solicitudes de protesis superior izquierda
-    public function buscaTotalPsi(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 2";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
-    //--busca el total de solicitudes de colchón vittmat
-    public function buscaTotalCv(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 3";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
-    //--busca el total de solicitudes de protésis inferior derecha
-    public function buscaTotalPid(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 4";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-
-    //--busca el total de solicitudes de protésis inferior izquierda
-    public function buscaTotalPii(){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $sql = "SELECT COUNT(id) as total FROM solicitudes where idDispositivo = 5";
-            $result = $con->query($sql);
-            $result = mysqli_fetch_assoc($result);
-            $idCount = $result['total'];
-            return $idCount;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
         }
     }
 
@@ -932,92 +1227,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
 
         }
     }
-
-    //--buscar beneficiarios
-    public function buscaBeneficiario($nombre,$estatus){
-        try{
-            $sql ="select nombre, apellidos, concat(beneficiarios.nombre,beneficiarios.apellidos) AS nombres ,solicitudes.id
-                from solicitudes INNER join beneficiarios on solicitudes.idBeneficiario = beneficiarios.id
-                WHERE solicitudes.idEstatusSolicitud = '".$estatus."'
-                HAVING nombres like '%".$nombre."%' ESCAPE ' ' ORDER by nombre ASC
-            ";
-            $con= new conexion;
-            $objCon = $con->conectar();
-            $result = $objCon->query($sql);
-            if( mysqli_num_rows($result) > 0 ){
-                while( $row = mysqli_fetch_array($result) ){
-                    echo "<a class='text-dark d-block' href='/apadrina?b=".$row['id']."'>&nbsp;&nbsp;".$row['nombre']." ".$row['apellidos']."</a>";
-                }
-            }else{
-                echo "No se encontraron benficiarios";
-            }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $objCon->close();
-        }
-    }
-    //--buscar beneficiarios por folio
-    public function buscaBeneficiarioFolio($f){
-        try{
-            $sql ="SELECT solicitudes.id, beneficiarios.nombre,beneficiarios.apellidos 
-                FROM solicitudes
-                INNER JOIN beneficiarios ON beneficiarios.id = solicitudes.idBeneficiario
-                WHERE solicitudes.id LIKE '".$f."%' ";
-            $con= new conexion;
-            $objCon = $con->conectar();
-            $result = $objCon->query($sql);
-            if( mysqli_num_rows($result) > 0 ){
-                echo "<div class='row mx-0'>";
-                while( $row = mysqli_fetch_array($result) ){
-                    echo "<div class='col-md-4 px-0'><a href='/editorBeneficiarios?b=".$row['id']."&f=".$f."' id='res' class='mb-0 text-dark'>&nbsp;&nbsp;".$row['id']." -- ".$row['nombre']." ".$row['apellidos']."</a></div>";
-                }
-                echo "</div>";
-            }else{
-                echo "No se encontraron beneficiarios";
-            }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $objCon->close();
-        }
-    }
-    //--busca folio antiguo del beneficiario
-    public function buscaFolioAntiguo($idBen){
-        try{
-            $sql ="SELECT folio FROM beneficiario_solicitud INNER JOIN solicitud on beneficiario_solicitud.id_solicitud = solicitud.id WHERE beneficiario_solicitud.id = '".$idBen."' ";
-            $objCon = new conexionOld;
-            $con = $objCon->conectar();
-            $result = $con->query($sql);
-            $result = $result->fetch_assoc();
-            if($result['folio'] != ""){
-                $folio = $result['folio'];
-            }else{
-                $folio = "Sin Zip";
-            }
-            return $folio;
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
     
-    //--busca precio del dispositivo
-    public function buscaPrecio($idD){
-        try{
-            $sql ="SELECT precio FROM dispositivos WHERE id = '".$idD."' ";
-            $objCon = new conexion;
-            $con = $objCon->conectar();
-            $result = $con->query($sql);
-            $result = $result->fetch_assoc();
-            return $result['precio'];
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
     //--valida email
     function validaEmail($mail){
         //$invalidos = array("correo.com","correo.mx","test.com","test.mx");
@@ -1029,184 +1239,6 @@ class Beneficiario extends Tutor{ //**Beneficiario
             return false;
         }
     }
-
-    //--inserta solicitud 
-    public function inserta(){
-        try{
-        $objCon = new conexion();
-        $con = $objCon->conectar();
-        $con->autocommit(FALSE);
-        $error=0;
-        $sql="INSERT INTO beneficiarios(nombre,apellidos,sexo,fecNacimiento,idCiudad,calle,colonia,cp,telefono,email,idMedioDifusion,descMedioDif) VALUES ('".$this->nombre."','".$this->apellidos."','".$this->sexo."','".$this->fecNacimiento."','".$this->ciudad."','".$this->calle."','".$this->colonia."','".$this->cp."','".$this->telefono."','".$this->email."','".$this->idMedioDifusion."','".$this->descMedioDif."')";
-        $con->query($sql)?NULL:$error=1;
-        //echo "beneficiario insertado";   
-        $id = mysqli_insert_id($con);
-        if($this->independiente == '1'){
-            $sql="INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) VALUES ('".$id."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
-            $con->query($sql)?NULL:$error=1;
-            //echo "tutor insertado";   
-        }
-        $sql="INSERT INTO solicitudes(idBeneficiario,idCondicion,idDispositivo,idEstatusSolicitud,porque)VALUES('".$id."','".$this->condicion."','".$this->dispositivo."','1','".$this->descObtencion."')";
-        $con->query($sql)?NULL:$error=1;
-        //echo "solicitud insertado";
-        $id = mysqli_insert_id($con);
-        //echo $id;
-        $sql="INSERT INTO imgsolicitud(foto1,foto2,foto3,idSolicitud)VALUES('".$this->foto1."','".$this->foto2."','".$this->foto3."',".$id.")";
-        $con->query($sql)?NULL:$error=1;
-            //echo $error; 
-            if(!$error){                
-                $con->commit();
-                //envia correo al beneficiario
-                
-                $m = $this->mensajeFormulario($id);
-                $to = $this->email;
-                $subject = "Solicitud Formulario Markoptic";
-                $headers = "MIME-Version: 1.0"."\r\n";
-                $headers .= "Content-Type: text/html; charset=ISO-8859-1"."\r\n";
-                $headers.= "Cc:jparra@markoptic.mx,racosta@fundacionmarkoptic.org.mx"."\r\n";
-                $headers .= "From: Fundación Markoptic <info@fundacionmarkoptic.org.mx>";
-                $result = mail($to,utf8_decode($subject),utf8_decode($m),utf8_decode($headers));
-                return true;
-                //header('Location: ../gracias?solicitud=exito');
-            }  else {
-                $con->rollback();
-                //header('Location: ../gracias?solicitud=fail');
-            }
-        }catch(Exception $e){
-            echo $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--función para insertar los ingresos recabados 
-    public function insertTransaccion($total,$solicitud,$idBanwire,$auth_code,$event,$hash,$status){
-        try{
-            $sql= "INSERT INTO transacciones(donacion,idSolicitud,idBanwire,auth_code,event,hash,status)VALUES('".$total."','".$solicitud."','".$idBanwire."','".$auth_code."','".$event."','".$hash."','".$status."')";
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            if($con->query($sql)){
-                //echo "insercion exitosa";
-            }else{
-                //echo "insercion fallida";
-            }
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--función para insertar los ingresos recabados fuera de linea 
-    public function insertTransacciones($sql){
-        try{
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $con->query($sql);
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-        }
-    }
-
-    //--//updates
-
-    //--función para actualizar imagenes de los beneficiarios
-    public function updateFotoBen($id,$add,$foto){
-        try{
-            $sqlSelect="SELECT idSolicitud FROM imgsolicitud WHERE idSolicitud= '".$id."' ";
-            $sqlInsert = "INSERT INTO imgsolicitud(".$foto.",idSolicitud) VALUES('".$add."','".$id."')";
-            $sqlUpdate= "update imgsolicitud set ".$foto." = '".$add."' where idSolicitud = '".$id."' ";
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            $result = $con->query($sqlSelect);
-            if( $result->num_rows > 0){
-                $con->query($sqlUpdate);
-            }else{
-                echo "no encontrado";
-                $con->query($sqlInsert);
-            }
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--función para actualizar los datos del beneficiario 
-    public function updateDatosBen($id){
-        try{
-            $sqlUpdate= "update beneficiarios set nombre='".$this->nombre."', apellidos='".$this->apellidos."', sexo='".$this->sexo."',fecNacimiento='".$this->fecNacimiento."', idCiudad='".$this->ciudad."',calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion='".$this->idMedioDifusion."',descMedioDif='".$this->descMedioDif."' where id = '".$id."' ";
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            //if ternario 
-            return ( $con->query($sqlUpdate) ) ? true : false;
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--función para actualizar los datos del beneficiario 
-    public function updateDatosTut($idT,$idB){
-        try{
-            $sqlInsert = "INSERT INTO tutores(idBeneficiario,nombre,apellidos,fecNacimiento,sexo,viveConBen,idParentesco,telefono,email) values('".$idB."','".$this->nombreTutor."','".$this->apellidoTutor."','".$this->nacimientoTutor."','".$this->sexoTutor."','".$this->viveBen."','".$this->parentesco."','".$this->telTutor."','".$this->emailTutor."')";
-            $sqlUpdate= "update tutores set nombre='".$this->nombreTutor."', apellidos='".$this->apellidoTutor."',fecNacimiento='".$this->nacimientoTutor."', sexo='".$this->sexoTutor."',viveConBen='".$this->viveBen."',idParentesco='".$this->parentesco."',telefono='".$this->telTutor."',email='".$this->emailTutor."' where id = '".$idT."' ";
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            if($idT != ""){
-               return ( $con->query($sqlUpdate) ) ? true : false;
-            }else{
-                return ( $con->query($sqlInsert) ) ? true : false;
-            }
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--función para actualizar los datos del beneficiario 
-    public function updateDatosSol($id){
-        try{
-            $sqlUpdate= "update solicitudes set idCondicion='".$this->condicion."',idDispositivo='".$this->dispositivo."',idEstatusSolicitud='".$this->estatusSolicitud."', porque = '".$this->descObtencion."' where id = '".$id."' ";
-            $objCon = new conexion();
-            $con = $objCon->conectar();
-            return ( $con->query($sqlUpdate) ) ? true : false;
-        }catch(Exception $e){
-            $e->getMessage();
-        }finally{
-            $con->close();
-        }
-    }
-    //--mostrar datos a insertar en el formulario 
-    public function mostrar(){
-        echo "<br>nombre".$this->getNombre();
-        echo "<br> apellidos".$this->getApellidos();
-        echo"<br>sexo".$this->getSexo();
-        echo"<br>nacimiento".$this->getNacimiento();
-        echo"<br>ciudad".$this->getCiudad();
-        echo"<br>calle".$this->getCalle();
-        echo"<br>colonia".$this->getColonia();
-        echo"<br>cp".$this->getCp();
-        echo"<br>telefono".$this->getTelefono();
-        echo"<br>email".$this->getEmail();    
-        echo"<br>medio difusion".$this->getIdMedioDifusion();    
-        echo"<br>desscripción medio difusion".$this->getDescMedioDif();    
-        echo"<br>independiente".$this->getIndependiente();    
-        echo"<br>tutor".$this->getNombreTutor();    
-        echo"<br>apellido tutor".$this->getApellidoTutor();    
-        echo"<br>nacimiento tutor".$this->getNacimientoTutor();    
-        echo"<br>sexo tutor".$this->getSexoTutor();    
-        echo"<br>vive ben".$this->getViveBen();    
-        echo"<br>parentesco".$this->getParentesco();    
-        echo"<br>tel fijo".$this->getTelTutor();        
-        echo"<br>email".$this->getEmailTutor();    
-        echo"<br>dispositivo".$this->getDispositivo();    
-        echo"<br>condicion".$this->getCondicion();    
-        echo"<br>porque".$this->getDescObtencion();    
-        echo"<br>foto1".$this->getFoto1();    
-        echo"<br>foto2".$this->getFoto2();    
-        echo"<br>foto3".$this->getFoto3();  
-    }
-
-    //--//Generar Documentos
 
     //--genera el total de los dispositivos y solicitudes
     public function generaTotalSolicitudes($activeSheet){
@@ -1254,7 +1286,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
                 solicitudes.fechaSolicitud,
                 beneficiarios.nombre AS nombreBen, 
                 beneficiarios.apellidos AS apellidosBen,
-                beneficiarios.sexo AS sexoBen, 
+                beneficiarios.sexo AS sexoBen,
                 beneficiarios.fecNacimiento AS fNacimientoBen,
                 beneficiarios.calle AS calleBen, 
                 beneficiarios.colonia AS coloniaBen, 
@@ -1333,7 +1365,38 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
-    //--crear sentencia a partir de archivo csv para insertar transacciones
+    //--genera datos a insertar en el formulario 
+    public function mostrar(){
+        echo "<br>nombre".$this->getNombre();
+        echo "<br> apellidos".$this->getApellidos();
+        echo"<br>sexo".$this->getSexo();
+        echo"<br>nacimiento".$this->getNacimiento();
+        echo"<br>ciudad".$this->getCiudad();
+        echo"<br>calle".$this->getCalle();
+        echo"<br>colonia".$this->getColonia();
+        echo"<br>cp".$this->getCp();
+        echo"<br>telefono".$this->getTelefono();
+        echo"<br>email".$this->getEmail();    
+        echo"<br>medio difusion".$this->getIdMedioDifusion();    
+        echo"<br>desscripción medio difusion".$this->getDescMedioDif();    
+        echo"<br>independiente".$this->getIndependiente();    
+        echo"<br>tutor".$this->getNombreTutor();    
+        echo"<br>apellido tutor".$this->getApellidoTutor();    
+        echo"<br>nacimiento tutor".$this->getNacimientoTutor();    
+        echo"<br>sexo tutor".$this->getSexoTutor();    
+        echo"<br>vive ben".$this->getViveBen();    
+        echo"<br>parentesco".$this->getParentesco();    
+        echo"<br>tel fijo".$this->getTelTutor();        
+        echo"<br>email".$this->getEmailTutor();    
+        echo"<br>dispositivo".$this->getDispositivo();    
+        echo"<br>condicion".$this->getCondicion();    
+        echo"<br>porque".$this->getDescObtencion();    
+        echo"<br>foto1".$this->getFoto1();    
+        echo"<br>foto2".$this->getFoto2();    
+        echo"<br>foto3".$this->getFoto3();  
+    }
+
+    //--genera sentencia a partir de archivo csv para insertar transacciones
     public function creaTransacciones($name,$ruta){
         try{
             $file = fopen($ruta,"r");
@@ -1366,6 +1429,21 @@ class Beneficiario extends Tutor{ //**Beneficiario
         }finally{
             fclose($file);
             $objCon->close();
+        }
+    }
+    //--genera total recabado del dispositivo
+    public function recabado($id){
+        try{
+            $sql = "SELECT SUM(donacion) AS donacion FROM transacciones WHERE idSolicitud = '".$id."' ";
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            $result = $result->fetch_assoc();
+            return $result['donacion'];
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
         }
     }
 }//--fin Beneficiario

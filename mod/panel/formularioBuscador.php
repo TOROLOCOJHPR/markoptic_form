@@ -1,6 +1,6 @@
 <form action="" method="post" class="">
     <div class="form-row">
-        <div class="form-group col-12">
+        <div class="form-group col-12 m-0">
             <label>Introduce el número de folio</label>
         </div>
         <div class="form-group col-md-6">   
