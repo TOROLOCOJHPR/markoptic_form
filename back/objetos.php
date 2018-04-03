@@ -1333,45 +1333,34 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
-    //--crear sentencia a partir de archivo csv para insertar transacciones 
+    //--crear sentencia a partir de archivo csv para insertar transacciones
     public function creaTransacciones($name,$ruta){
         try{
             $file = fopen($ruta,"r");
+            $array = array();
             $con = new conexion;
             $objCon = $con->conectar();
             $row=0;
-            $encontrado = 0;
-            $modificado = 0;
             $cont = count (file("files/csv/".$name));
-            $cadena = "insert into transacciones(donacion,idSolicitud,idBanwire) values";
+            $cadena = "INSERT IGNORE INTO transacciones(donacion,idSolicitud,idBanwire,auth_code,event,hash,status,fecha) VALUES";
             while (($data = fgetcsv($file, 1000, ",")) !== FALSE) {
                 if($row >0){
-                    $sql = "SELECT id FROM transacciones WHERE idBanwire = '".$data[7]."'";
-                    $result = $objCon->query($sql);
-                    if($result->num_rows == 0 ){
-                        $cadena = $cadena."(".$data[4].",".$data[6].",'".$data[7]."')";
-                        /*$cadena = $cadena."(".$data[4] . ",'";
-                        $cadena = $cadena."".$data[6] . "')";*/
-                        if($row < $cont -1 ){
-                            $cadena = $cadena.",";
-                        }
-                    }else{
-                        $encontrado = $encontrado + 1;
-                    }  
+                    $cadena = $cadena."(".$data[0].",".$data[1].",'".$data[2]."','".$data[3]."','".$data[4]."','".$data[5]."','".$data[6]."','".$data[7]."')";
+                    if($row < $cont -1 ){
+                        $cadena = $cadena.",";
+                    }
                 }
                 $row = $row + 1;
             }
             //echo $cadena;
-            $row = $row - 1;
-            $message = "Existen ".$encontrado." transacciones de ".$row." totales <br>";
-            //if($encontrado == 0){
-                if ($objCon->query($cadena) === TRUE) {
-                    $message = $message."Inserción exitosa";
-                }else{
-                    $message = $message."Ocurrio un error volver a intentar";
-                }
-            //}
-            return $message;
+            if($objCon->query($cadena)){
+                $array[0] = 1;
+            }else {
+                $array[0] = 0;
+            }
+            $array[1] = $objCon->affected_rows;
+            //$n = $objCon->affected_rows;
+            return $array;
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
