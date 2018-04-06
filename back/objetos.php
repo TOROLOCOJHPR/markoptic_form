@@ -839,6 +839,42 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $con->close();
         }
     }
+    //--busca roles de los usuarios
+    public function buscaRoles(){
+        try{
+            $array = array();
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql = "SELECT id,nombre FROM roles";
+            $result = $con->query($sql);
+            while($row = $result->fetch_array() ){
+                array_push( $array,array('id'=>$row['id'],'nombre'=>$row['nombre']) );
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //busca usuarios
+    public function buscaUsuarios(){
+        try{
+            $array = array();
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql ="SELECT id,user FROM usuarios WHERE eliminado = 0";
+            $result = $con->query($sql);
+            while( $row = $result->fetch_array() ){
+                array_push($array,array('id'=>$row['id'],'usuario'=>$row['user']));
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
 
     //--//INSERT Beneficiario
 
