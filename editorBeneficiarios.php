@@ -4,6 +4,7 @@
     require('back/comprueba.php');
     $metodo = $_SERVER['REQUEST_METHOD'];
     $url2 = "?".$_SERVER['QUERY_STRING'];
+    $menuBack = "Editor Beneficiarios";
     //echo  $url2;
     include 'back/objetos.php'; 
     $objBen = new Beneficiario;

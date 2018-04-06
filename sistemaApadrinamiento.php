@@ -5,6 +5,7 @@
     $resultado = array_unique($entrada);
     print_r($resultado);*/
     $message = "";
+    $menuBack = "Sistema Apadrinamiento";
     //verificamos el método de acceso
     $metodo = $_SERVER['REQUEST_METHOD'];
     if( $metodo == 'POST' ){

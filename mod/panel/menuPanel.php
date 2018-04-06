@@ -11,7 +11,11 @@
             $f = $_GET['f']; //id de busqueda
             $redireccion = '/editorBeneficiarios?f='.$f;
         }
-    }
+    }/*elseif($url == "/editorUsuarios"){
+        if($metodo == "POST"){
+            $redireccion = '/editorUsuarios';
+        }
+    }*/
 
     echo "<script>console.log('".$redireccion."');</script>";
     echo "<script>console.log('".$url."');</script>";
@@ -25,11 +29,11 @@
         </a>
     </div>
     <div class="col-auto bordes p-0">
-        <a href="/panel" class="text-dark px-2 c-align-middle">
+        <a href="/panel" class="text-dark px-2 c-align-middle w-100 h-100">
             <i class="fa fa-home fa-2x fa-fw" aria-hidden="true"></i>
         </a>
     </div>
     <div class="col  c-align-middle text-center">
-        <span>Sección Beneficiarios</span>
+        <strong><?php echo $menuBack; ?></strong>
     </div>
 </div>
