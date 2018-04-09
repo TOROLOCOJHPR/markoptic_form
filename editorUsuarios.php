@@ -1,6 +1,7 @@
 <?php
+    require('back/comprueba.php');
     include 'back/objetos.php';
-    $menuBack = "Editor Usuarios";
+    $menuBack = "Usuarios";
     include 'mod/panel/editorUsuarios/excepciones.php';
 ?>
 <!DOCTYPE html>

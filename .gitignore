@@ -1,3 +1,4 @@
+/.htaccess
 /cms/config.php
 /cms/uploads
 /cms/cache
