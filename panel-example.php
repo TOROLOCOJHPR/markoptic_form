@@ -17,7 +17,7 @@
             <span class="fs-1-5">Panel Edición</span>
         </div>
         <div class="col-auto c-align-middle bordes p-0">
-            <span class="px-2"><?php echo $_SESSION['global']; ?></span>
+            <span class="px-2"><?php echo $_SESSION['usuario']; ?></span>
         </div>
         <div class="col-auto c-align-middle p-0">
             <a class="w-100 h-100 px-3 px-md-2 c-align-middle" href="/back/cerrarSesion">
@@ -29,12 +29,14 @@
     <!-- <h1 class="text-center mt-4">Panel de Beneficiarios</h1> -->
     <?php
         include 'mod/panel/usuarioEstandar.php';
-        if($_SESSION['rol'] == "administrador"){ include 'mod/panel/usuarioAdmin.php'; }
+        //nivel de acceso al panel
+        if($_SESSION[''] == "administrador"){ include 'mod/panel/usuarioAdmin.php'; }
     ?>
     <script src="/js/jquery-3.1.1.js"></script>
     <script src="/js/popper.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="https://use.fontawesome.com/8077e15131.js"></script>    
+    <script src="https://use.fontawesome.com/8077e15131.js"></script> 
+    <script src="/js/no-back.js"></script>  
     <script>
         $(document).ready(function(){
             $('#reporte').click(function(){

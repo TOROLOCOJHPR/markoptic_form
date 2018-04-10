@@ -41,7 +41,7 @@
     </div>
     <!-- nombre usuario -->
     <div class="col-auto col-md-auto bordes p-0 c-align-middle">
-        <span class="px-2 px-md-2"><?php echo $_SESSION['global']; ?></span>
+        <span class="px-2 px-md-2"><?php echo $_SESSION['usuario']; ?></span>
     </div>
     <!-- logout -->
     <div class="col-auto col-md-auto p-0">
