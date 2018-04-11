@@ -21,14 +21,14 @@
     <div class="row mx-0 h-100">
         <!--regresar-->
         <div class="col-auto p-0 h-100 bordes">
-            <a class="c-align-middle w-100 h-100 px-4" <?php echo $redireccion; ?> >
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                &nbsp;regresar
+            <a class="c-align-middle w-100 h-100 px-4 px-md-2" <?php echo $redireccion; ?> >
+                <i class="fa fa-arrow-left mr-md-2" aria-hidden="true"></i>
+                <span class="d-none d-md-inline-block">regresar</span>
             </a>
         </div>
         <!--inicio-->
         <div class="col-auto  p-0 h-100 bordes">
-            <a href="../" class="c-align-middle w-100 h-100 px-4">
+            <a class="c-align-middle w-100 h-100 px-2 px-md-2" href="../">
             <i class="fa fa-home fa-2x fa-fw" aria-hidden="true"></i>
             </a>
         </div>
@@ -37,8 +37,8 @@
             <p class="mb-0"><?php echo $menuBack; ?></p>
         </div>
         <!-- donar -->
-        <div class="col-auto  h-100 px-4 bg-verde-menu">
-            <a href="/donar" class="w-100 h-100 c-align-middle">
+        <div class="col-auto  h-100 px-0 bg-verde-menu">
+            <a href="/donar" class="w-100 h-100 px-3 px-md-4 c-align-middle">
                 <span class="text-center text-white">Donar</span>
             </a>
         </div>

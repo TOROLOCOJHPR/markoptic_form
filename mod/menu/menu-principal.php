@@ -5,14 +5,15 @@
     <div class="row mx-0 h-100">
 
         <!--logo-->
-        <div class="col-3 col-lg-3 p-0 h-100  d-none d-lg-block bordes">
-            <a href="../" class="c-align-middle h-100">                    
-                <img src="/imagenes/fundación/logo.svg" class="" style="height:90%;" />
-            </a>                    
+        <div class="col-auto col-md-3 p-0 h-100  d-lg-block bordes">
+            <a class="c-align-middle h-100 px-2 px-md-0" href="/";>                    
+                <img class="d-none d-md-block" style="height:90%;" src="/imagenes/fundación/logo.svg"/>
+                <i class="fa fa-home fa-2x fa-fw d-block d-md-none" aria-hidden="true"></i>                
+            </a>
         </div>
 
         <!--links-->
-        <div class="col-12 col-lg-9 h-100 ">
+        <div class="col col-lg-9 h-100 ">
             <div class="row h-100 text-center">
                 <div class="col-3 h-100 p-0 bordes">
                     <a href="/fundacion" class="w-100 h-100 c-align-middle">

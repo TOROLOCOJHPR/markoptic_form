@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700');
-
 .ff-dancing-script{font-family: 'Dancing Script', cursive;}
-
 body,html{font-family:'Noto Sans';font-size:12px;}
 .btn-fundacion{border:none;outline: none;padding: 1rem;}
 .btn-verde{position:fixed;outline:none;background-color:rgb(44, 165, 98);z-index: 9999;text-align: center;border:.5px solid white;}

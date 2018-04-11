@@ -1,15 +1,4 @@
     <!--footer-->   
-    <?php
-    $link = "$_SERVER[REQUEST_URI]";
-    if($link !== '/'){
-        echo
-        "<a href='/'>".
-        "<div class='d-block d-lg-none btn-verde p-1 f-opacity-75' style='bottom:80px;border-left:none;'>".
-            "<i class='fa fa-home fa-2x text-white' aria-hidden='true'></i>".
-        "</div>".
-        "</a>";
-    }
-    ?>
     <a id='up' class='btn-verde f-opacity-75 p-1 text-white' style='bottom:80px;border-right:none;'><i class="fa fa-2x fa-arrow-circle-up" aria-hidden="true"></i></a>
     <hr class="w-100 m-0" style="background-color:#057938;height:5px;border:none;">
         <div class="container-fluid ">

@@ -1401,7 +1401,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $objCon->close();
         }
     }
-    //--genera datos a insertar en el formulario 
+    //--muestra datos a insertar en el formulario 
     public function mostrar(){
         echo "<br>nombre".$this->getNombre();
         echo "<br> apellidos".$this->getApellidos();
