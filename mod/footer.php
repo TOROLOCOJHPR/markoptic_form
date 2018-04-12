@@ -129,7 +129,11 @@
                             </a>
                         </span>
                         
-                    </div> 
+                    </div>
+                    <!-- aviso privacidad -->
+                    <div class="w-75 pb-3 pt-1 mx-auto text-center">
+                        <span>© 2018 Fundación Markoptic A.C Todos los derechos reservados |</span><a class="btn-link text-white" href="/files/AVISO - PRIVACIDAD FMAC.PDF" target="blank"> aviso de privacidad</a>
+                    </div>
 
                     <!-- modal para contacto -->
                     <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">

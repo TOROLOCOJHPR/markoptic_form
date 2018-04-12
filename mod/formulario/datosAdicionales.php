@@ -207,10 +207,10 @@ Fundación Markoptic A.C. iniciará un proceso de estudio de la solicitud y se c
     </textarea>
 </div>
 <div class="form-row mx-0">
-    <div class="form-inline m-4">
-        <input type="checkbox" value="1" id="terminos" name="terminos" required class="form-control mr-2">
+    <div class="form-inline m-md-4 m-2 mx-4">
+        <input type="checkbox" value="1" id="terminos" name="terminos" required class="mr-2">
         <label for="terminos">Aceptar los términos y condiciones</label>
         <span class="text-danger <?php echo ($eterminos == 1)?"":"d-none"; ?>">&nbsp; *Acepta los términos y condiciones para continuar</span>
     </div>
+    <a class="text-info m-md-4 m-2 mx-4 btn-link" href="/files/TERMINOS - CONDICIONES DE USO Y PRIVACIDAD.pdf" target="blank">Imprimir Términos y condiciones</a>
 </div>
-<a class="text-info px-4" href="/files/TERMINOS - CONDICIONES DE USO Y PRIVACIDAD.pdf" target="blank">Imprimir Términos y condiciones</a>
