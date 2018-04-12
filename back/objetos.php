@@ -1297,11 +1297,36 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $activeSheet->setCellValue('B6', $totalPID);
             $activeSheet->setCellValue('A7',"TOTAL PII");
             $activeSheet->setCellValue('B7', $totalPII);
+            for($i=2; $i<=8; $i++ ){
+                $activeSheet->getStyle('B'.$i)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);                
+            }
 
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{
 
+        }
+    }
+    public function generaEstatusSolicitudes($activeSheet){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $fila = 2;
+            $sql ="SELECT estatussolicitud.estatus AS estatus, COUNT(*) AS total 
+                FROM `solicitudes` 
+                INNER JOIN estatussolicitud ON estatussolicitud.id = solicitudes.idEstatusSolicitud 
+                WHERE idEstatusSolicitud GROUP BY solicitudes.idEstatusSolicitud ";
+            $result = $con->query($sql);
+            while( $row = $result->fetch_array() ){
+                $activeSheet->setCellValue('C'.$fila , $row['estatus']);
+                $activeSheet->setCellValue('D'.$fila , $row['total']);
+                $activeSheet->getStyle('D'.$fila)->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT);                
+                $fila = $fila + 1;
+            }
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
         }
     }
     //--genera los datos de las solicitudes
@@ -1314,6 +1339,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $sql = "SELECT
                 dispositivos.siglas,
                 solicitudes.id AS idSolicitud,
+                estatusSolicitud.estatus AS estatusSolicitud,
                 dispositivos.nombre AS dispositivo, 
                 condiciones.condicion,
                 solicitudes.porque,
@@ -1349,7 +1375,8 @@ class Beneficiario extends Tutor{ //**Beneficiario
             LEFT JOIN tutores ON tutores.idBeneficiario = solicitudes.idBeneficiario
             LEFT JOIN parentescos ON parentescos.id = tutores.idParentesco
             LEFT JOIN dispositivos ON dispositivos.id = solicitudes.idDispositivo
-            LEFT JOIN condiciones ON condiciones.id = solicitudes.idCondicion";
+            LEFT JOIN condiciones ON condiciones.id = solicitudes.idCondicion
+            LEFT JOIN estatussolicitud ON estatussolicitud.id = solicitudes.idEstatusSolicitud";
             $result = $objCon->query($sql);
 
             //$objBen = new Beneficiario();
@@ -1364,33 +1391,34 @@ class Beneficiario extends Tutor{ //**Beneficiario
                 $porque = $row['porque'];
                 $activeSheet->setCellValue( 'A'.$fila, $row['siglas']."-".$row['idSolicitud'] );
                 $activeSheet->setCellValue( 'B'.$fila, $row['dispositivo'] );
+                $activeSheet->setCellValue( 'C'.$fila, $row['estatusSolicitud'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'C'.$fila, $row['condicion'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'D'.$fila, $row['estatusSolicitud'] );
-                $activeSheet->setCellValue( 'C'.$fila, $porque );
-                $activeSheet->setCellValue( 'D'.$fila, $row['medio'] );
-                $activeSheet->setCellValue( 'E'.$fila, $row['descMedioDif'] );
-                $activeSheet->setCellValue( 'F'.$fila, $row['fechaSolicitud'] );
-                $activeSheet->setCellValue( 'G'.$fila, $row['nombreBen'] );
-                $activeSheet->setCellValue( 'H'.$fila, $row['apellidosBen'] );
-                $activeSheet->setCellValue( 'I'.$fila, $row['sexoBen'] );
-                $activeSheet->setCellValue( 'J'.$fila, $row['fNacimientoBen'] );
-                $activeSheet->setCellValue( 'K'.$fila, $edad );
-                $activeSheet->setCellValue( 'L'.$fila, $row['calleBen'] );
-                $activeSheet->setCellValue( 'M'.$fila, $row['coloniaBen'] );
-                $activeSheet->setCellValue( 'N'.$fila, $row['cpBen'] );
-                $activeSheet->setCellValue( 'O'.$fila, $row['ciudad'] );
-                $activeSheet->setCellValue( 'P'.$fila, $row['estado'] );
-                $activeSheet->setCellValue( 'Q'.$fila, $row['pais'] );
-                $activeSheet->setCellValue( 'R'.$fila, $row['telefonoBen'] );
-                $activeSheet->setCellValue( 'S'.$fila, $row['emailBen'] );
-                $activeSheet->setCellValue( 'T'.$fila, $row['nombreTut'] );
-                $activeSheet->setCellValue( 'U'.$fila, $row['apellidosTut'] );
+                $activeSheet->setCellValue( 'D'.$fila, $porque );
+                $activeSheet->setCellValue( 'E'.$fila, $row['medio'] );
+                $activeSheet->setCellValue( 'F'.$fila, $row['descMedioDif'] );
+                $activeSheet->setCellValue( 'G'.$fila, $row['fechaSolicitud'] );
+                $activeSheet->setCellValue( 'H'.$fila, $row['nombreBen'] );
+                $activeSheet->setCellValue( 'I'.$fila, $row['apellidosBen'] );
+                $activeSheet->setCellValue( 'J'.$fila, $row['sexoBen'] );
+                $activeSheet->setCellValue( 'K'.$fila, $row['fNacimientoBen'] );
+                $activeSheet->setCellValue( 'L'.$fila, $edad );
+                $activeSheet->setCellValue( 'M'.$fila, $row['calleBen'] );
+                $activeSheet->setCellValue( 'N'.$fila, $row['coloniaBen'] );
+                $activeSheet->setCellValue( 'O'.$fila, $row['cpBen'] );
+                $activeSheet->setCellValue( 'P'.$fila, $row['ciudad'] );
+                $activeSheet->setCellValue( 'Q'.$fila, $row['estado'] );
+                $activeSheet->setCellValue( 'R'.$fila, $row['pais'] );
+                $activeSheet->setCellValue( 'S'.$fila, $row['telefonoBen'] );
+                $activeSheet->setCellValue( 'T'.$fila, $row['emailBen'] );
+                $activeSheet->setCellValue( 'U'.$fila, $row['nombreTut'] );
+                $activeSheet->setCellValue( 'V'.$fila, $row['apellidosTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'X'.$fila, $row['fNacimientoTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'Y'.$fila, $row['sexoTut'] );
                 //$objPHPExcel->getActiveSheet()->setCellValue( 'Z'.$fila, $viveConBen );
-                $activeSheet->setCellValue( 'V'.$fila, $row['parentesco'] );
-                $activeSheet->setCellValue( 'W'.$fila, $row['telefonoTut'] );
-                $activeSheet->setCellValue( 'X'.$fila, $row['emailTut'] );
+                $activeSheet->setCellValue( 'W'.$fila, $row['parentesco'] );
+                $activeSheet->setCellValue( 'X'.$fila, $row['telefonoTut'] );
+                $activeSheet->setCellValue( 'Y'.$fila, $row['emailTut'] );
             
                 $fila++;
             }
