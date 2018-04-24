@@ -9,10 +9,11 @@
     /cdn-->
 
     <title>Fundacion | Markoptic</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">    
-    <link rel="stylesheet" href="/css/style-fundacion.css">    
-    <link rel="stylesheet" href="/css/universal.css">    
-    <link rel="stylesheet" href="/js/lightbox/src/css/lightbox.css" >
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link href="/css/minify/style-fundacion.min.css" rel="stylesheet">
+    <link href="/css/minify/universal.min.css" rel="stylesheet">
+    <link href="/css/minify/lightbox.min.css" rel="stylesheet">
     <link rel="icon" type="image/svg" href="../imagenes/fundación/logo.svg" />
 </head>
 <body>

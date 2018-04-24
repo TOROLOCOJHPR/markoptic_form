@@ -1,0 +1,1 @@
+function altura(t){$("html").animate({scrollTop:$(t).offset().top-49},1e3)}$(document).ready(function(){target=location.hash,console.log(target),""!==target&&($("html,body").scrollTop(0),altura(target)),$("footer a").click(function(){location.hostname+location.pathname==this.hostname+this.pathname&&altura($(this.hash))})});

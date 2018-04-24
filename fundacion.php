@@ -34,9 +34,8 @@
     include 'mod/header.php';
     include 'mod/menu.php';
 ?>
-
 <!-- Titulo principal -->
-<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
+<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
     <div class="w-100 h-100 c-align-middle opacity-green">
             <h1><cms:show titulo/></h1>  
     </div>
@@ -46,7 +45,7 @@
     <div id="directorio" class="container-fluid bg-cover-center" id="directorio">
         <div class="row text-white text-center">
             <cms:show_repeatable 'directorio'>
-                <div class="col-12 col-sm-6 bg-cover-directorio p-0" style="background-image: url('<cms:show img_director />');height:450px;">
+                <div height="450px" class="col-12 col-sm-6 bg-cover-directorio p-0" style="background-image: url('<cms:show img_director />');height:450px;">
                     <div class="directorio-descripcion opacity-black">
                         <div class="c-align-middle">
                             <p class="w-100 px-2">
@@ -92,7 +91,7 @@
                     <div class="directorio-descripcion opacity-black">
                         <div class="c-align-middle">
                             <p class="w-100 px-2">
-                                <span class="fs-2" ><cms:show nombre_equipo/></span>                       
+                                <span class="fs-2" ><cms:show nombre_equipo/></span>
                             </p>
                         </div>
                         <div class="c-align-middle fs-2 px-2 f-style-italic">"<cms:show desc_equipo />"</div>
@@ -109,14 +108,14 @@
                 <p class="fs-1-5 m-0">
                     <cms:show historia />
                 </p>
-        </div>        
+        </div>
     </div>
 </div>
 <!--/Historia-->
 <!--Misión Visión-->
-<div id="mision" class=" container-fluid p-0 bg-cover" style="background-image: url('/imagenes/fundación/mision.jpg');background-position:0% 30%;">
+<div id="mision" class=" container-fluid p-0 bg-cover" style="background-image: url('/imagenes/fundación/mis.jpg');background-position:0% 30%;">
 <div class="capa-green-50 pt-5 pb-5">
-<div class="row mx-0 text-white t-shadow-2-black fs-1-5">    
+<div class="row mx-0 text-white t-shadow-2-black fs-1-5">
     <div class="col-12 col-md-6 bordes p-5">
         <h1 class="text-center">Misión</h1>
             <p class="text-center ">
@@ -137,7 +136,7 @@
     <div id="objetivos" class="container-fluid ">
         <div class="row p-3" style="font-size:1.3rem;">
         <h1 class="text-center w-100">Objetivos</h1>
-            <div class="col-12 col-sm-8 mx-auto">                
+            <div class="col-12 col-sm-8 mx-auto">
                 <ul class="text-justify ">
                     <cms:show_repeatable 'objetivos'>
                         <li>
@@ -150,21 +149,21 @@
     </div>
 <!--/Objetivos-->
 <!--Valores-->
-    <div id="valores" class="container-fluid text-white bg-verde-menu bg-cover-center p-0" style='background-image:url(/imagenes/fundación/valores.jpg);'>
-        <div class='capa-green-dark-75 t-shadow-2-black'>    
+    <div id="valores" class="container-fluid text-white bg-verde-menu bg-cover-center p-0" style='background-image:url(/imagenes/fundación/val2.jpg);'>
+        <div class='capa-green-dark-75 t-shadow-2-black'>
             <div class="row mx-0 text-center px-5">
                 <div class="col-12"><h2 class="fs-3">Valores</h2></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Liderazgo</p></div>   
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Solidaridad</p></div>   
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Familia</p></div>   
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Calidad</p></div>   
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Fidelización</p></div>   
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Inclusión</p></div>     
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Respeto</p></div>     
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Empatía</p></div>     
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Liderazgo</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Solidaridad</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Familia</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Calidad</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Fidelización</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Inclusión</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Respeto</p></div>
+                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Empatía</p></div>
             </div>
         </div>
-    </div> 
+    </div>
 <!--/Valores-->
 <!--sevent.block-->
     <div id="transparencia" class="container-fluid">
@@ -181,7 +180,7 @@
     </div>
 <!--/sevent.block-->
 
-<!--footer-->   
+<!--footer-->
     <?php
         include 'mod/footer.php';
     ?>

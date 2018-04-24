@@ -19,7 +19,7 @@
     include 'mod/menu.php';
 ?>
 
-    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
+    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
         <div class="w-100 h-100  c-align-middle flex-column opacity-green">
             <cms:if k_is_page><h3>Testimonio</h3></cms:if>
             <h1 class="text-center" style='text-transform:capitalize;'><cms:if k_is_folder><cms:show k_folder_name /><cms:else /><cms:if k_is_page><cms:show k_page_title /><cms:else />Videos</cms:if></cms:if></h1>

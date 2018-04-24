@@ -5,7 +5,7 @@
 ?>
 
 <!-- Titulo principal -->
-<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
+<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
     <div class="w-100 h-100 c-align-middle opacity-green">
             <h1>Donar</h1> 
     </div>
@@ -43,8 +43,8 @@
 <?php
     include 'mod/footer.php';
 ?>
-<script type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
-<script src="/js/motorPago.js"></script>
+<script async type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
+<script async src="/js/motorPago.js"></script>
 <script>
     $(document).ready(function(){
         $('#donacion').on('input', function () { 

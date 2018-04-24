@@ -1,5 +1,9 @@
     <!--footer-->   
-    <a id='up' class='btn-verde f-opacity-75 p-1 text-white' style='bottom:80px;border-right:none;'><i class="fa fa-2x fa-arrow-circle-up" aria-hidden="true"></i></a>
+    <a style='bottom:80px;border-right:none;width:2rem;height:3rem' id='up' class='btn-verde f-opacity-75 p-1 c-align-middle'>
+        <svg width="1rem" viewBox="0 0 448 512">
+            <path fill="white" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
+        </svg>
+    </a>
     <hr class="w-100 m-0" style="background-color:#057938;height:5px;border:none;">
         <div class="container-fluid ">
             <div class="row">
@@ -62,7 +66,7 @@
                                 	    <div id="mce-responses" class="clear m-0 px-0">
                                 		    <div class="response m-0 pt-1" id="mce-error-response" style="display:none"></div>
                                 		    <div class="response text-white text-center mb-1 mt-1 mx-0 pt-1" id="mce-success-response" style="display:none"></div>
-                                	    </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                	    </div><!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                                         <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_5da492ad040c5451de3927303_aa16cd9481" tabindex="-1" value=""></div>
                                         <div class="clear"><input type="submit" value="Suscribir" name="subscribe" id="mc-embedded-subscribe" class="btn bg-verde-menu text-white p-2 mx-0"></div>
                                         </div>
@@ -188,13 +192,16 @@
     <!--local-->
 
     <!--/local-->
-    <script src="/js/jquery-3.1.1.js"></script>
-    <script src="/js/js-footer-link-scroll.js"></script>
+    <!-- <script src="/js/jquery-3.1.1.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
+    <!-- <script src="/js/js-footer-link-scroll.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="/js/js-position-top.js"></script>
-    <script src="https://use.fontawesome.com/8077e15131.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/lightbox/src/js/lightbox.js"></script>
+    <!-- <script src="https://use.fontawesome.com/8077e15131.js"></script> -->
+    <!-- <script src="/js/popper.min.js"></script> -->
+    <!-- <script src="/js/bootstrap.min.js"></script> -->
+    <script src="/js/minify/lightbox.min.js"></script>
     <script>
     $(document).ready(function(){
         //enviar mail de formulario contacto
