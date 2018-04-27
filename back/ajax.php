@@ -61,7 +61,7 @@
         $fecha = $_POST['fecha'];
         $objBen = new Beneficiario;
         $edad = $objBen->generaEdadBeneficiario($fecha);
-        echo "<script>console.log('".$edad."')</script>"; 
+        // echo "<script>console.log('".$edad."')</script>"; 
         //echo "<script>alert('edad'); </script>";
         if($edad >= 6 and $edad< 18){
         
@@ -115,7 +115,7 @@
         }
         $objBen = new Beneficiario;
         $carga = $_POST['carga']+1;
-        echo "<script>console.log('carga: ".$carga."')</script>";
+        // echo "<script>console.log('carga: ".$carga."')</script>";
         //$sql = "SELECT solicitudes.id FROM solicitudes  WHERE idEstatusSolicitud = 1";
         $arreglo = $_POST['arreglo'];
         include '../mod/beneficiarios/tarjetasBeneficiarios.php';

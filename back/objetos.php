@@ -1,5 +1,6 @@
 <?php
 include 'conexion.php';
+include 'conexion-old.php';
 class DatosPersonales { //**DatosPersonales
     //--atributos DatosPersonales
     public $nombre,$apellidos,$sexo,$fecNacimiento,$ciudad,$calle,$colonia,$cp,$telefono,$email,$idMedioDifusion,$descMedioDif;
@@ -1339,7 +1340,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $sql = "SELECT
                 dispositivos.siglas,
                 solicitudes.id AS idSolicitud,
-                estatusSolicitud.estatus AS estatusSolicitud,
+                estatussolicitud.estatus AS estatusSolicitud,
                 dispositivos.nombre AS dispositivo, 
                 condiciones.condicion,
                 solicitudes.porque,

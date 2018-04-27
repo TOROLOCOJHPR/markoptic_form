@@ -1,18 +1,7 @@
-// funcion para poner el scroll en la posicion del #id
-function altura(target){
-    $('html').animate({
-        scrollTop: $(target).offset().top -49
-    }, 1000);
-}
-// funcion para poner el scroll en cero
-function posCero(){
-    $('html').animate({scrollTop: 0 + 'px'}, 1000);
-}
-
 $(document).ready(function(){
     //obtener el #id del url
     target = location.hash;
-    console.log(target);
+    // console.log(target);
     //verificar si existe #id en el url
     if( target !== ''){
         //posicionar el scroll en la parte superior de la ventana
@@ -44,3 +33,13 @@ $(document).ready(function(){
         }
     });
 });
+// funcion para poner el scroll en la posicion del #id
+function altura(target){
+    $('html').animate({
+        scrollTop: $(target).offset().top -49
+    }, 1000);
+}
+// funcion para poner el scroll en cero
+function posCero(){
+    $('html').animate({scrollTop: 0 + 'px'}, 1000);
+}

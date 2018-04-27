@@ -6,7 +6,7 @@
     <!-- contenido -->
 
     <!-- Titulo principal -->
-    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/valores.jpg');">
+    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
         <div class="w-100 h-100 c-align-middle opacity-green">
                 <h1>Solicitud</h1>  
         </div>

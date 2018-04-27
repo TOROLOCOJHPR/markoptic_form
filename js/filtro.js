@@ -17,7 +17,7 @@ $(document).ready(function(){
         }
         //console.log(arregloAjax);
         var r = "div";
-        console.log(r);
+        // console.log(r);
         carga = carga;
         var parametros = {
             "formulario" : "datosBeneficiario",
@@ -26,8 +26,8 @@ $(document).ready(function(){
             "arreglo" : arregloAjax
         }
         ajax(parametros,r);
-        console.log(cont);
-        console.log(carga);
+        // console.log(cont);
+        // console.log(carga);
     }
     //función para cargar mas beneficiarios
     $('#cargaMas').click(function(){
@@ -109,7 +109,7 @@ $(document).ready(function(){
 	    var scrollPosition = $(window).height() + $(window).scrollTop();
 	    if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
             // when scroll to bottom of the page
-            console.log('bottom');
+            // console.log('bottom');
             arregloAjax.length=0;
             recorrido = total-cont;
             carga++;        
