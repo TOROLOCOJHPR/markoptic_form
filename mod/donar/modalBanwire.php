@@ -1,9 +1,9 @@
 <!-- banwire -->
 <div class="modal fade banwire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
-        <div class="modal-content px-5 pb-3">
-            <h2 class="text-center pt-3">Banwire</h2>
-            <img src="../imagenes/fundación/paypal-azul.png" class="mx-auto w-25" alt="logo paypal">
+        <div class="modal-content px-5 py-3">
+            <!-- <h2 class="text-center pt-3">Banwire</h2> -->
+            <img src="../imagenes/fundación/banwire-blue.png" class="mx-auto w-25" alt="logo paypal">
             <p class=" text-center">FUNDACION MARKOPTIC A.C</p>
             <h4>Monto a donar</h4>
             <span class="mb-2">Monto mínimo de donación 50.00 mxn</span>

@@ -36,5 +36,10 @@
             ?>
         </div>
     </div>
-    <?php if($pagina == "apadrina"){include 'mod/beneficiarios/recaudacion.php'; include 'mod/donar/modalBanwire.php';} ?>
+    <?php 
+        if($pagina == "apadrina"){
+            include 'mod/beneficiarios/recaudacion.php'; include 'mod/donar/modalBanwire.php';
+            include 'mod/donar/modalExcedente.php';
+        } 
+    ?>
 </div>
