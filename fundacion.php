@@ -49,12 +49,12 @@
                     <div class="directorio-descripcion opacity-black">
                         <div class="c-align-middle">
                             <p class="w-100 px-2">
-                                <span class="fs-2" ><cms:show nom_director/></span>
+                                <span class="fs-1-5" ><cms:show nom_director/></span>
                                 <br>
                                 <span style="font-size:1.2rem;" ><cms:show puesto_director /></span>                       
                             </p>
                         </div>
-                        <div class="c-align-middle fs-2 px-2 f-style-italic">"<cms:show desc_director />"</div>
+                        <div class="c-align-middle fs-1-5 px-2 f-style-italic">"<cms:show desc_director />"</div>
                     </div>
                 </div>
             </cms:show_repeatable>
@@ -103,9 +103,9 @@
     <!--Historia-->
 <div class="container-fluid" id="historia">
     <div class="row ">
-        <div class="col-lg-10 col-11 mx-auto text-center px-3 pt-5 pb-5">
-            <h1 class="text-center">Historia</h1>
-                <p class="fs-1-5 m-0">
+        <div class="col-12 col-lg-10 mx-auto text-center px-3 pt-5 pb-5">
+            <h1 class="text-center text-dark">Historia</h1>
+                <p class="fs-1-2 m-0">
                     <cms:show historia />
                 </p>
         </div>
@@ -133,11 +133,11 @@
 </div>
 <!--/Misión Visión-->
 <!--Objetivos-->
-    <div id="objetivos" class="container-fluid ">
-        <div class="row p-3" style="font-size:1.3rem;">
-        <h1 class="text-center w-100">Objetivos</h1>
-            <div class="col-12 col-sm-8 mx-auto">
-                <ul class="text-justify ">
+    <div id="objetivos" class="container-fluid ul-lh">
+        <div class="row p-3 text-dark fs-1-2">
+            <h1 class="text-center w-100">Objetivos</h1>
+            <div class="col-12 col-md-10 mx-auto">
+                <ul class="text-left px-0">
                     <cms:show_repeatable 'objetivos'>
                         <li>
                             <cms:show objetivo />
@@ -150,29 +150,29 @@
 <!--/Objetivos-->
 <!--Valores-->
     <div id="valores" class="container-fluid text-white bg-verde-menu bg-cover-center p-0" style='background-image:url(/imagenes/fundación/val2.jpg);'>
-        <div class='capa-green-dark-75 t-shadow-2-black'>
-            <div class="row mx-0 text-center px-5">
-                <div class="col-12"><h2 class="fs-3">Valores</h2></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Liderazgo</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Solidaridad</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Familia</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Calidad</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Fidelización</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Inclusión</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Respeto</p></div>
-                <div class="col-md-4 col-6 px-3 mx-auto p-3 c-align-middle"><p class="grow">Empatía</p></div>
+        <div class='capa-green-dark-75'>
+            <div class="row mx-0 text-center px-5 py-4 t-shadow-2-black">
+                <div class="col-12 font-weight-bold"><h2 class="fs-3">Valores</h2></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Liderazgo</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Solidaridad</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Familia</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Calidad</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Fidelización</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Inclusión</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Respeto</span></div>
+                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Empatía</span></div>
             </div>
         </div>
     </div>
 <!--/Valores-->
 <!--sevent.block-->
     <div id="transparencia" class="container-fluid">
-        <h1 class="text-center ">Transparencia</h1>
+        <h1 class="text-center text-dark">Transparencia</h1>
         <div class="row">
             <div class="col-12 c-align-middle">
                 <ul>
                     <cms:show_repeatable 'transparencias'>
-                        <li><a href="<cms:show pdf_file />" class="text-info fs-1-5" target="blank"><cms:show transparencia /></a></li>
+                        <li><a href="<cms:show pdf_file />" class="text-info fs-1-2" target="blank"><cms:show transparencia /></a></li>
                     </cms:show_repeatable>
                 </ul>
             </div>

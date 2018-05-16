@@ -1,11 +1,11 @@
 <!-- datos del tutor -->
-<div class='row mx-0 mt-2'>
+<div class='row mx-0 mt-2 text-dark'>
     <div class='col-md-4 bg-verde-menu c-align-middle text-white p-3'>
         <p class='mb-0'>Información del tutor</p>
     </div>
 </div>
 <!-- confirmación de tutor -->
-<div class="form-row mx-0 mt-2">
+<div class="form-row mx-0 mt-2 text-dark">
     <div class="form-inline col-12 p-4">
         <strong>¿El beneficiario depende de otra persona?</strong> &nbsp;&nbsp;
         <?php 
@@ -30,7 +30,7 @@
 <!-- datos personales -->
 <div class="text-info mt-2 mb-2 mx-4" style='display:<?php echo ($tutObligatorio != 0)?"":"none"; ?>;' id="msgMenorEdad"><span>* Datos requeridos, por minoría de edad del solicitante</span></div>
 <div class='seccionTutor' style='display:none;'>
-    <div class='form-row px-4 mx-0'>
+    <div class='form-row px-4 mx-0 text-dark'>
         <div class='form-group col-sm-6'>
             <label>Nombre</label>
             <span class="text-danger <?php echo ($etutNombre == 1)?"":"d-none"; ?>"> *Introduce nombre(s) del tutor</span>
@@ -42,7 +42,7 @@
             <input type="text" class='form-control' name='tutApellido' placeholder='Apellido' value ="<?php if(isset($_POST['tutApellido'])){echo $_POST['tutApellido'];} ?>"> 
         </div>
     </div>
-    <div class='form-row px-4 mx-0'>
+    <div class='form-row px-4 mx-0 text-dark'>
         <div class='form-group col-md-6'>
             <label>Sexo</label>
             <span class="text-danger <?php echo ($esexoTutor == 1)?"":"d-none"; ?>"> *Selecciona un sexo</span>
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-    <div class='form-row px-4 mx-0'>
+    <div class='form-row px-4 mx-0 text-dark'>
         <div class='form-group col-md-6'>
             <label>Parentesco</label>
             <span class="text-danger <?php echo ($eparentesco == 1)?"":"d-none"; ?>"> *Selecciona un parentesco</span>
@@ -107,7 +107,7 @@
         </div>
     </div>
     <!-- datos contacto -->
-    <div class='form-row px-4 mx-0'>
+    <div class='form-row px-4 mx-0 text-dark'>
         <div class='form-group col-md-6'>
             <label>Teléfono</label>
             <span class="text-danger <?php echo ($etutTel == 1)?"":"d-none"; ?>"> *Introduce un número de telefono</span>

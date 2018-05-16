@@ -1,6 +1,6 @@
 <?php
 //error_reporting(E_ALL);
-$file = file_put_contents('response.txt', json_encode($_POST));
+//$file = file_put_contents('response.txt', json_encode($_POST));
 //echo json_encode($_POST);
 include 'back/objetos.php';
 //$file = file_put_contents('response.txt',$_POST['reference'].",".$_POST['total'].",".$_POST['id']);

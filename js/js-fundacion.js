@@ -10,8 +10,10 @@ $(document).ready(function(){
         var posicionT = posicion.top - menuHeight;
         if(sT >= posicionT){
             $('#menu').addClass('fijo');
+            $('#menu').addClass('ctamaño');
         }else{
             $('#menu').removeClass('fijo');
+            $('#menu').removeClass('ctamaño');
         }
     });
     /*--/sticky-top*/

@@ -11,7 +11,7 @@
         $porUltimo ='Por último, ayúdanos adjuntando unas fotografías recientes y claras, donde podamos identificar tu necesidad';
     }
 ?>
-<div class='row mx-0 mt-4'>
+<div class='row mx-0 mt-4 text-dark'>
     <div class='col-md-4 bg-verde-menu c-align-middle text-white p-3'>
         <p class='mb-0'>Información del dispositivo</p>
     </div>
@@ -22,7 +22,7 @@
     if( $d == "brazo"){
         $sol = "superior";
     ?>
-    <div class="form-row px-4 mx-0 mt-2">
+    <div class="form-row px-4 mx-0 mt-2 text-dark">
         <div class="form-group col-md-6">
             <label class="pt-4 pb-2"><strong>¿Qué extremidad necesita?</strong></label>
             <span class="text-danger <?php echo ($edispositivo == 1)?"":"d-none"; ?>"> *Selecciona un dispositivo</span>
@@ -53,13 +53,13 @@
         $vCondicion = "";
     }
 ?>
-<div class="for-row px-4 mx-0">
+<div class="for-row px-4 mx-0 text-dark">
     <span class="text-danger <?php echo ($econdicion == 1)?"":"d-none"; ?>"> *Selecciona una condición</span>
     <?php
         $objBen->buscaCondicion($condicion,$vCondicion);
     ?>
 </div>
-<label class="pt-4 pb-2"><strong class="w-100 mt-5 mx-4">¿Cómo te enteraste de Fundación Markoptic?</strong></label>
+<label class="pt-4 pb-2 text-dark"><strong class="w-100 mt-5 mx-4">¿Cómo te enteraste de Fundación Markoptic?</strong></label>
 <span style='color:red;display:<?php echo ($emedio == 1)?"":"none"; ?>;'> *Selecciona un medio de difusión</span>
 <span style='color:red;display:<?php echo ($emedioOtro == 1)?"":"none"; ?>;'> *Introduce una descripción</span>
 <?php
@@ -74,7 +74,7 @@
         $otro = "";
     }
 ?>
-<div class="form-row mx-0 px-4">
+<div class="form-row mx-0 px-4 text-dark">
     <div class='form-inline col-md-12 px-0'>
     <?php
         $objBen->buscaDifusion($difusion,$otro);
@@ -83,7 +83,7 @@
 </div>
 <!-- descripcion -->
 <label class ="text-danger px-4 pt-3 <?php echo ($eporque == 1)?"":"d-none"; ?>"> *Introduce por que solicitas el dispositivo</label>
-<div class="form-row px-4 mx-0">
+<div class="form-row px-4 mx-0 text-dark">
     <div class='form-group col-12 px-0'>
         <textarea name='breveDescripcion' rows="4" cols="50" class='form-control mt-3' placeholder="Cuéntanos brevemente porque te gustaría recibir el dispositivo biomédico" required><?php if(isset($_POST['breveDescripcion'])){echo $_POST['breveDescripcion'];}?></textarea>
     </div>
@@ -91,7 +91,7 @@
 <!-- fotografías del usuario -->
 <h3 class='text-center' style='line-height:140%;'><?php echo $porUltimo; ?></h3>
 <div class="container-fluid" id="foto">
-    <div class="row mx-0 px-0">
+    <div class="row mx-0 px-0 text-dark">
         <!-- fotografía uno -->
         <div class="col-12 col-sm-9 col-md-6 p-3" id="foto1">
             <div class="row mx-0">
@@ -118,7 +118,7 @@
         </div>
         <!-- fotografía dos -->
         <div class="col-12 col-sm-9 col-md-6 p-3" id="foto2">
-            <div class="row mx-0">
+            <div class="row mx-0 text-dark">
                 <div class="col-6 c-align-middle">
                     <label id="label" for="fotofile2">
                         <img class="preview" src="<?php echo $imgfoto2; ?>" alt="Fotografia de beneficiario numero uno">
@@ -142,7 +142,7 @@
         </div>
         <!-- fotografía tres -->
         <div class="col-12 col-sm-9 col-md-6 p-3" id="foto3">
-            <div class="row mx-0">
+            <div class="row mx-0 text-dark">
                 <div class="col-6 c-align-middle">
                     <label id="label" for="fotofile3">
                         <img class="preview" src="<?php echo $imgfoto3; ?>" alt="Fotografia de beneficiario numero uno">
@@ -172,8 +172,8 @@
 <input type='hidden' value='' name='edad' id="edad"/>
 <!-- terminos y condiciones -->
 <hr>
-<h3 class="m-4">Términos y Condiciones</h3>
-<div class="form-row mx-0">
+<h3 class="m-4 text-dark">Términos y Condiciones</h3>
+<div class="form-row mx-0 text-dark">
     <textarea type="textarea" class="form-control px-4 mx-4" style="resize: none;" rows="10" readonly="true">
 TÉRMINOS Y CONDICIONES DE USO Y PRIVACIDAD.
 
@@ -206,7 +206,7 @@ Al aceptar estos Términos y Condiciones FUNDACIÓN MARKOPTIC A.C. “Implica su
 Fundación Markoptic A.C. iniciará un proceso de estudio de la solicitud y se contactará con usted personalmente al momento de haber analizado y ser verificada la información proporcionada, si en caso contrario de no haber sido aceptada su solicitud será incluido a la lista de espera.
     </textarea>
 </div>
-<div class="form-row mx-0">
+<div class="form-row mx-0 text-dark">
     <div class="form-inline m-md-4 m-2 mx-4">
         <input type="checkbox" value="1" id="terminos" name="terminos" required class="mr-2">
         <label for="terminos">Aceptar los términos y condiciones</label>

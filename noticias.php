@@ -16,7 +16,7 @@
         <!-- <a class='btn-verde f-opacity-75 p-1 text-white' style='top:50px;border-left:none;' href="/video"><i class="fa fa-2x fa-arrow-left" aria-hidden="true"></i></a> -->
         <div class="row no-gutters text-white text-center">
             <div class="col-12 bg-verde-menu">
-                <p class="m-0 p-4"><cms:show k_page_title /></p>
+                <h2 class="m-0 p-4"><cms:show k_page_title /></h2>
             </div>
             <div class="col-auto px-2"style="background-color:#888586;">
                 <label><cms:date k_page_date format='%d' locale='es-MX' /></label>
@@ -56,7 +56,7 @@
                                 <div class="col-auto text-left px-2 c-align-middle text-white"style="background-color:#bab4b3;">
                                     <span class="p-0 text-capitalize"><cms:date k_page_date format='%B' locale="es-MX" /></span>
                                 </div>
-                                <div class="col-12 px-4 pt-3 pb-2">
+                                <div class="col-12 px-4 pt-3 pb-2 text-dark">
                                     <p><cms:excerpt count='450' truncate_chars='1'><cms:show noticia /></cms:excerpt></p>
                                     <a href='<cms:show k_page_link />' class='btn bg-verde-menu mt-2' style="bottom:0px;">leer mas..</a>
                                 </div>

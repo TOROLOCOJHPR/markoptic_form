@@ -47,8 +47,8 @@
     <!-- contenido -->
     <?php     
         $contenido="
-        <h2 class='text-center pt-3'>¡Muchas Gracias!</h2>
-        <h4 class='text-center px-5 pb-4'>Gracias por la confianza que nos brindan, juntos mejoramos la calidad de vida de personas con discapacidad</h4>
+        <h2 class='text-center pt-3 text-dark'>¡Muchas Gracias!</h2>
+        <h4 class='text-center px-5 pb-4 text-dark'>Gracias por la confianza que nos brindan, juntos mejoramos la calidad de vida de personas con discapacidad</h4>
         <ul class='list-inline mx-5 mt-3 text-center' id='aliados'>
             <cms:show_repeatable 'aliado'>
                 <li><img src='<cms:show img_aliado />' alt='<cms:show nom_aliado />'></li>
@@ -58,7 +58,7 @@
             $contenido = $_GET['al'];
             if ($contenido == 'residencias'){
                 $contenido = '
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 p-0">
                         <img class="img-fluid" src="../imagenes/fundación/residencias.jpg" alt="residentes fundación markoptic">
                     </div>
@@ -66,7 +66,7 @@
                         <p> ¡Únete al equipo de Markoptic! <br>Libera tu servicio social y residencias con nosotros.<br> Envía tus datos a <br><a class="text-info" href="mailto:residencias@markoptic.mx">residencias@markoptic.mx</a></p>
                     </div>
                 </div>
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 c-align-middle px-5 fs-1-5 text-center">
                         <p>
                         <span><strong>Conoce a: </strong>Misael Verdugo</span>
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 p-0">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/YeTZaCjZclQ" allowfullscreen></iframe>
@@ -94,7 +94,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 c-align-middle px-5 fs-1-5 text-center">
                         <p>
                         <span><strong>Conoce a: </strong>Eric Alejandro</span>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 p-0">
                         <div class="embed-responsive embed-responsive-16by9">
                             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/GJim0yCj0N0" allowfullscreen></iframe>
@@ -126,7 +126,7 @@
             }
             if ($contenido == 'voluntariado'){
                 $contenido = '
-                <div class="row mx-0" >
+                <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 p-0">
                         <img class="img-fluid" src="../imagenes/fundación/voluntariado.jpg" alt="voluntariado fundación markoptic">
                     </div>
@@ -138,7 +138,7 @@
             }
             if ($contenido == 'bolsaTrabajo'){
                 $contenido = '
-                <div class="row mx-0">
+                <div class="row mx-0 text-dark">
                 <div class="col-12 col-md-6 p-0">
                     <img class="img-fluid "src="../imagenes/fundación/bolsa de trabajo.jpg" alt="bolsa de trabajo fundación markoptic">
                 </div>    

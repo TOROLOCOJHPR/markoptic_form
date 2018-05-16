@@ -6,7 +6,7 @@
     $result = $objBen->buscaDatosApadrinado($id);
     $edad = $objBen->generaEdadBeneficiario($result['fecNacimiento']); 
 ?>
-<div class="row mx-0" style="">
+<div class="row mx-0 text-dark" style="">
     <div class="col-12 col-sm-6 col-md-4 ">
         <h5 class="text-capitalize text-center mt-2"><?php echo $result['nombre'].'&nbsp;'.$result['apellidos']; ?></h5>
         <img class="img-fluid" src="/imagenes/uploads/<?php echo $ubicacion.$result[$foto]; ?>" alt="imagen del beneficiario">

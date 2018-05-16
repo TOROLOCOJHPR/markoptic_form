@@ -11,9 +11,22 @@
     <title>Fundacion | Markoptic</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link href="/css/minify/style-fundacion.min.css" rel="stylesheet">
+    <!-- <link href="/css/minify/style-fundacion.min.css" rel="stylesheet"> -->
+    <link href="/css/style-fundacion.css" rel="stylesheet">
     <link href="/css/minify/universal.min.css" rel="stylesheet">
     <link href="/css/minify/lightbox.min.css" rel="stylesheet">
     <link rel="icon" type="image/svg" href="../imagenes/fundación/logo.svg" />
+
+    <!-- google analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71345627-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-71345627-1');
+    </script>
+
 </head>
 <body>

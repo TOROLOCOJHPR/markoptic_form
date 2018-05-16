@@ -45,8 +45,8 @@
     </div>  
   
 <!-- Galería videos -->
-<h3 class="text-center mt-3">Videos</h3>
-<div class="container-fluid px-0 text-center text-light">
+<h3 class="text-center mt-3 text-dark">Videos</h3>
+<div class="container-fluid px-0 text-center">
     <div class="row mx-0">
         <cms:pages masterpage='video.php' limit='2' folder="NOT testimonios">
             <div class="col-12 col-sm-6 mt-4 px-0">
@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="row mx-0">
-                            <div class="col-12 text-dark p-3 text-center "><cms:show video_desc /></div>
+                            <div class="col-12 p-3 text-center text-dark"><cms:show video_desc /></div>
                         </div>
                     </div>
                 </div>  

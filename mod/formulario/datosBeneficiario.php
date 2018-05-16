@@ -1,10 +1,10 @@
-<div class='row mx-0 mt-4'>
+<div class='row mx-0 mt-4 text-dark'>
     <div class='col-md-4 bg-verde-menu c-align-middle text-white p-3'>
         <p class='mb-0'>Información del beneficiario</p>
     </div>
 </div>
 <!-- datos personales -->
-<div class="form-row px-4 mx-0 mt-4">
+<div class="form-row px-4 mx-0 mt-4 text-dark">
     <div class="form-group col-md-6">
         <label>Nombre(s)</label>
         <span class="text-danger <?php echo ($enombre == 1)?"":"d-none"; ?>"> *Introduce nombre(s) del beneficiario</span>
@@ -16,7 +16,7 @@
         <input type="text" class='form-control' name='apellido' placeholder='Apellido' value ="<?php if(isset($_POST['apellido'])){echo $_POST['apellido'];} ?>" required>
     </div>
 </div>    
-<div class='form-row px-4 mx-0'>
+<div class='form-row px-4 mx-0 text-dark'>
     <div class='form-group col-md-6'>
         <label>Sexo</label>
         <span class="text-danger <?php echo ($esexo == 1)?"":"d-none"; ?>"> *Selecciona un sexo</span>
@@ -41,7 +41,7 @@
     </div>
 </div>
 <!-- datos demográficos-->
-<div class='form-row px-4 mx-0'>
+<div class='form-row px-4 mx-0 text-dark'>
     <div class='form-group col-md-4'>
         <label>País</label>
         <span class="text-danger <?php echo ($epais == 1)?"":"d-none"; ?>"> *Selecciona un país</span>
@@ -55,7 +55,7 @@
             $objDato->buscaPais($p);
         ?>
     </div>
-    <div class='form-group col-md-4'>
+    <div class='form-group col-md-4 text-dark'>
         <label>Estado</label>
         <span class="text-danger <?php echo ($eestado == 1)?"":"d-none"; ?>"> *Selecciona un estado</span>
         <?php 
@@ -72,7 +72,7 @@
         }
         ?>
     </div>
-    <div class='form-group col-md-4'>
+    <div class='form-group col-md-4 text-dark'>
         <label>Ciudad o Localidad</label>
         <span class="text-danger <?php echo ($eciudad == 1)?"":"d-none"; ?>"> *Selecciona una ciudad</span>
         <?php 
@@ -90,12 +90,12 @@
         ?>
     </div>
 </div>
-<div class='form-row px-4 mx-0'>
+<div class='form-row px-4 mx-0 text-dark'>
     <label>Calle y Número</label>
     <span class="text-danger <?php echo ($ecalle == 1)?"":"d-none"; ?>"> *Introduce calle y número</span>
     <input type="text" class='form-control' name='calle' placeholder='Calle y Número' value ="<?php if(isset($_POST['calle'])){echo $_POST['calle'];} ?>" required>
 </div>
-<div class='form-row px-4 mx-0'>
+<div class='form-row px-4 mx-0 text-dark'>
     <div class='form-group col-sm-8'>
         <label>Colonia</label>
         <span class="text-danger <?php echo ($ecolonia == 1)?"":"d-none"; ?>"> *introduce una colonia</span>
@@ -108,7 +108,7 @@
     </div>
 </div>  
 <!-- datos de contacto-->          
-<div class='form-row px-4 mx-0'>
+<div class='form-row px-4 mx-0 text-dark'>
     <div class='form-group col-sm-6'>
         <label>Teléfono</label>
         <span class="text-danger <?php echo ($etel == 1)?"":"d-none"; ?>"> *Introduce un teléfono</span>

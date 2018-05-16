@@ -1,4 +1,4 @@
-<div class="row mx-0 pt-4"> 
+<div class="row mx-0 pt-4 text-dark"> 
     <div class="col-12 col-sm-6 c-align-middle p-5 order-2 order-md-1">
         <div class="block  text-center">
             <h3>Descripción</h3>

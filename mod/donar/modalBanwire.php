@@ -1,36 +1,66 @@
 <!-- banwire -->
-<div class="modal fade banwire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content px-5 py-3">
-            <!-- <h2 class="text-center pt-3">Banwire</h2> -->
+<div id="modal-banwire" class="modal fade banwire" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+
+        <div class="modal-content p-3"> 
+            <button type="button" class="close ml-auto" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            
+            <!-- logo banwire y nombre fundación Markotic -->
             <img src="../imagenes/fundación/banwire-blue.png" class="mx-auto w-25" alt="logo paypal">
             <p class=" text-center">FUNDACION MARKOPTIC A.C</p>
-            <h4>Monto a donar</h4>
-            <span class="mb-2">Monto mínimo de donación 50.00 mxn</span>
-            <form onsubmit="return prePagar()">
-            <div class="form-group pt-2">
-                <button type="button" class="btn bg-verde-menu text-white mb-2 mr-2 minimo" m="50">50.00 mxn</button>
-                <button type="button" class="btn bg-verde-menu text-white mb-2 mr-2 minimo" m="100">100.00 mxn</button>
-                <button type="button" class="btn bg-verde-menu text-white mb-2 mr-2 minimo" m="200">200.00 mxn</button>
-                <button type="button" class="btn bg-verde-menu text-white mb-2 mr-2 minimo" m="500">500.00 mxn</button>
-                <button type="button" class="btn bg-verde-menu text-white mb-2 mr-2 minimo" m="otro">Otro</button>
-                <input type="text" placeholder="Introduce el monto a donar" value="" id="donacion" class="form-control text-muted" disabled>
-                <input type="hidden" id="donacionBoton" value="">
-            </div>
-            <div class="form-group col-12 col-md-6 px-0">
-                <input id="emailCliente" class="form-control"type ="email" name="emailCliente" value="" placeholder="Introduce Email" required>
-            </div>
-            <div class="row mx-0 mb-2">
-                <button type="button" class="btn btn-secondary ml-auto" data-dismiss="modal">Cerrar</button>
-                <!-- <button type="button" class="btn btn-primary" onclick="prePagar();">Donar</button> -->
-                <!-- <button type="button" class="btn btn-primary ml-2"  onclick ="prePagar()">Donar</button> -->
-                <input type="submit" value="donar" class="btn btn-primary ml-2">
-            </div>
+            
+            <!-- leyenda de donación -->
+            <h4 class="mb-0 text-center">Monto a donar</h4>
+            <small class="text-secondary text-center">Monto mínimo de donación 50.00 mxn</small>
+            <!-- formulario de predonación -->
+            <form class="mt-3" id="donar">
+                <!-- botones de donación fija -->
+                <div class="form-group">
+                    <div class="btn-group-toggle text-center" data-toggle="buttons">
+                        <label class="btn btn-outline-success">
+                            <input type="radio" name="donacionRBtn" value="50">$50
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input type="radio" name="donacionRBtn" value="100">$100
+                        </label>
+                        <label class="btn btn-outline-success active">
+                            <input type="radio" name="donacionRBtn" value="200" checked>$200
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input type="radio" name="donacionRBtn" value="500">$500
+                        </label>
+                        <label class="btn btn-outline-success">
+                            <input type="radio" name="donacionRBtn" value="otro">Otro
+                        </label>
+                    </div>
+                </div>
+                <!-- campo de donación establecida -->
+                <div class="form-group" style="display: none;" id='cantidad-input'>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">$</span>
+                        </div>
+                        <input type="text" placeholder="Monto a donar" id="donacionTxt"  disabled class="form-control" required="false">
+                    </div>                
+                </div>
+                <!-- correo, cerrar y submit -->
+                <div class="form-group">
+                    <input id="emailCliente" class="form-control"type ="email" name="emailCliente" value="" placeholder="Introduce Email" required>
+                </div>
+                <hr />
+                <div class="form-group text-center">
+                    <input type="submit" value="donar" class="btn btn-block btn-success">
+                    <!-- <button type="button" class="btn btn-link text-secondary" data-dismiss="modal">Cancelar</button> -->
+                </div>
+            
             </form>
-            <a href="" class="text-info">Políticas aplicables a donativos</a>
-            <a href="" class="text-info">Motor pagos Banwire</a>
+            <!-- politicas de donación markoptic y banwire -->
+            <a href="" class="text-secondary text-center"><small>Políticas aplicables a donativos</small></a>
+            <a href="" class="text-secondary text-center"><small>Motor pagos Banwire</small></a>
             <div id="resultado"></div>
         </div>
     </div>
 </div>
-<div id="ben" ben="<?php echo ( isset($id) )? "f"."$id" : "f"."0";?>"></div>
+<!-- <div id="ben" ben="<?php //echo ( isset($id) )? $id : "f"."0";?>"></div> -->

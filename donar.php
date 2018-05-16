@@ -13,7 +13,7 @@
 
 <!-- first-block -->
     <div class="container-fluid text-center ">
-        <h2 class="mt-3 mx-2 mx-md-5">Agradecemos tu participación como donador. Selecciona cualquiera de nuestras opciones y se parte de esta gran causa.</h2>
+        <h2 class="mt-3 mx-2 mx-md-5 text-dark">Agradecemos tu participación como donador. Selecciona cualquiera de nuestras opciones y se parte de esta gran causa.</h2>
         <div class="row text-white">
         <!-- botones -->
             <!-- motor de pagos Banwire -->
@@ -52,26 +52,20 @@
             </div>
             <p class="text-center text-dark w-100" style="font-size:1.5rem;">"Unidos todos hacemos más. Tu donación desarrolla tecnología que transforma vidas."</p> -->
     </div>    
-<!--/contenido-->
-<?php 
-    //modales de donación
-    include "mod/donar/modalPaypal.php";
-    include "mod/donar/modalDepositoEfectivo.php";
-    include "mod/donar/modalBanwire.php";
-    include "mod/donar/modalTransferenciaElectronica.php";
-    include "mod/donar/modalExcedente.php";
-?>
-<?php
-    include 'mod/footer.php';
-?>
-<script type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
-<script src="/js/motorPago.js"></script>
-<script>
-    $(document).ready(function(){
-        $('#donacion').on('input', function () { 
-            this.value = this.value.replace(/[^0-9]/g,'');
-        });
-    });
-</script>
+    <!--/contenido-->
+    <?php 
+        //modales de donación
+        include "mod/donar/modalPaypal.php";
+        include "mod/donar/modalDepositoEfectivo.php";
+        include "mod/donar/modalBanwire.php";
+        include "mod/donar/modalTransferenciaElectronica.php";
+        include "mod/donar/modalExcedente.php";
+        include "mod/donar/modalFinal.php";
+    ?>
+    <?php
+        include 'mod/footer.php';
+    ?>
+        <script type="text/javascript" src="https://sw.banwire.com/checkout.js"></script>
+        <script src="/js/motorPago.js"></script>
     </body>
 </html>

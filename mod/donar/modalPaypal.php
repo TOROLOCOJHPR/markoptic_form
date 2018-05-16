@@ -1,7 +1,7 @@
 <!-- paypal -->
 <div class="modal fade paypal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-lg">
-        <div class="modal-content">
+        <div class="modal-content text-dark">
             <h2 class="text-center pt-3">Paypal</h2>
             <img src="../imagenes/fundación/paypal-azul.png" class="mx-auto w-25" alt="logo paypal">
             <p class="px-5 text-center">En caso de que usted cuente con una cuenta PayPal y desee hacernos llegar su donativo por este medio, solo debe hacer clic en el siguiente botón.</p>
