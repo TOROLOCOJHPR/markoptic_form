@@ -19,17 +19,17 @@ $(document).ready(function(){
             altura(target);
         }
     });
-    //posicionar al principio de la página al hacer click en el botón
+    //posicionar al principio de la página al hacer click en el botón up
     $('#up').click(function() {posCero();});
-    $('#up').css({'bottom':'80px','right':'-100px'});
+    // $('#up').css({'bottom':'80px','right':'-100px'});
 
     $(window).scroll(function(){
         var scr=$(window).scrollTop();var dH = $(document).outerHeight(true)/2.5;
-        if(dH < scr){
-            $('#up').css({'right':'0px','transition': '.5s ease-in'});
+        if(200 < scr){
+            $('#up').css({'right':'0px','transition': '.2s ease-in'});
         }
         else{
-            $('#up').css({'right':'-100px','transition': '.5s ease-in'});
+            $('#up').css({'right':'-50px','transition': '.1s ease-in'});
         }
     });
 });

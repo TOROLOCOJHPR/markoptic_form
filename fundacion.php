@@ -45,16 +45,15 @@
     <div id="directorio" class="container-fluid bg-cover-center" id="directorio">
         <div class="row text-white text-center">
             <cms:show_repeatable 'directorio'>
-                <div height="450px" class="col-12 col-sm-6 bg-cover-directorio p-0" style="background-image: url('<cms:show img_director />');height:450px;">
-                    <div class="directorio-descripcion opacity-black">
-                        <div class="c-align-middle">
-                            <p class="w-100 px-2">
-                                <span class="fs-1-5" ><cms:show nom_director/></span>
-                                <br>
-                                <span style="font-size:1.2rem;" ><cms:show puesto_director /></span>                       
-                            </p>
+                <div class="col-12 col-sm-6 bg-cover-directorio p-0" style="background-image: url('<cms:show img_director />');height:450px;">
+                    <div class="h-100 director-descripcion opacity-black">
+                        <div class="h-25 px-2">
+                            <h3 class="mb-0 pt-1"><strong><cms:show nom_director/></strong></h3>
+                            <label style="font-size:1.2rem;"><cms:show puesto_director /></label>
                         </div>
-                        <div class="c-align-middle fs-1-5 px-2 f-style-italic">"<cms:show desc_director />"</div>
+                        <div class="h-75 fs-1-5 px-2 f-style-italic d-flex align-items-center">
+                            "<cms:show desc_director />"
+                        </div>
                     </div>
                 </div>
             </cms:show_repeatable>
@@ -66,15 +65,12 @@
         <div class="row text-white text-center">
             <cms:show_repeatable 'colaborador'>
                 <div class="col-12 col-sm-4 p-0 bg-cover-directorio" style="background-image: url('<cms:show img_colaborador />');height:250px;">
-                    <div class="colaborador-descripcion opacity-black">
-                        <div class="c-align-middle">
-                            <p class="px-3 pt-1">
-                                <span style="font-size:1.3rem;"><cms:show nom_colaborador/></span>
-                                <br>
-                                <span style="font-size:1.1rem;"><cms:show puesto_colaborador /></span>
-                            </p>
+                    <div class="h-100 colaborador-descripcion opacity-black">
+                        <div class="h-25 px-2">
+                            <h5 class="mb-0 pt-1"><strong><cms:show nom_colaborador/></strong></h5>
+                            <label><cms:show puesto_colaborador /></label>
                         </div>
-                        <div style="font-size:1.3rem;" class="c-align-middle px-2">
+                        <div class="h-75 px-2 d-flex align-items-center" style="font-size:1.3rem;">
                             <p class="f-style-italic">"<cms:show desc_colaborador />"</p>
                         </div>
                     </div>

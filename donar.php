@@ -25,7 +25,7 @@
             </div>
             <!-- transferencia electronica -->
             <div class="col-12 col-md-6 col-xl-3 p-3">
-                <div class="mx-auto mx-md-0 mr-md-auto mx-xl-auto pointer c-align-middle flex-column" data-toggle="modal" data-target=".transferencia" style="background-color:#ff8d2c;height:300px;max-width:300px">
+                <div class="px-2 mx-auto mx-md-0 mr-md-auto mx-xl-auto pointer c-align-middle flex-column" data-toggle="modal" data-target=".transferencia" style="background-color:#ff8d2c;height:300px;max-width:300px">
                     <img src="../imagenes/fundación/transferencia.png" class="" style="height:150px;display:block" alt="">
                     <h3>Transferencia Electrónica</h3>
                 </div>

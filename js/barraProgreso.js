@@ -1,5 +1,6 @@
 $(document).ready(function(){
     //barra de progreso
+    // $('.progress-bar').css('width','50%');
     var cont = 0;
     var id;
     $("[id*='circulo']").each(function(){
@@ -16,13 +17,19 @@ $(document).ready(function(){
     });
     //centrar texto de porcentaje
     texto();
-    $(window).resize(function(){ 
+    $(window).resize(function(){
         texto();
     });    
 });
 function texto(){
-    var por = ($('#porciento').width()/2);
+    var bbox = document.getElementById('porciento').getBBox().width;
+    var width = bbox.width;
+    var height = bbox.height;
+    var por = ($('#porciento').Width());
     var cir = ($('#contPorcentaje').width()/2);
-    var pos = cir - por ;
+    var pos = (cir - por) ;
+    console.log(bbox);
+    console.log(cir);
+    console.log(pos);
     $('#porciento').attr('x',pos);
 }

@@ -49,8 +49,18 @@
                 <div class="form-group">
                     <input id="emailCliente" class="form-control"type ="email" name="emailCliente" value="" placeholder="Introduce Email" required>
                 </div>
+                <div id="d-excedente" class="alert-warning rounded text-center py-3" style="display:none">
+                    <p class="px-2 py-0 mb-0 text-dark">
+                        Gracias por tú interés en donar. Por regulaciones ante el SAT, en pagos mayores a $100,000 MXN, 
+                        es necesario que te comuniques con nosotros a través de los siguientes medios:
+                    </p>
+                    <span>
+                        Número de teléfono: 01 800 509 1985 
+                        <br/>Vía E-mail: info@fundacionmarkoptic.org.mx
+                    </span>
+                </div>
                 <hr />
-                <div class="form-group text-center">
+                <div id="btn-donacion" class="form-group text-center">
                     <input type="submit" value="donar" class="btn btn-block btn-success">
                     <!-- <button type="button" class="btn btn-link text-secondary" data-dismiss="modal">Cancelar</button> -->
                 </div>

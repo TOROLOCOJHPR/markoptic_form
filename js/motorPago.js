@@ -15,8 +15,16 @@ $(document).ready(function(){
     //permitir solamente la entrada de números
     $('#donacionTxt').on('input', function () { 
         this.value = this.value.replace(/[^0-9]/g,'');
+        if($(this).val() >=  100000){
+            $('#btn-donacion').fadeOut(500,function(){
+                $('#d-excedente').fadeIn(200);
+            });
+        }else{
+            $('#d-excedente').fadeOut(500,function(){
+                $('#btn-donacion').fadeIn(200);
+            });
+        }
     });
-
     //botón pagar
     $('#donar').submit(function(){
         //tomamos el valor del botón estatico
@@ -27,9 +35,10 @@ $(document).ready(function(){
             var donacionTxt = $('#donacionTxt').val();
             total = donacionTxt;
             //validar que el monto no sea menor a 50  y mayor a 100,000
-            if(total >= 50){ //monto minimo permitido
+            if(total >= 0){ //monto minimo permitido
                 if(total >= 100000){//monto máximo excedido
-                    $('.excedente').modal('show');//mostrar modal con advertencia de monto excedido
+                    // $('.excedente').modal('show');//mostrar modal con advertencia de monto excedido
+                    $('#d-excedente').show(500);
                     return false;
                 }
             }else{//monto minimo de donación no superado
@@ -107,26 +116,34 @@ $(document).ready(function(){
             notifyUrl: exito,
             // Handler en caso de exito en el pago
             // successPage: idBen,
-            onSuccess: function(data){ 
+            onSuccess: function(data){
                 // alert("¡Gracias por tu pago!")
+
+                //mostrar modal gracias al cerrar secure window banwire
                 $('#modal-banwire').one('hidden.bs.modal', function (e) {
                     // do something...
                     $('#modal-final').modal('show');
                 });
                 $('#modal-banwire').modal('hide');
+                
+                //recargar porcentaje de apadrinación al finalizar la transacción
+                
+                if(path == "/apadrina"){
+                    alert('recarga');
+                }
             },
             // Pago pendiente OXXO
-            pendingPage: 'http://yahoo.com',
+            // pendingPage: 'http://yahoo.com',
             onPending: function(data){
                 alert("El pago está pendiente por ser efectuado");
             },
             // Pago challenge
-            challengePage: 'http://challenge.com',
+            // challengePage: 'http://challenge.com',
             onChallenge: function(data){
                 alert("Pago enviado a validaciones de seguridad");
             },
             // Handler en caso de error en el pago
-            errorPage: idBen,
+            // errorPage: idBen,
             onError: function(data){
                 alert("Error en el pago");
             },

@@ -1,13 +1,16 @@
 <!-- botón up to top-->
-    <a id='up' class='border border-right-0 bg-verde-menu f-opacity-75 p-1 c-align-middle'>
+    <a id='up' class='border border-right-0 bg-verde-menu f-opacity-75 p-1 c-align-middle top-btn-flotantes'>
         <svg width="1rem" viewBox="0 0 448 512">
             <path fill="white" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
         </svg>
     </a><!-- End botón up to top -->
-
+<!-- botón donar flotante -->
+    <a href="/donar" class="bg-verde-menu position-fixed d-flex align-items-center d-md-none border border-left-0 text-white text-center p-2 top-btn-flotantes" style="z-index:9">
+            donar
+    </a><!-- End botón donar flotante -->
 <!-- footer -->
     <hr class="border-0 bg-verde-menu m-0" style="height:5px">
-    <footer class="row no-gutters pt-3 bg-secondary text-white ">
+    <footer class="row no-gutters pt-3 bg-footer text-white ">
         
     <!-- links -->
         <div class="col-6 col-sm order-3 order-sm-2">

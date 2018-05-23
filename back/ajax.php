@@ -144,4 +144,18 @@
         array_push($valida,array("valor"=>"true"));
         echo json_encode($valida);
     }
+    // selecciona el porcentaje de recaudación actual
+    if($formulario == "recaudacion"){
+        $objBen = new Beneficiario;
+        $myObj = (object)[];
+        $result = $objBen->buscaDatosApadrinado($_POST['id']);        
+        $recabado = $objBen->recabado($_POST['id']);   
+        $precioProtesis = $result['precio']; 
+        $por = ($recabado == 0)? 0 : (($recabado / $precioProtesis)*100);
+        $por = ($por > 100)? 100 : $por;
+        $porciento = number_format($por,2);
+        $myObj->por = $por;
+        $myObj->porciento = $porciento;
+        echo json_encode($myObj);
+    }
 ?>
