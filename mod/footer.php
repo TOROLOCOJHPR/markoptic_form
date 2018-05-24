@@ -9,12 +9,10 @@
             donar
     </a><!-- End botón donar flotante -->
 <!-- footer -->
-    <hr class="border-0 bg-verde-menu m-0" style="height:5px">
-    <footer class="row no-gutters pt-3 bg-footer text-white ">
-        
+    <footer class="row no-gutters pt-3 bg-footer text-white ">        
     <!-- links -->
         <div class="col-6 col-sm order-3 order-sm-2">
-            <p class="pl-2">QUIERO AYUDAR</p>
+            <h6 class="pl-2">QUIERO AYUDAR</h6>
             <ul class="pl-4 list-unstyled">
                 <li><a href="/donar">Donar</a></li>
                 <li><a href="/apadrina">Apadrina</a></li>
@@ -24,7 +22,7 @@
             </ul>
         </div>
         <div class="col-6 col-sm order-4 order-sm-1">
-            <p class="pl-2">FUNDACIÓN</p>
+            <h6 class="pl-2">FUNDACIÓN</h6>
             <ul class="pl-4 list-unstyled">
                 <li class=""><a href="/fundacion#historia">Historia</a></li>
                 <li class=""><a href="/fundacion#mision">Misión y Visión</a></li>
@@ -35,14 +33,14 @@
             </ul>
         </div>
         <div class="col-6 col-sm order-2 order-sm-3">
-            <p class="pl-2">NOTICIAS</p>
+            <h6 class="pl-2">NOTICIAS</h6>
             <ul class="pl-4 list-unstyled">
                 <li><a href="/noticias">Nuestras Noticias</a></li>
                 <li><a href="/video?f=11">Testimonios</a></li>
             </ul>
         </div>
         <div class="col-6 col-sm order-1 order-sm-4">
-            <p class="pl-2">CONTACTO</p>
+            <h6 class="pl-2">CONTACTO</h6>
             <ul class="pl-4 list-unstyled">
                 <li><a href="/solicitud">Solicitar donación</a></li>
                 <li><a class="pointer" data-toggle="modal" data-target=".bd-example-modal-lg">Contacto</a></li>
@@ -52,7 +50,7 @@
     <!-- boletín y redes sociales -->
         <div class="col-12 col-md-3 pt-2 pt-md-0 order-5">
         <!-- mailchimp -->
-            <p class="pl-2 pl-md-0">SUSCRIBETE A NUESTRO BOLETÍN</p>
+            <h6 class="pl-2 pl-md-0">SUSCRIBETE A NUESTRO BOLETÍN</h6>
             <!-- Begin MailChimp Signup Form -->
             <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
             <style type="text/css">
@@ -61,11 +59,10 @@
             <div id="mc_embed_signup">
                 <form action="https://fundacionmarkoptic.us16.list-manage.com/subscribe/post?u=5da492ad040c5451de3927303&amp;id=aa16cd9481" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate p-0" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
-
                         <div class="input-group mb-3 px-2 px-md-0 pr-md-2">
-                          <input type="email" value="" name="EMAIL" class="required email form-control" placeholder="Correo Electronico">
+                          <input type="email" value="" name="EMAIL" class="form-control form-control-sm required email" placeholder="Correo Electronico">
                           <div class="input-group-append">
-                            <button class="btn bg-verde-menu text-white" type="submit">Suscribir</button>
+                            <button class="btn btn-sm btn-success" type="submit">Suscribir</button>
                           </div>
                         </div>
 
@@ -139,9 +136,9 @@
 
     <!-- logo Markoptic monocromo y aviso privacidad -->
         <div class="col-12 mb-2 text-center order-6">
-            <img class="my-2" style="width:auto;height:70px;opacity:.5" src="/imagenes/fundación/logo-white.svg" alt="logo monocromo Fundación Markoptic A.C.">
-            <br/>
-            <span>© 2018 Fundación Markoptic A.C Todos los derechos reservados </span><br/><a class="btn-link text-white" href="/files/AVISO - PRIVACIDAD FMAC.PDF" target="blank"> Aviso de privacidad</a>
+            <img class="my-2" style="width:auto;height:65px;opacity:.8" src="/img/logo-white.svg" alt="logo monocromo Fundación Markoptic A.C.">
+            <p class='mb-0 small'>© 2018 Fundación Markoptic A.C. Todos los derechos reservados </p>
+            <a class="btn-link small text-white " href="/files/AVISO - PRIVACIDAD FMAC.PDF" target="blank">Aviso de privacidad</a>
         </div>
 
     <!-- modal para contacto -->
@@ -166,7 +163,7 @@
                 <div class="form-group col-12">
                     <textarea class="form-control" name="comentarioContacto" placeholder="Déjanos tu comentario" rows="7" required></textarea>
                 </div>
-                <div class="row mx-0">
+                <div class="">
                     <input type="submit" value="enviar" class="bg-verde-menu btn p-2 px-3 ml-auto mr-3 text-white">
                 </div>
                 </form>
@@ -183,28 +180,12 @@
                 </div>
                 </div>
         </div>
-
     </footer>
-            <!-- </div> -->
-        <!-- </div> -->
-    <!--/footer-->
-    <!--cdn
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-    /cdn-->
-    <!--local-->
 
-    <!--/local-->
-    <!-- <script src="/js/jquery-3.1.1.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
-    <!-- <script src="/js/js-footer-link-scroll.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="/js/js-position-top.js"></script>
-    <!-- <script src="https://use.fontawesome.com/8077e15131.js"></script> -->
-    <!-- <script src="/js/popper.min.js"></script> -->
-    <!-- <script src="/js/bootstrap.min.js"></script> -->
     <script src="/js/minify/lightbox.min.js"></script>
     <script>
     $(document).ready(function(){
@@ -237,11 +218,8 @@
          	url:'/back/ajax.php',
             type:'post',
         	beforeSend: function () {
-                //console.log('enviado');
-	            //$("#beforeresultado").html("<div class='beforeSend'><label>Cargando, espere por favor...</label></div>");
             },
             success:  function (response) {
-                //console.log('recibido');
 	    	    $("#beforeresultado").html("");
 	    	    $('#'+ resultado).html(response);
             }

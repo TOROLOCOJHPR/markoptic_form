@@ -1,19 +1,19 @@
 <?php
     if($d == "brazo"){
-        $imgfoto1 = "../imagenes/fundación/foto beneficiario 1.jpg";
-        $imgfoto2 = "../imagenes/fundación/foto beneficiario 2.jpg";
-        $imgfoto3 = "../imagenes/fundación/foto beneficiario 3.jpg";
+        $imgfoto1 = "/img/form/foto beneficiario 1.jpg";
+        $imgfoto2 = "/img/form/foto beneficiario 2.jpg";
+        $imgfoto3 = "/img/form/foto beneficiario 3.jpg";
         $porUltimo ='Por último, ayúdanos adjuntando unas fotografías recientes y claras, como se muestra en las siguientes imágenes, donde podamos identificar tu necesidad';
     }elseif($d == "colchon"){
-        $imgfoto1 = "imagenes/fundación/img-sin-foto.png";
-        $imgfoto2 = "imagenes/fundación/img-sin-foto.png";
-        $imgfoto3 = "imagenes/fundación/img-sin-foto.png";
+        $imgfoto1 = "/img/form/img-sin-foto.png";
+        $imgfoto2 = "/img/form/img-sin-foto.png";
+        $imgfoto3 = "/img/form/img-sin-foto.png";
         $porUltimo ='Por último, ayúdanos adjuntando unas fotografías recientes y claras, donde podamos identificar tu necesidad';
     }
 ?>
 <div class='row mx-0 mt-4 text-dark'>
     <div class='col-md-4 bg-verde-menu c-align-middle text-white p-3'>
-        <p class='mb-0'>Información del dispositivo</p>
+        <h6 class='mb-0'>Información del dispositivo</h6>
     </div>
 </div>
 <?php
@@ -89,9 +89,9 @@
     </div>
 </div>
 <!-- fotografías del usuario -->
-<h3 class='text-center' style='line-height:140%;'><?php echo $porUltimo; ?></h3>
+<h5 class='text-center text-markoptic mx-5' style='line-height:140%;'><?php echo $porUltimo; ?></h5>
 <div class="container-fluid" id="foto">
-    <div class="row mx-0 px-0 text-dark">
+    <div class="row mx-0">
         <!-- fotografía uno -->
         <div class="col-12 col-sm-9 col-md-6 p-3" id="foto1">
             <div class="row mx-0">
@@ -172,7 +172,7 @@
 <input type='hidden' value='' name='edad' id="edad"/>
 <!-- terminos y condiciones -->
 <hr>
-<h3 class="m-4 text-dark">Términos y Condiciones</h3>
+<h4 class="m-4 text-markoptic">Términos y Condiciones</h4>
 <div class="form-row mx-0 text-dark">
     <textarea type="textarea" class="form-control px-4 mx-4" style="resize: none;" rows="10" readonly="true">
 TÉRMINOS Y CONDICIONES DE USO Y PRIVACIDAD.

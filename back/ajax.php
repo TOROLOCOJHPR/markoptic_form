@@ -158,4 +158,3 @@
         $myObj->porciento = $porciento;
         echo json_encode($myObj);
     }
-?>

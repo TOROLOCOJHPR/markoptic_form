@@ -77,4 +77,3 @@
     header('Cache-Control: max-age=0');
     ob_end_clean();
     $Excel_writer->save('php://output');
-?>

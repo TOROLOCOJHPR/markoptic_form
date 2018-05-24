@@ -9,13 +9,13 @@
     /cdn-->
 
     <title>Fundacion | Markoptic</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700,900" rel="stylesheet"> -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- <link href="/css/minify/style-fundacion.min.css" rel="stylesheet"> -->
     <link href="/css/style-fundacion.css" rel="stylesheet">
     <link href="/css/minify/universal.min.css" rel="stylesheet">
     <link href="/css/minify/lightbox.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg" href="../imagenes/fundación/logo.svg" />
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- google analytics -->
     <!-- Global site tag (gtag.js) - Google Analytics -->

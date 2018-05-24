@@ -59,4 +59,4 @@
     include 'mod/footer.php';
 ?>
 <script src="/js/formulario.js"></script>
-<script src="/js/no-back.js"></script>
+<!-- <script src="/js/no-back.js"></script> -->

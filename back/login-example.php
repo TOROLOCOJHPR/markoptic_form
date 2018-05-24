@@ -45,4 +45,3 @@
             header('Location: /login');
         }
     }
-?>

@@ -1,6 +1,6 @@
 <div class='row mx-0 mt-4 text-dark'>
     <div class='col-md-4 bg-verde-menu c-align-middle text-white p-3'>
-        <p class='mb-0'>Información del beneficiario</p>
+        <h6 class='mb-0'>Información del beneficiario</h6>
     </div>
 </div>
 <!-- datos personales -->

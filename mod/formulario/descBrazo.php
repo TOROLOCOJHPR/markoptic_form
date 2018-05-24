@@ -1,47 +1,19 @@
-<!-- <div class="container-fluid text-white">
-            <div class="row pt-2 pb-2">
-                <div class="col-12 col-sm-6">
-                    <div class="card w-75 mx-auto">
-                        <div class="w-100 c-img bg-primary">
-                            <img class=" img-cover-center w-100 h-100" src="../imagenes/fundación/form-protesis-mecanica.jpg" alt="Prótesis Mecánica">
-                        </div>
-                        <div class="w-100  c-text bg-verde-menu c-align-middle flex-column">
-                            <p class="mb-0">Prótesis Mecánica</p>
-                            <p class="mb-0">6-18 años</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <div class="card w-75 mx-auto">
-                        <div class="w-100 c-img bg-primary">
-                            <img class=" img-cover-center w-100 h-100" src="../imagenes/fundación/form-protesis-robotica.jpg" alt="Prótesis robótica">
-                        </div>
-                        <div class="w-100  c-text bg-verde-menu c-align-middle flex-column">
-                            <p class="mb-0">Prótesis Robotica</p>
-                            <p class="mb-0">19 años en adelante</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
-<div class="row mx-0 pt-4 text-dark"> 
-    <div class="col-12 col-sm-6 c-align-middle p-5 order-2 order-md-1">
-        <div class="d-block text-center">
-            <h3 class="">Descripción</h3>
-            <p>Protésis mecanica destinada a niños y adolescentes en edad de 6 a 18 años.</p>
-            <p >Protésis robotíca destinada a personas de 18 años en adelante.</p>
+<div class="row mx-0 pt-4"> 
+    <div class="col-12 col-md c-align-middle p-5 order-2 order-md-1">
+        <div class="text-center">
+            <h3 class='text-markoptic'>Descripción</h3>
+            <p class='lead'>
+                Protésis mecanica destinada a niños y adolescentes en edad de <strong>6 a 18 años.</strong><br>
+                Protésis robotíca destinada a personas de <strong>18 años en adelante.</strong>
+            </p>
         </div>
     </div>
-    <div class="col-12 col-sm-6 order-1 order-md-2">
-        <div class="card w-75 mx-auto">
+    <div class="col-12 col-md-auto order-1 order-md-2 p-0">
+        <div class="card w-100 mx-auto" style='max-width:450px;'>
             <div class="w-100 c-img bg-primary">
-                <img class=" img-cover-center w-100 h-100" src="../imagenes/fundación/dos-protesis.jpg" alt="Colchón vittmat">
+                <img class=" img-cover-center w-100 h-100" src="/img/form/dos-protesis.jpg" alt="Colchón vittmat">
             </div>
-            <div class="w-100  c-text text-white bg-verde-menu c-align-middle flex-column">
-                <p class="mb-0">Próstesis Antebrazo</p>
-            </div>
+            <h5 class="text-center c-text bg-verde-menu d-flex c-align-middle text-white mb-0">Próstesis Antebrazo</h5>
         </div>
     </div>            
 </div>

@@ -14,28 +14,22 @@
 ?>
 
 <!-- Titulo principal -->
-<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-    <div class="w-100 h-100 c-align-middle opacity-green">
-            <h1><cms:show titulo/></h1>  
-    </div>
+<div class="t-shadow-2-black text-white bg-cover-center" style="background-image:url('/img/val2.jpg');">
+    <h1  class="c-align-middle opacity-green p-5"><cms:show titulo/></h1>  
 </div>
 
 <div class=" container-fluid text-center text-white" id="tarjetas">
     <div class="row mt-4 mb-4">        
         <cms:show_repeatable 'proyecto'>
-            <div class="col-sm-4 mt-2 col-12 ">
-                <div class="card pointer" d="<h2 class='text-center mb-2 mt-2'><cms:show nom_proyecto/></h2><div class='text-center'><img src='<cms:show img_proyecto />'class='img-thumbnail mx-auto' style='width:60%;'/></div><br><cms:show desc_proyecto />">
-                    <div class="w-100 c-img">
-                        <img class=" img-cover-center w-100 h-100" src="<cms:show img_proyecto />" alt="">
-                    </div>
-                    <div class="w-100  c-text bg-verde-menu">
-                        <cms:show nom_proyecto/>
-                    </div>
+        <div class="col-sm-4 mt-2 col-12 ">
+            <div class="card pointer" d="<h2 class='text-center mb-2 mt-2'><cms:show nom_proyecto/></h2><div class='text-center'><img src='<cms:show img_proyecto />'class='img-thumbnail mx-auto' style='width:60%;'/></div><br><cms:show desc_proyecto />">
+                <div class="w-100 c-img">
+                    <img class=" img-cover-center w-100 h-100" src="<cms:show img_proyecto />" alt="">
                 </div>
+                <h5 class="bg-verde-menu py-3 mb-0"><cms:show nom_proyecto/></h5>
             </div>
-            
+        </div>            
         </cms:show_repeatable>
-
     </div>
 </div>
 <!-- descripción de la tarjeta -->
@@ -46,9 +40,7 @@
 </div>
 
 <!--footer-->
-    <?php
-        include 'mod/footer.php';
-    ?>
+    <?php include 'mod/footer.php'; ?>
 <!--/footer-->
     <script src="/js/js-fundacion-proyectos.js"></script>
     </body>

@@ -1,6 +1,6 @@
 <?php
 include 'conexion.php';
-include 'conexion-old.php';
+//include 'conexion-old.php';
 class DatosPersonales { //**DatosPersonales
     //--atributos DatosPersonales
     public $nombre,$apellidos,$sexo,$fecNacimiento,$ciudad,$calle,$colonia,$cp,$telefono,$email,$idMedioDifusion,$descMedioDif;
@@ -342,8 +342,8 @@ class Beneficiario extends Tutor{ //**Beneficiario
                         <div class="row mx-0">
                             <div class="col-12">
                                 <label for="condicion<?php echo $row['id']; ?>" class="imgCondicion text-center">
-                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"none":""; ?>" src="../imagenes/condiciones/<?php echo $row['imgFrontal']; ?>" alt="imagen frontal de <?php echo $row['condicion']; ?>">
-                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"":"none"; ?>;" src="../imagenes/condiciones/<?php echo $row['imgTrasera']; ?>" alt="imagen trasera de <?php echo $row['condicion']; ?>">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"none":""; ?>" src="/img/condiciones/<?php echo $row['imgFrontal']; ?>" alt="imagen frontal de <?php echo $row['condicion']; ?>">
+                                    <img class="mx-auto" style="max-height:200px;position:relative;display:<?php echo ($vCondicion == $row['id'])?"":"none"; ?>;" src="/img/condiciones/<?php echo $row['imgTrasera']; ?>" alt="imagen trasera de <?php echo $row['condicion']; ?>">
                                 </label>
                             </div>
                             <div class="col-12 form-check-inline px-5">
@@ -1116,7 +1116,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
                     <table cellpadding="0" cellspacing="0" width="480px" align="center">
                         <tr>
                             <td align="center">
-                                <img src="http://markoptic.mx/imagenes/respuesta%20heart.jpg" width="100%"  style="display:block;">
+                                <img src="http://fundacionmarkoptic.org.mx/img/respuesta%20heart.jpg" width="100%"  style="display:block;">
                             </td>
                         </tr>
                         <tr><td><strong>DATOS DEL BENEFICIARIO</strong></td></tr>
@@ -1160,7 +1160,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
                         <tr><td><strong>Por qué solicito el dispositivo: </strong><span>'.$datosFormulario['porque'].'</span><tr></tr>
                         <tr>
                             <td align="center">
-                                <img src="http://markoptic.mx/imagenes/footer-correo.jpg" width="100%"  style="display:block;">
+                                <img src="http://fundacionmarkoptic.org.mx/img/footer-correo.jpg" width="100%"  style="display:block;">
                             </td>
                         </tr>
                     </table>
@@ -1512,5 +1512,3 @@ class Beneficiario extends Tutor{ //**Beneficiario
         }
     }
 }//--fin Beneficiario
-
-?>

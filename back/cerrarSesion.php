@@ -6,4 +6,3 @@
     }else{
         header('Location: /panel?m=1');
     }
-?>

@@ -161,12 +161,12 @@
 
     <!--testimonio-->
         <div class='text-center text-white t-shadow-2-black px-2 px-md-5 py-5 bg-cover-center' style="background-image:url('<cms:show img_testimonio />')">
-            <h1>Testimonio:</h1>
-            <blockquote class="blockquote f-style-italic pb-3">
-                <p class="fs-2">"<cms:show testimonio />"</p>
-                <footer class="blockquote-footer text-light fs-1-5"><cms:show autor_testimonio /></footer>
+            <h2>Testimonio:</h2>
+            <blockquote class="blockquote f-style-italic">
+                <p class="lead">"<cms:show testimonio />"</p>
+                <p class="blockquote-footer text-light small"><cms:show autor_testimonio /></p>
             </blockquote>
-            <a href="<cms:show url_testimonio />" class="btn-fundacion opacity-black text-white">Ver Testimonio</a>                          
+            <a href="<cms:show url_testimonio />" class="btn-fundacion opacity-black text-white mt-3">Ver Testimonio</a>                      
         </div><!--testimonio-->
 
     <!--footer-->   

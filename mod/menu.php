@@ -33,17 +33,8 @@ $url2 = "?".$_SERVER['QUERY_STRING'];
 //eliminamos las variables 
 $url = str_replace($url2,"",$url);
 
-?>
-<style>
-#menu a{
-    color:black;
+if($url == "/" or $url == "/fundacion" or $url == "/proyectos" or $url == "/galeria" or $url == "/donar"){        
+    include 'mod/menu/menu-principal.php';
+}else{
+    include 'mod/menu/menu-secundario.php';
 }
-</style>
-
-<?php
-    if($url == "/" or $url == "/fundacion" or $url == "/proyectos" or $url == "/galeria" or $url == "/donar"){        
-        include 'mod/menu/menu-principal.php';
-    }else{
-        include 'mod/menu/menu-secundario.php';
-    }
-?>
