@@ -1,4 +1,4 @@
-/.htaccess
+﻿/.htaccess
 /cms/config.php
 /cms/uploads
 /cms/cache
@@ -11,3 +11,4 @@
 /back/login.php
 /back/comprueba.php
 /files/csv
+/imagenes
