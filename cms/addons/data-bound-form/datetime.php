@@ -132,8 +132,8 @@
                 $arrMonths = explode( ',', $this->months );
             }
             else{
-                $arrMonths = array( 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-                                    'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic');
+                $arrMonths = array( 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec');
             }
 
             if( strlen($date) ){

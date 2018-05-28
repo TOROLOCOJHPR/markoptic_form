@@ -1,22 +1,13 @@
 <?php
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
-
-    include 'mod/header.php';
-    // header("Expires: Sat, 01 De enero de 2000 00:00:00 GMT"); 
-    // header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT"); 
-    // header("Cache-Control: post-check=0, pre-check=0",false); 
-    // session_cache_limiter("must-revalidate");
+    $title = "Beneficiarios";
     include 'back/objetos.php';
-    $menuBack = "Beneficiados";
+    include 'mod/header.php';
     include 'mod/menu.php';
 ?>
     <!-- contenido -->
     <!-- Titulo principal -->
-    <div class="w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-        <div class="w-100 h-100 c-align-middle opacity-green">
-            <h1 class="t-shadow-2-black">Beneficiados</h1>
-        </div>
+    <div class="text-white bg-cover-center bg-cover-cabecera">
+        <h1 class="t-shadow-2-black c-align-middle opacity-green p-5 mb-0">Conoce a nuestros Beneficiarios</h1>
     </div>
     <?php 
         $pagina = "beneficiarios";

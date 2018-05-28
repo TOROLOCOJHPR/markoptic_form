@@ -3,7 +3,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content text-dark">
             <h2 class="text-center pt-3">Deposito en Efectivo</h2>
-            <img src="../imagenes/fundación/deposito-blue.png" class="mx-auto w-25" alt="logo paypal">
+            <img src="./img/deposito-blue.png" class="mx-auto w-25" alt="logo paypal">
             <p class="px-5 text-center">
                 Puede hacer su donativo mediante depósito en efectivo a nuestra cuenta bancaria (las donaciones en efectivo solo serán recibidas mediante depósito bancario):
                 <br><strong>Banco:</strong> 

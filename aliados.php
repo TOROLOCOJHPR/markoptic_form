@@ -24,25 +24,26 @@
     include 'mod/menu.php';
 ?>
     <!-- Titulo principal -->
-    <div class="t-shadow-2-black w-100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-        <div class="w-100 h-100 c-align-middle opacity-green">
-        <style>
-            h1{
-                text-transform:capitalize;
-            }
-        </style>
+    <div class="t-shadow-2-black text-white bg-cover-center text-center bg-cover-cabecera">
+        <h1 class="p-5 mb-0 opacity-green">
         <?php
-            if(isset($_GET['al'])){
-                $titulo = $_GET['al'];
-                if($titulo == "bolsaTrabajo"){
+            switch ( $_GET['al'] ) {
+                case 'bolsaTrabajo':
                     $titulo = "Bolsa de Trabajo";
-                }
-                echo "<h1>".$titulo."</h1>";
-            }else{
-                echo "<h1>Amigos</h1>";
+                    break;
+                case 'residencias':
+                    $titulo = "Residencias";
+                    break;
+                case 'voluntariado':
+                    $titulo = "Voluntariado";
+                    break;                
+                default:
+                    $titulo = "Amigos";
+                    break;
             }
+            echo $titulo;
         ?>
-        </div>
+        </h1>
     </div>
     <!-- contenido -->
     <?php     
@@ -60,7 +61,7 @@
                 $contenido = '
                 <div class="row mx-0 text-dark">
                     <div class="col-12 col-md-6 p-0">
-                        <img class="img-fluid" src="../imagenes/fundación/residencias.jpg" alt="residentes fundación markoptic">
+                        <img class="img-fluid" src="../img/residencias.jpg" alt="residentes fundación markoptic">
                     </div>
                     <div class="col-12 col-md-6 c-align-middle px-5 fs-1-5 text-center">
                         <p> ¡Únete al equipo de Markoptic! <br>Libera tu servicio social y residencias con nosotros.<br> Envía tus datos a <br><a class="text-info" href="mailto:residencias@markoptic.mx">residencias@markoptic.mx</a></p>

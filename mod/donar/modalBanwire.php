@@ -8,7 +8,7 @@
             </button>
             
             <!-- logo banwire y nombre fundación Markotic -->
-            <img src="../imagenes/fundación/banwire-blue.png" class="mx-auto w-25" alt="logo paypal">
+            <img src="/img/banwire-blue.png" class="mx-auto w-25" alt="logo paypal">
             <p class=" text-center">FUNDACION MARKOPTIC A.C</p>
             
             <!-- leyenda de donación -->

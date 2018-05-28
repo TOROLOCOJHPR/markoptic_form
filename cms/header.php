@@ -50,8 +50,8 @@
 
     if( !defined('K_COUCH_DIR') ) die(); // cannot be loaded directly
 
-    define( 'K_COUCH_VERSION', '2.0' ); // Changes with every release
-    define( 'K_COUCH_BUILD', '20170729' ); // YYYYMMDD - do -
+    define( 'K_COUCH_VERSION', '2.1' ); // Changes with every release
+    define( 'K_COUCH_BUILD', '20180519' ); // YYYYMMDD - do -
 
     if( file_exists(K_COUCH_DIR.'config.php') ){
         require_once( K_COUCH_DIR.'config.php' );
@@ -68,7 +68,7 @@
     if( !defined('K_PAID_LICENSE') ) define( 'K_PAID_LICENSE', 0 );
     if( !defined('K_REMOVE_FOOTER_LINK') ) define( 'K_REMOVE_FOOTER_LINK', 0 );
 
-    if ( !defined('K_HTTPS') ) define( 'K_HTTPS', (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on') ? 1 : 0 );
+    if ( !defined('K_HTTPS') ) define( 'K_HTTPS', (isset($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS'])=='on') ? 1 : 0 );
 
     // Check if a cached version of the requested page may be used
     if ( !K_SITE_OFFLINE && !defined('K_ADMIN') && K_USE_CACHE && $_SERVER['REQUEST_METHOD']!='POST' ){
@@ -175,8 +175,8 @@
     }
     if( !defined('K_HTML4_SELFCLOSING_TAGS') ) define( 'K_HTML4_SELFCLOSING_TAGS', 0 );
 
-    if( version_compare( '5.0.0', phpversion(), '>' ) ) {
-        die( 'You are using PHP version '. phpversion().' but the CMS requires at least 5.0' );
+    if( version_compare( '5.3.0', phpversion(), '>' ) ) {
+        die( 'You are using PHP version '. phpversion().' but the CMS requires at least 5.3.0' );
     }
 
     // Refuse to run on IIS
@@ -378,6 +378,7 @@
     if ( defined('K_USE_ALTERNATIVE_MTA') && K_USE_ALTERNATIVE_MTA ){
         require_once( K_ADDONS_DIR . 'phpmailer/phpmailer.php' );
     }
+    require_once( K_COUCH_DIR.'addons/mosaic/mosaic.php' );
 
     // Current user's authentication info
     $AUTH = new KAuth( );

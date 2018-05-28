@@ -1,22 +1,16 @@
 $(document).ready(function(){
-    
-    /*--sticky-top*/
-    $(window).scroll(function(){
-        var sT =$(window).scrollTop();
-        var posicion = $('#controlMenu').position();
-        var menuHeight = $('#menu').children().height();
-        // console.log(posicion.top);
-        // console.log(sT);
-        var posicionT = posicion.top - menuHeight;
-        if(sT >= posicionT){
-            $('#menu').addClass('fijo');
-            $('#menu').addClass('ctamaño');
-        }else{
-            $('#menu').removeClass('fijo');
-            $('#menu').removeClass('ctamaño');
+    var y = $('#menu').position().top;
+    var z = $('.img-cover-top').outerHeight();
+    $(window).scroll(function () {
+        //se obtiene la poscicion del scroll
+        var x = $(window).scrollTop();
+        //si esl scroll es mayor que la poscicion incial del top
+        if (x > y) {
+            $('#menu').addClass('fixed-top');          
+        } else {//si el scroll todavia no es mayor que la poscicion inicial del menu
+            $('#menu').removeClass('fixed-top'); 
         }
     });
-    /*--/sticky-top*/
 
     /*--solicitudes--*/
     a = $("#contador").attr("valor"); 

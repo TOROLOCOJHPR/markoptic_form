@@ -43,7 +43,7 @@
             <h6 class="pl-2">CONTACTO</h6>
             <ul class="pl-4 list-unstyled">
                 <li><a href="/solicitud">Solicitar donación</a></li>
-                <li><a class="pointer" data-toggle="modal" data-target=".bd-example-modal-lg">Contacto</a></li>
+                <li><a href='' data-toggle="modal" data-target=".bd-example-modal-lg">Contacto</a></li>
             </ul>
         </div><!-- End links -->
     
@@ -60,9 +60,9 @@
                 <form action="https://fundacionmarkoptic.us16.list-manage.com/subscribe/post?u=5da492ad040c5451de3927303&amp;id=aa16cd9481" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate p-0" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
                         <div class="input-group mb-3 px-2 px-md-0 pr-md-2">
-                          <input type="email" value="" name="EMAIL" class="form-control form-control-sm required email" placeholder="Correo Electronico">
+                          <input type="email" value="" name="EMAIL" class="form-control form-control-sm required email rounded-0" placeholder="Correo Electronico">
                           <div class="input-group-append">
-                            <button class="btn btn-sm btn-success" type="submit">Suscribir</button>
+                            <button class="btn btn-sm btn-success rounded-0" type="submit">Suscribir</button>
                           </div>
                         </div>
 

@@ -4,114 +4,103 @@
     <cms:editable type='textarea' name='video_desc' label=' descripción' order='2'/>
 </cms:template>
 <?php 
-    include 'mod/header.php';
-    $menuBack = "Videos";
-
-    if(isset($_GET['p'])){
-        $menuBack = "Testimonio";
-    }
-    if(isset($_GET['f'])){
-        if($_GET['f'] == "11"){
-            $menuBack = "Testimonios";
-        }
-    }
-    
+    include 'mod/header.php';  
     include 'mod/menu.php';
 ?>
 
-    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-        <div class="w-100 h-100  c-align-middle flex-column opacity-green">
-            <cms:if k_is_page><h3>Testimonio</h3></cms:if>
-            <h1 class="text-center" style='text-transform:capitalize;'><cms:if k_is_folder><cms:show k_folder_name /><cms:else /><cms:if k_is_page><cms:show k_page_title /><cms:else />Videos</cms:if></cms:if></h1>
-        </div>
-    </div>
-    <cms:if k_is_folder >
-    <div class="container-fluid px-0 text-center">
-        <div class="row mx-0">
-            <cms:pages folder=k_folder_name >
-                <div class="col-12 col-sm-6 mt-4 px-0">
-                    <div class="row mx-0">
-                        <div class="col-12 col-sm-5 px-0">
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-7 px-0">
-                            <div class="row mx-0 text-white text-center text-light">
-                                <div class="col-auto c-align-vertical" style="background-color:#888586;">
-                                    <cms:date k_page_date format='d' />
-                                </div>
-                                <div class="col-auto c-align-vertical" style="background-color:#bab4b3;">
-                                    <cms:date k_page_date format='%b' locale="es-MX" />
-                                </div>
-                                <div class="col" style="background-color:#00a55f;">
-                                    <cms:show k_page_title />
-                                </div>
-                            </div>
-                            <div class="row mx-0">
-                                <div class="col-12 text-dark p-3 text-center "><cms:show video_desc /></div>
-                                <!-- <cms:show k_page_link /> -->
-                            </div>
-                        </div>
-                    </div>  
-                </div>
-            </cms:pages> 
-        </div>
-    </div>
-    <cms:else />
-        <cms:if k_is_page>
-        <div class="row mx-0">
-            <div class="col-12 col-md-6 px-0">
-                <div class="embed-responsive embed-responsive-16by9">
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 p-0 d-flex flex-wrap fs-1-5">
-                <span class="text-center align-self-end w-100 px-5 f-style-italic">"<cms:show video_desc />"</span>
-                <a href="/video?f=11" class="btn bg-verde-menu align-self-end mx-auto mb-3">Ver todos los testimonios</a>               
-                </div>
-            </div>
-        </div>
-
-        <!-- <cms:folders masterpage='video.php' hierarchical='1'>
-            <cms:show k_folder_title /> [<cms:show k_level />] <br> [<cms:show k_folder_link />] <br>
-        </cms:folders> -->
-                
-    <cms:else />
-    <div class="container-fluid px-0 text-center">
+<div class="container-fluid p-2 text-center">
+<cms:if k_is_folder >
     <div class="row mx-0">
-        <cms:pages masterpage='video.php' folder="NOT testimonios">
-            <div class="col-12 col-sm-6 mt-4 px-0">
-                <div class="row mx-0">
-                    <div class="col-12 col-sm-5 px-0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
+    <cms:pages folder=k_folder_name limit='6' paginate='1'>
+        <div class="col-12 col-lg-4 col-md-6 p-2">
+            <div class="row mx-0">
+                <div class="col-12 p-0">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="border-0" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-12 p-0">
+                    <div class="row mx-0 text-white text-center">
+                        <div class="col-auto bg-footer text-light d-flex">
+                            <div class='c-align-middle font-weight-bold small'><cms:date k_page_date format='%d / %b / %Y' locale="es_MX.utf8"/></div>
+                        </div>
+                        <div class="col bg-verde-menu">
+                            <h5 class='mb-0 p-2'><cms:show k_page_title /></h5>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-7 px-0">
-                        <div class="row mx-0 text-white text-center text-light">
-                            <div class="col-auto c-align-vertical" style="background-color:#888586;">
-                                <cms:date k_page_date format='d' />
-                            </div>
-                            <div class="col-auto c-align-vertical text-capitalize" style="background-color:#bab4b3;">
-                                <cms:date k_page_date format='%b' locale="es-MX" />
-                            </div>
-                            <div class="col" style="background-color:#00a55f;">
-                                <cms:show k_page_title />
-                            </div>
-                        </div>
-                        <div class="row mx-0">
-                            <div class="col-12 text-dark p-3 text-center"><cms:show video_desc /></div>
-                            <!-- <cms:show k_page_link /> -->
-                        </div>
+                    <p class="lead m-2"><cms:show video_desc /></p>
+                </div>
+            </div>  
+        </div>
+        <cms:if k_paginated_bottom >
+                <cms:if k_paginator_required >
+                <hr style='width:100%;'>   
+                    <div class="text-center w-100 mb-2">
+                        <cms:if k_paginate_link_prev >
+                        <a class="btn btn-success rounded-0 bg-verde-menu mr-2" href="<cms:show k_paginate_link_prev />">más recientes</a>
+                        </cms:if>
+                        <cms:if k_paginate_link_next >
+                        <a class="btn btn-success rounded-0 bg-verde-menu ml-2" href="<cms:show k_paginate_link_next />">más antiguos</a>
+                        </cms:if>
                     </div>
-                </div>  
-            </div>
-        </cms:pages> 
+                </cms:if> 
+        </cms:if>
+    </cms:pages> 
     </div>
+<cms:else />
+    <cms:if k_is_page>
+    <div class="row mx-0">
+        <div class="col-12 col-md-6 px-0">
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 p-0 d-flex flex-wrap fs-1-5">
+            <p class="lead align-self-end w-100 px-5 f-style-italic fs-1-5">"<cms:show video_desc />"</p>
+            <a href="/video?f=11" class="btn btn-success rounded-0 bg-verde-menu align-self-end mx-auto mb-3">Ver todos los testimonios</a>               
+            </div>
+    </div>             
+    <cms:else />
+    <div class="row mx-0">
+    <cms:pages masterpage='video.php' folder="NOT testimonios" limit='6' paginate='1'>
+        <div class="col-12 col-lg-4 col-md-6 p-2">
+            <div class="row mx-0">
+                <div class="col-12 p-0">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="border-0" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-12 p-0">
+                    <div class="row mx-0 text-white text-center">
+                        <div class="col-auto bg-footer text-light d-flex">
+                            <div class='c-align-middle font-weight-bold small'><cms:date k_page_date format='%d / %b / %Y' locale="es_MX.utf8"/></div>
+                        </div>
+                        <div class="col bg-verde-menu">
+                            <h5 class='mb-0 p-2'><cms:show k_page_title /></h5>
+                        </div>
+                    </div>
+                    <p class="lead m-2"><cms:show video_desc /></p>
+                </div>
+            </div>  
+        </div>
+        <cms:if k_paginated_bottom >
+                <cms:if k_paginator_required >
+                <hr style='width:100%;'>   
+                    <div class="text-center w-100 mb-2">
+                        <cms:if k_paginate_link_prev >
+                        <a class="btn btn-success rounded-0 bg-verde-menu mr-2" href="<cms:show k_paginate_link_prev />">más recientes</a>
+                        </cms:if>
+                        <cms:if k_paginate_link_next >
+                        <a class="btn btn-success rounded-0 bg-verde-menu ml-2" href="<cms:show k_paginate_link_next />">más antiguos</a>
+                        </cms:if>
+                    </div>
+                </cms:if> 
+        </cms:if>
+    </cms:pages> 
+    </div>
+    </cms:if>    
+</cms:if>
 </div>
-</cms:if>    
-    </cms:if>
 <?php include 'mod/footer.php' ?>
 </body>
 </html>

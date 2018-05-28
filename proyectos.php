@@ -14,15 +14,15 @@
 ?>
 
 <!-- Titulo principal -->
-<div class="t-shadow-2-black text-white bg-cover-center" style="background-image:url('/img/val2.jpg');">
-    <h1  class="c-align-middle opacity-green p-5"><cms:show titulo/></h1>  
+<div class="t-shadow-2-black text-white text-center bg-cover-center" style="background-image:url('/img/val2.jpg');">
+    <h1 class="opacity-green p-5 mb-0"><cms:show titulo/></h1>  
 </div>
 
-<div class=" container-fluid text-center text-white" id="tarjetas">
-    <div class="row mt-4 mb-4">        
+<div class=" container-fluid text-center text-white px-0 tarjetas">
+    <div class="row mx-0 p-2">        
         <cms:show_repeatable 'proyecto'>
-        <div class="col-sm-4 mt-2 col-12 ">
-            <div class="card pointer" d="<h2 class='text-center mb-2 mt-2'><cms:show nom_proyecto/></h2><div class='text-center'><img src='<cms:show img_proyecto />'class='img-thumbnail mx-auto' style='width:60%;'/></div><br><cms:show desc_proyecto />">
+        <div class="col-sm-6 col-12 p-2 pointer">
+            <div class="card pointe border-0" data-info="<h2 class='mb-3'><cms:show nom_proyecto/></h2><img src='<cms:show img_proyecto />' class='img-thumbnail w-50 mb-3'/><p class='lead-heavy'><cms:show desc_proyecto /></p>">
                 <div class="w-100 c-img">
                     <img class=" img-cover-center w-100 h-100" src="<cms:show img_proyecto />" alt="">
                 </div>
@@ -34,8 +34,7 @@
 </div>
 <!-- descripción de la tarjeta -->
 <div class="lightbox-proyectos">
-    <div id="dt" class="px-3 text-white text-center">
-        <p></p>
+    <div id="dt" class="p-4 text-white text-center">
     </div>
 </div>
 

@@ -1,29 +1,21 @@
-<?php //require_once('cms/cms.php'); ?>
 <?php
     if(!isset($_COOKIE['hide'])){
         setcookie('hide','0');
     }
-     ?>
-    <!-- <cms:template title = 'apadrina' order='15'>
-        <cms:editable name='textomotivador' label='Texto Motivador' type='text' order='1'/>
-    </cms:template> -->
-<?php
+    if(isset($_GET['b'])){
+        $title = "Porcentaje de Apadrinación";
+    }else{
+        $title = "Lista de solicitantes";
+    }
     include 'mod/header.php';
     include 'back/objetos.php';
-    if(isset($_GET['b'])){
-        $menuBack = "Porcentaje de Apadrinación";
-    }else{
-        $menuBack = "Apadrina";
-    }
     include 'mod/menu.php';
 ?>
 
     <!-- contenido -->
     <!-- Titulo principal -->
-    <div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-        <div class="w-100 h-100 c-align-middle opacity-green">
-            <h1>Apadrina</h1>
-        </div>
+    <div class="t-shadow-2-black text-white bg-cover-center text-center bg-cover-cabecera">
+        <h1 class="opacity-green p-5 mb-0">Apadrina un Solicitante</h1>
     </div>
     <?php
         //página de porcentaje de recaudación del  beneficiario
@@ -56,7 +48,7 @@
 <?php
     }
 ?>
-<script src="/js/no-back.js"></script>
+<!-- <script src="/js/no-back.js"></script> -->
 <script>
     $(document).ready(function(){
         // comprobar la variable ocultar modal

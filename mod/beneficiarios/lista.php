@@ -63,32 +63,23 @@
     //$code = json_encode($arreglo);
     $totalArreglo = count($arreglo);
     //$prueba = new stdClass();
-    $prueba = array (
-        'indice1' => 'gatito',
-        'indice2' => 'perrito',
-    );
     // $prueba->propiedad = 'valor de propiedad';
-    ?>
-    <script type="text/javascript">
-        var beneficiarios = <?php echo json_encode($arreglo); ?>;
-        var mostrar = <?php echo json_encode($mostrar); ?>;
-        var pagina = <?php echo json_encode($pagina); ?>;
+?>
+    <script>
+        let beneficiarios = <?php echo json_encode($arreglo); ?>;
+        let mostrar = <?php echo json_encode($mostrar); ?>;
+        let pagina = <?php echo json_encode($pagina); ?>;
     </script>
-    <?php 
+<?php 
     if($totalArreglo != 0 ){
         //include 'mod/beneficiarios/tarjetasBeneficiarios.php';
     }else{
 ?>
-        <p class="fs-3 text-dark p-5 mt-5 mb-5 text-center">
-            No se encontraron solicitudes por favor inténtalo de nuevo
+        <p class="display-4 text-center p-5 mb-0">
+            No se encontraron solicitantes<br>por favor inténtalo de nuevo más tarde.
         </p>
 <?php
     }
 ?>
-<!-- <div id="directorio" class="container-fluid bg-cover-center p-0">
-    <div class="row mx-0 text-dark text-center" id="div">
-        <!<div id="tarjetasBeneficiarios"></div>
-    </div>
-</div> -->
-    <div id = "div"></div>
-    <!-- <button id="cargaMas">carga mas</button> -->
+
+<div id = "div"></div>

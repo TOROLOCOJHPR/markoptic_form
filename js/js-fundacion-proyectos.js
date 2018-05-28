@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('.card').click(function(){
         //$('.lightbox').css({"display":"block"});
         $('.lightbox-proyectos').addClass('lightbox-block');
-        var d =$(this).attr('d');        
+        var d =$(this).data('info');        
         $('#dt').html(d).show();
 
         $('body').css({

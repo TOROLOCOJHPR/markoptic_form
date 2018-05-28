@@ -52,7 +52,7 @@
         var $cached_files = array(); // for use of smart_embed tag
         var $cached_nested_pages = array();
         var $cached_pretty_tplnames = array();
-        var $cached_settings = array();
+        var $cached_settings = null;
 
         var $_t = array(); // translated strings
         var $_ti = array(); // translated icon names
@@ -69,6 +69,7 @@
         var $repeatable = array();
         var $renderables = array();
         var $routes = array();
+        var $funcs = array();
         var $spl_templates = array();
 
         var $admin_menuitems = array();
@@ -90,7 +91,7 @@
 
         var $current_route = null;
         var $route_fully_rendered = 0;
-        var $route_content_type = '';
+        var $route_content_type = 'text/html';
 
         var $_ed;
         var $json = null;
@@ -1417,8 +1418,7 @@
                     }
                 }
 
-                $code = "return strcmp(\$a['weight'], \$b['weight']);";
-                usort( $this->admin_list_fields, create_function('$a,$b', $code) );
+                usort( $this->admin_list_fields, function($a,$b){ return strcmp($a['weight'], $b['weight']); } );
                 $done = 1;
             }
             return $this->admin_list_fields;
@@ -1523,14 +1523,9 @@
 
         function date_dropdowns( $date='', $simple_mode=0 ){
             global $FUNCS, $PAGE;
-            //TODO: allow localization
-           /* $arrMonths = array('01'=>'January',   '02'=>'February', '03'=>'March',    '04'=>'April',
-                               '05'=>'May',       '06'=>'June',     '07'=>'July',     '08'=>'August',
-                               '09'=>'September', '10'=>'October',  '11'=>'November', '12'=>'December');
-           */
-            $arrMonths = array('01'=>'Enero',   '02'=>'Febrero', '03'=>'Marzo',    '04'=>'Abril',
-                               '05'=>'Mayo',       '06'=>'Junio',     '07'=>'Julio',     '08'=>'Agosto',
-                               '09'=>'Septiembre', '10'=>'Octubre',  '11'=>'Noviembre', '12'=>'Diciembre');
+            $arrMonths = array('01'=>$FUNCS->t('month01'), '02'=>$FUNCS->t('month02'), '03'=>$FUNCS->t('month03'), '04'=>$FUNCS->t('month04'),
+                               '05'=>$FUNCS->t('month05'), '06'=>$FUNCS->t('month06'), '07'=>$FUNCS->t('month07'), '08'=>$FUNCS->t('month08'),
+                               '09'=>$FUNCS->t('month09'), '10'=>$FUNCS->t('month10'), '11'=>$FUNCS->t('month11'), '12'=>$FUNCS->t('month12'));
 
             if( !$date ) $date = $PAGE->publish_date;
             if( !$date || $date=='0000-00-00 00:00:00' ) $date = $this->get_current_desktop_time();
@@ -1569,7 +1564,10 @@
         function sanitize_posted_date(){
             $year = intval( $_POST['f_k_year'] );
             if( $year <= 0 ) $year = date('Y');
-            if( $year < 1970 ) $year = '1970';
+            if( 2147483647 == PHP_INT_MAX ){ // 32bit PHP
+                if( $year < 1902 ) $year = '1902';
+                if( $year > 2037 ) $year = '2037';
+            }
 
             $month = intval( $_POST['f_k_month'] );
             if( $month <= 0 ) $month = date('n');
@@ -1651,13 +1649,55 @@
             return $this->cmp_date( $str_date1, $str_date2, 1 );
         }
 
+        // moved here from tags.php
+        function date( $date='', $format='F d, Y', $locale='', $charset='', $gmt=0 ){
+            global $FUNCS;
+
+            if( trim($date)=='' ) $date = $FUNCS->get_current_desktop_time();
+            $gmt = ( $gmt==1 ) ? 1 : 0;
+            $locale = trim( $locale );
+            $charset = trim( $charset );
+
+            $ts = ( $gmt ) ? @strtotime($date) - (K_GMT_OFFSET * 60 * 60) :  @strtotime($date);
+
+            if( strpos($format, "%")===FALSE ){
+                return @date( $format, $ts );
+            }
+            else{// use strftime
+                if( $locale ){
+                    $orig_locale = setlocale(LC_ALL, "0");
+                    @setlocale(LC_ALL, $locale);
+                }
+
+                $val = @strftime( $format, $ts );
+
+                if( $locale ){
+                    @setlocale(LC_ALL, $orig_locale);
+                }
+                if( $charset ){
+                    if( function_exists('iconv') ){
+                        $val = @iconv( $charset, 'UTF-8', $val );
+                    }
+                }
+
+                return $val;
+            }
+        }
+
         function get_link( $masterpage ){
+            global $FUNCS;
+
             if( K_PRETTY_URLS ){
-                return K_SITE_URL . $this->get_pretty_template_link( $masterpage );
+                $link = K_SITE_URL . $this->get_pretty_template_link( $masterpage );
             }
             else{
-                return K_SITE_URL . $masterpage;
+                $link = K_SITE_URL . $masterpage;
             }
+
+            // HOOK: funcs_get_link
+            $FUNCS->dispatch_event( 'funcs_get_link', array($masterpage, &$link) );
+
+            return $link;
         }
 
         function get_qs_link( $link, $skip_qs=array() ){
@@ -1815,7 +1855,7 @@
             global $DB, $FUNCS;
 
             //$rs = $DB->select( K_TBL_TEMPLATES, array('name'), 'clonable=1 AND executable=1' );
-            $rs = $DB->select( K_TBL_TEMPLATES, array('name', 'custom_params'), '1=1' );
+            $rs = $DB->select( K_TBL_TEMPLATES, array('name', 'custom_params'), "ISNULL(type) || type=''" );
             if( count($rs) ){
                 foreach( $rs as $key=>$val ){
                     $is_index = 0;
@@ -2201,15 +2241,7 @@
             global $DB;
 
             if( K_CACHE_SETTINGS ){
-                if( !count($this->cached_settings) ){
-                    $rs = @mysql_query( 'select * from '.K_TBL_SETTINGS, $DB->conn );
-                    if( $rs ){
-                        while( $row = mysql_fetch_row($rs) ) {
-                            $this->cached_settings[$row[0]] = $row[1];
-                        }
-                        mysql_free_result( $rs );
-                    }
-                }
+                if( is_null($this->cached_settings) ) $this->_init_settings_cache();
 
                 if( key_exists($key, $this->cached_settings) ){
                     return $this->cached_settings[$key];
@@ -2239,6 +2271,7 @@
             }
 
             if( K_CACHE_SETTINGS ){
+                if( is_null($this->cached_settings) ) $this->_init_settings_cache();
                 $this->cached_settings[$key] = $value;
             }
         }
@@ -2250,7 +2283,35 @@
             if( $rs==-1 ) return KFuncs::raise_error( "Unable to remove setting from K_TBL_SETTINGS" );
 
             if( K_CACHE_SETTINGS ){
+                if( is_null($this->cached_settings) ) $this->_init_settings_cache();
                 unset( $this->cached_settings[$key] );
+            }
+        }
+
+        function get_setting_ex( $key, $default=null ){
+            $val = $this->get_setting( $key, $default );
+            $val = ( $val!==$default ) ? @unserialize( base64_decode($val) ) : $default;
+
+            return $val;
+        }
+
+        function set_setting_ex( $key, $value ){
+            global $DB;
+
+            $rs = $this->set_setting( $key, base64_encode(serialize($value)) );
+            return $rs;
+        }
+
+        function _init_settings_cache(){
+            global $DB;
+
+            $this->cached_settings = array();
+            $rs = @mysql_query( 'select * from '.K_TBL_SETTINGS, $DB->conn );
+            if( $rs ){
+                while( $row = mysql_fetch_row($rs) ) {
+                    $this->cached_settings[$row[0]] = $row[1];
+                }
+                mysql_free_result( $rs );
             }
         }
 
@@ -3285,7 +3346,7 @@ OUT;
                 if( $neg ) $sep .= "NOT";
                 $sep .= "(";
                 foreach( $arr_elems as $elem ){
-                    if( $elem ){
+                    if( $elem!='' ){
                         $sql .= $sep . $field_name."='" . $DB->sanitize( $elem )."'";
                         $sep = " OR ";
                     }
@@ -3525,6 +3586,8 @@ OUT;
         function init_render(){
             global $FUNCS;
 
+            if( defined('K_OVERRIDING_RENDERABLES_DONE') ) return;
+
             $FUNCS->renderables = array();
             $FUNCS->dispatch_event( 'register_renderables' );               // phase 1 - register all render functions
             define( 'K_REGISTER_RENDERABLES_DONE', '1' );
@@ -3596,6 +3659,8 @@ OUT;
 
         function render( $name ){
             global $FUNCS, $CTX;
+
+            if( !defined('K_OVERRIDING_RENDERABLES_DONE') ) $FUNCS->init_render();
 
             if( !is_array($this->renderables[$name]) || !count($this->renderables[$name]) ){
                 return;
@@ -3759,6 +3824,9 @@ OUT;
             if( array_key_exists($name, $this->routes[$masterpage]) ){ ob_end_clean(); die( "ERROR: function register_route(): '$name' already registered for module '$masterpage'" ); }
             $path = trim( $path );
 
+            $module = trim( $module );
+            if( $module=='' ){ $module = $masterpage; }
+
             $route = new Route( $name, $masterpage, $path, $constraints, $values, $method, $secure, $routable, $is_match, $generate, $filters, $validators, $include_file, $class, $action, $access_callback, $access_callback_params, $module );
             $this->routes[$masterpage][$name] = $route;
         }
@@ -3904,7 +3972,7 @@ OUT;
                         $vars['k_route_name'] = $route->name;
                         $vars['k_route_module'] = $route->module;
                         $vars['k_route_masterpage'] = $route->masterpage;
-                        $vars['k_route_link'] = K_ADMIN_URL . K_ADMIN_PAGE . "?o=$masterpage";
+                        $vars['k_route_link'] = K_ADMIN_URL . K_ADMIN_PAGE . "?o=".urlencode($masterpage);
                         if( strlen($path) ){ $vars['k_route_link'] .= '&q=' . $path; }
                         $vars['k_qs_link'] = $FUNCS->get_qs_link( $vars['k_route_link'] ); // link with passed qs parameters
                         foreach( $route->values as $k=>$v ){
@@ -3959,7 +4027,7 @@ OUT;
             }
 
             $q = $route->generate( $values );
-            $link = K_ADMIN_URL . K_ADMIN_PAGE . "?o=$masterpage";
+            $link = K_ADMIN_URL . K_ADMIN_PAGE . "?o=".urlencode($masterpage);
             if( strlen($q) ){ $link .= '&q=' . $q; }
 
             return $link;
@@ -4026,7 +4094,7 @@ OUT;
         function add_meta( $meta ){
             static $sig = array();
 
-            $hash = MD5( $html );
+            $hash = MD5( $meta );
             if( !isset($sig[$hash]) ){
                 $this->admin_meta .= $meta . "\r\n";
                 $sig[$hash] = 1;

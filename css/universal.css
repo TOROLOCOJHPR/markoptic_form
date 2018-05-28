@@ -1,10 +1,3 @@
-body,
-html {
-    width: 100%;
-    height: 100vh;
-    display: block;
-}
-
 .print {
     border: 1px dashed purple;
 }
@@ -243,34 +236,5 @@ html {
 }
 
 .t-shadow-2-black {
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-/*style*/
-
-.f-style-italic {
-    font-style: italic;
-}
-
-/*uppercase*/
-
-.text-capitalize {
-    text-transform: capitalize;
-}
-
-/*first-letter uppercase*/
-
-.text-first-uppercase:first-letter {
-    color: red;
-}
-
-/*links*/
-
-a {
-    color: white;
-}
-
-a:hover {
-    color: white;
-    text-decoration: none;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
 }

@@ -5,14 +5,15 @@ body,
 html {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
-    line-height: 1.6;
+    line-height: 1.6em;
     color: #2D2D2D;
+    height: 100vh;
 }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
 }
 .push {
-    height: 50px
+    height: 55px
 }
 
 .text-markoptic {
@@ -22,16 +23,29 @@ html {
 #menu {
     font-size: 1rem;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+    transition: all .25s ease;
+    z-index: 500;
+}
+#menu .logo{
     height: 60px;
-    transition: .4s ease;
+    width: auto;
+    margin: 8px auto;
+    transition: all .25s ease;
+}
+#menu.fixed-top .logo{
+    height: 45px;
+    margin: 5px auto;
 }
 
-#menu a {
+.bg-cover-cabecera {
+    background-image:url('/img/val2.jpg');
+    text-align: center;
+}
+
+#menu a,
+#menu a:hover {
     color: #2D2D2D;
-}
-
-.ctamaño {
-    height: 60px;
+    text-decoration: none;
 }
 
 .h-principal {
@@ -45,13 +59,16 @@ html {
 
 .lead {
     font-size: 1.15rem;
+    line-height: 1.6em;
 }
 .lead-heavy {
     font-size: 1.15rem;
+    line-height: 1.6em;
     font-weight: 400;
 }
 .contador {
     margin-top: -120px;
+    font-size: 1.9rem;
 }
 
 #menu.row a:hover,
@@ -132,20 +149,24 @@ html {
     overflow: hidden
 }
 .director-descripcion,
-.colaborador-descripcion {
+.colaborador-descripcion,
+.director-descripcion:hover,
+.colaborador-descripcion:hover {
     color: #fff;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
     text-align: center;
     padding-top: 5px;
+    text-decoration: none;
 }
 
 .director-descripcion p {   
     margin: 0;
     font-size: 1.1rem;
+
 }
 .colaborador-descripcion p {   
-    margin: 0;
     font-size: 0.9rem;
+    margin: 0;
 }
 .director-descripcion p.desc,
 .colaborador-descripcion p.desc {   
@@ -196,7 +217,13 @@ html {
     transform: scale(1.7);
     cursor: default
 }
-
+.aliados-block, .aliados-block:hover {
+    display: block;
+    padding: 0;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.7);
+}
 .b-t {
     -webkit-text-stroke: 1px
 }
@@ -218,16 +245,19 @@ html {
     background-color: rgba(44, 165, 96, 0.5)
 }
 
-#tarjetas .card {
-    filter: grayscale(0.7);
-    transition: 0.2s ease;
-    -webkit-transition: 0.2s ease
-}
+.tarjetas,
+.tarjetas:hover {
+    color:#fff;
+    text-decoration: none;
+ }
 
-#tarjetas .card:hover {
+.tarjetas .card {
+    filter: grayscale(0.7);
+    transition:all  0.2s ease;
+ }
+
+.tarjetas .card:hover {
     filter: grayscale(0);
-    transition: 0.2s ease;
-    -webkit-transition: 0.2s ease
 }
 
 #flexbox {
@@ -267,8 +297,7 @@ html {
     position: fixed;
     z-index: 22;
     display: block;
-    padding-top: 3rem;
-    padding-bottom: 3rem
+    padding: 1.6rem;
 }
 
 .lightbox-proyectos #dt {
@@ -312,6 +341,40 @@ address a {
 }
 
 /*.condBrazo .imgCondicion{height:100%;}*/
+a#block-beneficiarios {
+    color:#fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: block;
+    text-align: center;
+}
+
+a#block-beneficiarios h2 {
+    margin: 0;
+    padding: 110px 20px;
+    font-size: 2.5rem;
+    background-color: rgba(49, 164, 99, 0.4);
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+    transition: ease 0.2s
+}
+a#block-beneficiarios h2:hover {
+    background-color: rgba(49, 164, 99, 0.2);
+}
+a#block-beneficiarios:hover {
+    text-decoration: none;
+}
+
+.block-opciones {
+    color:#fff;
+    height:300px;
+    display: flex;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+.block-opciones:hover {
+    color:#fff;
+    text-decoration: none;
+}
 
 #foto input[type='file'] {
     display: none;
@@ -399,7 +462,10 @@ address a {
 
 .blockquote .lead {
     margin: 15px 50px;
-    font-size: 1.3rem;
+    font-size: 1.35rem;
+    font-style: italic;
+    font-weight: 400;
+    max-width: 600px;
 }
 
 footer {
@@ -408,6 +474,7 @@ footer {
 footer ul li a {
     /* margin-left:15px; */
     transition: 0.2s ease;
+    color:#fff;
 }
 
 footer ul li a::before {
@@ -417,13 +484,9 @@ footer ul li a::before {
 
 footer ul li a:hover {
     padding-left: 15px;
-    transition: 0.2s ease;
+    color:#fff;
+    text-decoration: none;
 }
-
-/* footer .enlacesFoo p{
-    margin-left:15px;
-    margin-bottom:15px
-    } */
 
 .ul-lh li {
     line-height: 1.6em;
@@ -440,6 +503,12 @@ footer ul li a:hover {
     #menu a {
         font-size: 0.9rem;
     }
+    #menu .logo{
+        max-height: 45px;
+    }
+    .contador {
+        font-size: 1.5rem;
+    }
 }
 
 @media (min-width: 576px) {
@@ -450,11 +519,9 @@ footer ul li a:hover {
 
 @media(min-width:768px) {
     .bordes:after {
-        width: 2px;
+        width: 1px;
     }
-    .contador {
-        margin-top: -150px;
-    }
+
     .h-principal {
         height: 80vh;
     }

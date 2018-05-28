@@ -3,7 +3,7 @@
       <div class="modal-dialog modal-lg">
         <div class="modal-content text-dark">
             <h2 class="text-center pt-3">Transferencia</h2>
-            <img src="../imagenes/fundación/transferencia-blue.png" class="mx-auto w-25" alt="logo paypal">
+            <img src="/img/transferencia-blue.png" class="mx-auto w-25" alt="logo paypal">
             <p class="px-5 text-center">
                 Si desea hacer su donativo mediante Transferencia Electrónica Bancaria los datos son los siguientes.
                 <br><strong>Banco:</strong>

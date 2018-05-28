@@ -1,4 +1,6 @@
 <?php
+    if ( !defined('K_COUCH_DIR') ) die(); // cannot be loaded directly
+
     class KPHPMailer{
 
         var $config = array();
@@ -351,7 +353,7 @@
             return $html;
         }
 
-        function get_data( $for_ctx=0 ){
+        function get_data(){
             global $CTX;
 
             // Data not a simple string hence

@@ -12,107 +12,96 @@
 ?>
 
 <!-- Titulo principal -->
-<div class="t-shadow-2-black w100 h-25 text-white bg-cover-center" style="background-image:url('/imagenes/fundación/val2.jpg');">
-    <div class="w-100 h-100 c-align-middle opacity-green">
-            <h1>Galería</h1>  
-    </div>
+<div class="t-shadow-2-black text-white bg-cover-center bg-cover-cabecera text-center">
+    <h1 class="p-5 mb-0 opacity-green">Galería</h1>  
 </div>
 
 <!--Galería fotografica-->
-<div class=" container-fluid text-center text-white bg-secondary unete" id="tarjetas">
-        <div class="row mb-4">
+<div class=" container-fluid p-0">
+        <section class="text-center text-white bg-secondary p-3 p-md-5" id="fotografias">
             <!-- sección fotografica -->
+            <h2 class="text-center text-light mb-4">Fotografias</h2>
+            <div class="row mx-0">
             <cms:folders masterpage="album.php" include_subfolders='0' hierarchical = '1' paginate = '1' limit='3' orderby="weight" order="desc">
-                <div class="col-sm-4 mt-2 col-12 ">
-                    <a href='<cms:show k_folder_link />'>
-                        <div class="card">
-                            <div class="w-100 c-img">
-                                <img class=" img-cover-center w-100 h-100" src="<cms:show k_folder_image />" alt="">
+                <div class="col-sm-4 col-12 mb-3">
+                    <a href='<cms:show k_folder_link />' class='tarjetas'>
+                        <div class="card border-0">
+                            <div class="c-img">
+                                <img class="img-cover-center" src="<cms:show k_folder_image />" alt="">
                             </div>
-                            <div class="w-100  c-text bg-verde-menu d-flex align-items-center">
-                                <p class="w-100 ">
-                                    <cms:show k_folder_title />
-                                    <br>
-                                    <cms:show k_folder_pagecount /> Fotografías
-                                </p>
-                            </div>
+                            <h4 class="bg-verde-menu mb-0 p-3 p-md-2 py-md-3">
+                                <cms:show k_folder_title />
+                                <br>
+                                <small><cms:show k_folder_pagecount /> Fotografías</small>
+                            </h4>
                         </div>
                     </a>
                 </div>
             </cms:folders>
-        </div>
-        <a href="/album" class="btn bg-verde-menu mb-3">ver todos los albums</a>
-    </div>  
-  
-<!-- Galería videos -->
-<h3 class="text-center mt-3 text-dark">Videos</h3>
-<div class="container-fluid px-0 text-center">
-    <div class="row mx-0">
-        <cms:pages masterpage='video.php' limit='2' folder="NOT testimonios">
-            <div class="col-12 col-sm-6 mt-4 px-0">
-                <div class="row mx-0">
-                    <div class="col-12 col-sm-5 px-0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-7 px-0">
-                        <div class="row mx-0 text-white text-center">
-                            <div class="col-auto c-align-vertical" style="background-color:#888586;">
-                                <cms:date k_page_date format='d' />
-                            </div>
-                            <div class="col-auto c-align-vertical text-capitalize" style="background-color:#bab4b3;">
-                                <cms:date k_page_date format='%b' locale="es-MX" />
-                            </div>
-                            <div class="col" style="background-color:#00a55f;">
-                                <cms:show k_page_title />
-                            </div>
-                        </div>
-                        <div class="row mx-0">
-                            <div class="col-12 p-3 text-center text-dark"><cms:show video_desc /></div>
-                        </div>
-                    </div>
-                </div>  
             </div>
-        </cms:pages> 
-    </div>
-    <a href="/video" class="btn bg-verde-menu mb-3 mt-5">ver todos los videos</a>   
-</div>
+            <a href="/album" class="btn btn-success bg-verde-menu rounded-0 font-weight-bold">ver todos los albums</a>
+        </section>
 
-<div class="container-fluid px-0 text-center bg-secondary">
-    <h3 class="text-center text-white pt-3">Testimonios</h3>
-    <div class="row mx-0">
-        <cms:pages masterpage="video.php" folder="testimonios" limit='2'>
-            <div class="col-12 col-sm-6 mt-4 px-0">
-                <div class="row mx-0">
-                    <div class="col-12 col-sm-5 px-0">
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-7 px-0">
-                        <div class="row mx-0 text-white text-center text-light">
-                            <div class="col-auto c-align-vertical" style="background-color:#888586;">
-                                <cms:date k_page_date format='d' />
-                            </div>
-                            <div class="col-auto c-align-vertical text-capitalize" style="background-color:#bab4b3;">
-                                <cms:date k_page_date format='%b' locale="es-MX" />
-                            </div>
-                            <div class="col" style="background-color:#00a55f;">
-                                <cms:show k_page_title />
+        <section id='videos' class='text-center py-5'>
+        <!-- Galería videos -->
+            <h2 class="text-center text-markoptic mb-4">Videos</h2>
+            <div class="row mx-0 px-2">
+            <cms:pages masterpage='video.php' limit='3' folder="NOT testimonios">
+                <div class="col-12 col-lg-4 col-md-6 p-2 d-block d-lg-block <cms:if k_count = '3'>d-md-none</cms:if>">
+                    <div class="row mx-0">
+                        <div class="col-12 p-0">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="border-0" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="row mx-0">
-                            <div class="col-12 text-white p-3 text-center "><cms:show video_desc /></div>
-                            <!-- <cms:show k_page_link /> -->
+                        <div class="col-12 p-0">
+                            <div class="row mx-0 text-white text-center">
+                                <div class="col-auto bg-footer text-light d-flex">
+                                    <div class='c-align-middle font-weight-bold small'><cms:date k_page_date format='%d / %b / %Y' locale="es_MX.utf8"/></div>
+                                </div>
+                                <div class="col bg-verde-menu">
+                                    <h5 class='mb-0 p-2'><cms:show k_page_title /></h5>
+                                </div>
+                            </div>
+                            <p class="lead m-2"><cms:show video_desc /></p>
                         </div>
-                    </div>
-                </div>  
+                    </div>  
+                </div>
+            </cms:pages>
             </div>
-        </cms:pages> 
-    </div>
-    <a href="/video?f=11" class="btn bg-verde-menu mb-3 mt-5 p-2">ver todos los testimonios</a> 
-</div>
+            <a href="/video" class="btn btn-success bg-verde-menu rounded-0 font-weight-bold mx-auto mt-3">ver todos los videos</a>
+        </section>
+
+        <section id='testimonios' class='text-center py-5  bg-secondary'>
+        <!-- Galería videos -->
+            <h2 class="text-center text-white mb-4">Testimonios</h2>
+            <div class="row mx-0 px-2">
+            <cms:pages masterpage="video.php" folder="testimonios" limit='3'>
+                <div class="col-12 col-lg-4 col-md-6 p-2 d-block d-lg-block <cms:if k_count = '3'>d-md-none</cms:if>">
+                    <div class="row mx-0">
+                        <div class="col-12 p-0">
+                            <div class="embed-responsive embed-responsive-16by9">
+                                <iframe class="border-0" src="https://www.youtube.com/embed/<cms:show video_url />" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="row mx-0 text-white text-center">
+                                <div class="col-auto bg-footer text-light d-flex">
+                                    <div class='c-align-middle font-weight-bold small'><cms:date k_page_date format='%d / %b / %Y' locale="es_MX.utf8"/></div>
+                                </div>
+                                <div class="col bg-verde-menu">
+                                    <h5 class='mb-0 p-2'><cms:show k_page_title /></h5>
+                                </div>
+                            </div>
+                            <p class="lead m-2 text-white"><cms:show video_desc /></p>
+                        </div>
+                    </div>  
+                </div>
+            </cms:pages>
+            </div>
+            <a href="/video?f=11" class="btn btn-success bg-verde-menu rounded-0 font-weight-bold mx-auto mt-3">ver todos los videos</a>
+        </section>
+</div> 
 <!--/contenido-->
 <!--footer-->
     <?php
