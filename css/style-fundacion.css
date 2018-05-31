@@ -470,6 +470,7 @@ a#block-beneficiarios:hover {
 
 footer {
      border-top:solid 5px #31a463;
+     clear: both;
 }
 footer ul li a {
     /* margin-left:15px; */
@@ -498,7 +499,35 @@ footer ul li a:hover {
     height: 30px;
     margin-right: 10px;
 }
-
+.pub-header hr{
+    margin: 5px 30%;
+    border: 0;
+    border-top: 2px solid #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.pub-header small{
+    font-size: 1rem;
+    font-weight: 600;
+}
+.publicacion{
+    padding: 10px 25px;
+}
+.publicacion img {
+    max-width: 85vw;
+    height: auto;
+    margin: 0 15px 15px;
+    border: 3px solid #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
+}
+.publicacion p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    line-height: 1.6em;
+    font-weight: 300;
+}
+#mc_embed_signup {
+    background:none; clear:left;
+}
 @media only screen and (max-width: 540px) {
     #menu a {
         font-size: 0.9rem;

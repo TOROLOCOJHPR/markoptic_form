@@ -2,8 +2,11 @@
     $title = "Beneficiarios";
     include 'back/objetos.php';
     include 'mod/header.php';
-    include 'mod/menu.php';
 ?>
+
+</head>
+<body>    
+<?php include 'mod/menu.php';?>
     <!-- contenido -->
     <!-- Titulo principal -->
     <div class="text-white bg-cover-center bg-cover-cabecera">

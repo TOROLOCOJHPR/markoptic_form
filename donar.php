@@ -2,9 +2,11 @@
     //header
     $title='Donar';
     include 'mod/header.php';
-    include 'mod/menu.php';
 ?>
 
+</head>
+<body>
+<?php include 'mod/menu.php';?>
 <!-- Titulo principal -->
     <div class="t-shadow-2-black text-white bg-cover-center text-center bg-cover-cabecera">
             <h1 class="p-5 mb-0 opacity-green">Donar</h1>

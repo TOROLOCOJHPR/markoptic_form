@@ -1,6 +1,6 @@
 <?php
     //header
-    $title = "Solciitud completada";
+    $title = "Solcitud completada";
     include 'mod/header.php';
     include 'mod/menu.php';
 ?>

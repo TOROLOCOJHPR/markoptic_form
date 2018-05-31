@@ -5,7 +5,7 @@
     $resultado = array_unique($entrada);
     print_r($resultado);*/
     $message = "";
-    $menuBack = "Apadrina";
+    $title = "Apadrina";
     //verificamos el método de acceso
     $metodo = $_SERVER['REQUEST_METHOD'];
     if( $metodo == 'POST' ){

@@ -1,8 +1,11 @@
 <?php
-    $title = "página no encontrada";
+    $title = "Página no encontrada";
     include 'mod/header.php';
-    include 'mod/menu.php';
 ?>
+
+</head>
+<body>
+<?php include 'mod/menu.php';?>
     <!--/menu-->
     <!-- contenido -->
     <!-- Titulo principal -->

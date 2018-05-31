@@ -1,10 +1,8 @@
 <?php 
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
     require('back/comprueba.php');
     $metodo = $_SERVER['REQUEST_METHOD'];
     $url2 = "?".$_SERVER['QUERY_STRING'];
-    $menuBack = "Beneficiarios";
+    $title = "Editar beneficiarios";
     //echo  $url2;
     include 'back/objetos.php'; 
     $objBen = new Beneficiario;

@@ -1,13 +1,13 @@
 <?php require_once('cms/cms.php'); ?>
-<cms:template title='video' clonable='1' order='8' dynamic_folders='1'>
+<cms:template title='Videos' clonable='1' order='8' dynamic_folders='1'>
     <cms:editable type='text' name='video_url' label='id del video' order='3'/>
     <cms:editable type='textarea' name='video_desc' label=' descripción' order='2'/>
 </cms:template>
-<?php 
-    include 'mod/header.php';  
-    include 'mod/menu.php';
-?>
+<?php include 'mod/header.php';?>
 
+</head>
+<body>
+<?php include 'mod/menu.php';?>
 <div class="container-fluid p-2 text-center">
 <cms:if k_is_folder >
     <div class="row mx-0">

@@ -1,5 +1,5 @@
  <?php require_once('cms/cms.php'); ?>
-<cms:template title ='proyectos' order="3">
+<cms:template title ='Proyectos' order="3">
     <cms:editable name='titulo' type='text' order='1'/>
     <cms:repeatable name='proyecto' order='2'>
         <cms:editable type='image' name='img_proyecto' show_preview='1' preview_width='150' input_width='200' col_width='300' />
@@ -7,12 +7,11 @@
         <cms:editable type='nicedit' name='desc_proyecto' label='descripcion' />
     </cms:repeatable>
 </cms:template>
-<?php
-    //header
-    include 'mod/header.php';
-    include 'mod/menu.php';
-?>
+<?php include 'mod/header.php';?>
 
+</head>
+<body>
+<?php include 'mod/menu.php';?>
 <!-- Titulo principal -->
 <div class="t-shadow-2-black text-white text-center bg-cover-center" style="background-image:url('/img/val2.jpg');">
     <h1 class="opacity-green p-5 mb-0"><cms:show titulo/></h1>  

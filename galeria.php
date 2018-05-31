@@ -1,5 +1,5 @@
 <?php require_once('cms/cms.php'); ?>
-<cms:template title='galeria' order='4'>
+<cms:template title='Galeria' order='4'>
     <cms:editable name='testimonio' label='testimonio' type='textarea' order='10' />
     <cms:editable name='autor_testimonio' label='Autor del testimonio' type='text' order='11' />
     <cms:editable name='url_testimonio' label='url testimonio' type='text' order='12' />

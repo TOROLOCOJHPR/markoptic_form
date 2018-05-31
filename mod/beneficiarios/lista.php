@@ -82,4 +82,4 @@
     }
 ?>
 
-<div id = "div"></div>
+<div id="div"></div>

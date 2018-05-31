@@ -1,7 +1,7 @@
 <?php
     require('back/comprueba.php');
     include 'back/objetos.php';
-    $menuBack = "Usuarios";
+    $title = "Editar usuarios";
     include 'mod/panel/editorUsuarios/excepciones.php';
 ?>
 <!DOCTYPE html>

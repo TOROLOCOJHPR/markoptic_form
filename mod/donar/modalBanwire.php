@@ -47,7 +47,7 @@
                 </div>
                 <!-- correo, cerrar y submit -->
                 <div class="form-group">
-                    <input id="emailCliente" class="form-control"type ="email" name="emailCliente" value="" placeholder="Introduce Email" required>
+                    <input id="emailCliente" class="form-control" type ="email" name="emailCliente" placeholder="Introduce Email" required>
                 </div>
                 <div id="d-excedente" class="alert-warning rounded text-center py-3" style="display:none">
                     <p class="px-2 py-0 mb-0 text-dark">

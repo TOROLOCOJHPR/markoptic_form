@@ -1,14 +1,11 @@
-<!-- botón up to top-->
     <a id='up' class='border border-right-0 bg-verde-menu f-opacity-75 p-1 c-align-middle top-btn-flotantes'>
         <svg width="1rem" viewBox="0 0 448 512">
             <path fill="white" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z"></path>
         </svg>
-    </a><!-- End botón up to top -->
-<!-- botón donar flotante -->
+    </a>
     <a href="/donar" class="bg-verde-menu position-fixed d-flex align-items-center d-md-none border border-left-0 text-white text-center p-2 top-btn-flotantes" style="z-index:9">
-            donar
-    </a><!-- End botón donar flotante -->
-<!-- footer -->
+        Donar
+    </a>
     <footer class="row no-gutters pt-3 bg-footer text-white ">        
     <!-- links -->
         <div class="col-6 col-sm order-3 order-sm-2">
@@ -43,7 +40,7 @@
             <h6 class="pl-2">CONTACTO</h6>
             <ul class="pl-4 list-unstyled">
                 <li><a href="/solicitud">Solicitar donación</a></li>
-                <li><a href='' data-toggle="modal" data-target=".bd-example-modal-lg">Contacto</a></li>
+                <li><a href='' data-toggle="modal" data-target="#contacto">Contacto</a></li>
             </ul>
         </div><!-- End links -->
     
@@ -54,7 +51,7 @@
             <!-- Begin MailChimp Signup Form -->
             <link href="//cdn-images.mailchimp.com/embedcode/classic-10_7.css" rel="stylesheet" type="text/css">
             <style type="text/css">
-            	#mc_embed_signup{background:none; clear:left;}
+            	
             </style>
             <div id="mc_embed_signup">
                 <form action="https://fundacionmarkoptic.us16.list-manage.com/subscribe/post?u=5da492ad040c5451de3927303&amp;id=aa16cd9481" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate p-0" target="_blank" novalidate>
@@ -74,29 +71,6 @@
                     </div>
                 </form>
             </div>
-            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='MMERGE3';ftypes[3]='text'; /*
-             * Translated default messages for the $ validation plugin.
-             * Locale: ES
-             */
-            $.extend($.validator.messages, {
-              required: "Este campo es obligatorio.",
-              remote: "Por favor, rellena este campo.",
-              email: "Por favor, escribe una dirección de correo válida",
-              url: "Por favor, escribe una URL válida.",
-              date: "Por favor, escribe una fecha válida.",
-              dateISO: "Por favor, escribe una fecha (ISO) válida.",
-              number: "Por favor, escribe un número entero válido.",
-              digits: "Por favor, escribe sólo dígitos.",
-              creditcard: "Por favor, escribe un número de tarjeta válido.",
-              equalTo: "Por favor, escribe el mismo valor de nuevo.",
-              accept: "Por favor, escribe un valor con una extensión aceptada.",
-              maxlength: $.validator.format("Por favor, no escribas más de {0} caracteres."),
-              minlength: $.validator.format("Por favor, no escribas menos de {0} caracteres."),
-              rangelength: $.validator.format("Por favor, escribe un valor entre {0} y {1} caracteres."),
-              range: $.validator.format("Por favor, escribe un valor entre {0} y {1}."),
-              max: $.validator.format("Por favor, escribe un valor menor o igual a {0}."),
-              min: $.validator.format("Por favor, escribe un valor mayor o igual a {0}.")
-            });}(jQuery));var $mcj = jQuery.noConflict(true);</script>
             <!--End mailchimp-->
                                 
         <!-- redes sociales -->
@@ -142,43 +116,43 @@
         </div>
 
     <!-- modal para contacto -->
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content p-text-black text-center">
-                <div class="bg-verde-menu p-4 mb-4 text-white">
-                    <h3>Contacto</h3>
-                </div>
-                <form id="contacto-form" method="post">
-                <div class="form-row px-3">
-                    <div class="form-group col-12">
-                        <input class="form-control" type="text" name="nombreContacto" id="" placeholder="Nombre Completo" required>
+        <div class="modal fade" id="contacto" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header bg-verde-menu p-2 rounded-0 text-center">
+                        <h4 class="modal-title w-100">Contacto</h4>
+                        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group col-12 col-md-6">
-                        <input class="form-control" type="email" name="emailContacto" id="" placeholder="Correo Electrónico" required>
+                    <div class="modal-body">
+                        <form id="contacto-form">
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <input class="form-control form-control-sm" type="text" name="nombre" id="" placeholder="Nombre" required>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <input class="form-control form-control-sm" type="email" name="email" id="" placeholder="Correo Electrónico" required>
+                                </div>
+                                <div class="form-group col-12 col-md-6">
+                                    <input class="form-control form-control-sm" type="text" name="telefono" id="" placeholder="Teléfono (Opcional)">
+                                </div>
+                            </div>
+                            <textarea class="form-control form-control-sm" name="comentario" placeholder="Déjanos tu comentario" rows="5" required></textarea>
+                            <input type="submit" value="enviar" class="btn btn-success  mt-3 btn-sm bg-verde-menu">
+                            <input type="reset" value="limpiar" class="btn btn-link text-secondary mt-3 btn-sm">
+                        </form>
                     </div>
-                    <div class="form-group col-12 col-md-6">
-                        <input class="form-control" type="text" name="telefonoContacto" id="" placeholder="Teléfono (Opcional)">
+                    <div class="modal-footer">
+                        <address class='text-dark mb-0 text-center w-100'>
+                            Blvd. Enrique Sánchez Alonso #2249-2, Col. Parque Alameda, Culiacán, Sin., México. C.P. 80030<br>
+                            Tels: (667) 715-2166 / 715-1714 / 146 66 50/51/52/53/54<br>
+                            <strong>Lada sin costo:</strong> 01 800 509 1985<br>
+                            <a href="mailto:info@fundacionmarkoptic.org.mx" class='text-markoptic font-weight-bold'>info@fundacionmarkoptic.org.mx</a>
+                        </address>
                     </div>
                 </div>
-                <div class="form-group col-12">
-                    <textarea class="form-control" name="comentarioContacto" placeholder="Déjanos tu comentario" rows="7" required></textarea>
-                </div>
-                <div class="">
-                    <input type="submit" value="enviar" class="bg-verde-menu btn p-2 px-3 ml-auto mr-3 text-white">
-                </div>
-                </form>
-                <div id="contact-result"></div>
-                <hr class="w-100"></hr>
-                <adress>
-                    <p class="text-dark text-center px-5">
-                        <span><i class="fa fa-map-marker" aria-hidden="true"></i> Blvd. Enrique Sánchez Alonso #2249-2, Col. Parque Alameda, Culiacán, Sin., México. C.P. 80030</span>
-                        <br>
-                        <span><i class="fa fa-phone" aria-hidden="true"></i> (667) 715-2166 / 715-1714 / 146 66 50/51/52/53/54 / LADA SIN COSTO: 01 800 509 1985</span>
-                        <br>
-                        <span><i class="fa fa-envelope" aria-hidden="true"></i> info@fundacionmarkoptic.org.mx</span>
-                    </p>
-                </div>
-                </div>
+            </div>
         </div>
     </footer>
 
@@ -187,31 +161,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="/js/js-position-top.js"></script>
     <script src="/js/minify/lightbox.min.js"></script>
+    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+    <script src="/js/minify/lightbox.min.js"></script>
+    <script src="/js/base.js"></script>
     <script>
-    $(document).ready(function(){
-        //enviar mail de formulario contacto
-        $('#contacto-form').submit(function(){
-            var f = "contactForm";
-            var r = "contact-result";
-            var id= $(this).val();
-            var nombreContact = $('input[name$="nombreContacto"]').val();
-            var emailContact = $('input[name$="emailContacto"]').val();
-            var telefonoContact = $('input[name$="telefonoContacto"]').val();
-            var comentarioContact = $('form textarea').val();
-            var parametros ={
-                "formulario": f,
-                "id" : id,
-                "nombreContacto": nombreContact,
-                "emailContacto": emailContact,
-                "telefonoContacto": telefonoContact,
-                "comentarioContacto": comentarioContact
-	        }
-            ajax(parametros,r);
-            $('#contacto-form')[0].reset();
-            return false;
-        });
-    });
-    //función ajax
+    // función ajax
     function ajax(ajaxParametros,resultado){
         $.ajax({
 	        data:ajaxParametros,

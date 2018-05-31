@@ -1,5 +1,5 @@
 <?php require_once( 'cms/cms.php' ); ?>
-<cms:template title='fundacion' order='2'>
+<cms:template title='Fundacion' order='2'>
 <cms:editable name='titulo' type='text' order='1' />
 <cms:editable name='historia' type='textarea' order='2' />
 <cms:editable name='mision' type='textarea' order='3' />
@@ -30,14 +30,14 @@
 </cms:repeatable>
 </cms:template>
 
-<?php
-    include 'mod/header.php';
-    include 'mod/menu.php';
-?>
+<?php include 'mod/header.php';?>
+</head>
+<body>
+<?php include 'mod/menu.php';?>
 <div class="container-fluid p-0">
     <!-- Titulo principal -->
-    <div class="t-shadow-2-black text-white bg-cover-center" style="background-image:url('/img/val2.jpg');">
-        <h1 class="c-align-middle opacity-green mb-0 py-5"><cms:show titulo/></h1>
+    <div class="t-shadow-2-black text-white bg-cover-center text-center" style="background-image:url('/img/val2.jpg');">
+        <h1 class="opacity-green mb-0 py-5"><cms:show titulo/></h1>
     </div>
 
     <!--Directorio-->

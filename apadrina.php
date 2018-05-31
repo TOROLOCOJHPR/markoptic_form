@@ -7,11 +7,14 @@
     }else{
         $title = "Lista de solicitantes";
     }
-    include 'mod/header.php';
     include 'back/objetos.php';
-    include 'mod/menu.php';
+    include 'mod/header.php';
 ?>
 
+</head>
+<body>
+
+<?php include 'mod/menu.php';?>
     <!-- contenido -->
     <!-- Titulo principal -->
     <div class="t-shadow-2-black text-white bg-cover-center text-center bg-cover-cabecera">

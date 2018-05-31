@@ -18,10 +18,11 @@
       type="thumbnail"
    />
 </cms:template>
-<?php
-    include 'mod/header.php';
-    include 'mod/menu.php';
-?>
+<?php include 'mod/header.php';?>
+
+</head>
+<body>
+<?php include 'mod/menu.php';?>
 <cms:if k_is_folder>
     <!--load-->
     <div id="load"class='c-align-middle'>

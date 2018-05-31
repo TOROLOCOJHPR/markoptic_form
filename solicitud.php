@@ -1,8 +1,11 @@
 <?php
     $title = "Solicita tu Donación";
     include 'mod/header.php';
-    include 'mod/menu.php';
 ?>
+
+</head>
+<body>
+<?php include 'mod/menu.php';?>
     <!-- Titulo principal -->
     <section class="t-shadow-2-black text-white bg-cover-center bg-cover-cabecera">
         <h1 class="opacity-green p-5">¿Cómo te podemos ayudar?</h1>  
