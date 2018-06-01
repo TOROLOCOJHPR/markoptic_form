@@ -126,11 +126,17 @@ $(document).ready(function(){
                 });
                 $('#modal-banwire').modal('hide');
                 
+                $('#modal-final').one('hidden.bs.modal', function (e) {
+                    // do something...
+                    if(path == "/apadrina"){
+                    // alert('recarga');
+                    // location.reload();
+                    porcentaje();
+                }
+                });
                 //recargar porcentaje de apadrinación al finalizar la transacción
                 
-                if(path == "/apadrina"){
-                    alert('recarga');
-                }
+   
             },
             // Pago pendiente OXXO
             // pendingPage: 'http://yahoo.com',

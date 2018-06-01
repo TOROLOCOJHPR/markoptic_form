@@ -22,7 +22,7 @@
         $objBen = new Tutor();
         $objBen->buscaParentesco();
     }*/
-    //--envia el formulario de contacto 
+    //--envia el formulario de contacto
     if($formulario == "contactForm"){
         $to = "info@fundacionmarkoptic.org.mx";
         //$to = "jparra@markoptic.mx";
@@ -34,11 +34,11 @@
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         $result = mail($to, utf8_decode($subject), utf8_decode($message), utf8_decode($headers));
-        if(!$result) {   
-             echo "Disculpa tu mensaje no pudo ser enviado";   
+        if(!$result){
+             echo "Disculpa tu mensaje no pudo ser enviado";
         } else {
             echo "<p class='text-dark'>Mensaje Enviado<p>";
-        }    
+        }
     }
     //--busca beneficiarios 
     if($formulario == "buscaBeneficiario"){
@@ -148,13 +148,18 @@
     if($formulario == "recaudacion"){
         $objBen = new Beneficiario;
         $myObj = (object)[];
-        $result = $objBen->buscaDatosApadrinado($_POST['id']);        
-        $recabado = $objBen->recabado($_POST['id']);   
-        $precioProtesis = $result['precio']; 
+        $result = $objBen->buscaDatosApadrinado($_POST['id']);
+        $recabado = $objBen->recabado($_POST['id']);
+        $precioProtesis = $result['precio'];
         $por = ($recabado == 0)? 0 : (($recabado / $precioProtesis)*100);
         $por = ($por > 100)? 100 : $por;
         $porciento = number_format($por,2);
+        if($por >= 100){
+            $objBen->updateCompletado($_POST['id']);
+        }
         $myObj->por = $por;
         $myObj->porciento = $porciento;
+        $myObj->precio = $precioProtesis;
+        $myObj->recabado = $recabado;
         echo json_encode($myObj);
     }

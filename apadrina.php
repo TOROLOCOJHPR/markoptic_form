@@ -45,6 +45,7 @@
     <script src="/js/motorPago.js"></script>
 
 <?php
+    include "mod/donar/modalFinal.php";
     }else{
 ?>
     <script src="/js/filtro.js"></script>

@@ -196,7 +196,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
     //--atributos Beneficiario
     public $dispositivo,$condicion,$descObtencion,$estausSolicitud,$foto1,$foto2,$foto3;
     private $idSolicitud;
-    //getter and setter Beneficiario
+    //--getter and setter Beneficiario
     public function getDispositivo(){return $this->dispositivo;}
     public function setDispositivo($sDispositivo){$this->dispositivo = $sDispositivo;}
     public function getCondicion(){return $this->condicion;}
@@ -1060,6 +1060,19 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $sql = "UPDATE usuarios SET pass = '".$hash."' WHERE id = '".$id."' ";
             $m = (!$con->query($sql))? 1 : 0;
             return $m;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }
+    }
+    //-- actualiza estatus del solicitante a completado sistema apadrinamiento
+    public function updateCompletado($id){
+        try{
+            $objCon = new conexion;
+            $con = $objCon->conectar();
+            $sql ="UPDATE solicitudes SET idEstatusSolicitud = '5' WHERE id ='".$id."' ";
+            $con->query($sql);
         }catch(Exception $e){
             echo $e->getMessage();
         }finally{

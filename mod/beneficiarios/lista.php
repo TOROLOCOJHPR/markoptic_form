@@ -2,9 +2,11 @@
     if($pagina == "beneficiarios"){
         $mostrar = 12;
         $estatus = 3;
+        // $estatus = "idEstatusSolicitud = 3";
     }elseif($pagina == "apadrina"){
         $mostrar = 12;
         $estatus = 2;
+        // $estatus = "(idEstatusSolicitud = 2) AND (idEstatusSolicitud = 5)";
         include 'mod/beneficiarios/modalEventos.php';
     }
     $recorrido = 0;
@@ -82,4 +84,4 @@
     }
 ?>
 
-<div id="div"></div>
+<div id = "div"></div>
