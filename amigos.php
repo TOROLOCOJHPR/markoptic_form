@@ -1,5 +1,5 @@
 <?php require_once('cms/cms.php'); ?>
-<cms:template title='Amigos' order='5'>
+<cms:template title='Amigos' parent='_aliados_'  order='2'>
     <cms:repeatable name='aliado'>
         <cms:editable type='image' name='img_aliado' label='aliado' show_preview='1' preview_width='150' input_width='200' col_width='300' />
         <cms:editable type='text' label='Nombre' name='nom_aliado' />

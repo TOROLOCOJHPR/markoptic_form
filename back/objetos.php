@@ -256,7 +256,7 @@ class Beneficiario extends Tutor{ //**Beneficiario
             $result = $con->query($sql);           
             echo'
                 <select name="solicitud" class="form-control">
-                    <option value = ""'; if( $id == "" ){ echo "selected"; } echo'>Selecciona un dispositivo</option>    
+                    <option value = ""'; if( $id == "" ){ echo " selected"; } echo'>Selecciona un dispositivo</option>    
             ';
                     while($row = mysqli_fetch_array($result)){
                     echo'<option value="'.$row['id'].'" '; if( $row['id'] == $id ){ echo "selected"; } echo'>'.$row['nombre'].'</option>';
