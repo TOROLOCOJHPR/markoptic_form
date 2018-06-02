@@ -30,11 +30,11 @@
         </div>
         <div class="row mx-0 w-100 align-self-end">
             <div id="porciento" class="col-auto px-0 pr-2 text-center d-flex align-items-center">0.00%</div>
-            <div class=" col px-0 progress rounded-0 rounded-left" style="height:38px">
+            <div class=" col px-0 progress rounded-0 " style="height:38px">
                 <div id="progress" class="progress-bar progress-bar-striped" role="progressbar" style="width:0%" aria-valuenow="" aria-valuemin="0" aria-valuemax="100"></div>
             </div>    
             <div class="">
-                <button id="apadrinar" class="btn bg-verde-menu text-white" data-toggle="modal" data-target=".banwire">Apadrinar</button>                            
+                <button id="apadrinar" class="btn btn-success rounded-0 bg-verde-menu text-white" data-toggle="modal" data-target=".banwire">Apadrinar</button>                            
             </div>
         </div>
     <script>

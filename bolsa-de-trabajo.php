@@ -24,11 +24,11 @@
                     <p class="lead-heavy "><cms:show mensaje_cabezera /></p>
                     <ul class=' lead-heavy text-left'>
                     <cms:show_repeatable 'oferta'>
-                        <li><a href="<cms:show documento />" class='text-markoptic'><cms:show nombre_documento /></a></li>
+                        <li><a href="<cms:show documento />" class='text-markoptic' target='_blank'><cms:show nombre_documento /></a></li>
                     </cms:show_repeatable>
                     </ul>
                     <p class="lead-heavy mb-0">Envianos tu curriculum y solicitud a:</p>
-                    <a href="mailto:<cms:show correo />" class='text-markoptic fs-1-2'><cms:show correo /></a>
+                    <a href="mailto:<cms:show correo />" class='text-markoptic fs-1-2' target='_blank'><cms:show correo /></a>
                 </div>
             </div>
         </div>

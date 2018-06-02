@@ -59,7 +59,7 @@
         if( $objBen->inserta() ){
             for($i=1; $i<=3; $i++){
                 $getFile="foto".$i;
-                move_uploaded_file ($_FILES[$getFile]['tmp_name'],"imagenes/uploads/".${"foto".$i} );
+                move_uploaded_file ($_FILES[$getFile]['tmp_name'],"img/uploads/".${"foto".$i} );
             }
             header('Location: ../gracias?solicitud=exito');
         }

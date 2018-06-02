@@ -238,3 +238,6 @@
 .t-shadow-2-black {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.75);
 }
+.text-first-uppercase:first-letter {
+    text-transform: uppercase;
+}

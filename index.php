@@ -19,12 +19,12 @@
     <cms:editable name='img_testimonio' label='imagen testimonio' type='image' show_preview='1' preview_height='400' order='13'/>
 </cms:template>
 <?php
-    include 'back/objetos.php'; 
+    // include 'back/objetos.php'; 
     include 'mod/header.php';    
     //número de solicitudes
-    $estatus = 1;
-    $objBen = new beneficiario;
-    $valor = $objBen->buscaTotalSolicitudes();
+    // $estatus = 1;
+    // $objBen = new beneficiario;
+    // $valor = $objBen->buscaTotalSolicitudes();
 ?>
 
 </head>
@@ -45,13 +45,13 @@
         </div>
     </div>
 
-    <!--contador-->
+    <!-- contador
     <div id="controlMenu" class='contador px-2 px-md-4' style='height:50px;position:absolute;'>
         <p class=" text-white font-weight-bold t-shadow-2-black">
         <span id="contador" valor="<?php echo $valor;?>"></span>
         <span> Solicitudes</span>
         </p>
-    </div>
+    </div> -->
         
         <?php include 'mod/menu.php'; ?>
 
