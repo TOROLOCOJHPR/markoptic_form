@@ -5,7 +5,7 @@
         // $estatus = "idEstatusSolicitud = 3";
     }elseif($pagina == "apadrina"){
         $mostrar = 12;
-        $estatus = 2;
+        $estatus = 1;
         // $estatus = "(idEstatusSolicitud = 2) AND (idEstatusSolicitud = 5)";
         include 'mod/beneficiarios/modalEventos.php';
     }

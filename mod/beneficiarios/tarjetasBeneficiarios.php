@@ -27,7 +27,7 @@
                 }
                 $cont = $cont + 1;*/
     ?>
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-0 bg-cover-directorio" style="background-image:url('/img/uploads/<?php echo $ubicacion.$row[$foto];?>');height:250px;">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-0 bg-cover-directorio" style="background-image:url('/img/uploads/<?php echo ($row[$foto] != '')?$ubicacion.$row[$foto]:'sin foto.jpg';?>');height:250px;">
             <a class="d-block h-100 colaborador-descripcion opacity-black" href="<?php echo ($pagina == "beneficiarios")?"/beneficiarios?b=":"/apadrina?b="; echo $row['id']; ?>">
                 <div class="h-25">
                     <div class="w-100 progress bg-secondary rounded-0 <?php echo ($pagina != "apadrina")?"d-none":"" ?>" style="height:5px">
