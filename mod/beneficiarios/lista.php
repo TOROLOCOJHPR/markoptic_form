@@ -1,18 +1,19 @@
 <?php
     if($pagina == "beneficiarios"){
         $mostrar = 12;
-        $estatus = 3;
-        // $estatus = "idEstatusSolicitud = 3";
+        // $estatus = 3;
+        $estatus = "idEstatusSolicitud = 3";
     }elseif($pagina == "apadrina"){
         $mostrar = 12;
-        $estatus = 1;
-        // $estatus = "(idEstatusSolicitud = 2) AND (idEstatusSolicitud = 5)";
+        // $estatus = 1;
+        $estatus = "(idEstatusSolicitud = 1) OR (idEstatusSolicitud = 5)";
         include 'mod/beneficiarios/modalEventos.php';
     }
     $recorrido = 0;
     //filtro
     $sqlInicial = "SELECT solicitudes.id FROM solicitudes ";
-    $sqlEstatus = " WHERE idEstatusSolicitud = '".$estatus."'" ;
+    // $sqlEstatus = " WHERE idEstatusSolicitud = '".$estatus."'" ;
+    $sqlEstatus = " WHERE ".$estatus;
     $sqlSexo = ($sexo != "" AND $folio == "" )? " AND beneficiarios.sexo = '".$sexo."'" : "";
     $inner = "";
     $complemento = "";
