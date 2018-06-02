@@ -18,16 +18,15 @@
     </div>
 
 <!-- first-block -->
-    <!-- <div class="container-fluid text-center p-5"> -->
-        <h3 class="text-markoptic text-center px-md-2 my-3">Agradecemos tu participación como donador. Selecciona cualquiera de nuestras opciones y se parte de esta gran causa.</h2>
+    <div class="container-fluid text-center py-3">
+        <h3 class="text-markoptic text-center">
+            Agradecemos tu participación como donador.<br>Selecciona cualquiera de nuestras opciones y se parte de esta gran causa.
+        </h3>
         <hr class="w-75">
     <!-- contador -->
-        <div class='contador px-2 px-md-4'>
-            <p class=" text-markoptic font-weight-bold">
-            <span id="contador" valor="<?php echo $valor;?>"></span>
-            <span> Solicitudes por atender</span>
+            <p class=" contador font-weight-bold text-center">
+                Tenemos <span class='text-markoptic' id="contador" valor="<?php echo $valor;?>"></span> Solicitudes por atender
             </p>
-        </div>
 
     <!-- botones -->
         <div class="row mx-0 text-white">
@@ -60,7 +59,7 @@
                 </div>
             </div>
         </div>
-    <!-- </div>     -->
+    </div>    
     <!--/contenido-->
     <?php 
         //modales de donación

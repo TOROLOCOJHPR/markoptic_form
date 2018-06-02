@@ -45,13 +45,8 @@
         </div>
     </div>
 
-<<<<<<< Updated upstream
     <!-- contador
     <div id="controlMenu" class='contador px-2 px-md-4' style='height:50px;position:absolute;'>
-=======
-    <!--contador-->
-    <!-- <div id="controlMenu" class='contador px-2 px-md-4' style='height:50px;position:absolute;'>
->>>>>>> Stashed changes
         <p class=" text-white font-weight-bold t-shadow-2-black">
         <span id="contador" valor="<?php echo $valor;?>"></span>
         <span> Solicitudes</span>
