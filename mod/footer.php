@@ -14,7 +14,7 @@
                 <li><a href="/donar">Donar</a></li>
                 <li><a href="/apadrina">Apadrina</a></li>
                 <li><a href="/unete">Únete</a></li>
-                <li><a href="/aliados">Amigos</a></li>
+                <li><a href="/amigos">Amigos</a></li>
                 <!-- <li><a href="/aliados?al=asesores">Asesores</a></li> -->
             </ul>
         </div>

@@ -8,8 +8,9 @@
         $id = $_POST['id'];
         $es = $_POST['es'];
         $objBen = new DatosPersonales();
-        $objBen->buscaEstado($id,$es);
+        echo json_encode($objBen->buscaEstadoFiltro($id,$es));
     }
+    
     //--busca ciudades de el estado seleccionado
     if($formulario == "buscaCiudad"){
         $id = $_POST['id'];

@@ -33,7 +33,27 @@ class DatosPersonales { //**DatosPersonales
     
     //--//SELECT DatosPersonales
     
-    //--funcion para buscar los países 
+    //--funcion para buscar los países nueva
+    public function buscaPaisFiltro($p){
+        try{
+            $array = array();
+            $sql="SELECT id,nombre FROM paises ORDER BY nombre ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            while( $row = $result->fetch_array() ){
+                $selected = ($p == $row['id'])?"selected":"";
+                array_push( $array,array( "id"=>$row['id'],"nombre"=>$row['nombre'],"selected"=>$selected ) );
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }        
+    }
+
+    //--funcion para buscar los países  vieja no eliminar
     public function buscaPais($p){
         try{
             $sql="SELECT id,nombre FROM paises ORDER BY nombre ASC";
@@ -53,7 +73,26 @@ class DatosPersonales { //**DatosPersonales
             $con->close();
         }        
     }
-    //--funcion para buscar los estados
+    //--funcion para buscar los estados nueva
+    public function buscaEstadoFiltro($id,$es){
+        try{
+            $array = array();
+            $sql="SELECT id,nombre FROM regiones WHERE id_pais = '".$id."' ORDER BY nombre ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            while( $row = $result->fetch_array() ){
+                $selected = ($es == $row['id'])?"selected":"";
+                array_push( $array,array( "id"=>$row['id'],"nombre"=>$row['nombre'],"selected"=>$selected ) );
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }finally{
+            $con->close();
+        }   
+    }
+    //--funcion para buscar los estados vieja no eliminar
     public function buscaEstado($id,$es){
         try{
            $sql="SELECT id,nombre FROM regiones WHERE id_pais = '".$id."' ORDER BY nombre ASC";
@@ -73,7 +112,24 @@ class DatosPersonales { //**DatosPersonales
             $con->close();
         }   
     }
-    //--funcion para buscar las ciudades
+    //--funcion para buscar las ciudades nueva
+    public function buscaCiudadFiltro($id,$c){       
+        try{
+            $array = array();
+            $sql="SELECT id,nombre FROM localidades WHERE id_region ='".$id."' ORDER BY nombre ASC";
+            $objCon = new conexion();
+            $con = $objCon->conectar();
+            $result = $con->query($sql);
+            while( $row = $result->fetch_array() ){
+                $selected = ($c == $row['id'])?"selected":"";
+                array_push( $array,array( "id"=>$row['id'],"nombre"=>$row['nombre'],"selected"=>$selected ) );
+            }
+            return $array;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+    }
+    //--funcion para buscar las ciudades vieja no eliminar
     public function buscaCiudad($id,$c){       
         try{
             $sql="SELECT id,nombre FROM localidades WHERE id_region ='".$id."' ORDER BY nombre ASC";
