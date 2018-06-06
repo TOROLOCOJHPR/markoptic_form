@@ -1,0 +1,82 @@
+#tarjetero { 
+    height: 450px;
+    position: relative;
+    overflow: hidden;
+}
+
+#tarjetero .tarjeta{ 
+    position:absolute;
+    background: #292929;
+    display: none;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.7s ease-out;
+}
+#tarjetero .tarjeta:first-child{ 
+    display: block;
+    opacity: 1;
+    z-index: 1;
+}
+
+#tarjetero .tarjeta img{ 
+    width:100vw;
+    height:450px;
+    display: block;
+    object-fit:cover;
+    object-position: 50% 50%;
+    opacity: 0.7;
+
+}
+#tarjetero .msj-tarjeta{ 
+    background-color: transparent;
+    position: absolute;
+    margin: 0 50px;
+    text-align: right;
+    top: 40%;
+    right: 0;
+    color:#fff;
+    text-shadow: 0 3px 2px rgba(0,0,0,0.7);
+}
+#tarjetero .msj-tarjeta.left{ 
+    text-align: left;
+    left: 0;
+
+}
+#tarjetero .msj-tarjeta a{
+    margin: 10px 0 0 30px;
+}
+#tarjetero .msj-tarjeta .btn-outline-light { 
+    text-shadow: none;
+}
+#tarjetero .msj-tarjeta .btn-outline-light:hover { 
+    background-color:#31a463;
+    color:#fff;
+    text-shadow: none;
+}
+#tarjetero #controles-tarjetero { 
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 3;
+    display: none;
+}
+#tarjetero #controles-tarjetero button { 
+    background-color: rgba(49, 164, 99, 0.651); /* Green */
+    border: solid 1px #fff;;
+    color: white;
+    padding: 5px 15px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    line-height: 0.5em;
+    vertical-align: middle;
+    transition: all ease 0.2s;
+}
+#tarjetero #controles-tarjetero button:hover { 
+    background-color: rgba(49, 164, 99, 1); /* Green */
+}
+#tarjetero #controles-tarjetero button:active { 
+    background-color: rgb(47, 136, 85); /* Green */
+    box-shadow:0 0 10px #fff;
+}

@@ -3,6 +3,7 @@
     <cms:repeatable name='carouselfondo' order='1'>
         <cms:editable type='image' name='img_fondo' show_preview='1' preview_width='150' input_width='200' col_width='300' />
         <cms:editable type='text' name='titulo' label='titulo' />
+        <cms:editable type='text' name='boton' label='texto boton' />
         <cms:editable type='text' name='url' label='url' />
     </cms:repeatable>
     <cms:editable name='img_beneficiarios' label='imagen beneficiarios' type='image' show_preview='1' preview_height='200' order='2'/>
@@ -18,43 +19,29 @@
     <cms:editable name='url_testimonio' label='url testimonio' type='text' order='12' />
     <cms:editable name='img_testimonio' label='imagen testimonio' type='image' show_preview='1' preview_height='400' order='13'/>
 </cms:template>
-<?php
-    // include 'back/objetos.php'; 
-    include 'mod/header.php';    
-    //número de solicitudes
-    // $estatus = 1;
-    // $objBen = new beneficiario;
-    // $valor = $objBen->buscaTotalSolicitudes();
-?>
-
+<?php include 'mod/header.php'; ?>
+    <link rel="stylesheet" type="text/css" href="/css/tarjetero.css" />
 </head>
 <body>
-    <!--carousel principal-->
-    <div id="carouselPrincipal" class="carousel slide h-principal" data-ride="carousel">
-        <div class="carousel-inner h-100">
+    <header id="tarjetero">
+        <div id="tarjetas">
             <cms:show_repeatable 'carouselfondo'>
-            <div class="carousel-item h-100 <cms:if k_count ='1'>active</cms:if>">
-                <a class="" href="<cms:show url />">
-                    <img class="d-block carousel-item-position-top img-cover-top" src="<cms:show img_fondo />" alt="First slide">
-                    <div class="carousel-caption w-100 text-center opacity-black">
-                        <h3 class="t-shadow-2-black"><cms:show titulo /></h3>
-                    </div>
-                </a>
+            <div class='tarjeta'>
+                <img src="<cms:show img_fondo />">
+                <div class="msj-tarjeta">
+                    <h1><cms:show titulo /></h1>
+                    <a href="<cms:show url />" class="btn btn-lg btn-outline-light rounded-0 font-weight-bold"><cms:show boton /></a>
+                </div>
             </div>
             </cms:show_repeatable>
         </div>
-    </div>
-
-    <!-- contador
-    <div id="controlMenu" class='contador px-2 px-md-4' style='height:50px;position:absolute;'>
-        <p class=" text-white font-weight-bold t-shadow-2-black">
-        <span id="contador" valor="<?php echo $valor;?>"></span>
-        <span> Solicitudes</span>
-        </p>
-    </div> -->
-        
-        <?php include 'mod/menu.php'; ?>
-
+        <span id="controles-tarjetero">
+            <button id='btn-back'>«</button>
+            <button id='btn-next'>»</button>
+        </span>
+    </header>
+    
+    <?php include 'mod/menu.php'; ?>
     <!-- beneficiarios -->
 
     <a href="/beneficiarios" style="background-image:url('<cms:show img_beneficiarios />');" id='block-beneficiarios'>
@@ -145,6 +132,8 @@
     <!--footer-->   
     <?php include 'mod/footer.php'; ?><!--/footer--> 
     <script src="/js/js-fundacion.js"></script>
+    <script src="/js/tarjetero.js"></script>
+
 </body>
 </html>
 <?php COUCH::invoke(); ?>
