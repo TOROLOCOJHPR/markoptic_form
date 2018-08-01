@@ -103,38 +103,29 @@ $(document).ready(function(){
     $('#reset').click(function(){
         $('#filtro').find('input:text, input:password, select, textarea').val('');
     });
-    //función scroll para cargar mas beneficiarios
-    $(window).scroll(function(){
-    	var scrollHeight = $(document).height();
-	    var scrollPosition = $(window).height() + $(window).scrollTop();
-	    if ((scrollHeight - scrollPosition) / scrollHeight === 0) {
-            // when scroll to bottom of the page
-            // console.log('bottom');
+
+    window.onscroll = function(ev) {
+        if ( (window.innerHeight +  window.scrollY) >= document.body.scrollHeight) {
             arregloAjax.length=0;
             recorrido = total-cont;
             carga++;        
             mostrar = (mostrar > recorrido)?recorrido : mostrar ;
-            if(recorrido == 0){
-                //console.log("no existen mas beneficiarios");
-            }else{
-                //console.log("existen mas beneficiarios");
+            if(recorrido == 0) {
+            } else {
                 for(i = 0; i<mostrar; i++){
                     arregloAjax[i] = beneficiarios[cont]['id'];
                     cont++;
                 }
                 carga = carga;
-                var r = "div"+carga;
-                //console.log(r);
-                var parametros = {
+                let r = "div"+carga;
+                let parametros = {
                     "formulario" : "datosBeneficiario",
                     "carga"  : carga,
                     "pagina" : pagina,
                     "arreglo" : arregloAjax
                 }
-            ajax(parametros,r);
-            //console.log(cont);
-            //console.log(carga);        
+                ajax(parametros,r);      
             }
         }
-    });
+    };
 });

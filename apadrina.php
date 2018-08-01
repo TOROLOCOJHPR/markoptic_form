@@ -51,7 +51,7 @@
 
 <?php
     include "mod/donar/modalFinal.php";
-    }else{
+    } else {
 ?>
     <script src="/js/filtro.js"></script>
 <?php } ?>

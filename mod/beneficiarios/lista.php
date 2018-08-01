@@ -63,10 +63,7 @@
     $arreglo = $objBen->generaSolicitudesFiltro($sql);
     shuffle($arreglo);
 
-    //$code = json_encode($arreglo);
     $totalArreglo = count($arreglo);
-    //$prueba = new stdClass();
-    // $prueba->propiedad = 'valor de propiedad';
 ?>
     <script>
         let beneficiarios = <?php echo json_encode($arreglo); ?>;
