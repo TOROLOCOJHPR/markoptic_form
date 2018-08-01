@@ -19,7 +19,9 @@ html {
 .text-markoptic {
     color:#31a463;
 }
-
+.k-icon, .k-tool-icon {
+    position: initial;
+}
 #menu {
     font-size: 1rem;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.5);
@@ -327,6 +329,15 @@ address a {
     color: #fff;
 }
 
+.error{
+    color:red;
+    display: none;
+    max-width:auto;
+}
+.imgCondicion{
+    max-height:200px;position:relative;
+}
+
 /*.condBrazo{height:150px;}*/
 
 .condBrazo label:hover {
@@ -382,11 +393,12 @@ a#block-beneficiarios:hover {
 
 #foto label img {
     max-width: 100%;
-    max-height: 180px;
+    max-height: 200px;
 }
 
 #foto .preview {
-    max-height: 150px;
+    max-width:100%;
+    max-height:180px;
 }
 
 /*#foto div{padding:.5rem;}*/
