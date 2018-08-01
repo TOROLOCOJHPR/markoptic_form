@@ -63,9 +63,9 @@ $(document).ready(function(){
     });
 
     //función para seleccionar los estados del país
-    $('#pais').attr('required',false);
-    $('#estado').attr('required',false);
-    $('#ciudad').attr('required',false);
+    // $('#pais').attr('required',false);
+    // $('#estado').attr('required',false);
+    // $('#ciudad').attr('required',false);
     $('#pais').change(function(){
         var p =  $(this).val();
         var f = "buscaEstado";
@@ -76,11 +76,42 @@ $(document).ready(function(){
             "id" : id,
             "es" : ""
         }
-        ajax(parametros,r);
-        $('#ciudad option').remove();
-        $('#ciudad').append('<option selected="selected" disabled="disabled">Selecciona una Ciudad</option>');
-        $('#estado').attr('required',false);
-        $('#ciudad').attr('required',false);
+        if(p == ""){
+            console.log('vacio');
+            $('#estado option, #ciudad option').remove();
+            // $('#ciudad option').remove();
+            $('#estado').append('<option selected="selected" disabled="disabled">Selecciona un Estado</option>');
+            $('#ciudad').append('<option selected="selected" disabled="disabled">Selecciona una Ciudad</option>');
+            $('#estado , #ciudad').attr('disabled',true);
+        }else{
+            console.log('lleno');            
+            $.ajax({
+	            data:parametros,
+             	url:'/back/ajax.php',
+                type:'post',
+            	beforeSend: function () {
+                },
+                success:  function (response) {
+	        	    $("#beforeresultado").html("");
+                    $('#ciudad option').remove();
+                    $('#ciudad').append('<option selected="selected" disabled="disabled">Selecciona una Ciudad</option>');
+                    // $('#estado').attr('required',false);
+                    $('#estado').attr({'disabled':false});
+                    options = JSON.parse(response);
+                    for(var k in options) {
+                        $('#estado').append('<option value="">'+ options[k].nombre +'</option>');
+                    }
+
+	        	    // $('#'+ resultado).html(response);
+                }
+            });
+        }
+
+        // ajax(parametros,r);
+        // $('#ciudad option').remove();
+        // $('#ciudad').append('<option selected="selected" disabled="disabled">Selecciona una Ciudad</option>');
+        // $('#estado').attr('required',false);
+        // $('#ciudad').attr('required',false);
     });
 
     //función para seleccionar las ciudades del estado
