@@ -29,7 +29,15 @@
                 $sql="SELECT id,medio,reqDesc,placeholder FROM mediosdifusion WHERE id = ".$this->id;                
                 $result = $con->query($sql);
                 $row = $result->fetch_assoc();
-                array_push( $array,array( "id"=>$row['id'],"medio"=>$row['medio'],"reqDesc"=>$row['reqDesc'],"placeholder"=>$row['placeholder'] ) );
+                array_push(
+                    $array,
+                    array(
+                        "idmedio"=>$row['id'],
+                        "medio"=>$row['medio'],
+                        "reqDesc"=>$row['reqDesc'],
+                        "placeholder"=>$row['placeholder']
+                    ) 
+                );//array_push
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
@@ -47,8 +55,16 @@
                 $sql="SELECT id,medio,reqDesc,placeholder FROM mediosdifusion GROUP BY medio ASC";
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array( "id"=>$row['id'],"medio"=>$row['medio'],"reqDesc"=>$row['reqDesc'],"placeholder"=>$row['placeholder'] ) );
-                }
+                    array_push(
+                        $array,
+                        array(
+                            "idMedio"=>$row['id'],
+                            "medio"=>$row['medio'],
+                            "reqDesc"=>$row['reqDesc'],
+                            "placeholder"=>$row['placeholder']
+                        ) 
+                    );//array_push
+                }//while
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();

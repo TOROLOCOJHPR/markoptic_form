@@ -7,12 +7,21 @@
             <p class="px-5 text-center">
                 Si desea hacer su donativo mediante Transferencia Electrónica Bancaria los datos son los siguientes.
                 <br><strong>Banco:</strong>
+                Banbajio
+                <br><strong>Nombre:</strong>
+                Fundacion Markoptic AC
+                <br><strong>CLABE:</strong>
+                0307 3090 0007 3289 92 
+            </p>
+            <!-- <p class="px-5 text-center">
+                Si desea hacer su donativo mediante Transferencia Electrónica Bancaria los datos son los siguientes.
+                <br><strong>Banco:</strong>
                 Citibanamex
                 <br><strong>Nombre:</strong>
                 Fundación Markoptic A.C.
                 <br><strong>CLABE:</strong>
                 002730700737425429 
-            </p>
+            </p> -->
         </div>
     </div>
 </div>

@@ -1,7 +1,6 @@
 <?php
-    require_once 'conexion.php';
-    require_once 'inc/config.php';
-
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $root.'/inc/objetos/conexion.php';
     class Beneficiario{
         
         //-- atributos
@@ -57,7 +56,36 @@
         //-- crea beneficiario en la base de datos
         public function creaFormulario($con){
             try{
-                $sql="INSERT INTO beneficiarios(nombre,apellidos,sexo,fecNacimiento,idCiudad,calle,colonia,cp,telefono,email,idMedioDifusion,descMedioDif) VALUES ('".$this->nombre."','".$this->apellido."','".$this->sexo."','".$this->nacimiento."',".$this->ciudad.",'".$this->calle."','".$this->colonia."','".$this->cp."','".$this->telefono."','".$this->email."',".$this->idMedioDif.",'".$this->descMedioDif."')";
+                $sql=
+                '   INSERT INTO beneficiarios(
+                        nombre,
+                        apellidos,
+                        sexo,
+                        fecNacimiento,
+                        idCiudad,
+                        calle,
+                        colonia,
+                        cp,
+                        telefono,
+                        email,
+                        idMedioDifusion,
+                        descMedioDif
+                    ) 
+                    VALUES(
+                        "'.$this->nombre.'",
+                        "'.$this->apellido.'",
+                        "'.$this->sexo.'",
+                        "'.$this->nacimiento.'",
+                        '.$this->ciudad.',
+                        "'.$this->calle.'",
+                        "'.$this->colonia.'",
+                        "'.$this->cp.'",
+                        "'.$this->telefono.'",
+                        "'.$this->email.'",
+                        '.$this->idMedioDif.',
+                        "'.$this->descMedioDif.'" 
+                    )
+                ';
                 if( $con->query($sql) ){
                     return true;
                 }else{
@@ -72,13 +100,14 @@
         //-- actualiza beneficiario en la base de datos
         public function actualiza(){
             try{
+                
                 $con = new Conexion;
                 $con = $con->conectar();
-                $sql = "UPDATE beneficiarios SET nombre='".$this->nombre."',apellidos='".$this->apellido."',sexo=".$this->sexo.",fecNacimiento='".$this->nacimiento."',idCiudad=".$this->ciudad.",calle='".$this->calle."',colonia='".$this->colonia."',cp='".$this->cp."',telefono='".$this->telefono."',email='".$this->email."',idMedioDifusion=".$this->idMedioDif.",descMedioDif='".$this->descMedioDif."' WHERE id = ".$this->id." ";
+                $sql = 'UPDATE beneficiarios SET nombre="'.$this->nombre.'",apellidos="'.$this->apellido.'",sexo="'.$this->sexo.'",fecNacimiento="'.$this->nacimiento.'",idCiudad='.$this->ciudad.',calle="'.$this->calle.'",colonia="'.$this->colonia.'",cp="'.$this->cp.'",telefono="'.$this->telefono.'",email="'.$this->email.'",idMedioDifusion='.$this->idMedioDif.',descMedioDif="'.$this->descMedioDif.'" WHERE id = '.$this->id;
                 if( $con->query($sql) ){
-                    return "true";
+                    return true;
                 }else{
-                    return "false";
+                    return false;
                 }
             }catch(Exception $e){
                 echo $e->getMessage();

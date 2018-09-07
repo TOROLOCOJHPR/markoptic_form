@@ -1,5 +1,6 @@
 <?php
-
+    	$root = $_SERVER['DOCUMENT_ROOT'];//tomar la ruta hacía el directorio raíz
+	require_once $root.'/inc/config.php';// incluir variables de configuración
 	class Conexion{
 
             //Conexion php 7

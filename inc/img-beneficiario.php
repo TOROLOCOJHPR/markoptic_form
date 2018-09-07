@@ -1,4 +1,5 @@
 <?php
+    // script para crear carpetas de imágenes de cada beneficiario almacenadas en la base de datos
     include 'config.php';
     include 'objetos/conexion.php';
     $objCon = new Conexion();

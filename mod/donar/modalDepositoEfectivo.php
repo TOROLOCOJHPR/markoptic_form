@@ -7,12 +7,21 @@
             <p class="px-5 text-center">
                 Puede hacer su donativo mediante depósito en efectivo a nuestra cuenta bancaria (las donaciones en efectivo solo serán recibidas mediante depósito bancario):
                 <br><strong>Banco:</strong> 
+                Banbajio
+                <br><strong>Nombre:</strong> 
+                Fundacion Markoptic AC
+                <br><strong>Cuenta:</strong> 
+                0155 5132 80201
+            </p>
+            <!-- <p class="px-5 text-center">
+                Puede hacer su donativo mediante depósito en efectivo a nuestra cuenta bancaria (las donaciones en efectivo solo serán recibidas mediante depósito bancario):
+                <br><strong>Banco:</strong> 
                 Citibanamex 
                 <br><strong>Nombre:</strong> 
                 Fundación Markoptic A.C.
                 <br><strong>Cuenta:</strong> 
                 7007 3742542
-            </p>
+            </p> -->
         </div>
     </div>
 </div>

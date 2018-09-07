@@ -1,6 +1,6 @@
 <?php
-    require_once 'inc/config.php';
-    require_once 'conexion.php';
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $root.'/inc/objetos/conexion.php';
     class Parentesco{
         
         //-- atributos
@@ -52,12 +52,14 @@
         //-- muestra los datos del parentesco seleccionado
         public function muestra(){
             try{
+                $array = array();
                 $con = new Conexion;
                 $con = $con->conectar();
-                $sql ='SELECT parentesco FROM parentescos WHERE id = '.$this->id;
+                $sql ='SELECT id,parentesco FROM parentescos WHERE id = '.$this->id;
                 $result = $con->query($sql);
                 $result = $result->fetch_assoc();
-                return $result['parentesco'];
+                array_push($array,array("idParentesco"=>$result['id'],"parentesco"=>$result['parentesco']));
+                return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
             }finally{
@@ -72,17 +74,23 @@
                 $array = array();
                 $con = new Conexion;
                 $con= $con->conectar();
-                $sql ="SELECT * FROM parentescos";
+                $sql ="SELECT * FROM parentescos ORDER BY parentesco ASC";
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array("id"=>$row['id'],"parentesco"=>$row['parentesco']) );
-                }
+                    array_push( 
+                        $array,
+                        array(
+                            "idParentesco"=>$row['id'],
+                            "parentesco"=>$row['parentesco']
+                        ) 
+                    );//array_push
+                }//while
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
             }finally{
                 $con->close();
-            }
+            }//finally
         }//-- muestra todos los parentescos del beneficiario
 
         //elimina parentesco de la base de datos

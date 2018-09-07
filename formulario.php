@@ -549,8 +549,8 @@
                     <option value="" class="text-muted">Selecciona un Parentesco</option>
                     <?php 
                         foreach($parentescos as $row){
-                            $selected = ( $tutParentesco == $row['id'] ) ? "selected" : "";
-                            echo "<option value='".$row['id']."' ".$selected.">".$row['parentesco']."</option>";
+                            $selected = ( $tutParentesco == $row['idParentesco'] ) ? "selected" : "";
+                            echo "<option value='".$row['idParentesco']."' ".$selected.">".$row['parentesco']."</option>";
                         }
                     ?>
                 </select>
@@ -736,9 +736,8 @@
                             <!-- campo -->
                             <input 
                                 type='radio' name='condicion' id='".$labelFor."'
-                                value='".$id."' ".$required.                                
-                                $checked.
-                                "
+                                value='".$id."' ".$required." ".                                
+                                $checked."
                             />
 
                             <label for='".$labelFor."' class='rCondicion mb-0'>
@@ -787,18 +786,18 @@
                     foreach( $medios as $row ){
                             
                         $ph = ( $row['reqDesc'] != 0 ) ? $row['placeholder'] : "";//verificar si la opción de la lista cuenta con descripción para el campo otro
-                        $selected = ( $medio == $row['id'] )? "selected" : "";//verificar si la opción es la seleccionada por el beneficiario
+                        $selected = ( $medio == $row['idMedio'] )? "selected" : "";//verificar si la opción es la seleccionada por el beneficiario
                             
                         //verificar si la opción es diferente a otro
                         if( $row['medio'] != "otro" ){
                                 
                             //imprimir la opción con sus respectivos datos
-                            echo"<option value='".$row['id']."' data-ph='".$ph."' ".$selected.">".$row['medio']."</option>";
+                            echo"<option value='".$row['idMedio']."' data-ph='".$ph."' ".$selected.">".$row['medio']."</option>";
 
                         }else{
 
                             // guardar los datos de la opción otro para colocarla al final de la lista
-                            $otroId = $row['id']; $otroMedio = $row['medio']; $otroPH = $row['placeholder'];
+                            $otroId = $row['idMedio']; $otroMedio = $row['medio']; $otroPH = $row['placeholder'];
 
                         }
                     }//foreach

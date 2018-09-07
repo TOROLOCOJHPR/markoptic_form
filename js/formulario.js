@@ -1094,5 +1094,4 @@ $(document).ready(function(){
             $('#' + previewFoto).attr("src","");
         }
 
-    }//-- función para generar la miniatura de las imágenes del beneficiario  
-
+    }//-- función para generar la miniatura de las imágenes del beneficiario

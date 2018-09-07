@@ -1,4 +1,7 @@
-<?php 
+<?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+    $menuBack ="";
     require('back/comprueba.php');
     $metodo = $_SERVER['REQUEST_METHOD'];
     $url2 = "?".$_SERVER['QUERY_STRING'];

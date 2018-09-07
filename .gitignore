@@ -1,5 +1,6 @@
 ﻿/.htaccess
 /cms/config.php
+/inc/config.php
 /cms/uploads
 /cms/cache
 /back/conexion.php

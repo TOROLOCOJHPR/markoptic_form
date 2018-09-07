@@ -1,17 +1,19 @@
 <?php
 
-    class Imagen{
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $root.'/inc/objetos/conexion.php';
 
+    class Imagen{
         //-- atributos
         public $ruta,$foto;
-        private $idSolicitud;
-
+        private $idSolicitud,$idFotoHistoria;
+        
         //-- getter and setter
-        public function getRuta(){return "img/uploads/".$this->idSolicitud."/" ;}
+        public function getRuta(){return $_SERVER['DOCUMENT_ROOT']."/img/uploads/".$this->idSolicitud."/";}
         public function getFoto(){return $this->foto; }
 
         public function setIdSolicitud($sIdSolicitud){$this->idSolicitud = $sIdSolicitud;}
-        
+        public function setIdFotoHistoria($sIdFotoHistoria){$this->idFotoHistoria = $sIdFotoHistoria;}
         public function setFoto($sFoto){$this->foto = $sFoto;}
         
         //crea imagenes 
@@ -42,9 +44,9 @@
             try{
                 $array = array();
                 $ruta = $this->getRuta(); // Indicar ruta
-                $filehandle = opendir($ruta); // Abre el directorio
-                while ($file = readdir($filehandle)) {// obtener el archivo
-                    if(!is_dir($ruta.$file)){// comprobar que no sea directorio por . y ..
+                $filehandle = @opendir($ruta); // Abre el directorio
+                while ($file = @readdir($filehandle)) {// obtener el archivo
+                    if(@!is_dir($ruta.$file)){// comprobar que no sea directorio por . y ..
                         array_push( $array,array("nombre"=>$file) );
                     } 
                 }
@@ -52,12 +54,65 @@
             }catch(Exception $e){
                 echo $e->getMessage();
             }finally{
-                closedir($filehandle); // Fin lectura archivos
+                @closedir($filehandle); // Fin lectura archivos
             }
         }// fin muestra
+
+
+        //-- crea foto de historia para el beneficiario
+        public function creaFotoHistoria(){
+            try{
+                $con = new Conexion;
+                $con = $con->conectar();
+                $sql = 'INSERT INTO imghistoria(idSolicitud,fotoHistoria) VALUES('.$this->idSolicitud.',"'.$this->foto.'")';
+                if($con->query($sql)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $e){
+                echo $e->getMessage();                
+            }finally{
+                $con->close();
+            }
+        }//-- crea foto de historia para el beneficiario
+
+        //-- muestra la foto seleccionada de la historia
+        public function muestraFotoHistoria(){
+            try{
+                $array = array();
+                $con = new Conexion;
+                $con = $con->conectar();
+                $sql = 'SELECT id,fotoHistoria FROM imghistoria WHERE idSolicitud = '.$this->idSolicitud;
+                $result = $con->query($sql);
+                $row = $result->fetch_assoc();    
+                array_push($array,array("id"=>$row['id'],"fotoHistoria"=>$row['fotoHistoria']));
+                return $array;
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }finally{
+                $con->close();
+            }
+        }//-- muestra la foto seleccionada de la historia
     
-    
-    
+        //-- actualiza la foto seleccionada de la historia
+        public function actualizaFotoHistoria(){
+            try{
+                $con = new Conexion;
+                $con = $con->conectar();
+                $sql = 'UPDATE imghistoria SET fotoHistoria="'.$this->foto.'" WHERE id ='.$this->idFotoHistoria;
+                if($con->query($sql)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }finally{
+                $con->close();
+            }
+        }//-- actualiza la foto seleccionada de la historia
+
     }// fin class Imagen
 
 ?>

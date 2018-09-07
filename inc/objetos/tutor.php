@@ -1,6 +1,6 @@
 <?php 
-    require_once 'inc/config.php';
-    require_once 'conexion.php';
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $root.'/inc/objetos/conexion.php';
     
     class Tutor{
         
@@ -87,22 +87,22 @@
         }//-- actualiza tutor en la base de datos
 
         //-- muestra los datos del tutor
-        public function muestra(){
-            try{
-                $array = array();
-                $con = new Conexion;
-                $con = $con->conectar();
-                $sql ="SELECT * FROM tutores WHERE id = '".$this->id."' ";
-                $result = $con->query($sql);
-                $row = $result->fetch_assoc();
-                array_push( $array,array("id"=>$row['id'],"idBen"=>$row['idBeneficiario'],"nombre"=>$row['nombre'],"apellido"=>$row['apellidos'],"nacimiento"=>$row['fecNacimiento'],"sexo"=>$row['sexo'],"viveBen"=>$row['viveConBen'],"parentesco"=>$row['idParentesco'],"telefono"=>$row['telefono'],"email"=>$row['email']) );
-                return $array;
-            }catch(Exception $e){
-                echo $e->getMessage();
-            }finally{
-                $con->close();
-            }
-        }//-- muestra los datos del tutor
+        // public function muestra(){
+        //     try{
+        //         $array = array();
+        //         $con = new Conexion;
+        //         $con = $con->conectar();
+        //         $sql ="SELECT * FROM tutores WHERE id = '".$this->id."' ";
+        //         $result = $con->query($sql);
+        //         $row = $result->fetch_assoc();
+        //         array_push( $array,array("id"=>$row['id'],"idBen"=>$row['idBeneficiario'],"nombre"=>$row['nombre'],"apellido"=>$row['apellidos'],"nacimiento"=>$row['fecNacimiento'],"sexo"=>$row['sexo'],"viveBen"=>$row['viveConBen'],"parentesco"=>$row['idParentesco'],"telefono"=>$row['telefono'],"email"=>$row['email']) );
+        //         return $array;
+        //     }catch(Exception $e){
+        //         echo $e->getMessage();
+        //     }finally{
+        //         $con->close();
+        //     }
+        //}//-- muestra los datos del tutor
 
         //-- muestra los datos de todos los tutores
         public function muestraTodos(){
@@ -123,17 +123,21 @@
             }
         }//-- muestra los datos de todos los beneficiarios
 
-        //-- muestra los tutores del beneficiario
-        public function muestraBeneficiario(){
+        //-- muestra el tutor del beneficiario
+        public function muestra(){
             try{
                 $array = array();
                 $con = new Conexion;
                 $con = $con->conectar();
                 $sql ="SELECT * FROM tutores WHERE idBeneficiario = '".$this->idBen."' ";
                 $result = $con->query($sql);
-                $row = $result->fetch_assoc();
-                array_push( $array,array("idTut"=>$row['id'],"idBen"=>$row['idBeneficiario'],"nombreTut"=>$row['nombre'],"apellidoTut"=>$row['apellidos'],"nacimientoTut"=>$row['fecNacimiento'],"sexoTut"=>$row['sexo'],"viveBen"=>$row['viveConBen'],"parentesco"=>$row['idParentesco'],"telefonoTut"=>$row['telefono'],"emailTut"=>$row['email']) );
-                return $array;
+                if($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                    array_push( $array,array("idTut"=>$row['id'],"idBen"=>$row['idBeneficiario'],"tutNombre"=>$row['nombre'],"tutApellido"=>$row['apellidos'],"tutNacimiento"=>$row['fecNacimiento'],"tutSexo"=>$row['sexo'],"viveBen"=>$row['viveConBen'],"parentesco"=>$row['idParentesco'],"tutTelefono"=>$row['telefono'],"tutEmail"=>$row['email']) );
+                    return $array;
+                }else{
+                    return false;
+                }
             }catch(Exception $e){
                 echo $e->getMessage();
             }finally{

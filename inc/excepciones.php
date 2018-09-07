@@ -1,14 +1,17 @@
 <?php
 //incluir objetos
-    include 'inc/objetos/ubicacion.php';
-    include_once 'inc/objetos/beneficiario.php';
-    include 'inc/objetos/tutor.php';
-    include 'inc/objetos/parentesco.php';
-    include 'inc/objetos/dispositivo.php';
-    include 'inc/objetos/condicion.php';
-    include 'inc/objetos/medioDifusion.php';
-    include 'inc/objetos/solicitud.php';
-    include 'inc/objetos/imagen.php';
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once ($root.'/inc/config.php');
+    require_once ($root.'/inc/objetos/conexion.php');
+    require_once ($root.'/inc/objetos/ubicacion.php');
+    require_once ($root.'/inc/objetos/beneficiario.php');
+    require_once ($root.'/inc/objetos/tutor.php');
+    require_once ($root.'/inc/objetos/parentesco.php');
+    require_once ($root.'/inc/objetos/dispositivo.php');
+    require_once ($root.'/inc/objetos/condicion.php');
+    require_once ($root.'/inc/objetos/medioDifusion.php');
+    require_once ($root.'/inc/objetos/solicitud.php');
+    require_once ($root.'/inc/objetos/imagen.php');
 
 //validar tipo de metodo de respuesta servidor
     $metodo = $_SERVER['REQUEST_METHOD'];
@@ -355,7 +358,7 @@
         $objUb->setPais($idPais);//colocar valor a variable id país en objeto ubicación
         $objUb->setEstado($idEstado);//colocar valor a variable id estado en objeto ubicación
         
-        //buscar dispositovos por tipo de solicitud
+        //buscar dispositivos por tipo de solicitud
         if( $d == "brazo" ){
             $objDis->setFormulario("1,2");
             $objCond->setFormulario("2,3,4");
@@ -375,52 +378,104 @@
     
     //verificar si no existen errores para envíar formulario
         if($e == 0){
-
             //agregar valor a objeto beneficiario
-            $objBen->setNombre($_POST['nombre']);
-            $objBen->setApellido($_POST['apellido']);
-            $objBen->setSexo($_POST['sexo']);
-            $objBen->setNacimiento($_POST['date']);      
-            $objBen->setCiudad($_POST['ciudad']);
-            $objBen->setCalle($_POST['calle']);
-            $objBen->setColonia($_POST['colonia']);
-            $objBen->setCp($_POST['cp']);
-            $objBen->setTelefono($_POST['tel']);
-            $objBen->setEmail($_POST['email']);
-            $objBen->setIdMedioDif($_POST['medio']);
+            //nombre
+            $objBen->setNombre(
+                trim( mb_strtolower($_POST['nombre']) ) 
+            );
+            //apellido
+            $objBen->setApellido( 
+                trim( mb_strtolower($_POST['apellido']) ) 
+            );
+            //sexo
+            $objBen->setSexo( $_POST['sexo']);
+            //nacimiento
+            $objBen->setNacimiento( $_POST['date'] );
+            //ciudad
+            $objBen->setCiudad( $_POST['ciudad'] );
+            //calle
+            $objBen->setCalle( 
+                trim( mb_strtolower($_POST['calle']) ) 
+            );
+            //colonia
+            $objBen->setColonia( 
+                trim( mb_strtolower($_POST['colonia']) ) 
+            );
+            //código postal
+            $objBen->setCp( 
+                trim( mb_strtolower($_POST['cp']) ) 
+            );
+            //teléfono
+            $objBen->setTelefono( 
+                trim($_POST['tel']) 
+            );
+            //email
+            $objBen->setEmail( 
+                trim($_POST['email']) 
+            );
+            //medio de descripción
+            $objBen->setIdMedioDif( $_POST['medio'] );
+            //descripción del medio de descrpción
             if(isset($_POST['medioOtro'])){
-                $objBen->setDescMedioDif($_POST['medioOtro']);
+                $objBen->setDescMedioDif( 
+                    trim( mb_strtolower($_POST['medioOtro']) ) 
+                );
             }else{
                 $objBen->setDescMedioDif("");
             }
-
+            
             //agregar valor a objeto tutor
             if($_POST['independiente'] == 1){
-
+                
+                //tutor independiente
                 $objTut->setIndependiente(1);
-                $objTut->setNombre($_POST['tutNombre']);
-                $objTut->setApellido($_POST['tutApellido']);
+                //tutor nombre
+                $objTut->setNombre(
+                    trim( mb_strtolower($_POST['tutNombre']) )
+                );
+                //tutor apellido
+                $objTut->setApellido(
+                    trim( mb_strtolower($_POST['tutApellido']) ) 
+                );
+                //tutor sexo
                 $objTut->setSexo($_POST['tutSexo']);
+                //tutor vive con el beneficiario
                 $objTut->setViveBen($_POST['tutVive']);
+                //tutor parentesco
                 $objTut->setParentesco($_POST['tutParentesco']);
+                //tutor nacimiento
                 $objTut->setNacimiento($_POST['tutDate']);
-                $objTut->setTelefono($_POST['tutTel']);
-                $objTut->setEmail($_POST['tutEmail']);
+                //tutor teléfono
+                $objTut->setTelefono(
+                    trim( $_POST['tutTel'] ) 
+                );
+                //tutor email
+                $objTut->setEmail(
+                    trim ($_POST['tutEmail'] ) 
+                );
             }
             else{
                 $objTut->setIndependiente(0);
             }
-
+            
             // agregar valor a objeto solicitud
+            //id condicioón
             $objSol->setIdCondicion($condicion);
+            //id dispositivo
             $objSol->setIdDispositivo($dispositivo);
+            //id estatus inicial 1(en aprobación)
             $objSol->setIdEstatus(1);
-            $objSol->setPorque($_POST['porque']);
+            //porque solicita el dispositivo
+            $objSol->setPorque( 
+                trim( mb_strtolower( $_POST['porque']) )
+            );
+            
+            //crear solicitud
             $idSolicitud = $objSol->crea($objBen,$objTut);
             
             if($idSolicitud != false){//comprobar si se inserto la solicitud
 
-                //crear carpeta e insertar imágenes
+            //crear carpeta e insertar imágenes
                 $objImg = new Imagen;
                 $objImg->setIdSolicitud($idSolicitud);
                 for($i = 1; $i < 4; $i ++ ){
@@ -429,12 +484,22 @@
                     $objImg->crea();
                 }
                 
-                //crea y envía correo de solicitud
+            //crea y envía correo de solicitud
+
+                //traer datos de ubicación(país,estado,ciudad)
                 $objUb->setCiudad($_POST['ciudad']);//asignar valor a variable ciudad de objeto ubicación
                 $ubicacion = $objUb->muestraUbicacion();// traer nombre del país,estado y ciudad del beneficiario
                 $sexoMail = ($objBen->getSexo() == "m")? "masculino" : "femenino";
 
-                // agregar datos del beneficiario
+                // traer datos adicionales
+                $objDis->setId($dispositivo); //asignar valor a id dispositivo
+                $dispositivoNombre = $objDis->muestra();//traer nombre del dispositivo seleccionado
+                $objCond->setId($condicion);
+                $condicionNombre = $objCond->muestra();
+                $objMedio->setId($_POST['medio']);
+                $medioNombre = $objMedio->muestra();
+
+                //crear mensaje
                 $message = '
                     <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
                     <html xmlns="http://www.w3.org/1999/xhtml">
@@ -451,6 +516,7 @@
                                     </td>
                                 </tr>
                                 <tr><td><strong>DATOS DEL BENEFICIARIO</strong></td></tr>
+                                <tr><td><strong>Folio: </strong><span>'.$dispositivoNombre[0]['siglasDispositivo'].'-'.$idSolicitud.'</span></td></tr>
                                 <tr><td><strong>Nombre: </strong><span>'.$objBen->getNombre().'</span></td></tr>
                                 <tr><td><strong>Apellidos: </strong><span>'.$objBen->getApellido().'</span></td></tr>
                                 <tr><td><strong>Sexo: </strong><span>'.$sexoMail.'</span></td></tr>
@@ -478,24 +544,15 @@
                                 <tr><td><strong>Nombre: </strong><span>'.$objTut->getNombre().'</span></td></tr>
                                 <tr><td><strong>Apellidos: </strong><span>'.$objTut->getApellido().'</span></td></tr>
                                 <tr><td><strong>Sexo: </strong><span>'.$tutSexoMail.'</span></td></tr>
-                                <tr><td><strong>Vive con el beneficiario: </strong><span>'.$objTut->getViveBen().'</span></td></tr>
-                                <tr><td><strong>Parentesco: </strong><span>'.$parentesco.'</span></td></tr>
+                                <tr><td><strong>Parentesco: </strong><span>'.$parentesco[0]['parentesco'].'</span></td></tr>
                                 <tr><td> <strong>Fecha de nacimiento: </strong><span>'.$objTut->getNacimiento().'</span></td></tr>
                                 <tr><td><strong>Teléfono: </strong><span>'.$objTut->getTelefono().'</span></td></tr>
                                 <tr><td><strong>Email: </strong><span>'.$objTut->getEmail().'</span></td></tr>   
                     ';
                 }//verificar si el usuario cuenta con tutor
 
-                // agregar datos adicionales
-                $objDis->setId($_POST['dispositivo']); //asignar valor a id dispositivo
-                $dispositivoNombre = $objDis->muestra();//traer nombre del dispositivo seleccionado
-                $objCond->setId($_POST['condicion']);
-                $condicionNombre = $objCond->muestra();
-                $objMedio->setId($_POST['medio']);
-                $medioNombre = $objMedio->muestra();
-
                 $message.= '
-                                <tr><td><strong>Dispositivo Solicitado: </strong><span>'.$dispositivoNombre[0]['nombre'].'</span></td></tr>
+                                <tr><td><strong>Dispositivo Solicitado: </strong><span>'.$dispositivoNombre[0]['nombreDispositivo'].'</span></td></tr>
                                 <tr><td><strong>Condición de la amputación: </strong><span>'.$condicionNombre[0]['condicion'].'</span></td></tr>
                                 <tr><td><strong>Medio de difusión: </strong><span>'.$medioNombre[0]['medio'].'</span></td></tr>
                 ';
@@ -503,7 +560,7 @@
                 //verificar si el medio requiere descripción
                 if( isset($_POST['medioOtro']) ){
                     $message .= '
-                                <tr><td><strong>Nombre del medio: </strong><span>'.$objTut->getDescMedioDif().'</span></td></tr>
+                                <tr><td><strong>Nombre del medio: </strong><span>'.$objBen->getDescMedioDif().'</span></td></tr>
                     ';            
                 }
                 
@@ -519,25 +576,22 @@
                     </html>
                 ';
 
-                // $m = $this->mensajeFormulario($id);
-                $to = "jesusparra07hp@gmail.com";
+                $to = $objBen->getEmail();
                 $subject = "Solicitud Formulario Markoptic";
                 $headers = "MIME-Version: 1.0"."\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1"."\r\n";
-                // $headers.= "Cc:jparra@markoptic.mx,info@fundacionmarkoptic.org.mx,racosta@fundacionmarkoptic.org.mx"."\r\n";
-                $headers.= "Cc:jparra@markoptic.mx"."\r\n";
+                $headers.= "Cc:jparra@markoptic.mx,info@fundacionmarkoptic.org.mx,racosta@fundacionmarkoptic.org.mx"."\r\n";
                 $headers .= "From: Fundación Markoptic <info@fundacionmarkoptic.org.mx>";
                 $result = mail($to,utf8_decode($subject),utf8_decode($message),utf8_decode($headers));
                 
                 //redirecciona mostrando agradeciemiento
                 header('Location: /gracias?solicitud=exito');
-            
+                
             }else{
-
                 //redirecciona mostrando una disculpa 
                 header('Location: /gracias?solicitud=error');
             }
-
+            
         }//verificar si no existen errores para envíar formulario
         
     }//método post

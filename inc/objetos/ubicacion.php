@@ -1,5 +1,6 @@
 <?php
-    require_once 'conexion.php';
+    $root = $_SERVER['DOCUMENT_ROOT'];
+    require_once $root.'/inc/objetos/conexion.php';
 
     class Ubicacion{
         //-- atributos de ubicación
@@ -143,7 +144,8 @@
 
                 $this->pais = $row['id_pais'];
                 $p = $this->muestraPais();
-                array_push( $array,array( "pais"=>$p,"estado"=>$e,"ciudad"=>$c ) );
+
+                array_push( $array,array( "idPais"=>$row['id_pais'],"idEstado"=>$row['id_region'],"idCiudad"=>$this->ciudad,"pais"=>$p,"estado"=>$e,"ciudad"=>$c ) );
                 return $array;
 
             }catch(Exception $e){

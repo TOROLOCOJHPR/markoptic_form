@@ -37,13 +37,22 @@
                 $sql = "SELECT id,nombre,siglas,precio,mostrar FROM dispositivos WHERE id = ".$this->id ;
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array( "id"=>$row['id'],"nombre"=>$row['nombre'],"siglas"=>$row['siglas'],"precio"=>$row['precio'],"mostrar"=>$row['mostrar'] ) );
+                    array_push( 
+                        $array,
+                        array(
+                            "idDispositivo"=>$row['id'],
+                            "nombreDispositivo"=>$row['nombre'],
+                            "siglasDispositivo"=>$row['siglas'],
+                            "precioDispositivo"=>$row['precio'],
+                            "mostrarDispositivo"=>$row['mostrar']
+                        ) 
+                    );
                 }
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
             }finally{
-
+                $con->close();
             }
         }//-- muestra los datos del dispositivo
 
@@ -56,7 +65,7 @@
                 $sql = "SELECT id,nombre,siglas,precio,mostrar FROM dispositivos";
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array( "id"=>$row['id'],"nombre"=>$row['nombre'],"siglas"=>$row['siglas'],"precio"=>$row['precio'],"mostrar"=>$row['mostrar'] ) );
+                    array_push( $array,array( "idDispositivo"=>$row['id'],"nombreDispositivo"=>$row['nombre'],"siglasDispositivo"=>$row['siglas'],"precioDispositivo"=>$row['precio'],"mostrarDispositivo"=>$row['mostrar'] ) );
                 }
                 return $array;
             }catch(Exception $e){

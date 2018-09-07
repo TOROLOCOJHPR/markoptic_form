@@ -32,8 +32,14 @@
                 $sql ="SELECT id,condicion FROM condiciones WHERE id =".$this->id;
                 $result = $con->query( $sql );
                 while( $row = $result->fetch_array() ){
-                    array_push( $array, array( "id"=>$row['id'],"condicion"=>$row['condicion'] ) );
-                }
+                    array_push( 
+                        $array,
+                        array(
+                            "idCondicion"=>$row['id'],
+                            "condicion"=>$row['condicion'] 
+                        ) 
+                    );//array_push
+                }//while
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
@@ -51,8 +57,14 @@
                 $sql ="SELECT * FROM condiciones";
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array("id"=>$row['id'],"condicion"=>$row['condicion']) );
-                }
+                    array_push(
+                        $array,
+                        array(
+                            "idCondicion"=>$row['id'],
+                            "condicion"=>$row['condicion']
+                        ) 
+                    );//array_push
+                }//while
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();
@@ -81,7 +93,15 @@
                 $sql="SELECT * FROM condiciones WHERE ".$cadena;
                 $result = $con->query($sql);
                 while( $row = $result->fetch_array() ){
-                    array_push( $array,array( "id"=>$row['id'],"condicion"=>$row['condicion'],"imgFrontal"=>$row['imgFrontal'],"imgTrasera"=>$row['imgTrasera'] ) );
+                    array_push(
+                        $array,
+                        array(
+                            "id"=>$row['id'],
+                            "condicion"=>$row['condicion'],
+                            "imgFrontal"=>$row['imgFrontal'],
+                            "imgTrasera"=>$row['imgTrasera'] 
+                        )
+                    );//array_push
                 }
                 return $array;
             }catch(Exception $e){
