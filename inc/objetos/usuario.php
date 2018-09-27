@@ -5,7 +5,7 @@
 
     Class Usuario {
 
-        public $user,$rol,$eliminado;
+        public $user,$rol;
         protected $pass;
         private $id;
 
@@ -13,12 +13,10 @@
         public function setId($sId){$this->id = $sId;}
         public function setUser($sUser){$this->user = $sUser;}
         public function setRol($sRol){$this->rol = $sRol;}
-        public function setEliminado($sEliminado){$this->eliminado = $sEliminado;}
         public function setPass($sPass){$this->pass = $sPass;}
 
         public function getUser(){return $this->user;}
         public function getRol(){return $this->rol;}
-        public function geteliminado(){return $this->eliminado;}
 
         //-- crea usuario en la base de datos
         public function crea(){
@@ -73,25 +71,32 @@
             $array = array();
             $con = new Conexion;
             $con = $con->conectar();
-            $sql = 'SELECT id,user,rol,eliminado FROM usuarios WHERE id = '.$this->id;
+            $sql = 'SELECT id,user,rol FROM usuarios WHERE id = '.$this->id;
             $result = $con->query($sql);
             while($row = $result->fetch_array()){
-                array_push($array,array("id"=>$row['id'],"user"=>$row['user'],"rol"=>$row['rol'],"eliminado"=>$row['eliminado']));
+                array_push($array,array("id"=>$row['id'],"user"=>$row['user'],"rol"=>$row['rol']));
             }
             return $array;
         }//--muestra todos los usuarios existentes
         
         //-- muestra todos los usuarios existentes
         public function muestraTodos(){
-            $array = array();
-            $con = new Conexion;
-            $con = $con->conectar();
-            $sql = 'SELECT id,user,rol,eliminado FROM usuarios ORDER BY user ASC';
-            $result = $con->query($sql);
-            while($row = $result->fetch_array()){
-                array_push($array,array("id"=>$row['id'],"user"=>$row['user'],"rol"=>$row['rol'],"eliminado"=>$row['eliminado']));
+            try{
+                $array = array();
+                $con = new Conexion;
+                $con = $con->conectar();
+                $sql = 'SELECT id,user,rol FROM usuarios ORDER BY user ASC';
+                $result = $con->query($sql);
+                while($row = $result->fetch_array()){
+                    array_push($array,array("id"=>$row['id'],"user"=>$row['user'],"rol"=>$row['rol']));
+                }
+                return $array;
+            }catch(Exception $e){
+                echo $e->getMessage();
+            }finally{
+                $con->close();
             }
-            return $array;
+
         }//--muestra todos los usuarios existentes
 
         //-- muestra si el usuario existe

@@ -5,17 +5,6 @@
     require_once ($root.'/inc/objetos/rol.php');
     require_once ($root.'/inc/objetos/usuario.php');
 
-    $objUsuario = new Usuario;
-
-
-
-
-
-
-
-
-
-
     $objRol = new Rol;
     $roles = $objRol->muestraTodos();
 
