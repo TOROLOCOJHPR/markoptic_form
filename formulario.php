@@ -151,7 +151,7 @@
                     
                 <!-- lista -->
                     
-                <select id='pais' name='pais' class='form-control' required>
+                <select id='pais' name='pais' class='form-control' required autocomplete='off'>
                     <?php
                         echo "<option></option>"; 
                         foreach($paises as $row){
@@ -177,7 +177,7 @@
                 </span>
 
                 <!-- lista -->
-                    <select id="estado" name="estado" class="form-control" required>
+                    <select id="estado" name="estado" class="form-control" required autocomplete='off'>
                         <?php
                             echo "<option></option>";
                             foreach($estados as $estado){
@@ -204,7 +204,7 @@
                 </span>
                     
                 <!-- lista -->
-                <select id="ciudad" name="ciudad" class="form-control" required>
+                <select id="ciudad" name="ciudad" class="form-control" required autocomplete='off'>
                     <?php
                         echo "<option></option>";
                         foreach($ciudades as $row){

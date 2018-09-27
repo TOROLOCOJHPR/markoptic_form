@@ -9,7 +9,7 @@
         <!--links-->
         <div class="col p-0 bordes">
             <a href="/fundacion" class="w-100 h-100 c-align-middle">
-                Fundación
+                Nosotros
             </a>
         </div>
         <div class="col p-0 bordes">

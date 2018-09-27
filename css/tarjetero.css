@@ -47,6 +47,7 @@
 }
 #tarjetero .msj-tarjeta .btn-outline-light { 
     text-shadow: none;
+    background-color:rgba(49, 164, 99, 0.5);
 }
 #tarjetero .msj-tarjeta .btn-outline-light:hover { 
     background-color:#31a463;
