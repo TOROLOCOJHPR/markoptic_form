@@ -13,3 +13,7 @@
 /back/comprueba.php
 /files/csv
 /imagenes
+/beneficiarios-example.php
+/mod/beneficiarios/tarjeta.php
+/mod/beneficiarios/tarjeta-lista-example.php
+/inc/ajax-beneficiarios.php

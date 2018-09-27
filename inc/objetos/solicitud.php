@@ -4,6 +4,7 @@
     require_once $root.'/inc/objetos/conexion-old.php';
     require_once $root.'/inc/objetos/beneficiario.php';
     require_once $root.'/inc/objetos/tutor.php';
+    require_once $root.'/inc/objetos/medioDifusion.php';
     require_once $root.'/inc/objetos/ubicacion.php';
     require_once $root.'/inc/objetos/dispositivo.php';
     require_once $root.'/inc/objetos/condicion.php';
@@ -153,7 +154,7 @@
 
                 //asignar valor a id de dispositivo y traer sus datos
                 $objDis->setId($row['idDispositivo']);
-                $arrayDis = $objDis->muestra();
+                $arrayDis = $objDis->muestra();//id,nombreDispositivo
 
                 //asignar valor a id de condición y traer sus datos
                 $objCond->setId($row['idCondicion']);
@@ -428,7 +429,50 @@
             }finally{
                 $con->close();
             }
-        }//-- muestra el total de los estatus de las solicitudes
+        }//-- muestra el total de los estatus de las 
+        
+        //-- muestra arreglo de solicitudes con cierto tipo de estatus
+        public function muestraArregloEstatus($sql){
+            try
+            {
+                $array = array();
+                $con = new Conexion;
+                $con = $con->conectar();
+                //cadena sql generada en archivo arreglo-solicitudes-estatus.php
+                $result = $con->query($sql);
+                if($result->num_rows >0)
+                {
+
+                    while($row = $result->fetch_array())
+                    {
+                        array_push(
+                            $array,
+                            array(
+                                "idSolicitud"=>$row['id']
+                            )
+                        );//array_push
+                    }//while
+                }else
+                {
+                    array_push(
+                        $array,
+                        array(
+                            "idSolicitud"=>0
+                        )
+                    );//array_push
+                }
+                return $array;
+            }
+            catch(Exception $e)
+            {
+                echo $e->getMessage();
+            }
+            finally
+            {
+                $con->close();
+            }
+        }//-- muestra arreglo de solicitudes con cierto tipo de estatus
+
 
         //-- elimina la solicitud de la base de datos
         public function elimina(){

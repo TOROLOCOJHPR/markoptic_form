@@ -30,6 +30,7 @@ $(document).ready(function(){
         //tomamos el valor del botón estatico
         var donacionBtn = $("input[name='donacionRBtn']:checked").val();
         var total;
+        
         //verificamos si esta seleccionado el boton otro
         if(donacionBtn == "otro"){
             var donacionTxt = $('#donacionTxt').val();
@@ -48,6 +49,8 @@ $(document).ready(function(){
         }else{
             total = donacionBtn;
         }
+
+        //verfificar de donde proviene la solicitud (apadrinamiento, donación)
         var path = location.pathname;
         var folio;
         if(path == "/donar"){
@@ -62,12 +65,12 @@ $(document).ready(function(){
         var emailCliente = $('#emailCliente').val();
         var exito = "http://www.beta.markoptic.mx/recibir";// variable para el envío de variables por post
         // pagina de redirección al momento de realizar deposito exitoso
-        if(folio != "f0" ){//beneficiario
-            var idBen = "http://www.markoptic.test/apadrina?b=" + folio;
-        }else{//página donar
-            var idBen = "http://www.markoptic.test/donar";
-        }
-
+        // if(folio != "f0" ){//beneficiario
+        //     var idBen = "http://www.markoptic.test/apadrina?b=" + folio;
+        // }else{//página donar
+        //     var idBen = "http://www.markoptic.test/donar";
+        // }
+        
         //asignación de valores a variables para el motor de pagos     
         var SW = new BwGateway({
             // Quitar o establecer a false cuando pase a produccion
@@ -118,7 +121,7 @@ $(document).ready(function(){
             // successPage: idBen,
             onSuccess: function(data){
                 // alert("¡Gracias por tu pago!")
-
+                console.log(data);
                 //mostrar modal gracias al cerrar secure window banwire
                 $('#modal-banwire').one('hidden.bs.modal', function (e) {
                     // do something...
@@ -135,7 +138,6 @@ $(document).ready(function(){
                 }
                 });
                 //recargar porcentaje de apadrinación al finalizar la transacción
-                
    
             },
             // Pago pendiente OXXO
@@ -158,14 +160,13 @@ $(document).ready(function(){
                 console.log("Se cancelo el proceso");
             }
         });
-        console.log("total "+total);
-        console.log("folio " + folio);
-        console.log("email " + emailCliente);
-        console.log("redirección " + idBen);
+    
+        //llamar método de pago banwire
         pagar(SW);
         return false;
-    });
-
+    
+    });//botón pagar
+    
 });
 
 //funcion para obtener valores get por url

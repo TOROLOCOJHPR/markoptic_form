@@ -85,8 +85,27 @@
                 $con = $con->conectar();
                 $sql = 'SELECT id,fotoHistoria FROM imghistoria WHERE idSolicitud = '.$this->idSolicitud;
                 $result = $con->query($sql);
-                $row = $result->fetch_assoc();    
-                array_push($array,array("id"=>$row['id'],"fotoHistoria"=>$row['fotoHistoria']));
+                if($result->num_rows > 0)
+                {
+                    $row = $result->fetch_assoc();    
+                    array_push(
+                        $array,
+                        array(
+                            "id"=>$row['id'],
+                            "fotoHistoria"=>$row['fotoHistoria']
+                        )
+                    );
+                }
+                else
+                {
+                    array_push(
+                        $array,
+                        array(
+                            "id"=>0,
+                            "fotoHistoria"=>""
+                        )
+                    );
+                }
                 return $array;
             }catch(Exception $e){
                 echo $e->getMessage();

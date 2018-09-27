@@ -266,7 +266,7 @@ html {
     width: 100%;
     column-count: 2;
     column-gap: 2px;
-    height: auto
+    min-height: 85vh;
 }
 
 .item img {
@@ -314,11 +314,7 @@ html {
 }
 
 #load {
-    width: 100%;
-    height: 100%;
-    background: #66ceff;
-    position: fixed;
-    z-index: 9999
+    min-height: 85vh;
 }
 
 #load img {
@@ -468,6 +464,9 @@ a#block-beneficiarios:hover {
     color: #2D2D2D;
 }
 
+.bg-markoptic{
+    background-color: #31a463;
+}
 .bg-footer {
     background-color: #727272
 }

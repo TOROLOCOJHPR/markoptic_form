@@ -26,7 +26,7 @@
 <cms:if k_is_folder>
     <!--load-->
     <div id="load"class='c-align-middle'>
-        <img src="/img/gif/gatito.gif" alt="loading" class=''>
+        <img src="/img/gif/loader.gif" alt="cargando" class=''>
     </div>
 
     <div class="p-0" id="flexbox" style='display:none;'>

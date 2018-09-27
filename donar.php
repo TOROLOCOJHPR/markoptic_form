@@ -1,12 +1,13 @@
 <?php
     //header
     $title='Donar';
+    $root = $_SERVER['DOCUMENT_ROOT'];
     include 'mod/header.php';
-    include 'back/objetos.php'; 
+    include 'inc/objetos/solicitud.php'; 
     //número de solicitudes
     $estatus = 1;
-    $objBen = new beneficiario;
-    $valor = $objBen->buscaTotalSolicitudes();
+    $objSolicitud = new Solicitud;
+    $valor = $objSolicitud->muestraSolicitudes();
 ?>
 
 </head>
