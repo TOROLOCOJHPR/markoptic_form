@@ -1,0 +1,4 @@
+# AuthType Basic
+# AuthName "Validador boletos"
+# AuthUserFile /var/www/markoptic/boleto/validar/.htpasswd
+# Require valid-user

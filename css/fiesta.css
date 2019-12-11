@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Bahnschrift Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('BAHNSCHRIFT.woff') format('woff');
+}
+html, body{
+    height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+body{
+    background-color: #fff;
+    background-image: url("/img/deco-gray.png");
+    background-size:  auto 130px;
+    background-position-y: 80px;
+    background-repeat: repeat-x;
+}
+.foot-section{
+    background-color: #325927;
+    background-image: url("/img/deco-green.png");
+    background-size:  auto 130px;
+    background-position-y: 50%;
+    background-repeat: repeat-x;
+}
+.text-montse {
+    font-family: 'Montserrat', sans-serif !important;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Bahnschrift Regular', sans-serif;
+    font-weight: 700;
+}
+.text-redparty {
+    color: #BA2718 !important;
+}
+.print {
+    border:solid 1px #cd0cdf;
+}
+.logo {
+    width: auto;
+    max-height: 200px;
+    margin: 40px auto;
+    display: block;
+}
+.logo-artista {
+    height: 100px;
+    width: auto;
+}
+.productos-item {
+    text-align: center;
+    color: #325927;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+}
+
+.productos-item img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 15px;
+}
+.beneficiarios {
+    height:150px;
+    width:auto;
+    margin: 0 15px;
+}
+#lbrdr {
+    border-left: solid 4px #fff;
+}
+#bbrdr {
+    border-TOP: solid 2px #fff;
+    border-bottom: solid 2px #fff;
+}
+#artist {
+    width: 100%;
+    height: auto;
+}
+.shadow-cont {
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+}
+.bg-dark-gradient {
+    background-image: linear-gradient(#100, #343A40) !important;
+}
+
+
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.map-responsive{
+    overflow:hidden;
+    padding-bottom:50%;
+    position:relative;
+    height:0;
+}
+.map-responsive iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+
+@media (max-width: 576px) {
+    .logo {
+        max-height: 100px;
+        margin: 20px auto;
+    }
+    .logo-artista {
+        height: 50px;
+        width: auto;
+    }
+}

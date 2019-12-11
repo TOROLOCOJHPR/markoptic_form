@@ -87,17 +87,17 @@ $(document).ready(function(){
 
     //país vacío
         $('#pais').change(function(){
-            
-            if($(this).val() == ""){
-            
-                $('*[data-error="epais"]').css({"display":"inline-block"});
-            
-            }else{
-            
-                $('*[data-error="epais"]').css({"display":"none"});
-            
-            }
-        
+            // console.log('hola mundo');
+            // if($(this).val() == ""){            
+            //     $('#errorPais').addClass("d-block");
+            //     $('#estado').prop('disabled', true);
+            //     $('#estado').val() = '';
+            //     $('#ciudad').prop('disabled', true);
+            //     $('#ciudad').val() = '';
+            // }else{            
+            //     $('#errorPais').removeClass("d-block");  
+            //     $('#estado').prop('disabled', false);
+            // }        
         });//país vacío
         
     //estado vacío
@@ -105,11 +105,11 @@ $(document).ready(function(){
             
             if($(this).val() == ""){
             
-                $('*[data-error="eestado"]').css({"display":"inline-block"});
+                $('#errorEstado').css({"display":"inline-block"});
             
             }else{
             
-                $('*[data-error="eestado"]').css({"display":"none"});
+                $('#errorEstado"]').css({"display":"none"});
             
             }
         
@@ -120,11 +120,11 @@ $(document).ready(function(){
             
             if($(this).val() == ""){
             
-                $('*[data-error="eciudad"]').css({"display":"inline-block"});
+                $('#errorCiudad').css({"display":"inline-block"});
             
             }else{
             
-                $('*[data-error="eciudad"]').css({"display":"none"});
+                $('#errorCiudad').css({"display":"none"});
             
             }
         });//país vacío

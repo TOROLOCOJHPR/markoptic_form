@@ -113,17 +113,11 @@
     <section id="valores" class="text-white bg-cover-center" style='background-image:url(/img/val2.jpg);'>
         <div class='capa-green-dark-75 text-center t-shadow-2-black p-5'>
             <h2 class='mb-3'>Valores</h2>
-            <div class="row m-0">
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Liderazgo</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Solidaridad</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Familia</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Calidad</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Fidelización</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Inclusión</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Respeto</span></div>
-                <div class="col-md-4 col-6 mx-auto pt-4 c-align-middle"><span class="grow">Empatía</span></div>
-            </div>
-        </div>
+            <ul class='col-sm-6 mx-auto text-left'>
+                <li><strong>Innovación: </strong>Buscamos constantemente nuevas soluciones tecnológicas con un enfoque de ayuda social.</li>
+                <li><strong>Solidaridad: </strong>Trabajamos en equipo para generar soluciones que mejoren la calidad de vida de personas con discapacidad.</li>
+            </ul>
+
     </section>
     <!--/Valores-->
     <!--sevent.block-->

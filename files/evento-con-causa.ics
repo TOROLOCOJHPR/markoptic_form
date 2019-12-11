@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:Fundacion Markoptic
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:4j6fth9fh7q0uar4lellbt9nkb@google.com
+SUMMARY:Evento donación de prótesis y colchon - 5to Aniversario
+DTSTAMP:20191011T183117Z
+DTSTART:20191128T020000Z
+DTEND:20191128T050000Z
+LOCATION:Club de Empresarios Bosques\, S.C.\, Bosque de los Ciruelos 278\, 
+ Bosque de las Lomas\, 11700 Ciudad de México\, CDMX\, México
+END:VEVENT
+END:VCALENDAR

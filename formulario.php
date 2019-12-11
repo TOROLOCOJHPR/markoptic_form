@@ -5,13 +5,15 @@
     require_once 'inc/config.php';
     require 'inc/excepciones.php';
 ?>
-<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap.min.css" />
-<link rel="stylesheet" href="http://kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css">
+<?php include 'mod/header.php';?>
+<link rel="stylesheet" href="//kendo.cdn.telerik.com/2018.2.620/styles/kendo.bootstrap.min.css" />
+<link rel="stylesheet" href="//kendo.cdn.telerik.com/2018.2.620/styles/kendo.common.min.css">
 <style>
     .k-widget{border:none}
 </style>
+</head>
+<body>
 <?php
-    include 'mod/header.php';
     include 'mod/menu.php';
     if( $d == "brazo" ){
         // include 'mod/formulario/descBrazo.php';
@@ -140,53 +142,41 @@
             <div class='form-group col-md-4'>
 
                 <!-- etiqueta -->
-                <label>
-                    País
-                </label>
-                    
+                <label>País</label>                    
                 <!-- error campo vacio -->
-                <span <?php if( $epais == 1 ) echo "style='display:inline-block'" ?> data-error="epais" class="error">
+                <span id="errorPais" class="error <?php if( $epais == 1 ) echo "d-block" ?>">
                     *Selecciona un país
-                </span>
-                    
-                <!-- lista -->
-                    
-                <select id='pais' name='pais' class='form-control' required autocomplete='off'>
+                </span>                    
+                <!-- lista -->                    
+                <select id='pais' name='pais' class='form-control' required autocomplete='off' style="width: 100%">
                     <?php
-                        echo "<option></option>"; 
                         foreach($paises as $row){
                             $selected = ( $idPais == $row['id'] ) ? "selected" : "";
                             echo "<option value='".$row['id']."' ".$selected.">".$row['nombre']."</option>";
                         }
                     ?>
-                </select>
-                    
+                </select>                    
             </div><!-- país -->
 
             <!-- estado -->
             <div class='form-group col-md-4'>
                     
                 <!-- etiqueta -->
-                <label>
-                    Estado
-                </label>
-
+                <label>Estado</label>
                 <!-- error campo vacio -->
-                <span <?php if( $eestado == 1 ) echo "style='display:inline-block'" ?> data-error="eestado" class="error">
+                <span id='errorEstado' class="error <?php if( $eestado == 1 ) echo "d-block" ?>">
                     *Selecciona un estado
                 </span>
-
                 <!-- lista -->
-                    <select id="estado" name="estado" class="form-control" required autocomplete='off'>
-                        <?php
-                            echo "<option></option>";
-                            foreach($estados as $estado){
-                                $id = $estado['id'];
-                                $selEstado = ( $idEstado == $estado['value'] ) ? "selected" : "";
-                                echo "<option value='".$estado['value']."' ".$selEstado.">".$estado['text']."</option>";
-                            }
-                        ?>
-                    </select>
+                <select id="estado" name="estado" class="form-control" required autocomplete='off' disabled style="width: 100%">
+                    <?php
+                        foreach($estados as $estado){
+                            $id = $estado['id'];
+                            $selEstado = ( $idEstado == $estado['value'] ) ? "selected" : "";
+                            echo "<option value='".$estado['value']."' ".$selEstado.">".$estado['text']."</option>";
+                        }
+                    ?>
+                </select>
 
             </div><!-- estado -->
 
@@ -194,19 +184,14 @@
             <div class='form-group col-md-4'>
 
                 <!-- etiqueta -->
-                <label>
-                    Ciudad o Localidad
-                </label>
-
+                <label>Ciudad o Localidad</label>
                 <!-- error campo vacio -->
-                <span <?php if ($eciudad == 1) echo "style='display:inline-block'" ?> data-error="eciudad" class="error">
+                <span id="errorCiudad" class="error <?php if ($eciudad == 1) echo "d-block" ?>">
                     *Selecciona una ciudad
                 </span>
-                    
                 <!-- lista -->
-                <select id="ciudad" name="ciudad" class="form-control" required autocomplete='off'>
+                <select id="ciudad" name="ciudad" class="form-control" required autocomplete='off' disabled style="width: 100%">
                     <?php
-                        echo "<option></option>";
                         foreach($ciudades as $row){
                             $selected = ( $idCiudad == $row['value'] ) ? "selected" : "";
                             echo "<option value='".$row['value']."' ".$selected.">".$row['text']."</option>";

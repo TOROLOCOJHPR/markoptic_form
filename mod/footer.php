@@ -110,62 +110,111 @@
 
     <!-- logo Markoptic monocromo y aviso privacidad -->
         <div class="col-12 mb-2 text-center order-6">
-            <img class="my-2" style="width:auto;height:65px;opacity:.7" src="/img/logo-white.svg" alt="Fundación Markoptic A.C.">
+            <img class="my-2" style="width:auto;height:100px;margin-right:10px;" src="/img/cemefi.png" alt="CEMEFI">
             <img class="my-2" style="width:auto;height:65px;margin-left:10px;" src="/img/jap.png" alt="Junta de Asistencia Privada">
             <p class='mb-0 small'>&copy; <?php echo date("Y"); ?> Markoptic. Todos los derechos reservados </p>
             <a class="btn-link small text-white " href="/files/AVISO - PRIVACIDAD FMAC.PDF" target="blank">Aviso de privacidad</a>
         </div>
+    </footer>
 
-    <!-- modal para contacto -->
-        <div class="modal fade" id="contacto" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content rounded-0">
-                    <div class="modal-header bg-verde-menu p-2 rounded-0 text-center">
-                        <h4 class="modal-title w-100">Contacto</h4>
-                        <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="contacto-form">
-                            <div class="form-row">
-                                <div class="form-group col-12">
-                                    <input class="form-control form-control-sm" type="text" name="nombre" id="" placeholder="Nombre" required>
-                                </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <input class="form-control form-control-sm" type="email" name="email" id="" placeholder="Correo Electrónico" required>
-                                </div>
-                                <div class="form-group col-12 col-md-6">
-                                    <input class="form-control form-control-sm" type="text" name="telefono" id="" placeholder="Teléfono (Opcional)">
-                                </div>
+        <!-- modal para contacto -->
+    <div class="modal fade" id="contacto" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content rounded-0">
+                <div class="modal-header bg-verde-menu p-2 rounded-0 text-center">
+                    <h4 class="modal-title w-100">Contacto</h4>
+                    <button type="button" class="close text-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="contacto-form">
+                        <div class="form-row">
+                            <div class="form-group col-12">
+                                <input class="form-control form-control-sm" type="text" name="nombre" id="" placeholder="Nombre" required>
                             </div>
-                            <textarea class="form-control form-control-sm" name="comentario" placeholder="Déjanos tu comentario" rows="5" required></textarea>
-                            <input type="submit" value="enviar" class="btn btn-success  mt-3 btn-sm bg-verde-menu">
-                            <input type="reset" value="limpiar" class="btn btn-link text-secondary mt-3 btn-sm">
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <address class='text-dark mb-0 text-center w-100'>
-                            Blvd. Enrique Sánchez Alonso #2249-2, Col. Parque Alameda, Culiacán, Sin., México. C.P. 80030<br>
-                            Tels: (667) 715-2166 / 715-1714 / 146 66 50/51/52/53/54<br>
-                            <strong>Lada sin costo:</strong> 01 800 509 1985<br>
-                            <a href="mailto:info@fundacionmarkoptic.org.mx" class='text-markoptic font-weight-bold'>info@fundacionmarkoptic.org.mx</a>
-                        </address>
-                    </div>
+                            <div class="form-group col-12 col-md-6">
+                                <input class="form-control form-control-sm" type="email" name="email" id="" placeholder="Correo Electrónico" required>
+                            </div>
+                            <div class="form-group col-12 col-md-6">
+                                <input class="form-control form-control-sm" type="text" name="telefono" id="" placeholder="Teléfono (Opcional)">
+                            </div>
+                        </div>
+                        <textarea class="form-control form-control-sm" name="comentario" placeholder="Déjanos tu comentario" rows="5" required></textarea>
+                        <input type="submit" value="enviar" class="btn btn-success  mt-3 btn-sm bg-verde-menu">
+                        <input type="reset" value="limpiar" class="btn btn-link text-secondary mt-3 btn-sm">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <address class='text-dark mb-0 text-center w-100'>
+                        Blvd. Enrique Sánchez Alonso #2249-2, Col. Parque Alameda, Culiacán, Sin., México. C.P. 80030<br>
+                        Tels: (667) 715-2166 / 715-1714 / 146 66 50/51/52/53/54<br>
+                        <strong>Lada sin costo:</strong> 01 800 509 1985<br>
+                        <a href="mailto:info@fundacionmarkoptic.org.mx" class='text-markoptic font-weight-bold'>info@fundacionmarkoptic.org.mx</a>
+                    </address>
                 </div>
             </div>
         </div>
-    </footer>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalSandvik" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light" style='background-color:#110101 !important;'>
+            <div class="modal-body row py-0">
+                <button type="button" class='d-block-inline btn btn-link text-light text-decoration-none' data-dismiss="modal" style='position:absolute;top:0;right:20px;font-size:1.5rem;z-index:99;'>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="col-lg-6 rounded-left" id='cover-container'></div>
+                <div class="col-lg-6  p-4 text-center">
+                    <h6>Evento con causa</h6>
+                    <h1>Fiesta Sinaloense</h1>
+                    <p class="lead font-weight-normal">Te invitamos a vivir una gran experiencia con tus artistas favoritos en compañía de tu familia.</p>
+                    <h4>17 OCTUBRE 2019 <br><small>CAMPESTRE LA HERRADURA</small></h4>
+                    <p class="lead font-weight-bold"> a partir de las: 6:00 p.m.</p>
+                    <a href="/fiesta-sinaloense" class="btn btn-lg btn-danger">Conoce más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="modal fade" id="modalSandvik" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark">
+            <div class="modal-body p-0">
+                <button type="button" class='d-block-inline btn btn-link text-light text-decoration-none' data-dismiss="modal" style='position:absolute;top:0;right:10px;font-size:1.5rem;z-index:99;'>
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="w-100">
+                    <a href="https://www.sandvik.coromant.com/mx/news/pages/reciclaje-sandvik-coromant.aspx" target="_blank">
+                        <img src="img/alianza_sandvik.jpg" class='rounded' style="width: 100%;height: auto;" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="/js/js-position-top.js"></script>
     <script src="/js/minify/lightbox.min.js"></script>
     <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
     <script src="/js/minify/lightbox.min.js"></script>
     <script src="/js/base.js"></script>
     <script>
+
+        let fileName = location.href.split("/").slice(-1);
+        // Check browser support
+        if (typeof(Storage) !== "undefined") {
+        // Store
+            if(!sessionStorage.getItem("modal")) if(fileName == "") $('#modalSandvik').modal('show');
+            sessionStorage.setItem("modal", true);
+        } else {
+            if(fileName == "") $('#modalSandvik').modal('show');
+        }
     // función ajax
     function ajax(ajaxParametros,resultado){
         $.ajax({

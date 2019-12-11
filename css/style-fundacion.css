@@ -539,12 +539,25 @@ footer ul li a:hover {
 #mc_embed_signup {
     background:none; clear:left;
 }
+
+.bg-soft-purple {
+    background-color: #21192d !important;
+}
+#cover-container {
+    background-image: url(../img/fiesta.jpg);
+    background-position: center center;
+    background-size: cover;
+    min-height: 250px;
+}
+
+
+
 @media only screen and (max-width: 540px) {
     #menu a {
         font-size: 0.9rem;
     }
     #menu .logo{
-        max-height: 45px;
+        max-height: 30px;
     }
     .contador {
         font-size: 1.5rem;
@@ -589,5 +602,11 @@ footer ul li a:hover {
     }
     .card .c-text {
         height: 50px;
+    }
+}
+
+@media (max-width: 320px) {
+    #menu .logo{
+        max-height: 25px;
     }
 }

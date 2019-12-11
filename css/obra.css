@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'Bahnschrift Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('BAHNSCHRIFT.woff') format('woff');
+}
+html, body{
+    background-color: #50416d;
+    height: 100vh;
+    font-size: 15px;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+.text-montse {
+    font-family: 'Montserrat', sans-serif !important;
+}
+h1,h2,h3,h4,h5,h6 {
+    font-family: 'Bahnschrift Regular', sans-serif;
+    font-weight: 700;
+}
+.print {
+    border:solid 1px #cd0cdf;
+}
+.logo {
+    max-height: 80px;
+    margin: 0 15px 25px;
+    z-index: 5;
+    position: relative;
+}
+#top-pic {
+    position: absolute;
+    bottom: 10px;
+    right: -15px;
+    max-height: 265px;
+}
+.outside-container {
+    margin-left: -50px;
+    margin-right: -50px;
+    padding-left: 50px;
+    padding-right: 50px;
+    position: relative;
+}
+.outside-container::before {
+    content: "";
+    background: inherit;
+    height: 50%;
+    transform: skewY(-2deg);
+    transform-origin: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -18%;
+    z-index: 0;
+}
+.shadow-cont {
+    box-shadow: 3px 3px 5px 1px rgba(0, 0, 0, 0.5);
+}
+.bg-dark-purple {
+    background-color: #21192d;
+}
+.text-gray-purple {
+    color: #464050 !important;
+}
+.text-marquesine {
+    font-size: 1.35rem;
+}
+.hour-block {
+    padding: 8px 15px;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    display: inline-block;
+}
+.list-nombres {
+    font-size: 1rem;
+    font-weight: 700;
+}
+.list-nombres .list-inline-item {
+    margin-right: 1.2rem;
+}
+#rotated {
+    position: absolute;
+    width: calc(100% + 50px);
+    transform: rotate(-1deg);
+    top: -19px;
+    right: 0;
+}
+#side-out::before {
+    content: "";
+    background: inherit;
+    height: 50%;
+    transform: skewY(-2deg);
+    transform-origin: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -6%;
+    z-index: 0;
+}
+.text-shadow {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+.btn-dark-purple {
+    background-color: #21192d;
+    color:#fff;
+}
+.btn-dark-purple:hover {
+    background-color: #56476d;
+    color:#fff;
+}
+.list-size{
+    font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+    .outside-container {
+        margin: initial;
+        padding: initial;
+        position: initial;
+    }
+    .outside-container::before {
+        display: none;
+    }
+    .logo {
+        margin: 0 auto;
+        display: block;
+    }
+    .hour-block {
+        padding: 5px 15px;
+        margin: 0 8px;
+        font-size: 1rem;
+    }
+    .text-marquesine {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .outside-container::before {
+        height: 20%;
+        top: -4%;
+    }
+}
+@media (max-width: 320px) {
+    .hour-block {
+        padding: 5px 10px;
+        margin: 0 5px;
+        font-size: 0.9rem;
+    }
+}

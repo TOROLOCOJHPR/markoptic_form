@@ -1,0 +1,67 @@
+<ifModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file .(html?|txt|css|js|php|pl)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+#turn on url rewriting 
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+Options -Indexes
+
+# Disable the server signature 
+ServerSignature Off
+
+ErrorDocument 404 /404.php
+ErrorDocument 403 /404.php
+#remove the need for .php extentio
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^(.*)$ $1.php
+SetOutputFilter DEFLATE
+FileETag None
+
+	
+RewriteCond %{HTTP_HOST} ^fundacionmarkoptic\.gallbo\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.fundacionmarkoptic\.gallbo\.net$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markoptic\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markoptic\.com$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markoptic\.com\.mx$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markoptic\.com\.mx$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markoptic\.gallbo\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markoptic\.gallbo\.net$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markoptic\.mx$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markoptic\.mx$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markoptic2\.gallbo\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markoptic2\.gallbo\.net$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+RewriteCond %{HTTP_HOST} ^markopticmx\.gallbo\.net$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.markopticmx\.gallbo\.net$
+RewriteCond %{REQUEST_URI} !^/[0-9]+\..+\.cpaneldcv$
+RewriteCond %{REQUEST_URI} !^/\.well-known/pki-validation/[A-F0-9]{32}\.txt(?:\ Comodo\ DCV)?$
+RewriteRule ^/?$ "http\:\/\/fundacionmarkoptic\.org\.mx\/" [R=301,L]
+
